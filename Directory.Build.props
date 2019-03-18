@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <LibsPath>$(MSBuildThisFileDirectory)libs\</LibsPath>
+    <AssetsPath>$(MSBuildThisFileDirectory)assets\</AssetsPath>
+  </PropertyGroup>
+</Project>
