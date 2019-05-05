@@ -8,6 +8,9 @@
 #include "PlayerState.h"
 #include "sdl_util/SDLDestructor.h"
 
+#include "TextureManager.h"
+#include "SpriteManager.h"
+
 namespace pacman {
 namespace view {
 
@@ -32,10 +35,9 @@ public:
 	/// Render the current frame.
 	/// </summary>
 	/// <param name="entity">The entity.</param>
-	void render(const state::PlayerState& entity) const;
+	void render(float dtime) const;
 
 private:
-	
 	/// <summary>
 	/// Initialise SDL features.
 	/// </summary>
@@ -62,9 +64,15 @@ private:
 	/// <summary> A pointer to the renderer. </summary>
 	std::unique_ptr<SDL_Renderer, SDL_Destructor<SDL_Renderer>> p_renderer;
 
-	SDL_Texture* loadTexture(const std::string& file_path);
 
-	std::unique_ptr<SDL_Texture, SDL_Destructor<SDL_Texture>> p_entity_texture;
+	std::unique_ptr<TextureManager> p_texture_manager;
+	std::unique_ptr<SpriteManager> p_sprite_manager;
+
+	SpriteAnimation* p_anim1;
+	SpriteAnimation* p_anim2;
+	SpriteAnimation* p_anim3;
+	SpriteAnimation* p_anim4;
+	SpriteAnimation* p_anim5;
 };
 
 } // view

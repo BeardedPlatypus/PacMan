@@ -157,6 +157,10 @@
     <ClInclude Include="include\Renderable.h" />
     <ClInclude Include="include\RenderManager.h" />
     <ClInclude Include="include\sdl_util\SDLDestructor.h" />
+    <ClInclude Include="include\Sprite.h" />
+    <ClInclude Include="include\SpriteAnimation.h" />
+    <ClInclude Include="include\SpriteManager.h" />
+    <ClInclude Include="include\TextureManager.h" />
     <ClInclude Include="include\ui\Button.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -166,6 +170,10 @@
     <ClCompile Include="PacManView.cpp" />
     <ClCompile Include="src\exceptions\ViewException.cpp" />
     <ClCompile Include="src\RenderManager.cpp" />
+    <ClCompile Include="src\Sprite.cpp" />
+    <ClCompile Include="src\SpriteAnimation.cpp" />
+    <ClCompile Include="src\SpriteManager.cpp" />
+    <ClCompile Include="src\TextureManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
