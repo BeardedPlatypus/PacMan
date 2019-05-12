@@ -15,7 +15,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: vcpkg integrate install
+- script: |
+    vcpkg integrate install
+    vcpkg install sdl2 sdl2-image
   displayName: vcpkg
 
 - task: NuGetToolInstaller@0
