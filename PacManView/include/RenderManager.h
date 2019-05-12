@@ -1,7 +1,7 @@
 #pragma once
 #define DllExport __declspec( dllexport )
 
-#include <SDL.h>
+#include <SDL2\SDL.h>
 #include <string>
 #include <memory>
 
@@ -17,8 +17,17 @@ namespace view {
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
+
+/// <summary>
+/// The <see cref="RenderManager"> provides an interface to the PacManView 
+/// module. It provides the methods to initialise, register, and render a set
+/// of sprites.
+/// </summary>
 class DllExport RenderManager {
-public:	
+public:				
+	/// <summary>
+	/// Construct a new <see cref="RenderManager"/>.
+	/// </summary>
 	RenderManager();
 
 	/// <summary>
@@ -30,11 +39,11 @@ public:
 	/// Initialize this <see cref="RenderManager"/>.
 	/// </summary>
 	void init();
-	
+		
 	/// <summary>
-	/// Render the current frame.
+	/// Renders the specified given the specified time passed.
 	/// </summary>
-	/// <param name="entity">The entity.</param>
+	/// <param name="dtime"> The change in time. </param>
 	void render(float dtime) const;
 
 private:

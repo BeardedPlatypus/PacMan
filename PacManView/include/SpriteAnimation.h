@@ -9,8 +9,13 @@ namespace pacman {
 namespace view {
 
 class DllExport SpriteAnimation {
-public:
-	SpriteAnimation(float time_per_frame, 
+public:	
+	/// <summary>
+	/// Construct a new <see cref="SpriteAnimation"/>.
+	/// </summary>
+	/// <param name="time_per_frame"> The time per frame. </param>
+	/// <param name="sprites"> The set of sprites to be rendered as a sequence. </param>
+	SpriteAnimation(float time_per_frame,
 					const std::vector<std::reference_wrapper<const Sprite>>& sprites);
 	
 	/// <summary>
@@ -24,7 +29,11 @@ public:
 	/// </summary>
 	/// <returns> The current active sprite. </returns>
 	const Sprite& getActiveSprite() const;
-
+	
+	/// <summary>
+	/// Create a deep clone of this <see cref="SpriteAnimation" />.
+	/// </summary>
+	/// <returns> A deep clone of this <see cref="SpriteAnimation" />. </returns>
 	SpriteAnimation DeepClone() const;
 
 private:	

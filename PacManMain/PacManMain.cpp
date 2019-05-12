@@ -7,7 +7,7 @@
 #include <RenderManager.h>
 #include <ControllerManager.h>
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #undef main // Required for SDL2
 

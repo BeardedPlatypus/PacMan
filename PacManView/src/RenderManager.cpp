@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "Rendermanager.h"
+#include "RenderManager.h"
 
-#include <SDL_image.h>
+#include <SDL2/SDL_image.h>
 
 #include "exceptions/ViewException.h"
 

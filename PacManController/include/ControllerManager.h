@@ -1,7 +1,7 @@
 #pragma once
 #define DllExport __declspec( dllexport )
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <GameState.h>
 #include <memory>
 

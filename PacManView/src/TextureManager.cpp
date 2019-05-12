@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "TextureManager.h"
 
-#include <SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include "exceptions/ViewException.h"
+
 
 namespace pacman {
 namespace view {

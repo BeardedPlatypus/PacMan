@@ -16,6 +16,7 @@ enum GameMode
 	ClosedGame
 };
 
+
 /// <summary>
 /// The GameState describes the overall state of the Game.
 /// </summary>
@@ -36,7 +37,7 @@ public:
 	/// <summary>
 	/// Get the game mode of this GameState.
 	/// </summary>
-	/// <returns></returns>
+	/// <returns> The game mode of this GameState. </returns>
 	GameMode getGameMode() const;
 	
 	/// <summary>
