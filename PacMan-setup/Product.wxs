@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" 
+           Name="Monthy's PacMan" 
+           Language="1033" 
+           Version="!(wix.ProductDisplayVersion)" 
+           Manufacturer="MonthyDev" 
+           UpgradeCode="!(wix.ClientBundleUpgradeCode)">
+		<Package InstallerVersion="200" 
+             Compressed="yes" 
+             InstallScope="perMachine" />
+    <WixVariable Id ="ClientBundleUpgradeCode" 
+                 Value="{0ECF10DB-C6F5-4F26-82FA-CCA2DFDBCEAD}"/>
+    <WixVariable Id ="ProductDisplayVersion" 
+                 Value="0.1.0.0"/>
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes"/>
+
+    <UIRef Id="WixUI_Mondo"/>
+
+		<Feature Id="ProductFeature" Title="MonthysPacManInstaller" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentGroupRef Id="AssetComponents" />
+		</Feature>
+	</Product>
+
+  <!-- Define the directory structure. -->
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="mcPacMan">
+          <Directory Id="ASSETSFOLDER" Name="assets" />
+        </Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+
+  <!-- Define Installer Files. -->
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component>
+        <File Source="..\Release\PacManMain.exe"/>
+      </Component>
+      <Component>
+        <File Source="..\Release\libpng16.dll" />
+      </Component>
+      <Component>
+        <File Source="..\Release\PacManController.dll" />
+      </Component>
+      <Component>
+        <File Source="..\Release\PacManState.dll" />
+      </Component>
+      <Component>
+        <File Source="..\Release\PacManView.dll" />
+      </Component>
+      <Component>
+        <File Source="..\Release\SDL2.dll" />
+      </Component>
+      <Component>
+        <File Source="..\Release\SDL2_image.dll" />
+      </Component>
+      <Component>
+        <File Source="..\Release\zlib1.dll" />
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+  
+  <!-- Define Assets. -->
+	<Fragment>
+		<ComponentGroup Id="AssetComponents" Directory="ASSETSFOLDER">
+      <Component>
+        <File Source="..\assets\characters.png"/>
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
