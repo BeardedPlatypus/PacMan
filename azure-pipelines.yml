@@ -13,6 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'x86'
   buildConfiguration: 'Release'
+  wixSolution: '**/*-setup.sln'
 
 steps:
 - script: |
@@ -37,3 +38,8 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: VSBuild@3
+  inputs:
+    solution: '$(wixSolution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
