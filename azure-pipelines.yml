@@ -46,7 +46,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/**/PacMan-setup/bin/'
+    SourceFolder: '$(Build.SourcesDirectory)/PacMan-setup/bin/$(buildConfiguration)/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     
