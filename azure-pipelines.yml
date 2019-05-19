@@ -14,6 +14,8 @@ variables:
   buildPlatform: 'x86'
   buildConfiguration: 'Release'
   wixSolution: '**/PacMan-setup.sln'
+  executablePublishPath: '$(Build.ArtifactStagingDirectory)/executable/'
+  istallerPublishPath: '$(Build.ArtifactStagingDirectory)/installer/'
 
 steps:
 - script: |
@@ -38,6 +40,17 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/$(buildConfiguration)/'
+    Contents: '**/*.[(exe)(dll)]'
+    TargetFolder: '$(executablePublishPath)'
+    
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'Executable'
+    targetPath: '$(executablePublishPath)'
+
 - task: VSBuild@1
   inputs:
     solution: '$(wixSolution)'
@@ -47,10 +60,10 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/PacMan-setup/bin/$(buildConfiguration)/'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    Contents: '**/*.msi'
+    TargetFolder: '$(installerPublishPath)'
     
 - task: PublishPipelineArtifact@0
   inputs:
-    artifactName: 'drop'
-    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'Installer'
+    targetPath: '$(installerPublishPath)'
