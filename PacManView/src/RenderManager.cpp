@@ -31,7 +31,7 @@ void RenderManager::init() {
 	this->p_texture_manager = std::make_unique<TextureManager>(*(this->p_renderer.get()));
 	this->p_sprite_manager = std::make_unique<SpriteManager>(*(this->p_texture_manager.get()));
 
-	std::string file_path = "C:/Users/Monthy/Documents/projects/PacMan/src/PacMan/x64/Debug/assets/characters.png";
+	std::string file_path = "./assets/characters.png";
 	this->p_sprite_manager->initSprite("test1", file_path,  0, 32, 16, 16);
 	this->p_sprite_manager->initSprite("test2", file_path, 16, 32, 16, 16);
 
