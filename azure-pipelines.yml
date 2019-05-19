@@ -39,17 +39,19 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: CopyFiles@2
+  displayName: 'Prepare Executable artifact.'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/$(buildConfiguration)/'
-    Contents: '**/*.[(exe)(dll)]'
+    Contents: '*.?(exe|dll)'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/assets/'
-    Contents: '**'
+    SourceFolder: '$(Build.SourcesDirectory)/'
+    Contents: 'assets/*.png'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: false
     
 - task: PublishPipelineArtifact@0
   inputs:
