@@ -10,10 +10,10 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 variables:
-  solution: '**/*.sln'
+  solution: '**/PacMan.sln'
   buildPlatform: 'x86'
   buildConfiguration: 'Release'
-  wixSolution: '**/*-setup.sln'
+  wixSolution: '**/PacMan-setup.sln'
 
 steps:
 - script: |
@@ -38,8 +38,9 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSBuild@3
+- task: VSBuild@1
   inputs:
     solution: '$(wixSolution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    
