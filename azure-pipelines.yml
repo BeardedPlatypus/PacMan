@@ -37,6 +37,10 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    testAssemblyVer2: |
+      **\$(buildConfiguration)\*.Test*.dll
+      !**\*TestAdapter.dll
+      !**\obj\** 
     codeCoverageEnabled: true
 
 - task: CopyFiles@2
