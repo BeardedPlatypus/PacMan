@@ -38,7 +38,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     testAssemblyVer2: |
-      **\$(buildConfiguration)\*.Test*.dll
+      **\$(buildConfiguration)\*.Test.exe
       !**\*TestAdapter.dll
       !**\obj\** 
     codeCoverageEnabled: true
