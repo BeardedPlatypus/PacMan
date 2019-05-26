@@ -14,7 +14,6 @@ variables:
   buildPlatform: 'x86'
   buildConfiguration: 'Release'
   wixSolution: '**/PacMan-setup.sln'
-  googleTestAdapter: '**/packages/GoogleTestAdapter.*/build/_common/'
 
 steps:
 - script: |
@@ -43,7 +42,6 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    pathtoCustomTestAdapters: '$(googleTestAdapter)'
     testAssemblyVer2: |
       **\$(buildConfiguration)\*.Test.exe
       !**\*TestAdapter.dll
