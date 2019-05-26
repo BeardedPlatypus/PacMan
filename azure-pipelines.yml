@@ -22,23 +22,28 @@ steps:
   displayName: vcpkg
 
 - task: NuGetToolInstaller@0
+  displayName: 'Nuget - Install'
 
 - task: NuGetCommand@2
+  displayName: 'Nuget - Restore Packages'
   inputs:
     restoreSolution: '$(solution)'
 
 - task: VSBuild@1
+  displayName: 'Build - Executables'
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
 - task: VisualStudioTestPlatformInstaller@1
+  displayName: 'Test - Install'
   inputs:
     packageFeedSelector: 'nugetOrg'
     versionSelector: 'latestStable'
 
 - task: VSTest@2
+  displayName: 'Test - Run'
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
@@ -49,7 +54,7 @@ steps:
     codeCoverageEnabled: true
 
 - task: CopyFiles@2
-  displayName: 'Prepare Executable artifact.'
+  displayName: 'Executable Artifact - Copy DLLs'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/$(buildConfiguration)/'
     Contents: '*.?(exe|dll)'
@@ -57,6 +62,7 @@ steps:
     CleanTargetFolder: true
 
 - task: CopyFiles@2
+  displayName: 'Executable Artifact - Copy Assets'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/'
     Contents: 'assets/*.png'
@@ -64,17 +70,20 @@ steps:
     CleanTargetFolder: false
     
 - task: PublishPipelineArtifact@0
+  displayName: 'Executable Artifact - Publish'
   inputs:
     artifactName: 'Executable'
     targetPath: '$(Build.ArtifactStagingDirectory)'
 
 - task: VSBuild@1
+  displayName: 'Build - MSI'
   inputs:
     solution: '$(wixSolution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
 - task: CopyFiles@2
+  displayName: 'Installer Artifact - Copy MSI'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/PacMan-setup/bin/$(buildConfiguration)/'
     Contents: '**/*.msi'
@@ -82,6 +91,7 @@ steps:
     CleanTargetFolder: true
     
 - task: PublishPipelineArtifact@0
+  displayName: 'Installer Artifact - Publish MSI'
   inputs:
     artifactName: 'Installer'
     targetPath: '$(Build.ArtifactStagingDirectory)'
