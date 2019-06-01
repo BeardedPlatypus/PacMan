@@ -11,7 +11,7 @@ namespace view {
 /// exceptions.
 /// </summary>
 /// <seealso cref="std::runtime_error" />
-class DllExport ViewException : std::runtime_error {
+class DllExport ViewException : public std::runtime_error {
 public:	
 	/// <summary>
 	/// Construct a new instance of the <see cref="ViewException"/> class.

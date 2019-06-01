@@ -5,7 +5,7 @@
 namespace pacman {
 namespace view {
 
-Sprite::Sprite(SDL_Texture& tex,
+Sprite::Sprite(const ITexture& tex,
 			   int x, int y, int w, int h) : texture(tex)
 {
 	this->clip.x = x;
@@ -15,21 +15,23 @@ Sprite::Sprite(SDL_Texture& tex,
 }
 
 
-Sprite::Sprite(SDL_Texture& tex) : texture(tex) {
-	this->clip.x = 0;
-	this->clip.y = 0;
-	SDL_QueryTexture(&tex, NULL, NULL, &clip.w, &clip.h);
+Sprite::Sprite(const ITexture& tex) : 
+	texture(tex)
+{
+	this->clip = this->texture.GetDimensions();
 }
 
 
-void Sprite::Render(SDL_Renderer& renderer, float x, float y, float scale) const {
+void Sprite::Render(IRenderer& renderer, float x, float y, float scale) const {
 	SDL_Rect dst;
 	dst.x = x;
 	dst.y = y;
 	dst.w = clip.w * scale;
 	dst.h = clip.h * scale;
 
-	SDL_RenderCopy(&renderer, &(this->texture), &(this->clip), &dst);
+	SDL_Rect clip_cp = this->clip;
+
+	this->texture.Render(renderer, clip_cp, dst);
 }
 
 }

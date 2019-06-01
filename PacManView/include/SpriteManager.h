@@ -30,7 +30,7 @@ private:
 	std::map<std::string, Sprite> sprite_map;
 	std::map<std::string, SpriteAnimation> sprite_animation_map;
 
-	SDL_Texture& getTexture(const std::string& texture_path);
+	const ITexture& getTexture(const std::string& texture_path);
 
 	TextureManager& texture_manager;
 };

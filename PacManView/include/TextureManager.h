@@ -6,25 +6,26 @@
 #include <map>
 
 #include "sdl_util/SDLDestructor.h"
+#include "renderer/IRenderer.h"
+#include "texture/ITexture.h"
 
 namespace pacman {
 namespace view {
 
 class TextureManager {
 public:
-	TextureManager(SDL_Renderer& p_renderer);
+	TextureManager(const IRenderer& p_renderer);
 
 	void loadTexture(const std::string& file_path);
 	
 	bool hasTexture(const std::string& file_path) const;
 
-	SDL_Texture& getTexture(const std::string& file_path) const;
+	const ITexture& getTexture(const std::string& file_path) const;
 
 private:
-	std::map<std::string, 
-		     std::unique_ptr<SDL_Texture, SDL_Destructor<SDL_Texture>>> texture_map;
+	std::map<std::string, std::unique_ptr<ITexture>> texture_map;
 
-	SDL_Renderer& renderer;
+	const IRenderer& renderer;
 };
 
 } // view

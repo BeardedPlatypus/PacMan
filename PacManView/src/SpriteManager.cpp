@@ -12,17 +12,18 @@ SpriteManager::SpriteManager(TextureManager& texture_manager) :
 void SpriteManager::initSprite(const std::string& label,
 							   const std::string& sprite_sheet_path,
 							   int x, int y, int w, int h) {
-	SDL_Texture& tex = this->getTexture(sprite_sheet_path);
+	const ITexture& tex = this->getTexture(sprite_sheet_path);
 
 	this->sprite_map.try_emplace(label, 
-								 tex, x, y, w, h);
+								 tex, 
+								 x, y, w, h);
 }
 
 
 void SpriteManager::initSprite(const std::string& label,
 							   const std::string& sprite_sheet_path) {
 
-	SDL_Texture& tex = this->getTexture(sprite_sheet_path);
+	const ITexture& tex = this->getTexture(sprite_sheet_path);
 
 	this->sprite_map.try_emplace(label, tex);
 }
@@ -45,7 +46,7 @@ SpriteAnimation* SpriteManager::constructSpriteAnimation(float time_per_frame,
 
 
 
-SDL_Texture& SpriteManager::getTexture(const std::string& sprite_sheet_path) {
+const ITexture& SpriteManager::getTexture(const std::string& sprite_sheet_path) {
 	if (!this->texture_manager.hasTexture(sprite_sheet_path)) {
 		this->texture_manager.loadTexture(sprite_sheet_path);
 	}

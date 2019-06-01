@@ -7,6 +7,7 @@
 
 #include "PlayerState.h"
 #include "sdl_util/SDLDestructor.h"
+#include "renderer/Renderer.h"
 
 #include "TextureManager.h"
 #include "SpriteManager.h"
@@ -71,7 +72,7 @@ private:
 	void initialiseRenderer();
 
 	/// <summary> A pointer to the renderer. </summary>
-	std::unique_ptr<SDL_Renderer, SDL_Destructor<SDL_Renderer>> p_renderer;
+	std::unique_ptr<Renderer> p_renderer;
 
 
 	std::unique_ptr<TextureManager> p_texture_manager;

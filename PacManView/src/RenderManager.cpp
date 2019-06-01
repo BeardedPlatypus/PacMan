@@ -4,6 +4,7 @@
 #include <SDL2/SDL_image.h>
 
 #include "exceptions/ViewException.h"
+#include "renderer/Renderer.h"
 
 
 namespace pacman {
@@ -26,7 +27,10 @@ RenderManager::~RenderManager() {
 void RenderManager::init() {
 	this->initialiseSDL();
 	this->initialiseWindow();
-	this->initialiseRenderer();
+
+	this->p_renderer =
+		std::make_unique<Renderer>();
+	this->p_renderer->Init(this->p_window.get());
 
 	this->p_texture_manager = std::make_unique<TextureManager>(*(this->p_renderer.get()));
 	this->p_sprite_manager = std::make_unique<SpriteManager>(*(this->p_texture_manager.get()));
@@ -83,7 +87,8 @@ void RenderManager::init() {
 
 
 void RenderManager::render(float dtime) const {
-	SDL_RenderClear(this->p_renderer.get());
+	//SDL_RenderClear(this->p_renderer.get());
+	this->p_renderer->RenderClear();
 
 	SDL_Rect dst;
 	dst.x = SCREEN_WIDTH / 2 - 182;
@@ -113,8 +118,9 @@ void RenderManager::render(float dtime) const {
 	this->p_anim5->getActiveSprite().Render(*(this->p_renderer.get()),
 										   x + 32.F * 4, y, 4.0);
 
-	SDL_RenderPresent(this->p_renderer.get());
+	//SDL_RenderPresent(this->p_renderer.get());
 	//SDL_Delay(100);
+	this->p_renderer->RenderPresent();
 }
 
 
@@ -152,18 +158,7 @@ void RenderManager::initialiseWindow() {
 }
 
 
-void RenderManager::initialiseRenderer() {
-	SDL_Renderer* p_renderer = SDL_CreateRenderer(this->p_window.get(),
-												  -1, 
-												  SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-	if (p_renderer == nullptr)
-		throw ViewException("SDL_CreateRenderer",
-							SDL_GetError());
-
-	this->p_renderer = 
-		std::unique_ptr<SDL_Renderer, SDL_Destructor<SDL_Renderer>>(p_renderer);
-}
 
 
 }

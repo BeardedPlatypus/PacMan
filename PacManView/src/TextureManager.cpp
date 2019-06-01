@@ -8,27 +8,14 @@
 namespace pacman {
 namespace view {
 
-TextureManager::TextureManager(SDL_Renderer& renderer) :
-	texture_map(std::map<std::string, 
-				std::unique_ptr<SDL_Texture, SDL_Destructor<SDL_Texture>>>()),
+TextureManager::TextureManager(const IRenderer& renderer) :
+	texture_map(std::map<std::string, std::unique_ptr<ITexture>>()),
 	renderer(renderer)
 { }
 
 void TextureManager::loadTexture(const std::string& file_path) {
-	SDL_Texture* p_tex = IMG_LoadTexture(&renderer,
-										 file_path.c_str());
-
-	if (p_tex == nullptr)
-		throw ViewException("IMG_LoadTexture",
-							"");
-
-	if (p_tex == nullptr)
-		throw ViewException("IMG_LoadTexture",
-							"");
-
 	this->texture_map.emplace(file_path,
-					   std::unique_ptr<SDL_Texture, 
-					                   SDL_Destructor<SDL_Texture>>(p_tex));
+							  this->renderer.LoadTexture(file_path));
 }
 
 
@@ -37,7 +24,7 @@ bool TextureManager::hasTexture(const std::string& file_path) const {
 }
 
 
-SDL_Texture& TextureManager::getTexture(const std::string& file_path) const {
+const ITexture& TextureManager::getTexture(const std::string& file_path) const {
 	return *(this->texture_map.at(file_path).get());
 }
 
