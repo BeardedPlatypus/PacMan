@@ -17,8 +17,8 @@ variables:
 
 steps:
 - script: |
+    vcpkg install sdl2 sdl2-image gtest
     vcpkg integrate install
-    vcpkg install sdl2 sdl2-image
   displayName: vcpkg
 
 - task: NuGetToolInstaller@0
