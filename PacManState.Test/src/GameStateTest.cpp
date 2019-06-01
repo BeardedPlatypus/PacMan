@@ -1,7 +1,6 @@
-#include "pch.h"
-
 #include "gtest/gtest.h"
 #include "GameState.h"
+
 
 namespace pacman {
 namespace state {
