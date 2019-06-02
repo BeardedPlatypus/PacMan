@@ -52,7 +52,7 @@ steps:
       !**\*TestAdapter.dll
       !**\obj\** 
     codeCoverageEnabled: true
-    runSettingsFile: '**\CodeCoverage.runsettings'
+    runSettingsFile: '**/CodeCoverage.runsettings'
 
 - task: CopyFiles@2
   displayName: 'Executable Artifact - Copy DLLs'
