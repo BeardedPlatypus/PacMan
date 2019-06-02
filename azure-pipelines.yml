@@ -53,6 +53,7 @@ steps:
       !**\obj\** 
     codeCoverageEnabled: true
     runSettingsFile: '$(Build.SourcesDirectory)/CodeCoverage.runsettings'
+    otherConsoleOptions: '--collect:"Code Coverage"'
 
 - task: CopyFiles@2
   displayName: 'Executable Artifact - Copy DLLs'
