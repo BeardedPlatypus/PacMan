@@ -48,12 +48,10 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     testAssemblyVer2: |
-      **\$(buildConfiguration)\*.Test.exe
+      **\$(buildConfiguration)\PacMan*.Test.exe
       !**\*TestAdapter.dll
       !**\obj\** 
     codeCoverageEnabled: true
-    runSettingsFile: '$(Build.SourcesDirectory)/CodeCoverage.runsettings'
-    otherConsoleOptions: '--collect:"Code Coverage"'
 
 - task: CopyFiles@2
   displayName: 'Executable Artifact - Copy DLLs'
