@@ -13,11 +13,70 @@ using ::testing::Ref;
 using ::testing::AllOf;
 using ::testing::Field;
 using ::testing::Matcher;
+using ::testing::Return;
 #pragma endregion
 
 
 namespace pacman {
 namespace view {
+
+// Given a Texture
+// When a Sprite is constructed with this Texture
+// Then this Sprite has this Texture
+// And the clipping rectangle is equal to the dimensions of the Texture
+TEST(SpriteTest, GivenATexture_WhenASpriteIsConstructedWithThisTexture_ThenThisSpriteHasThisTextureAndTheClippingPlaneIsEqualToTheDimensionsOfTheTexture) {
+    // Given
+	SDL_Rect dim;
+	dim.x = 0;
+	dim.y = 0;
+	dim.w = 200;
+	dim.h = 300;
+
+	auto clip_matcher = AllOf(Field(&SDL_Rect::x, dim.x),
+	                          Field(&SDL_Rect::y, dim.y),
+							  Field(&SDL_Rect::w, dim.w),
+							  Field(&SDL_Rect::h, dim.h));
+
+	TextureMock texture;
+	ON_CALL(texture, GetDimensions())
+		.WillByDefault(Return(dim));
+
+    // When
+	Sprite sprite = Sprite(texture);
+
+	// Then
+	EXPECT_THAT(sprite.GetTexture(), Ref(texture));
+	EXPECT_THAT(sprite.GetClip(), clip_matcher);
+}
+
+// Given a Texture
+//   And clipping values
+// When a Sprite is constructed with this Texture
+// Then this Sprite has this Texture
+// And the clipping rectangle is equal to the provided clipping values
+TEST(SpriteTest, GivenATexture_WhenASpriteIsConstructedWithThisTexture_ThenThisSpriteHasThisTextureAndTheClippingPlaneIsEqualToTheProvidedClippingValues) {
+    // Given
+	SDL_Rect dim;
+	dim.x = 0;
+	dim.y = 0;
+	dim.w = 200;
+	dim.h = 300;
+
+	auto clip_matcher = AllOf(Field(&SDL_Rect::x, dim.x),
+	                          Field(&SDL_Rect::y, dim.y),
+							  Field(&SDL_Rect::w, dim.w),
+							  Field(&SDL_Rect::h, dim.h));
+
+	TextureMock texture;
+
+    // When
+	Sprite sprite = Sprite(texture, dim.x, dim.y, dim.w, dim.h);
+
+	// Then
+	EXPECT_THAT(sprite.GetTexture(), Ref(texture));
+	EXPECT_THAT(sprite.GetClip(), clip_matcher);
+}
+
 
 // Given a Texture
 //   and a Sprite using this Texture
