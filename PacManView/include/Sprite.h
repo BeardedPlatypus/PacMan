@@ -39,6 +39,23 @@ public:
 	Sprite(const ITexture& tex);
 	
 	/// <summary>
+	/// Get the clipping rectangle of this <see cref="Sprite" />.
+	/// </summary>
+	/// <returns> 
+	/// An SDL_rect describing the clipping rectangle of this 
+	/// <see cref="Sprite" />.
+	/// </returns>
+	inline SDL_Rect GetClip() const { return this->clip; }
+	
+	/// <summary>
+	/// Get the <see cref="ITexture"> of this <see cref="Sprite" />.
+	/// </summary>
+	/// <returns> 
+	/// The <see cref="ITexture"> of this <see cref="Sprite" />. 
+	/// </returns>
+	inline const ITexture& GetTexture() const { return this->texture; }
+	
+	/// <summary>
 	/// Render this <see cref="Sprite" /> with the given 
 	/// <paramref name="renderer /> at the given location with the given scale.
 	/// </summary>

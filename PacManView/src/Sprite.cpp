@@ -29,9 +29,9 @@ void Sprite::Render(IRenderer& renderer, float x, float y, float scale) const {
 	dst.w = clip.w * scale;
 	dst.h = clip.h * scale;
 
-	SDL_Rect clip_cp = this->clip;
+	SDL_Rect clip_cp = this->GetClip();
 
-	this->texture.Render(renderer, clip_cp, dst);
+	this->GetTexture().Render(renderer, clip_cp, dst);
 }
 
 }
