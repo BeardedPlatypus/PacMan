@@ -168,7 +168,6 @@
     <ClInclude Include="include\TextureManager.h" />
     <ClInclude Include="include\texture\ITexture.h" />
     <ClInclude Include="include\texture\Texture.h" />
-    <ClInclude Include="include\ui\Button.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

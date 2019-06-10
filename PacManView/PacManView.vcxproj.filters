@@ -30,9 +30,6 @@
     <ClInclude Include="include\sdl_util\SDLDestructor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ui\Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Renderable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
