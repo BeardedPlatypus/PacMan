@@ -9,7 +9,7 @@
 #include "sdl_util/SDLDestructor.h"
 #include "renderer/Renderer.h"
 
-#include "TextureManager.h"
+#include "texture/ITextureManager.h"
 #include "SpriteManager.h"
 
 namespace pacman {
@@ -66,16 +66,11 @@ private:
 	/// <summary> A pointer to the window. </summary>
 	std::unique_ptr<SDL_Window, SDL_Destructor<SDL_Window>> p_window;
 	
-	/// <summary>
-	/// Initialise the SDL renderer.
-	/// </summary>
-	void initialiseRenderer();
-
 	/// <summary> A pointer to the renderer. </summary>
 	std::unique_ptr<Renderer> p_renderer;
 
 
-	std::unique_ptr<TextureManager> p_texture_manager;
+	std::unique_ptr<ITextureManager> p_texture_manager;
 	std::unique_ptr<SpriteManager> p_sprite_manager;
 
 	SpriteAnimation* p_anim1;

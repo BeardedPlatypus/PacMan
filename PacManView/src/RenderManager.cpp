@@ -32,7 +32,7 @@ void RenderManager::init() {
 		std::make_unique<Renderer>();
 	this->p_renderer->Init(this->p_window.get());
 
-	this->p_texture_manager = std::make_unique<TextureManager>(*(this->p_renderer.get()));
+	this->p_texture_manager = ITextureManager::construct(*(this->p_renderer));
 	this->p_sprite_manager = std::make_unique<SpriteManager>(*(this->p_texture_manager.get()));
 
 	std::string file_path = "./assets/characters.png";
@@ -101,20 +101,20 @@ void RenderManager::render(float dtime) const {
 
 	//const Sprite& sprite = p_sprite_manager->getSprite("test");
 	//sprite.Render(*(this->p_renderer.get()), x, y, 4.0);
-	this->p_anim1->update(dtime);
+	this->p_anim1->updateTime(dtime);
 	this->p_anim1->getActiveSprite().Render(*(this->p_renderer.get()),
 										   x, y, 4.0);
-	this->p_anim2->update(dtime);
+	this->p_anim2->updateTime(dtime);
 	this->p_anim2->getActiveSprite().Render(*(this->p_renderer.get()),
 										   x - 16.F * 4, y, 4.0);
-	this->p_anim3->update(dtime);
+	this->p_anim3->updateTime(dtime);
 	this->p_anim3->getActiveSprite().Render(*(this->p_renderer.get()),
 										   x - 32.F * 4, y, 4.0);
-	this->p_anim4->update(dtime);
+	this->p_anim4->updateTime(dtime);
 	this->p_anim4->getActiveSprite().Render(*(this->p_renderer.get()),
 										   x - 48.F * 4, y, 4.0);
 	
-	this->p_anim5->update(dtime);
+	this->p_anim5->updateTime(dtime);
 	this->p_anim5->getActiveSprite().Render(*(this->p_renderer.get()),
 										   x + 32.F * 4, y, 4.0);
 
