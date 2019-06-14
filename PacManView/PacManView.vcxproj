@@ -165,8 +165,9 @@
     <ClInclude Include="include\Sprite.h" />
     <ClInclude Include="include\SpriteAnimation.h" />
     <ClInclude Include="include\SpriteManager.h" />
-    <ClInclude Include="include\TextureManager.h" />
+    <ClInclude Include="include\texture\TextureManager.h" />
     <ClInclude Include="include\texture\ITexture.h" />
+    <ClInclude Include="include\texture\ITextureManager.h" />
     <ClInclude Include="include\texture\Texture.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -180,7 +181,8 @@
     <ClCompile Include="src\Sprite.cpp" />
     <ClCompile Include="src\SpriteAnimation.cpp" />
     <ClCompile Include="src\SpriteManager.cpp" />
-    <ClCompile Include="src\TextureManager.cpp" />
+    <ClCompile Include="src\texture\ITextureManager.cpp" />
+    <ClCompile Include="src\texture\TextureManager.cpp" />
     <ClCompile Include="src\texture\Texture.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
