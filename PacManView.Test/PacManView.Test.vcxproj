@@ -123,7 +123,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\RenderManagerTest.cpp" />
+    <ClCompile Include="src\SpriteAnimationTest.cpp" />
+    <ClCompile Include="src\SpriteManagerTest.cpp" />
     <ClCompile Include="src\SpriteTest.cpp" />
+    <ClCompile Include="src\TextureManagerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\RendererMock.h" />
