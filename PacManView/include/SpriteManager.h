@@ -3,16 +3,17 @@
 #include <map>
 #include <string>
 
-#include "TextureManager.h"
+#include "texture/ITextureManager.h"
 #include "Sprite.h"
 #include "SpriteAnimation.h"
 
 namespace pacman {
 namespace view {
 
+// TODO add dll export for test
 class SpriteManager {
 public:
-	SpriteManager(TextureManager& texture_manager);
+	SpriteManager(ITextureManager& texture_manager);
 
 	void initSprite(const std::string& label,
 					const std::string& sprite_sheet_path, 
@@ -32,7 +33,7 @@ private:
 
 	const ITexture& getTexture(const std::string& texture_path);
 
-	TextureManager& texture_manager;
+	ITextureManager& texture_manager;
 };
 
 }

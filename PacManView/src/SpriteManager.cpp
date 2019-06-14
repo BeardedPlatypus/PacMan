@@ -5,7 +5,7 @@
 namespace pacman {
 namespace view {
 
-SpriteManager::SpriteManager(TextureManager& texture_manager) : 
+SpriteManager::SpriteManager(ITextureManager& texture_manager) : 
 	texture_manager(texture_manager) { }
 
 
