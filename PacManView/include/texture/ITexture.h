@@ -15,7 +15,7 @@ namespace view {
 class DllExport ITexture {
 public:
 	virtual ~ITexture() {}
-	
+
 	/// <summary>
 	/// Get the dimensions of this <see cref="ITexture" />.
 	/// </summary>
