@@ -50,10 +50,15 @@ steps:
     testAssemblyVer2: |
       **\$(buildConfiguration)\*.Test.exe
       !**\*TestAdapter.dll
-      !**\obj\** 
+      !**\obj\**
+      !**\$(buildConfiguration)\gmock.dll
+      !**\$(buildConfiguration)\libpng16.dll
+      !**\$(buildConfiguration)\SDL2.dll
+      !**\$(buildConfiguration)\SDL2_image.dll
+      !**\$(buildConfiguration)\zlib1.dll
     codeCoverageEnabled: true
-    runSettingsFile: '$(Build.SourcesDirectory)/CodeCoverage.runsettings'
-    otherConsoleOptions: '--collect:"Code Coverage"'
+    # runSettingsFile: '$(Build.SourcesDirectory)/CodeCoverage.runsettings'
+    # otherConsoleOptions: '--collect:"Code Coverage"'
 
 - task: PublishTestResults@2
   inputs:
