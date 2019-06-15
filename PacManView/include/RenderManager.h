@@ -69,15 +69,8 @@ private:
 	/// <summary> A pointer to the renderer. </summary>
 	std::unique_ptr<Renderer> p_renderer;
 
-
 	std::unique_ptr<ITextureManager> p_texture_manager;
-	std::unique_ptr<SpriteManager> p_sprite_manager;
-
-	SpriteAnimation* p_anim1;
-	SpriteAnimation* p_anim2;
-	SpriteAnimation* p_anim3;
-	SpriteAnimation* p_anim4;
-	SpriteAnimation* p_anim5;
+	std::unique_ptr<ISpriteManager> p_sprite_manager;
 };
 
 } // view

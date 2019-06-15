@@ -162,6 +162,7 @@
     <ClInclude Include="include\renderer\Renderer.h" />
     <ClInclude Include="include\RenderManager.h" />
     <ClInclude Include="include\sdl_util\SDLDestructor.h" />
+    <ClInclude Include="include\sprite\ISpriteManager.h" />
     <ClInclude Include="include\sprite\Sprite.h" />
     <ClInclude Include="include\sprite\SpriteAnimation.h" />
     <ClInclude Include="include\sprite\SpriteManager.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="src\exceptions\ViewException.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\RenderManager.cpp" />
+    <ClCompile Include="src\sprite\ISpriteManager.cpp" />
     <ClCompile Include="src\sprite\Sprite.cpp" />
     <ClCompile Include="src\sprite\SpriteAnimation.cpp" />
     <ClCompile Include="src\sprite\SpriteManager.cpp" />

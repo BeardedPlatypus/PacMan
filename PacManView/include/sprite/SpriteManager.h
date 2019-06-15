@@ -39,7 +39,7 @@ public:
 						   float time_per_frame,
 						   const std::vector<std::string>& sprites) final;
 
-  const SpriteAnimation& getSpriteAnimation(const std::string& label) const final;
+  SpriteAnimation& getSpriteAnimation(const std::string& label) final;
 
 private:	
 	/// <summary> 

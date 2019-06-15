@@ -26,7 +26,7 @@ public:
   /// A <see cref="std::unique_ptr<ISpriteManager" /> containing a new
   /// <see cref="ISpriteManager" />.
   /// </returns>
-  static std::unique_ptr<ISpriteManager> construct(const ITextureManager& texture_manager);
+  static std::unique_ptr<ISpriteManager> construct(ITextureManager& texture_manager);
   
   /// <summary>
   /// Initialize a new <see cref="Sprite" /> with the given <paramref name="label">,
@@ -93,7 +93,7 @@ public:
   /// The <see cref="SpriteAnimation" /> associated with the specified
   /// <paramref name="label" />.
   /// </returns>
-  virtual const SpriteAnimation& getSpriteAnimation(const std::string& label) const = 0;
+  virtual SpriteAnimation& getSpriteAnimation(const std::string& label) = 0;
 };
 
 }
