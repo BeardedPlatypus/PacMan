@@ -10,8 +10,26 @@
 namespace pacman {
 namespace view {
 
+/// <summary>
+/// <see cref="ITextureManager" /> is responsible for loading all 
+/// <see cref="ITexture" />. It provides the methods to load textures as well 
+/// as query whether it has already loaded said textures.
+/// 
+/// All <see cref="ITexture" /> used within this project should be constructed
+/// through this <see cref="ITextureManager" />. This will allow the manager to
+/// properly control the lifetime of all <see cref="ITexture" />. 
+/// </summary>
 class DllExport ITextureManager {
-public:
+public:  
+  /// <summary>
+  /// Construct a new <see cref="ITextureManager" /> with the given 
+  /// <paramref name="renderer" />.
+  /// </summary>
+  /// <param name="renderer">The renderer.</param>
+  /// <returns> 
+  /// A <see cref="std::unique_ptr<ITextureManager>" /> containing a
+  /// new <see cref="ITextureManager" />.
+  /// </returns>
   static std::unique_ptr<ITextureManager> construct(const IRenderer& renderer);
 
   virtual ~ITextureManager() {}
@@ -49,7 +67,6 @@ public:
   /// <paramref name="file_path" />. </returns>
   virtual const ITexture& getTexture(const std::string& file_path) const = 0;
 };
-
 
 }
 }

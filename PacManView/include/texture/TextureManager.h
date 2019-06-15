@@ -11,9 +11,10 @@ namespace pacman {
 namespace view {
 
 /// <summary>
-/// TextureManager is responsible for loading all <see cref="ITexture" /> from
-/// the file system. It provides the methods to load textures as well as query
-/// the <see cref="TextureManager /> has already loaded said textures.
+/// <see cref="TextureManager" /> implements the <see cref="ITextureManager" />.
+/// It is responsible for loading all <see cref="ITexture" /> from the file 
+/// system. It provides the methods to load textures as well as query the 
+/// <see cref="TextureManager /> has already loaded said textures.
 /// 
 /// All <see cref="ITexture" /> used within this project should be constructed
 /// through this <see cref="TextureManager" />. This will allow the manager to
