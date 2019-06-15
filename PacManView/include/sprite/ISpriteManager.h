@@ -6,6 +6,7 @@
 #include "sprite/Sprite.h"
 #include "sprite/SpriteAnimation.h"
 
+
 namespace pacman {
 namespace view {
 
@@ -80,7 +81,7 @@ public:
   /// <param name="sprites"> The set of sprite labels. </param>
   virtual void initSpriteAnimation(const std::string& label,
 								   float time_per_frame,
-								   const std::vector<std::string>& sprites) const = 0;
+								   const std::vector<std::string>& sprites) = 0;
   
   /// <summary>
   /// Get the <see cref="SpriteAnimation" /> associated with the <paramref name="label" />.

@@ -34,16 +34,22 @@ const Sprite& SpriteManager::getSprite(const std::string& label) const {
 }
 
 
-SpriteAnimation* SpriteManager::constructSpriteAnimation(float time_per_frame,
-			 						                     const std::vector<std::string>& sprite_labels) const {
+void SpriteManager::initSpriteAnimation(const std::string& label, 
+										float time_per_frame,
+			 						    const std::vector<std::string>& sprite_labels) {
 	auto sprites = std::vector<std::reference_wrapper<const Sprite>>();
+
 	for (const std::string& sprite_label : sprite_labels) {
 		sprites.push_back(this->getSprite(sprite_label));
 	}
 
-	return new SpriteAnimation(time_per_frame, sprites);
+	this->sprite_animation_map.try_emplace(label, time_per_frame, sprites);
 }
 
+
+const SpriteAnimation& SpriteManager::getSpriteAnimation(const std::string& label) const {
+	return this->sprite_animation_map.at(label);
+}
 
 
 const ITexture& SpriteManager::getTexture(const std::string& sprite_sheet_path) {
