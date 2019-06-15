@@ -10,7 +10,7 @@
 #include "renderer/Renderer.h"
 
 #include "texture/ITextureManager.h"
-#include "SpriteManager.h"
+#include "sprite/SpriteManager.h"
 
 namespace pacman {
 namespace view {

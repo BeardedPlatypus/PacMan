@@ -162,9 +162,9 @@
     <ClInclude Include="include\renderer\Renderer.h" />
     <ClInclude Include="include\RenderManager.h" />
     <ClInclude Include="include\sdl_util\SDLDestructor.h" />
-    <ClInclude Include="include\Sprite.h" />
-    <ClInclude Include="include\SpriteAnimation.h" />
-    <ClInclude Include="include\SpriteManager.h" />
+    <ClInclude Include="include\sprite\Sprite.h" />
+    <ClInclude Include="include\sprite\SpriteAnimation.h" />
+    <ClInclude Include="include\sprite\SpriteManager.h" />
     <ClInclude Include="include\texture\TextureManager.h" />
     <ClInclude Include="include\texture\ITexture.h" />
     <ClInclude Include="include\texture\ITextureManager.h" />
@@ -178,9 +178,9 @@
     <ClCompile Include="src\exceptions\ViewException.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\RenderManager.cpp" />
-    <ClCompile Include="src\Sprite.cpp" />
-    <ClCompile Include="src\SpriteAnimation.cpp" />
-    <ClCompile Include="src\SpriteManager.cpp" />
+    <ClCompile Include="src\sprite\Sprite.cpp" />
+    <ClCompile Include="src\sprite\SpriteAnimation.cpp" />
+    <ClCompile Include="src\sprite\SpriteManager.cpp" />
     <ClCompile Include="src\texture\ITextureManager.cpp" />
     <ClCompile Include="src\texture\TextureManager.cpp" />
     <ClCompile Include="src\texture\Texture.cpp" />

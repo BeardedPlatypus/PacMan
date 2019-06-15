@@ -3,7 +3,7 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "SpriteAnimation.h"
+#include "sprite/SpriteAnimation.h"
 
 
 #pragma region using_statements

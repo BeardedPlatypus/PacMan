@@ -4,7 +4,7 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-#include "Sprite.h"
+#include "sprite/Sprite.h"
 
 
 #pragma region using_statements
