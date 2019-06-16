@@ -6,7 +6,7 @@ namespace pacman {
 namespace view {
 
 /// <summary>
-/// A simple const struct used to denote a Clipping rectangle used within
+/// A simple constant struct used to denote a Clipping rectangle used within
 /// <see cref="Sprite">. It provides a constructor, and 4 fields used 
 /// to store the relevant information.
 /// </summary>
