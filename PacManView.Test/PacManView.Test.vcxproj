@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\RendererMock.h" />
+    <ClInclude Include="include\TextureManagerMock.h" />
     <ClInclude Include="include\TextureMock.h" />
   </ItemGroup>
   <ItemGroup>

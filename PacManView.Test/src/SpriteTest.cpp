@@ -49,6 +49,7 @@ TEST(SpriteTest, GivenATexture_WhenASpriteIsConstructedWithThisTexture_ThenThisS
 	EXPECT_THAT(sprite.GetClip(), clip_matcher);
 }
 
+
 // Given a Texture
 //   And clipping values
 // When a Sprite is constructed with this Texture

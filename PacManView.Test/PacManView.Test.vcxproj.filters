@@ -41,6 +41,9 @@
     <ClInclude Include="include\TextureMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\TextureManagerMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
