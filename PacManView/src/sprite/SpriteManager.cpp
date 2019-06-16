@@ -47,7 +47,7 @@ void SpriteManager::initSpriteAnimation(const std::string& label,
 }
 
 
-const SpriteAnimation& SpriteManager::getSpriteAnimation(const std::string& label) const {
+SpriteAnimation& SpriteManager::getSpriteAnimation(const std::string& label) {
 	return this->sprite_animation_map.at(label);
 }
 
