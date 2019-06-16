@@ -15,7 +15,15 @@ class ITexture;
 /// IRenderer interface defines the functions to render SDL objects. 
 /// </summary>
 class DllExport IRenderer {
-public:
+public:	
+	/// <summary>
+	/// Construct a new <see cref="IRenderer" />.
+	/// </summary>
+	/// <returns>
+	/// A <see cref="std::unique_ptr" /> to a new <see cref="IRenderer" />
+	/// </returns>
+	static std::unique_ptr<IRenderer> construct();
+
 	virtual ~IRenderer() {}
 
 	/// <summary>
