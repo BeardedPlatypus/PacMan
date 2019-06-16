@@ -6,6 +6,7 @@
 #include "exceptions/ViewException.h"
 #include "renderer/Renderer.h"
 
+#include <iostream>
 
 namespace pacman {
 namespace view {
@@ -15,10 +16,6 @@ RenderManager::RenderManager() {
 }
 
 RenderManager::~RenderManager() {
-	delete this->p_anim1;
-	delete this->p_anim2;
-	delete this->p_anim3;
-	delete this->p_anim4;
 	IMG_Quit();
 	SDL_Quit();
 }
@@ -33,7 +30,7 @@ void RenderManager::init() {
 	this->p_renderer->Init(this->p_window.get());
 
 	this->p_texture_manager = ITextureManager::construct(*(this->p_renderer));
-	this->p_sprite_manager = std::make_unique<SpriteManager>(*(this->p_texture_manager.get()));
+	this->p_sprite_manager = ISpriteManager::construct(*(this->p_texture_manager.get()));
 
 	std::string file_path = "./assets/characters.png";
 	this->p_sprite_manager->initSprite("test1", file_path,  0, 32, 16, 16);
@@ -56,25 +53,25 @@ void RenderManager::init() {
 	sprites1.push_back("test1");
 	sprites1.push_back("test2");
 
-    this->p_anim1 = this->p_sprite_manager->constructSpriteAnimation(0.3F, sprites1);
+	this->p_sprite_manager->initSpriteAnimation("anim1", 2.F, sprites1);
 
 	auto sprites2 = std::vector<std::string>();
 	sprites2.push_back("test3");
 	sprites2.push_back("test4");
 
-    this->p_anim2 = this->p_sprite_manager->constructSpriteAnimation(0.3F, sprites2);
+	this->p_sprite_manager->initSpriteAnimation("anim2", 2.F, sprites2);
 
 	auto sprites3 = std::vector<std::string>();
 	sprites3.push_back("test5");
 	sprites3.push_back("test6");
 
-    this->p_anim3 = this->p_sprite_manager->constructSpriteAnimation(0.3F, sprites3);
+	this->p_sprite_manager->initSpriteAnimation("anim3", 2.F, sprites3);
 
 	auto sprites4 = std::vector<std::string>();
 	sprites4.push_back("test7");
 	sprites4.push_back("test8");
 
-    this->p_anim4 = this->p_sprite_manager->constructSpriteAnimation(0.3F, sprites4);
+	this->p_sprite_manager->initSpriteAnimation("anim4", 2.F, sprites4);
 
 	auto sprites5 = std::vector<std::string>();
 	sprites5.push_back("p1");
@@ -82,7 +79,7 @@ void RenderManager::init() {
 	sprites5.push_back("p3");
 	sprites5.push_back("p2");
 
-    this->p_anim5 = this->p_sprite_manager->constructSpriteAnimation(0.15F, sprites5);
+	this->p_sprite_manager->initSpriteAnimation("anim5", 2.F, sprites5);
 }
 
 
@@ -101,21 +98,30 @@ void RenderManager::render(float dtime) const {
 
 	//const Sprite& sprite = p_sprite_manager->getSprite("test");
 	//sprite.Render(*(this->p_renderer.get()), x, y, 4.0);
-	this->p_anim1->updateTime(dtime);
-	this->p_anim1->getActiveSprite().Render(*(this->p_renderer.get()),
+
+	auto anim1 = this->p_sprite_manager->getSpriteAnimation("anim1");
+	anim1.updateTime(dtime);
+	anim1.getActiveSprite().Render(*(this->p_renderer.get()),
 										   x, y, 4.0);
-	this->p_anim2->updateTime(dtime);
-	this->p_anim2->getActiveSprite().Render(*(this->p_renderer.get()),
+
+	std::cout << anim1.getExactTime() << std::endl;
+
+	auto anim2 = this->p_sprite_manager->getSpriteAnimation("anim2");
+	anim2.updateTime(dtime);
+	anim2.getActiveSprite().Render(*(this->p_renderer.get()),
 										   x - 16.F * 4, y, 4.0);
-	this->p_anim3->updateTime(dtime);
-	this->p_anim3->getActiveSprite().Render(*(this->p_renderer.get()),
+	auto anim3 = this->p_sprite_manager->getSpriteAnimation("anim3");
+	anim3.updateTime(dtime);
+	anim3.getActiveSprite().Render(*(this->p_renderer.get()),
 										   x - 32.F * 4, y, 4.0);
-	this->p_anim4->updateTime(dtime);
-	this->p_anim4->getActiveSprite().Render(*(this->p_renderer.get()),
+	auto anim4 = this->p_sprite_manager->getSpriteAnimation("anim4");
+	anim4.updateTime(dtime);
+	anim4.getActiveSprite().Render(*(this->p_renderer.get()),
 										   x - 48.F * 4, y, 4.0);
 	
-	this->p_anim5->updateTime(dtime);
-	this->p_anim5->getActiveSprite().Render(*(this->p_renderer.get()),
+	auto anim5 = this->p_sprite_manager->getSpriteAnimation("anim5");
+	anim5.updateTime(dtime);
+	anim5.getActiveSprite().Render(*(this->p_renderer.get()),
 										   x + 32.F * 4, y, 4.0);
 
 	//SDL_RenderPresent(this->p_renderer.get());
