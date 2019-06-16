@@ -2,9 +2,14 @@
 #define DllExport __declspec( dllexport )
 
 #include <string>
+#include <memory>
 #include <vector>
 
 #include "sprite/ClipRect.h"
+#include "renderer/IViewCore.h"
+#include "sprite/ISpriteManager.h"
+#include "texture/ITextureManager.h"
+
 
 namespace pacman {
 namespace view {
@@ -16,7 +21,36 @@ namespace view {
 /// as the functionality to render them. 
 /// </summary>
 class DllExport IViewManager {
-public:	
+public:		
+	/// <summary>
+	/// Construct a new <see cref="IViewManager" />.
+	/// </summary>
+	/// <returns> 
+	/// A <see cref="std::unique_ptr" /> containing a new instance of a
+	/// <see cref="IViewManager" />.
+	/// </returns>
+	static std::unique_ptr<IViewManager> construct();
+
+	/// <summary>
+	/// Construct a new <see cref="IViewManager" /> with the given parameters.
+	/// </summary>
+	/// <param name="p_renderer">
+	/// Pointer to the <see cref="IRenderer" />.
+	/// </param>
+	/// <param name="p_texture_manager"> 
+	/// Pointer to the <see cref="ITextureManager" />.
+	/// </param>
+	/// <param name="p_sprite_manager">
+	/// Pointer to the <see cref="ISpriteManager" />. 
+	/// </param>
+	/// <returns> 
+	/// A <see cref="std::unique_ptr" /> containing a new instance of a
+	/// <see cref="IViewManager" />.
+	/// </returns>
+	static std::unique_ptr<IViewManager> construct(std::unique_ptr<IViewCore> p_view_core,
+												   std::unique_ptr<ITextureManager> p_texture_manager,
+												   std::unique_ptr<ISpriteManager> p_sprite_manager);
+
 	/// <summary>
 	/// Initialise this <see cref="IViewManager" />, starting up any graphical
 	/// subsystems necessary to start rendering.
@@ -80,7 +114,7 @@ public:
 
 	virtual void requestSpriteAnimation(const std::string& label,
 										float time_per_frame,
-										std::vector<std::string> sprite_labels) = 0;
+										const std::vector<std::string>& sprite_labels) = 0;
 	
 	/// <summary>
 	/// Update this IViewManager with the specified <paramref name="delta_time" />.
