@@ -27,9 +27,6 @@
     <ClCompile Include="src\SpriteManagerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\RenderManagerTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\TextureManagerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
