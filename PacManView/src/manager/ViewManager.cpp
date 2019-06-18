@@ -61,7 +61,7 @@ void ViewManager::renderSprite(const std::string& label,
 
 void ViewManager::renderSpriteAnimation(const std::string& label,
 										float x, float y, float scale) {
-	SpriteAnimation requested_anim = this->getSpriteManager().getSpriteAnimation(label);
+	SpriteAnimation& requested_anim = this->getSpriteManager().getSpriteAnimation(label);
 	requested_anim.updateTime(this->getNextUpdateTime());
 
 	const Sprite& active_frame = requested_anim.getActiveSprite();

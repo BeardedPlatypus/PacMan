@@ -109,7 +109,7 @@ private:
 	/// </summary>
 	/// <param name="time"> The next update time. </param>
 	/// <post-condition> (new this)->getNextUpdateTime() == <paramref name="time" />
-	inline void setNextUpdateTime(float time) { nextUpdateTime = time; }
+	inline void setNextUpdateTime(float time) { this->nextUpdateTime = time; }
 	
 	/// <summary> The next update time. </summary>
 	float nextUpdateTime;
