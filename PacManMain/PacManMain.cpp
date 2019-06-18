@@ -36,25 +36,25 @@ void viewConfiguration(pacman::view::IViewManager& manager) {
 	sprites1.push_back("test1");
 	sprites1.push_back("test2");
 
-	manager.requestSpriteAnimation("anim1", 2.F, sprites1);
+	manager.requestSpriteAnimation("anim1", 0.3F, sprites1);
 
 	auto sprites2 = std::vector<std::string>();
 	sprites2.push_back("test3");
 	sprites2.push_back("test4");
 
-	manager.requestSpriteAnimation("anim2", 2.F, sprites2);
+	manager.requestSpriteAnimation("anim2", 0.3F, sprites2);
 
 	auto sprites3 = std::vector<std::string>();
 	sprites3.push_back("test5");
 	sprites3.push_back("test6");
 
-	manager.requestSpriteAnimation("anim3", 2.F, sprites3);
+	manager.requestSpriteAnimation("anim3", 0.3F, sprites3);
 
 	auto sprites4 = std::vector<std::string>();
 	sprites4.push_back("test7");
 	sprites4.push_back("test8");
 
-	manager.requestSpriteAnimation("anim4", 2.F, sprites4);
+	manager.requestSpriteAnimation("anim4", 0.3F, sprites4);
 
 	auto sprites5 = std::vector<std::string>();
 	sprites5.push_back("p1");
@@ -62,7 +62,7 @@ void viewConfiguration(pacman::view::IViewManager& manager) {
 	sprites5.push_back("p3");
 	sprites5.push_back("p2");
 
-	manager.requestSpriteAnimation("anim5", 2.F, sprites5);
+	manager.requestSpriteAnimation("anim5", 0.175F, sprites5);
 }
 
 
