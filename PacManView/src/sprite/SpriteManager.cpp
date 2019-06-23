@@ -29,6 +29,11 @@ void SpriteManager::initSprite(const std::string& label,
 }
 
 
+bool SpriteManager::hasSprite(const std::string& label) const {
+	return this->sprite_map.find(label) != this->sprite_map.end();
+}
+
+
 const Sprite& SpriteManager::getSprite(const std::string& label) const {
 	return this->sprite_map.at(label);
 }
@@ -47,16 +52,18 @@ void SpriteManager::initSpriteAnimation(const std::string& label,
 }
 
 
+bool SpriteManager::hasSpriteAnimation(const std::string& label) const {
+	return this->sprite_animation_map.find(label) != this->sprite_animation_map.end();
+}
+
+
 SpriteAnimation& SpriteManager::getSpriteAnimation(const std::string& label) {
 	return this->sprite_animation_map.at(label);
 }
 
 
 const ITexture& SpriteManager::getTexture(const std::string& sprite_sheet_path) {
-	if (!this->texture_manager.hasTexture(sprite_sheet_path)) {
-		this->texture_manager.loadTexture(sprite_sheet_path);
-	}
-
+	this->texture_manager.loadTexture(sprite_sheet_path);
 	return this->texture_manager.getTexture(sprite_sheet_path);
 }
 

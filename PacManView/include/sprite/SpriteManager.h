@@ -33,11 +33,15 @@ public:
   void initSprite(const std::string& label,
                   const std::string& sprite_sheet_path) final;
 
+  bool hasSprite(const std::string& label) const final;
+
   const Sprite& getSprite(const std::string& label) const final;
 
   void initSpriteAnimation(const std::string& label,
 						   float time_per_frame,
 						   const std::vector<std::string>& sprites) final;
+
+  bool hasSpriteAnimation(const std::string& label) const final;
 
   SpriteAnimation& getSpriteAnimation(const std::string& label) final;
 

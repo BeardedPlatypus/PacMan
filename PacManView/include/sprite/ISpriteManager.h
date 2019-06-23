@@ -46,6 +46,7 @@ public:
   /// <param name="h">
   /// The height of the clip of the new <see cref="Sprite" />.
   /// </param>
+  /// <exception cref="ViewException"> this->hasSprite(label) </exception>
   virtual void initSprite(const std::string& label,
 						  const std::string& sprite_sheet_path,
 						  int x, int y, int w, int h) = 0;
@@ -56,8 +57,21 @@ public:
   /// </summary>
   /// <param name="label"> The new label of the <see cref="Sprite" />. </param>
   /// <param name="sprite_sheet_path"> The path to the sprite sheet. </param>
+  /// <exception cref="ViewException"> this->hasSprite(label) </exception>
   virtual void initSprite(const std::string& label,
 						  const std::string& sprite_sheet_path) = 0;
+  
+  /// <summary>
+  /// Determine whether a <see cref="ISprite" /> with the corresponding 
+  /// <paramref name="label" /> exists within this <see cref="ISpriteManager" />.
+  /// </summary>
+  /// <param name="label"> The label of the <see cref="ISprite" />. </param>
+  /// <returns>
+  /// <c>true</c> if the specified <see cref="ISprite" /> exists within this
+  /// <see cref="ISpriteManager" />.; 
+  /// otherwise, <c>false</c>.
+  /// </returns>
+  virtual bool hasSprite(const std::string& label) const = 0;
   
   /// <summary>
   /// Get the <see cref="Sprite" /> associated with the <paramref name="label" />.
@@ -79,9 +93,22 @@ public:
   /// <param name="label"> The label of the new <see cref="SpriteAnimation" />. </param>
   /// <param name="time_per_frame"> The time per frame. </param>
   /// <param name="sprites"> The set of sprite labels. </param>
+  /// <exception cref="ViewException"> this->hasSpriteAnimation(label) </exception>
   virtual void initSpriteAnimation(const std::string& label,
 								   float time_per_frame,
 								   const std::vector<std::string>& sprites) = 0;
+
+  /// <summary>
+  /// Determine whether a <see cref="ISpriteAnimation" /> with the corresponding 
+  /// <paramref name="label" /> exists within this <see cref="ISpriteManager" />.
+  /// </summary>
+  /// <param name="label"> The label of the <see cref="ISpriteAnimation" />. </param>
+  /// <returns>
+  /// <c>true</c> if the specified <see cref="ISpriteAnimation" /> exists within this
+  /// <see cref="ISpriteManager" />.; 
+  /// otherwise, <c>false</c>.
+  /// </returns>
+  virtual bool hasSpriteAnimation(const std::string& label) const = 0;
   
   /// <summary>
   /// Get the <see cref="SpriteAnimation" /> associated with the <paramref name="label" />.
