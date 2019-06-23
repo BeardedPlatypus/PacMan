@@ -123,6 +123,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\ClipRectTest.cpp" />
     <ClCompile Include="src\SpriteAnimationTest.cpp" />
     <ClCompile Include="src\SpriteManagerTest.cpp" />
     <ClCompile Include="src\SpriteTest.cpp" />
