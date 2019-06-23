@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "sprite/SpriteManager.h"
 
+#include <stdexcept>
+#include "exceptions/ViewException.h"
 
 namespace pacman {
 namespace view {
@@ -22,6 +24,8 @@ void SpriteManager::initSprite(const std::string& label,
 
 void SpriteManager::initSprite(const std::string& label,
 							   const std::string& sprite_sheet_path) {
+	if (this->hasSprite(label))
+		throw ViewException("initSprite", "");
 
 	const ITexture& tex = this->getTexture(sprite_sheet_path);
 
@@ -35,7 +39,12 @@ bool SpriteManager::hasSprite(const std::string& label) const {
 
 
 const Sprite& SpriteManager::getSprite(const std::string& label) const {
-	return this->sprite_map.at(label);
+	try {
+		return this->sprite_map.at(label);
+	}
+	catch (std::out_of_range) {
+		throw ViewException("getSprite", "");
+	}
 }
 
 
