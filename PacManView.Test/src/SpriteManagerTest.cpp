@@ -206,7 +206,7 @@ TEST(SpriteManagerTest, initSprite_AlreadyExistingLabelThrowsException) {
 //   and a label of a non-existing sprite 
 // When getSprite is called with this label
 // Then an exception is thrown
-TEST(SpriteManagerTest, initSprite_AlreadyExistingLabelThrowsException) {
+TEST(SpriteManagerTest, getSprite_NoExistingLabelThrowsException) {
 	// Given
 	TextureManagerMock texture_manager;
 
