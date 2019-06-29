@@ -82,13 +82,12 @@ void render(pacman::view::IViewManager& manager) {
 }
 
 
-
 int main() {
   auto player_state = pacman::state::PlayerState(5.0, 1.0, 2.0);
   auto game_state = pacman::state::GameState();
 
   auto view_manager = pacman::view::IViewManager::construct();
-  view_manager->initialise();
+  view_manager->initialise(800, 600);
   viewConfiguration(*view_manager);
 
   auto controller_manager = new pacman::controller::ControllerManager();

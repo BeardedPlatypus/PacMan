@@ -55,7 +55,12 @@ public:
 	/// Initialise this <see cref="IViewManager" />, starting up any graphical
 	/// subsystems necessary to start rendering.
 	/// </summary>
-	virtual void initialise() = 0;
+	/// <param name="screen_width"> Width of the screen. </param>
+	/// <param name="screen_height"> Height of the screen. </param>
+    /// <exception cref="ViewException"> 
+	/// <paramref name="screen_width" /> <= 0 || <paramref name="screen_height" /> <= 0
+	/// </exception>
+	virtual void initialise(int screen_width, int screen_height) = 0;
 	
 	/// <summary> 
 	/// Request a new <see cref="Sprite" /> with the given 

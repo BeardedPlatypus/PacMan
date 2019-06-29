@@ -1,4 +1,5 @@
 #pragma once
+#define DllExport __declspec( dllexport )
 
 #include "renderer/IRenderer.h"
 
@@ -12,7 +13,7 @@ namespace view {
 /// It provides a method to obtain a <see cref="IRenderer" /> which can be used
 /// to render sprites.
 /// </summary>
-class IViewCore {
+class DllExport IViewCore {
 public:	
 	/// <summary>
 	/// Construct  a new instance of a <see cref="IViewManager>.
@@ -21,10 +22,12 @@ public:
 	/// </returns>
 	static std::unique_ptr<IViewCore> construct();
 	
-	/// <summary>
-	/// Initialise this <see cref="IViewCore" />.
+ 	/// <summary>
+    /// Initialise this <see cref="IViewCore" />.
 	/// </summary>
-	virtual void initialise() = 0;
+	/// <param name="screen_width"> Width of the screen. </param>
+	/// <param name="screen_height"> Height of the screen. </param>
+	virtual void initialise(int screen_width, int screen_height) = 0;
 	
 	/// <summary>
 	/// Get the <see cref="IRenderer" /> of this <see cref="IViewCore" />.

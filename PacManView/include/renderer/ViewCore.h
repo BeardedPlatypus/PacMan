@@ -11,9 +11,6 @@
 namespace pacman {
 namespace view {
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-
 /// <summary>
 /// <see cref="ViewCore" /> implements <see cref="IViewCore" />. 
 /// It provides a thin wrapper around the SDL initialisation functionality.
@@ -34,7 +31,12 @@ public:
 	/// <summary> 
 	/// Initialise this <see cref="IViewCore" />.
 	/// </summary>
-	void initialise() final;
+	/// <param name="screen_width"> Width of the screen. </param>
+	/// <param name="screen_height"> Height of the screen. </param>
+    /// <exception cref="ViewException"> 
+	/// <paramref name="screen_width" /> <= 0 || <paramref name="screen_height" /> <= 0
+	/// </exception>
+	void initialise(int screen_width, int screen_height) final;
 	
 	/// <summary>
 	/// Get the <see cref="IRenderer" /> of this <see cref="IViewCore" />.
@@ -58,7 +60,9 @@ private:
 	/// <summary>
 	/// Initialise the SDL window.
 	/// </summary>
-	void initialiseWindow();
+	/// <param name="screenWidth"> Width of the screen. </param>
+	/// <param name="screenHeight"> Height of the screen. </param>
+	void initialiseWindow(int screenWidth, int screenHeight);
 
 	/// <summary> 
 	/// A pointer to the <see cref="Renderer" /> of this <see cref="ViewCore" />. 

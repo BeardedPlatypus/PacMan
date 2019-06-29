@@ -17,12 +17,15 @@ ViewCore::~ViewCore() {
   if (this->sdl_initialised) SDL_Quit();
 }
 
-void ViewCore::initialise() {
-	this->initialiseSDL();
-	this->initialiseSDLImage();
-	this->initialiseWindow();
+void ViewCore::initialise(int screen_width, int screen_height) {
+  if (screen_width <= 0 || screen_height <= 0)
+    throw ViewException("initialise", "");
 
-	this->p_renderer->Init(this->p_window.get());
+  this->initialiseSDL();
+  this->initialiseSDLImage();
+  this->initialiseWindow(screen_width, screen_height);
+
+  this->p_renderer->Init(this->p_window.get());
 }
 
 
@@ -47,12 +50,12 @@ void ViewCore::initialiseSDLImage() {
 }
 
 
-void ViewCore::initialiseWindow() {
+void ViewCore::initialiseWindow(int screenWidth, int screenHeight) {
 	SDL_Window* p_window = SDL_CreateWindow("Monthy's PacMan",
 											100,
 											100,
-											SCREEN_WIDTH,
-											SCREEN_HEIGHT,
+											screenWidth,
+											screenHeight,
 											SDL_WINDOW_SHOWN);
 
 	if (p_window == nullptr)

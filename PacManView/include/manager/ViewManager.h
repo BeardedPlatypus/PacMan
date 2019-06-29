@@ -24,7 +24,7 @@ public:
 				std::unique_ptr<ITextureManager> p_texture_manager,
 				std::unique_ptr<ISpriteManager> p_sprite_manager);
 
-	void initialise() final;
+	void initialise(int screen_width, int screen_height) final;
 
 	void requestSprite(const std::string& label,
 					   const std::string& texture_file_path,

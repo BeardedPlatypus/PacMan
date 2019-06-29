@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "manager/ViewManager.h"
 
+#include "exceptions/ViewException.h"
 
 namespace pacman {
 namespace view {
@@ -13,8 +14,8 @@ ViewManager::ViewManager(std::unique_ptr<IViewCore> p_view_core,
 	p_sprite_manager(std::move(p_sprite_manager)) { }
 
 
-void ViewManager::initialise() {
-  this->getViewCore().initialise();
+void ViewManager::initialise(int screen_width, int screen_height) {
+  this->getViewCore().initialise(screen_width, screen_height);
 }
 
 
