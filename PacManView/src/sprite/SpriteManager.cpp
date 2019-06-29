@@ -14,6 +14,11 @@ SpriteManager::SpriteManager(ITextureManager& texture_manager) :
 void SpriteManager::initSprite(const std::string& label,
 							   const std::string& sprite_sheet_path,
 							   int x, int y, int w, int h) {
+	if (this->hasSprite(label))
+		throw ViewException("initSprite", "");
+	if (w <= 0 || h <= 0)
+		throw ViewException("initSprite", "");
+
 	const ITexture& tex = this->getTexture(sprite_sheet_path);
 
 	this->sprite_map.try_emplace(label, 
@@ -51,6 +56,11 @@ const Sprite& SpriteManager::getSprite(const std::string& label) const {
 void SpriteManager::initSpriteAnimation(const std::string& label, 
 										float time_per_frame,
 			 						    const std::vector<std::string>& sprite_labels) {
+	if (time_per_frame <= 0.F)
+		throw ViewException("initSpriteAnimation", "");
+	if (this->hasSpriteAnimation(label))
+		throw ViewException("initSpriteAnimation", "");
+
 	auto sprites = std::vector<std::reference_wrapper<const Sprite>>();
 
 	for (const std::string& sprite_label : sprite_labels) {
@@ -67,7 +77,12 @@ bool SpriteManager::hasSpriteAnimation(const std::string& label) const {
 
 
 SpriteAnimation& SpriteManager::getSpriteAnimation(const std::string& label) {
-	return this->sprite_animation_map.at(label);
+	try {
+		return this->sprite_animation_map.at(label);
+	}
+	catch (std::out_of_range) {
+		throw ViewException("getSpriteAnimation", "");
+	}
 }
 
 
