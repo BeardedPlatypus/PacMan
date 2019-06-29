@@ -47,6 +47,7 @@ public:
   /// The height of the clip of the new <see cref="Sprite" />.
   /// </param>
   /// <exception cref="ViewException"> this->hasSprite(label) </exception>
+  /// <exception cref="ViewException"> <paramref name="w" /> <= 0 || <paramref name="h" /> <= 0 </exception>
   virtual void initSprite(const std::string& label,
 						  const std::string& sprite_sheet_path,
 						  int x, int y, int w, int h) = 0;
@@ -83,6 +84,7 @@ public:
   /// The <see cref="Sprite" /> associated with the specified 
   /// <paramref name="label" />.
   /// </returns>
+  /// <exception cref="ViewException"> NOT this->hasSprite(label) </exception>
   virtual const Sprite& getSprite(const std::string& label) const = 0;
   
   /// <summary>
@@ -94,6 +96,8 @@ public:
   /// <param name="time_per_frame"> The time per frame. </param>
   /// <param name="sprites"> The set of sprite labels. </param>
   /// <exception cref="ViewException"> this->hasSpriteAnimation(label) </exception>
+  /// <exception cref="ViewException"> <paramref name="time_per_frame" /> <= 0.F </exception>
+  /// <exception cref="ViewException"> FOR label IN sprites: NOT this->hasSprite(sprite_label) </exception>
   virtual void initSpriteAnimation(const std::string& label,
 								   float time_per_frame,
 								   const std::vector<std::string>& sprites) = 0;
@@ -120,6 +124,7 @@ public:
   /// The <see cref="SpriteAnimation" /> associated with the specified
   /// <paramref name="label" />.
   /// </returns>
+  /// <exception cref="ViewException"> NOT this->hasSpriteAnimation(label) </exception>
   virtual SpriteAnimation& getSpriteAnimation(const std::string& label) = 0;
 };
 
