@@ -154,6 +154,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\ControllerManager.h" />
+    <ClInclude Include="include\ICommand.h" />
+    <ClInclude Include="include\keyboard\CommandManager.h" />
+    <ClInclude Include="include\keyboard\ICommandManager.h" />
+    <ClInclude Include="include\keyboard\IEvent.h" />
+    <ClInclude Include="include\manager\IControllerManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -161,6 +166,8 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="PacManController.cpp" />
     <ClCompile Include="src\ControllerManager.cpp" />
+    <ClCompile Include="src\keyboard\CommandManager.cpp" />
+    <ClCompile Include="src\keyboard\ICommandManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
