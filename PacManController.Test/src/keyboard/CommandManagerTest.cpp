@@ -15,7 +15,7 @@ namespace controller {
 namespace keyboard {
 
 /// <summary>
-/// Given a keyboard::IEvent
+/// Given a IKeyboardEvent
 ///	  and keyboard::ICommandManager without this event registered
 /// When HasEvent is called with this event
 /// Then <c>false<c> is returned.
@@ -30,7 +30,7 @@ TEST(KeyboardCommandManagerTest, HasEvent_WithoutEventRegistered) {
 
 
 /// <summary>
-/// Given a keyboard::IEvent
+/// Given a IKeyboardEvent
 ///   and a ICommand
 ///	When keyboard::ICommandManager with this event and command registered
 /// Then HasEvent returns <c>true<c>.
@@ -55,7 +55,7 @@ TEST(KeyboardCommandManagerTest, RegisterCommand) {
 
 
 /// <summary>
-/// Given a keyboard::IEvent
+/// Given a IKeyboardEvent
 ///   and a ICommand
 ///	  and keyboard::ICommandManager with this event and command registered
 /// When DeregisterCommand is called with this event
@@ -81,7 +81,7 @@ TEST(KeyboardCommandManagerTest, DeregisterCommand_WithCommandRegistered) {
 
 
 /// <summary>
-/// Given a keyboard::IEvent
+/// Given a IKeyboardEvent
 ///	  and keyboard::ICommandManager without this event registered
 /// When DeregisterCommand is called with this event
 /// Then no exception is thrown

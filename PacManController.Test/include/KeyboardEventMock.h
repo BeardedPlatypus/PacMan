@@ -1,10 +1,10 @@
 #pragma once
 
-#include "keyboard/IEvent.h"
+#include "event/IKeyboardEvent.h"
 #include "gmock/gmock.h"
 
 
-class KeyboardEventMock : public pacman::controller::keyboard::IEvent {
+class KeyboardEventMock : public pacman::controller::IKeyboardEvent {
 public:
-	MOCK_CONST_METHOD0(GetName, std::string());
+	MOCK_METHOD1(Accept, void(const pacman::controller::IEventVisitor&));
 };
