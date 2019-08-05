@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "ICommand.h"
-#include "keyboard/IEvent.h"
+#include "event/IKeyboardEvent.h"
 
 namespace pacman {
 namespace controller {
@@ -53,7 +53,7 @@ public:
   // of this <see cref="ICommandManager" />
   // </remarks>
   virtual void RegisterCommand(std::unique_ptr<ICommand> p_command,
-	                           IEvent* kb_event) = 0;
+	                             IKeyboardEvent* kb_event) = 0;
   
   /// <summary>
   /// Deregister the <see cref="ICommand" /> associated with the specified
@@ -66,7 +66,7 @@ public:
   /// <post-condition> 
   /// | (new this).HasEvent(kb_event)
   /// </ post-condition>
-  virtual void DeregisterCommand(IEvent* kb_event) = 0;
+  virtual void DeregisterCommand(IKeyboardEvent* kb_event) = 0;
   
   /// <summary>
   /// Get the <see cref="ICommand" /> associated with <paramref name="kb_event" />.
@@ -81,7 +81,7 @@ public:
   // <pre-condition>
   // | this.HasEvent(<paramref name="kb_event" />)
   // <pre-condition>
-  virtual ICommand* GetCommand(IEvent* kb_event) const = 0;
+  virtual ICommand* GetCommand(IKeyboardEvent* kb_event) const = 0;
   
   /// <summary>
   /// Determine whether this <see cref="ICommandManager" /> has an 
@@ -94,7 +94,7 @@ public:
   /// <paramref name="kb_event" />; 
   /// otherwise, <c>false</c>.
   /// </returns>
-  virtual bool HasEvent(IEvent* kb_event) const = 0;
+  virtual bool HasEvent(IKeyboardEvent* kb_event) const = 0;
 };
 
 }
