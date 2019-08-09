@@ -155,18 +155,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\ControllerManager.h" />
+    <ClInclude Include="include\event\EventGenerator.h" />
+    <ClInclude Include="include\event\EventGeneratorHelper.h" />
     <ClInclude Include="include\event\EventParser.h" />
+    <ClInclude Include="include\event\IEventGenerator.h" />
     <ClInclude Include="include\event\IEventParser.h" />
     <ClInclude Include="include\event\IEventVisitor.h" />
     <ClInclude Include="include\event\IKeyboardEvent.h" />
     <ClInclude Include="include\event\KeyboardEvent.h" />
     <ClInclude Include="include\event\IMouseEvent.h" />
     <ClInclude Include="include\event\ISystemEvent.h" />
+    <ClInclude Include="include\event\SystemEvent.h" />
     <ClInclude Include="include\keyboard\Scancode.h" />
     <ClInclude Include="include\ICommand.h" />
     <ClInclude Include="include\keyboard\CommandManager.h" />
     <ClInclude Include="include\keyboard\ICommandManager.h" />
     <ClInclude Include="include\event\IEvent.h" />
+    <ClInclude Include="include\keyboard\ScancodeConverter.h" />
     <ClInclude Include="include\manager\IControllerManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -175,10 +180,15 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="PacManController.cpp" />
     <ClCompile Include="src\ControllerManager.cpp" />
+    <ClCompile Include="src\event\EventGenerator.cpp" />
+    <ClCompile Include="src\event\EventGeneratorHelper.cpp" />
     <ClCompile Include="src\event\EventParser.cpp" />
     <ClCompile Include="src\event\IEventParser.cpp" />
+    <ClCompile Include="src\event\KeyboardEvent.cpp" />
+    <ClCompile Include="src\event\SystemEvent.cpp" />
     <ClCompile Include="src\keyboard\CommandManager.cpp" />
     <ClCompile Include="src\keyboard\ICommandManager.cpp" />
+    <ClCompile Include="src\keyboard\ScancodeConverter.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
