@@ -1,4 +1,5 @@
 #pragma once
+#define DllExport __declspec( dllexport )
 
 
 namespace pacman {
@@ -10,7 +11,7 @@ namespace keyboard {
 /// scancodes within this Controller.
 /// These Scancodes are used to subscribe to the different keyboard events.
 /// </summary>
-enum class Scancode {
+enum class DllExport Scancode {
 	W,
 	A,
 	S,
@@ -20,6 +21,7 @@ enum class Scancode {
 	ArrowLeft,
 	ArrowDown,
 	ArrowRight,
+  UnmappedCode,
 };
 
 }
