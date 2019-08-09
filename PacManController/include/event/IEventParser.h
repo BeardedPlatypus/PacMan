@@ -8,6 +8,10 @@ namespace controller {
 
 class IEvent;
 
+/// <summary>
+/// The <see cref="IEventParser" /> is responsible for parsing pointers
+/// to events to pointers of their subclass.
+/// </summary>
 template<class T>
 class DllExport IEventParser {  
 public:
