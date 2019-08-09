@@ -1,3 +1,6 @@
+#include "KeyboardEventMock.h"
+#include "SystemEventMock.h"
+
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
@@ -5,8 +8,6 @@
 #include <event/IMouseEvent.h>
 #include <event/IKeyboardEvent.h>
 #include <event/ISystemEvent.h>
-
-#include <map>
 
 #pragma region using_statements
 using ::testing::Eq;
@@ -32,9 +33,9 @@ public:
 };
 
 
-using EventParserCorrectTypes = ::testing::Types<EventParserTestTypes<IMouseEvent, IMouseEvent>, 
-                                                 EventParserTestTypes<IKeyboardEvent, IKeyboardEvent>, 
-                                                 EventParserTestTypes<ISystemEvent, ISystemEvent>>;
+using EventParserCorrectTypes = ::testing::Types<EventParserTestTypes<IMouseEvent,    IMouseEvent>, 
+                                                 EventParserTestTypes<IKeyboardEvent, KeyboardEventMock>, 
+                                                 EventParserTestTypes<ISystemEvent,   SystemEventMock>>;
 
 TYPED_TEST_SUITE(EventParserTestCorrect, EventParserCorrectTypes);
 
@@ -57,12 +58,12 @@ public:
 };
 
 
-using EventParserIncorrectTypes = ::testing::Types<EventParserTestTypes<IMouseEvent, IKeyboardEvent>, 
-                                                   EventParserTestTypes<IMouseEvent, ISystemEvent>, 
+using EventParserIncorrectTypes = ::testing::Types<EventParserTestTypes<IMouseEvent,    KeyboardEventMock>, 
+                                                   EventParserTestTypes<IMouseEvent,    SystemEventMock>, 
                                                    EventParserTestTypes<IKeyboardEvent, IMouseEvent>, 
-                                                   EventParserTestTypes<IKeyboardEvent, ISystemEvent>, 
-                                                   EventParserTestTypes<ISystemEvent, IMouseEvent>,
-                                                   EventParserTestTypes<ISystemEvent, IKeyboardEvent>>;
+                                                   EventParserTestTypes<IKeyboardEvent, SystemEventMock>, 
+                                                   EventParserTestTypes<ISystemEvent,   IMouseEvent>,
+                                                   EventParserTestTypes<ISystemEvent,   KeyboardEventMock>>;
 
 TYPED_TEST_SUITE(EventParserTestIncorrect, EventParserIncorrectTypes);
 
