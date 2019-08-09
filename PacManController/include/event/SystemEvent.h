@@ -1,20 +1,29 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
-#include "IEvent.h"
-
+#include "ISystemEvent.h"
 
 namespace pacman {
 namespace controller {
-
+  
 /// <summary>
-/// <see cref="SystemEvent" /> extends the <see cref="IEvent" /> class with 
-/// system specific information.
+/// Implementation of <see cref="ISystemEvent" />.
 /// </summary>
-/// <seealso cref="IEvent" />
-class DllExport ISystemEvent : public IEvent {
-public:
-	void Accept(const IEventVisitor& visitor) override { visitor.Visit(this); }
+/// <seealso cref="ISystemEvent" />
+class SystemEvent : public ISystemEvent {
+public:      
+  /// <summary>
+  /// Construct a new <see cref="SystemEvent"/> with the given type.
+  /// </summary>
+  /// <param name="type">The type of this <see cref="SystemEvent" />.</param>
+  SystemEvent(SystemEventType type);
+
+  SystemEventType GetType() const override { return this->type; }
+
+private:  
+  /// <summary>
+  /// The type of this <see cref="SystemEvent" />.
+  /// </summary>
+  const SystemEventType type;
 };
 
 }

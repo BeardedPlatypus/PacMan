@@ -19,5 +19,6 @@ public:
 	void Accept(IEventVisitor* visitor) override { visitor->Visit(this); }
 };
 
+
 }
 }

@@ -11,7 +11,26 @@ namespace controller {
 /// keyboard specific information.
 /// </summary>
 /// <seealso cref="IEvent" />
-class KeyboardEvent final : public IKeyboardEvent {
+class KeyboardEvent final : public IKeyboardEvent {  
+public:
+  /// <summary>
+  /// Construct new <see cref="KeyboardEvent"/> with the specified parameters.
+  /// </summary>
+  /// <param name="type">The type.</param>
+  /// <param name="scancode">The scancode.</param>
+  KeyboardEvent(KeyboardEventType type,
+                keyboard::Scancode scancode);
+
+  KeyboardEventType GetType() const override { return this->type; }
+
+  keyboard::Scancode GetScancode() const override { return this->scancode; }
+
+private:  
+  /// <summary> The type of this <see cref="KeyboardEvent" />. </summary>
+  const KeyboardEventType type;
+
+  /// <summary> The Scancode of this <see cref="KeyboardEvent" />. </summary>
+  const keyboard::Scancode scancode;
 };
 
 }
