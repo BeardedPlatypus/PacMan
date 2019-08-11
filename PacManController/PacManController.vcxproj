@@ -171,11 +171,13 @@
     <ClInclude Include="include\event\SystemEvent.h" />
     <ClInclude Include="include\keyboard\Scancode.h" />
     <ClInclude Include="include\ICommand.h" />
-    <ClInclude Include="include\keyboard\CommandManager.h" />
-    <ClInclude Include="include\keyboard\ICommandManager.h" />
+    <ClInclude Include="include\keyboard\KBCommandManager.h" />
+    <ClInclude Include="include\keyboard\IKBCommandManager.h" />
     <ClInclude Include="include\event\IEvent.h" />
     <ClInclude Include="include\keyboard\ScancodeConverter.h" />
     <ClInclude Include="include\manager\IControllerManager.h" />
+    <ClInclude Include="include\system\SystemCommandManager.h" />
+    <ClInclude Include="include\system\ISystemCommandManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -190,9 +192,11 @@
     <ClCompile Include="src\event\IEventStore.cpp" />
     <ClCompile Include="src\event\KeyboardEvent.cpp" />
     <ClCompile Include="src\event\SystemEvent.cpp" />
-    <ClCompile Include="src\keyboard\CommandManager.cpp" />
-    <ClCompile Include="src\keyboard\ICommandManager.cpp" />
+    <ClCompile Include="src\keyboard\KBCommandManager.cpp" />
+    <ClCompile Include="src\keyboard\IKBCommandManager.cpp" />
     <ClCompile Include="src\keyboard\ScancodeConverter.cpp" />
+    <ClCompile Include="src\system\SystemCommandManager.cpp" />
+    <ClCompile Include="src\system\ISystemCommandManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

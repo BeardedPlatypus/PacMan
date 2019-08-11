@@ -27,12 +27,6 @@
     <ClInclude Include="include\manager\IControllerManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\keyboard\ICommandManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\keyboard\CommandManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\event\IEventVisitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -81,6 +75,18 @@
     <ClInclude Include="include\event\EventStore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\system\SystemCommandManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\ISystemCommandManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\keyboard\KBCommandManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\keyboard\IKBCommandManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -90,12 +96,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\keyboard\CommandManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\keyboard\ICommandManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\event\EventParser.cpp">
@@ -123,6 +123,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\event\IEventStore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\system\SystemCommandManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\system\ISystemCommandManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\keyboard\KBCommandManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\keyboard\IKBCommandManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
