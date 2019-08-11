@@ -4,7 +4,10 @@
 #include <iostream>
 
 #include <PlayerState.h>
+#include <GameState.h>
 #include <manager/IViewManager.h>
+#include <manager/IControllerManager.h>
+#include <ICommand.h>
 
 #include <SDL2/SDL.h>
 
@@ -81,8 +84,21 @@ void render(pacman::view::IViewManager& manager) {
 }
 
 
+class QuitCommand final : public pacman::controller::ICommand {
+public:
+  QuitCommand(pacman::state::GameState* p_gs) : p_gs(p_gs) { }
+
+  void Execute() final {
+    this->p_gs->setGameMode(pacman::state::GameMode::ClosedGame);
+  }
+
+private:
+  pacman::state::GameState* p_gs;
+};
+
+
+
 int main() {
-  /*
   auto player_state = pacman::state::PlayerState(5.0, 1.0, 2.0);
   auto game_state = pacman::state::GameState();
 
@@ -90,7 +106,12 @@ int main() {
   view_manager->initialise(800, 600);
   viewConfiguration(*view_manager);
 
-  auto controller_manager = new pacman::controller::ControllerManager();
+  auto controller_manager = pacman::controller::IControllerManager::Construct();
+  controller_manager->RegisterSystemCommand(pacman::controller::SystemEventType::Quit,
+                                            std::make_unique<QuitCommand>(&game_state));
+  controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
+                                              pacman::controller::keyboard::Scancode::W,
+                                              std::make_unique<QuitCommand>(&game_state));
 
   float dtime = 0.0F;
   Uint64 tick_prev = 0;
@@ -104,7 +125,7 @@ int main() {
 	  dtime = ((float)(tick_now - tick_prev)) / freq;
 	  // Game Loop
 	  //   Update behaviour based on previous state.
-	  controller_manager->update(game_state);
+	  controller_manager->Update();
 	  //   Update current state based on updated behaviour.
 	  //   Render the current state.
 	  view_manager->update(dtime);
@@ -112,8 +133,5 @@ int main() {
 	  //   Play music or anything like that.
   }
  
-  delete controller_manager;
-  */
-
   return 0;
 }
