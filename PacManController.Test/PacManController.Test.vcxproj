@@ -128,7 +128,8 @@
     <ClCompile Include="src\event\EventGeneratorHelperTest.cpp" />
     <ClCompile Include="src\event\EventParserTest.cpp" />
     <ClCompile Include="src\event\EventStoreTest.cpp" />
-    <ClCompile Include="src\keyboard\CommandManagerTest.cpp" />
+    <ClCompile Include="src\keyboard\KBCommandManagerTest.cpp" />
+    <ClCompile Include="src\system\SystemCommandManagerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
