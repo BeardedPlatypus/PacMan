@@ -5,7 +5,8 @@
 #include <gtest/gtest.h>
 
 #include <event/EventGeneratorHelper.h>
-#include <event/EventParser.h>
+#include <event/IEventParser.h>
+#include <event/IEventStore.h>
 
 #pragma region using_statements
 using ::testing::IsTrue;
@@ -127,11 +128,12 @@ TEST(EventGeneratorHelperTest, ConvertSdlEvent_QuitEvent) {
   SDL_Event sdl_event;
   sdl_event.type = SDL_QUIT;
 
-  auto parser = EventParser<ISystemEvent>::construct();
+  auto parser = IEventParser<ISystemEvent>::construct();
+  auto p_store = IEventStore::Construct();
 
   // When
-  std::unique_ptr<IEvent> result = EventGeneratorHelper::ConvertSdlEvent(&sdl_event);
-  ISystemEvent* p_event = (*parser)(result.get());
+  IEvent* result = EventGeneratorHelper::ConvertSdlEvent(&sdl_event, p_store.get());
+  ISystemEvent* p_event = (*parser)(result);
 
   // Then
   ASSERT_THAT(p_event, NotNull());
@@ -169,11 +171,12 @@ TEST_P(EventGeneratorHelperTestConvertKeyboard, ConvertSdlEvent_Keyboard) {
   sdl_event.type = val.event_type;
   sdl_event.key.keysym.scancode = val.scancode;
 
-  auto parser = EventParser<IKeyboardEvent>::construct();
+  auto parser = IEventParser<IKeyboardEvent>::construct();
+  auto p_store = IEventStore::Construct();
 
   // When
-  std::unique_ptr<IEvent> result = EventGeneratorHelper::ConvertSdlEvent(&sdl_event);
-  IKeyboardEvent* p_event = (*parser)(result.get());
+  IEvent* result = EventGeneratorHelper::ConvertSdlEvent(&sdl_event, p_store.get());
+  IKeyboardEvent* p_event = (*parser)(result);
 
   // Then
   ASSERT_THAT(p_event, NotNull());

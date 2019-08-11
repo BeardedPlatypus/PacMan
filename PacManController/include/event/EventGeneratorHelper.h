@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 
 #include "IEvent.h"
+#include "event/IEventStore.h"
 
 
 namespace pacman {
@@ -30,15 +31,19 @@ public:
   static bool CanConvertSdlEvent(SDL_Event* p_event);
 
   /// <summary>
-  /// Converts the SDL event to a <see cref="std::unique_ptr<IEvent>" />.
+  /// Converts the SDL event to a <see cref="IEvent" /> through the
+  /// <paramref name="p_event_store" />.
   /// </summary>
   /// <param name="p_event"> 
   /// The pointer to the <see cref="SDL_Event" /> to convert.
   /// </param>
+  /// <param name="p_event_store">
+  /// The pointer to the <see cref="IEventStore" /> used to generate the <see cref="IEvent" />.
+  /// </param>
   /// <returns> 
   /// A pointer to the corresponding <see cref="IEvent" />. 
   /// </returns>
-  static std::unique_ptr<IEvent> ConvertSdlEvent(SDL_Event* p_event);
+  static IEvent* ConvertSdlEvent(SDL_Event* p_event, IEventStore* p_event_store);
 };
 
 }

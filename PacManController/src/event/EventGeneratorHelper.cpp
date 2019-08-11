@@ -28,18 +28,19 @@ bool EventGeneratorHelper::CanConvertSdlEvent(SDL_Event* p_event) {
 }
 
 
-std::unique_ptr<IEvent> EventGeneratorHelper::ConvertSdlEvent(SDL_Event* p_event) {
+IEvent* EventGeneratorHelper::ConvertSdlEvent(SDL_Event* p_event,
+                                              IEventStore* p_event_store) {
   auto converter = keyboard::ScancodeConverter();
   keyboard::Scancode code = converter.Convert(p_event->key.keysym.scancode);
 
   switch (p_event->type)
   {
   case SDL_KEYDOWN :
-    return std::make_unique<KeyboardEvent>(KeyboardEventType::KeyDown, code);
+    return p_event_store->GetKeyboardEvent(KeyboardEventType::KeyDown, code);
   case SDL_KEYUP:
-    return std::make_unique<KeyboardEvent>(KeyboardEventType::KeyUp, code);
+    return p_event_store->GetKeyboardEvent(KeyboardEventType::KeyUp, code);
   case SDL_QUIT:
-    return std::make_unique<SystemEvent>(SystemEventType::Quit);
+    return p_event_store->GetSystemEvent(SystemEventType::Quit);
   default:
     return nullptr;
   }

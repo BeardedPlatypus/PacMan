@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IEventGenerator.h"
+#include "IEventStore.h"
 
 
 namespace pacman {
@@ -13,22 +14,44 @@ namespace controller {
 /// </summary>
 /// <seealso cref="IEventGenerator" />
 class EventGenerator final : public IEventGenerator {
-public:
-  EventGenerator();
+public:  
+  /// <summary>
+  /// Construct a new of the <see cref="EventGenerator"/>.
+  /// </summary>
+  /// <param name="p_event_store"> 
+  /// A pointer to the <see cref="IEventStore" />. 
+  /// </param>
+  EventGenerator(IEventStore* p_event_store);
 
   void PollEvents() final;
 
   std::vector<IEvent*> GetEvents() const final;
 
 private:  
-  inline const std::vector<std::unique_ptr<IEvent>>& GetEventsVector() const { 
+  inline const std::vector<IEvent*>& GetEventsVector() const { 
     return this->events_vector; 
   }
 
   /// <summary>
   /// The vector containing all events of this <see cref="EventGenerator" />.
   /// </summary>
-  std::vector<std::unique_ptr<IEvent>> events_vector;
+  std::vector<IEvent*> events_vector;
+   
+  /// <summary>
+  /// Get a pointer to the <see cref="IEventStore" /> of this
+  /// <see cref="EventGenerator" />
+  /// </summary>
+  /// <returns> 
+  /// A pointer to the <see cref="IventStore" /> of this <see cref="EventGenerator" />. 
+  /// </returns>
+  inline IEventStore* GetEventStore() const {
+    return this->p_event_store;
+  }
+
+  /// <summary>
+  /// The <see cref="IEventStore" /> of this <see cref="EventGenerator" />.
+  /// </summary>
+  IEventStore* p_event_store;
 };
 
 }

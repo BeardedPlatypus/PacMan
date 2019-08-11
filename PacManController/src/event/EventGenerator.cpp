@@ -8,8 +8,9 @@
 namespace pacman {
 namespace controller {
 
-EventGenerator::EventGenerator() : 
-    events_vector(std::vector<std::unique_ptr<IEvent>>()) { }
+EventGenerator::EventGenerator(IEventStore* p_event_store) : 
+    p_event_store(p_event_store),
+    events_vector(std::vector<IEvent*>()) { }
 
 
 void EventGenerator::PollEvents() {
@@ -18,21 +19,14 @@ void EventGenerator::PollEvents() {
   SDL_Event sdl_event;
   while (SDL_PollEvent(&sdl_event)) {
     if (EventGeneratorHelper::CanConvertSdlEvent(&sdl_event)) {
-      this->events_vector.push_back(EventGeneratorHelper::ConvertSdlEvent(&sdl_event));
+      this->events_vector.push_back(EventGeneratorHelper::ConvertSdlEvent(&sdl_event, this->GetEventStore()));
     }
   }
 }
 
 
 std::vector<IEvent*> EventGenerator::GetEvents() const {
-  const std::vector<std::unique_ptr<IEvent>>& events = this->GetEventsVector();
-  std::vector<IEvent*> result = std::vector<IEvent*>(events.size());
-
-  for (size_t i = 0; i < events.size(); ++i) {
-    result[i] = events[i].get();
-  }
-
-  return result;
+  return this->GetEventsVector();
 }
 
 

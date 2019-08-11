@@ -175,6 +175,7 @@
     <ClInclude Include="include\keyboard\IKBCommandManager.h" />
     <ClInclude Include="include\event\IEvent.h" />
     <ClInclude Include="include\keyboard\ScancodeConverter.h" />
+    <ClInclude Include="include\manager\ControllerManager.h" />
     <ClInclude Include="include\manager\IControllerManager.h" />
     <ClInclude Include="include\system\SystemCommandManager.h" />
     <ClInclude Include="include\system\ISystemCommandManager.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="src\keyboard\KBCommandManager.cpp" />
     <ClCompile Include="src\keyboard\IKBCommandManager.cpp" />
     <ClCompile Include="src\keyboard\ScancodeConverter.cpp" />
+    <ClCompile Include="src\manager\ControllerManager.cpp" />
     <ClCompile Include="src\system\SystemCommandManager.cpp" />
     <ClCompile Include="src\system\ISystemCommandManager.cpp" />
     <ClCompile Include="stdafx.cpp">
