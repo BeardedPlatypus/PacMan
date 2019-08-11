@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.438
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacManMain", "PacManMain\PacManMain.vcxproj", "{C831E5E8-6835-4D57-8E7E-5BDCBC3F17CC}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -15,9 +15,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacManView", "PacManView\PacManView.vcxproj", "{7D3C6386-196D-49F8-8D03-D519CF05D447}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacManController", "PacManController\PacManController.vcxproj", "{CAA91C01-7E3C-4F6D-A87F-BFA900E6A380}"
-	ProjectSection(ProjectDependencies) = postProject
-		{CF1BA2A3-CD63-4543-8268-B02FDE2B60F3} = {CF1BA2A3-CD63-4543-8268-B02FDE2B60F3}
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B14D7C3E-C853-4587-991B-8DB545BD5335}"
 EndProject
