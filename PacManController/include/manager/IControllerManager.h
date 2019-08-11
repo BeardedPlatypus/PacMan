@@ -8,6 +8,13 @@
 #include "event/IKeyboardEvent.h"
 #include "ICommand.h"
 
+#include "event/IEventStore.h"
+#include "event/IEventGenerator.h"
+#include "event/IEventParser.h"
+#include "keyboard/IKBCommandManager.h"
+#include "system/ISystemCommandManager.h"
+
+
 namespace pacman {
 namespace controller {
 
@@ -19,6 +26,13 @@ namespace controller {
 /// </summary>
 class DllExport IControllerManager {
 public:	
+  static std::unique_ptr<IControllerManager> Construct(std::unique_ptr<IEventGenerator> p_event_generator,
+                                                       std::unique_ptr<keyboard::ICommandManager> p_keyboard_command_manager,
+                                                       std::unique_ptr<system::ICommandManager> p_system_command_manager,
+                                                       std::unique_ptr<IEventParser<IKeyboardEvent>> p_keyboard_event_parser,
+                                                       std::unique_ptr<IEventParser<ISystemEvent>> p_system_event_parser,
+                                                       std::unique_ptr<IEventStore> p_event_store);
+
  	/// <summary>
 	/// Construct a new <see cref="IControllerManager" />.
 	/// </summary>
@@ -26,7 +40,7 @@ public:
 	/// A <see cref="std::unique_ptr" /> containing a new instance of a
 	/// <see cref="IControllerManager" />.
 	/// </returns>
-	static std::unique_ptr<IControllerManager> construct();
+	static std::unique_ptr<IControllerManager> Construct();
 
   virtual ~IControllerManager() {}
 

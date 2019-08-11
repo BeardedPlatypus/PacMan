@@ -189,6 +189,7 @@
     <ClCompile Include="src\event\EventGeneratorHelper.cpp" />
     <ClCompile Include="src\event\EventParser.cpp" />
     <ClCompile Include="src\event\EventStore.cpp" />
+    <ClCompile Include="src\event\IEventGenerator.cpp" />
     <ClCompile Include="src\event\IEventParser.cpp" />
     <ClCompile Include="src\event\IEventStore.cpp" />
     <ClCompile Include="src\event\KeyboardEvent.cpp" />
@@ -197,6 +198,7 @@
     <ClCompile Include="src\keyboard\IKBCommandManager.cpp" />
     <ClCompile Include="src\keyboard\ScancodeConverter.cpp" />
     <ClCompile Include="src\manager\ControllerManager.cpp" />
+    <ClCompile Include="src\manager\IControllerManager.cpp" />
     <ClCompile Include="src\system\SystemCommandManager.cpp" />
     <ClCompile Include="src\system\ISystemCommandManager.cpp" />
     <ClCompile Include="stdafx.cpp">

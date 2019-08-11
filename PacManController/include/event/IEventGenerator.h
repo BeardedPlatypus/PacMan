@@ -3,7 +3,8 @@
 #include <vector>
 #include <memory>
 
-#include "IEvent.h"
+#include "event/IEvent.h"
+#include "event/IEventStore.h"
 
 namespace pacman {
 namespace controller {
@@ -19,7 +20,7 @@ public:
   /// Construct a new <see cref="IEventGenerator" />.
   /// </summary>
   /// <returns> A new <see cref="IEventGenerator" /></returns>
-  static std::unique_ptr<IEventGenerator> construct();
+  static std::unique_ptr<IEventGenerator> construct(IEventStore* p_event_store);
 
   virtual ~IEventGenerator() {}
 
