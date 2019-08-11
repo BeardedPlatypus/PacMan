@@ -20,7 +20,7 @@ namespace system {
 /// When HasEvent is called with this event
 /// Then <c>false<c> is returned.
 /// </summary>
-TEST(KeyboardCommandManagerTest, HasEvent_WithoutEventRegistered) {
+TEST(SystemCommandManagerTest, HasEvent_WithoutEventRegistered) {
   // Given
   SystemEventMock event_mock;
   std::unique_ptr<ICommandManager> p_manager = ICommandManager::construct();
@@ -36,7 +36,7 @@ TEST(KeyboardCommandManagerTest, HasEvent_WithoutEventRegistered) {
 /// Then HasEvent returns <c>true<c>.
 ///  And GetCommand with this event returns command
 /// </summary>
-TEST(KeyboardCommandManagerTest, RegisterCommand) {
+TEST(SystemCommandManagerTest, RegisterCommand) {
   // Given
   SystemEventMock event_mock;
   std::unique_ptr<ICommand> p_command = std::make_unique<CommandMock>();
@@ -61,7 +61,7 @@ TEST(KeyboardCommandManagerTest, RegisterCommand) {
 /// When DeregisterCommand is called with this event
 /// Then HasEvent returns false
 /// </summary>
-TEST(KeyboardCommandManagerTest, DeregisterCommand_WithCommandRegistered) {
+TEST(SystemCommandManagerTest, DeregisterCommand_WithCommandRegistered) {
   // Given
   SystemEventMock event_mock;
   std::unique_ptr<ICommand> p_command = std::make_unique<CommandMock>();
@@ -87,7 +87,7 @@ TEST(KeyboardCommandManagerTest, DeregisterCommand_WithCommandRegistered) {
 /// Then no exception is thrown
 ///  And HasEvent returns false
 /// </summary>
-TEST(KeyboardCommandManagerTest, DeregisterCommand_WithoutCommandRegistered) {
+TEST(SystemCommandManagerTest, DeregisterCommand_WithoutCommandRegistered) {
   // Given
   SystemEventMock event_mock;
   std::unique_ptr<ICommandManager> p_manager = ICommandManager::construct();
