@@ -90,6 +90,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;PACMANCONTROLLER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -154,12 +156,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\ControllerManager.h" />
     <ClInclude Include="include\event\EventGenerator.h" />
     <ClInclude Include="include\event\EventGeneratorHelper.h" />
     <ClInclude Include="include\event\EventParser.h" />
+    <ClInclude Include="include\event\EventStore.h" />
     <ClInclude Include="include\event\IEventGenerator.h" />
     <ClInclude Include="include\event\IEventParser.h" />
+    <ClInclude Include="include\event\IEventStore.h" />
     <ClInclude Include="include\event\IEventVisitor.h" />
     <ClInclude Include="include\event\IKeyboardEvent.h" />
     <ClInclude Include="include\event\KeyboardEvent.h" />
@@ -179,11 +182,12 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="PacManController.cpp" />
-    <ClCompile Include="src\ControllerManager.cpp" />
     <ClCompile Include="src\event\EventGenerator.cpp" />
     <ClCompile Include="src\event\EventGeneratorHelper.cpp" />
     <ClCompile Include="src\event\EventParser.cpp" />
+    <ClCompile Include="src\event\EventStore.cpp" />
     <ClCompile Include="src\event\IEventParser.cpp" />
+    <ClCompile Include="src\event\IEventStore.cpp" />
     <ClCompile Include="src\event\KeyboardEvent.cpp" />
     <ClCompile Include="src\event\SystemEvent.cpp" />
     <ClCompile Include="src\keyboard\CommandManager.cpp" />

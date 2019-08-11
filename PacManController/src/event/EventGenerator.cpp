@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "event/EventGenerator.h"
 
-
 #include <SDL2/SDL.h>
 #include "event/EventGeneratorHelper.h"
 
