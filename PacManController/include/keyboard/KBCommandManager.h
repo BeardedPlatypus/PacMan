@@ -1,5 +1,5 @@
 #pragma once
-#include "ICommandManager.h"
+#include "IKBCommandManager.h"
 
 #include <unordered_map>
 #include <functional>

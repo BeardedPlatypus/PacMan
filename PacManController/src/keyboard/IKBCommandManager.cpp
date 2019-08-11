@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "keyboard/ICommandManager.h"
+#include "keyboard/IKBCommandManager.h"
 
-#include "keyboard/CommandManager.h"
+#include "keyboard/KBCommandManager.h"
 
 
 namespace pacman {

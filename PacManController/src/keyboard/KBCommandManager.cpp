@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "keyboard/CommandManager.h"
+#include "keyboard/KBCommandManager.h"
 
 namespace pacman {
 namespace controller {
