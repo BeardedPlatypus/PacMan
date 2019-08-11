@@ -4,7 +4,7 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "keyboard/ICommandManager.h"
+#include "keyboard/IKBCommandManager.h"
 
 #pragma region using_statements
 using ::testing::Eq;
