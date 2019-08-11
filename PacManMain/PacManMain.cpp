@@ -4,7 +4,6 @@
 #include <iostream>
 
 #include <PlayerState.h>
-#include <ControllerManager.h>
 #include <manager/IViewManager.h>
 
 #include <SDL2/SDL.h>
@@ -83,6 +82,7 @@ void render(pacman::view::IViewManager& manager) {
 
 
 int main() {
+  /*
   auto player_state = pacman::state::PlayerState(5.0, 1.0, 2.0);
   auto game_state = pacman::state::GameState();
 
@@ -113,6 +113,7 @@ int main() {
   }
  
   delete controller_manager;
+  */
 
   return 0;
 }
