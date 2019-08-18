@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\EntityStateTest.cpp" />
+    <ClCompile Include="src\field\FieldTest.cpp" />
     <ClCompile Include="src\GameStateTest.cpp" />
     <ClCompile Include="src\PositionTest.cpp" />
   </ItemGroup>

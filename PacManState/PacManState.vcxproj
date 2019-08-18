@@ -152,6 +152,9 @@
   <ItemGroup>
     <ClInclude Include="include\Direction.h" />
     <ClInclude Include="include\EntityState.h" />
+    <ClInclude Include="include\field\Field.h" />
+    <ClInclude Include="include\field\IField.h" />
+    <ClInclude Include="include\field\TileType.h" />
     <ClInclude Include="include\IEntityState.h" />
     <ClInclude Include="include\GameState.h" />
     <ClInclude Include="include\PlayerState.h" />
@@ -164,6 +167,8 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="PacManState.cpp" />
     <ClCompile Include="src\EntityState.cpp" />
+    <ClCompile Include="src\field\Field.cpp" />
+    <ClCompile Include="src\field\IField.cpp" />
     <ClCompile Include="src\GameState.cpp" />
     <ClCompile Include="src\IEntityState.cpp" />
     <ClCompile Include="src\PlayerState.cpp" />
