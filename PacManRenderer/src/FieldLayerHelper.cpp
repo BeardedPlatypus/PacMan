@@ -26,20 +26,18 @@ void FieldLayerHelper::AddFieldValuesToVisualisation(std::vector<unsigned int> &
 
   auto cursor = 0;
 
-  std::vector<int> cursor_filter = { -1 * x_dim - 1
-                                   , -1 * x_dim
-                                   , -1 * x_dim + 1 
-                                   , -1
-                                   , +1
-                                   , x_dim - 1
-                                   , x_dim
-                                   , x_dim + 1 
-                                   };
-
   std::vector<unsigned int> space_values = std::vector<unsigned int>();
   std::vector<unsigned int> gate_values  = std::vector<unsigned int>();
 
-  for (auto i = 8; i < 0; --i) {
+  for (auto i = 8; i > 4; --i) {
+    space_values.push_back(1 << (i * 2));
+    gate_values.push_back(1 << ((i * 2) + 1));
+  }
+
+  space_values.push_back(-1);
+  gate_values.push_back(-1);
+
+  for (auto i = 4; i > 0; --i) {
     space_values.push_back(1 << (i * 2));
     gate_values.push_back(1 << ((i * 2) + 1));
   }
@@ -49,20 +47,37 @@ void FieldLayerHelper::AddFieldValuesToVisualisation(std::vector<unsigned int> &
     for (auto i = 0; i < x_dim; ++i) {
       state::field::TileType tile_type = p_field->GetTileType(i, j);
 
-      if (tile_type == state::field::TileType::Space) {
+      switch (tile_type)
+      {
+      case pacman::state::field::TileType::Space:
         visualisation_field[cursor] = 0;
         active_values = &space_values;
-      }
-      else if (tile_type == state::field::TileType::Gate) {
-        visualisation_field[cursor] = 2;
+        break;
+      case pacman::state::field::TileType::Solid:
+        continue;
+      case pacman::state::field::TileType::Gate:
+        visualisation_field[cursor] += 1;
         active_values = &gate_values;
+        break;
+      default:
+        continue;
       }
 
-      for (auto k = 0; k < 8; ++k) {
-        auto field = cursor + cursor_filter[k];
+      for (auto kj = 0; kj < 3; ++kj) {
+        auto rel_j = j - kj;
+        if (rel_j < 0 || rel_j > y_dim) continue;
 
-        if (field >= 0 && visualisation_field[field] > 0)
-          visualisation_field[field] += active_values->at(k);
+        for (auto ki = 0; ki < 3; ++ki) {
+          if (ki == 0 && kj == 0) continue;
+          
+          auto rel_i = i - ki;
+          if (rel_i < 0 || rel_i > x_dim) continue;
+
+          auto field = rel_j * x_dim + rel_i;
+
+          if (visualisation_field[field] > 0)
+            visualisation_field[field] += active_values->at(ki + kj * 3);
+        }
       }
 
       cursor += 1;
@@ -105,25 +120,51 @@ void FieldLayerHelper::AddCornerValuesToVisualisation(std::vector<unsigned int>&
 
 void FieldLayerHelper::AddSideValuesToVisualisation(std::vector<unsigned int>& visualisation_field, 
                                                     int x_dim, int y_dim) {
-  if (visualisation_field[0] > 0)
-    visualisation_field[0] += ((1 << 2) + (1 << 3));
+  auto top_left_corner = 0;
+  if (visualisation_field[top_left_corner] > 0)
+    visualisation_field[top_left_corner] += ((1 << 2) + (1 << 3) +
+                                             (1 << 8) + (1 << 9) +
+                                             (1 << 4) + (1 << 5));
 
+  auto top_right_corner = x_dim - 1;
   if (visualisation_field[x_dim - 1] > 0)
-    visualisation_field[x_dim - 1] += ((1 << 6) + (1 << 7));
+    visualisation_field[x_dim - 1] += ((1 <<  6) + (1 <<  7) +
+                                       (1 <<  4) + (1 <<  5) +
+                                       (1 << 10) + (1 << 11));
 
   auto bottom_left_corner = (y_dim - 1) * x_dim;
   if (visualisation_field[bottom_left_corner] > 0)
-    visualisation_field[bottom_left_corner] += ((1 << 12) + (1 << 13));
+    visualisation_field[bottom_left_corner] += ((1 << 12) + (1 << 13) + 
+                                                (1 <<  8) + (1 <<  9) +
+                                                (1 << 14) + (1 << 15));
 
   auto bottom_right_corner = (y_dim * x_dim) - 1;
   if (visualisation_field[bottom_right_corner] > 0)
-    visualisation_field[bottom_right_corner] += ((1 << 16) + (1 << 17));
+    visualisation_field[bottom_right_corner] += ((1 << 16) + (1 << 17) +
+                                                 (1 << 14) + (1 << 15) +
+                                                 (1 << 10) + (1 << 11));
+  
+  // Correction for playing fields with only one dimension:
+  // Since this should be a rare occurrence, we fix our values
+  // if it happens, rather than fix it as it happens.
+  // Top-left corner is equal to Top-right corner and
+  // Bottom-left corner is equal to Bottom-right corner
+  if (x_dim == 1) {
+    if (visualisation_field[top_left_corner] > 0)
+      visualisation_field[top_left_corner] -= ((1 << 4) + (1 << 5));
+    if (visualisation_field[bottom_left_corner] > 0)
+      visualisation_field[bottom_left_corner] -= ((1 << 14) + (1 << 15));
+  }
+
+  // Top-left corner is equal to Bottom-left corner and
+  // Top-right corner is equal to Bottom-right corner
+  if (y_dim == 1) {
+    if (visualisation_field[top_left_corner] > 0)
+      visualisation_field[top_left_corner] -= ((1 << 8) + (1 << 9));
+    if (visualisation_field[top_right_corner] > 0)
+      visualisation_field[top_right_corner] -= ((1 << 10) + (1 << 11));
+  }
 }
-
-
-
-
-
 
 }
 }
