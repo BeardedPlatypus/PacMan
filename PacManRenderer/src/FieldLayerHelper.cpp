@@ -24,12 +24,10 @@ void FieldLayerHelper::AddFieldValuesToVisualisation(std::vector<unsigned int> &
   auto x_dim = p_field->GetXDimension();
   auto y_dim = p_field->GetYDimension();
 
-  auto cursor = 0;
-
   std::vector<unsigned int> space_values = std::vector<unsigned int>();
   std::vector<unsigned int> gate_values  = std::vector<unsigned int>();
 
-  for (auto i = 8; i > 4; --i) {
+  for (auto i = 1; i < 5; ++i) {
     space_values.push_back(1 << (i * 2));
     gate_values.push_back(1 << ((i * 2) + 1));
   }
@@ -37,7 +35,7 @@ void FieldLayerHelper::AddFieldValuesToVisualisation(std::vector<unsigned int> &
   space_values.push_back(-1);
   gate_values.push_back(-1);
 
-  for (auto i = 4; i > 0; --i) {
+  for (auto i = 5; i < 9; ++i) {
     space_values.push_back(1 << (i * 2));
     gate_values.push_back(1 << ((i * 2) + 1));
   }
@@ -50,28 +48,28 @@ void FieldLayerHelper::AddFieldValuesToVisualisation(std::vector<unsigned int> &
       switch (tile_type)
       {
       case pacman::state::field::TileType::Space:
-        visualisation_field[cursor] = 0;
+        visualisation_field[i + j * x_dim] = 0;
         active_values = &space_values;
         break;
       case pacman::state::field::TileType::Solid:
         continue;
       case pacman::state::field::TileType::Gate:
-        visualisation_field[cursor] += 1;
+        visualisation_field[i + j * x_dim] += 1;
         active_values = &gate_values;
         break;
       default:
         continue;
       }
 
-      for (auto kj = 0; kj < 3; ++kj) {
-        auto rel_j = j - kj;
-        if (rel_j < 0 || rel_j > y_dim) continue;
+      for (auto kj = 0; kj < 3; kj++) {
+        auto rel_j = j - kj + 1;
+        if (rel_j < 0 || rel_j >= y_dim) continue;
 
-        for (auto ki = 0; ki < 3; ++ki) {
-          if (ki == 0 && kj == 0) continue;
+        for (auto ki = 0; ki < 3; ki++) {
+          if (ki == 1 && kj == 1) continue;
           
-          auto rel_i = i - ki;
-          if (rel_i < 0 || rel_i > x_dim) continue;
+          auto rel_i = i - ki + 1;
+          if (rel_i < 0 || rel_i >= x_dim) continue;
 
           auto field = rel_j * x_dim + rel_i;
 
@@ -79,8 +77,6 @@ void FieldLayerHelper::AddFieldValuesToVisualisation(std::vector<unsigned int> &
             visualisation_field[field] += active_values->at(ki + kj * 3);
         }
       }
-
-      cursor += 1;
     }
   }
 }
