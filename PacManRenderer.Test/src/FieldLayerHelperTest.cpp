@@ -25,7 +25,7 @@ TEST(FieldLayerHelperTest, CalculateFieldValue_SingleSpace) {
   // Then
   ASSERT_THAT(result.size(), Eq(expected_result.size()));
 
-  for (auto i = 0; i < result.size(); ++i) {
+  for (size_t i = 0; i < result.size(); ++i) {
     ASSERT_THAT(result[i], Eq(expected_result[i]));
   }
 }
@@ -51,7 +51,7 @@ TEST(FieldLayerHelperTest, CalculateFieldValue_SingleSolid) {
   // Then
   ASSERT_THAT(result.size(), Eq(expected_result.size()));
 
-  for (auto i = 0; i < result.size(); ++i) {
+  for (size_t i = 0; i < result.size(); ++i) {
     ASSERT_THAT(result[i], Eq(expected_result[i]));
   }
 }
@@ -77,16 +77,16 @@ TEST(FieldLayerHelperTest, CalculateFieldValue_SingleGate) {
   // Then
   ASSERT_THAT(result.size(), Eq(expected_result.size()));
 
-  for (auto i = 0; i < result.size(); ++i) {
+  for (size_t i = 0; i < result.size(); ++i) {
     ASSERT_THAT(result[i], Eq(expected_result[i]));
   }
 }
 
 
 state::field::TileType GetTileType(unsigned int val, unsigned index) {
-  if (val & (1 << (2 * index)))
+  if ((val & (1 << (2 * index))) == (1 << (2 * index)))
     return state::field::TileType::Space;
-  if (val & (1 << (2 * index + 1)))
+  if ((val & (1 << (2 * index + 1))) == (1 << (2 * index + 1)))
     return state::field::TileType::Gate;
   return state::field::TileType::Solid;
 }
@@ -94,10 +94,10 @@ state::field::TileType GetTileType(unsigned int val, unsigned index) {
 
 struct FieldLayerHelperCenterElementTestValues {
 public:
-  FieldLayerHelperCenterElementTestValues(unsigned int val) : expectedValue(val) {
+  FieldLayerHelperCenterElementTestValues(state::field::TileType center_tile, unsigned int val) : expectedValue(val) {
     this->tiles =
     { { GetTileType(val, 1), GetTileType(val, 2),           GetTileType(val, 3) },
-      { GetTileType(val, 4), state::field::TileType::Solid, GetTileType(val, 5) },
+      { GetTileType(val, 4), center_tile,                   GetTileType(val, 5) },
       { GetTileType(val, 6), GetTileType(val, 7),           GetTileType(val, 8) }
     };
 
@@ -109,7 +109,40 @@ public:
 };
 
 
-class FieldLayerHelperCenterElementTest : public ::testing::TestWithParam<FieldLayerHelperCenterElementTestValues> {};
+class FieldLayerHelperCenterElementTest : public ::testing::TestWithParam<FieldLayerHelperCenterElementTestValues> {
+public:
+  static std::vector<FieldLayerHelperCenterElementTestValues> validInputs() {
+    auto result = std::vector<FieldLayerHelperCenterElementTestValues>();
+    for (auto i8 = 0; i8 < 3; ++i8) {
+      auto val8 = i8 == 2 ? 0 : 1 << (16 + i8);
+      for (auto i7 = 0; i7 < 3; ++i7) {
+        auto val7 = i7 == 2 ? 0 : 1 << (14 + i7);
+        for (auto i6 = 0; i6 < 3; ++i6) {
+          auto val6 = i6 == 2 ? 0 : 1 << (12 + i6);
+          for (auto i5 = 0; i5 < 3; ++i5) {
+            auto val5 = i5 == 2 ? 0 : 1 << (10 + i5);
+            for (auto i4 = 0; i4 < 3; ++i4) {
+              auto val4 = i4 == 2 ? 0 : 1 << (8 + i4);
+              for (auto i3 = 0; i3 < 3; ++i3) {
+                auto val3 = i3 == 2 ? 0 : 1 << (6 + i3);
+                for (auto i2 = 0; i2 < 3; ++i2) {
+                  auto val2 = i2 == 2 ? 0 :  1 << (4 + i2);
+                  for (auto i1 = 0; i1 < 3; ++i1) {
+                    auto val1 = i1 == 2 ? 0 : 1 << (2 + i1);
+                    result.push_back(FieldLayerHelperCenterElementTestValues(state::field::TileType::Solid, 1 + val1 + val2 + val3 + val4 + val5 + val6 + val7 + val8));
+                    result.push_back(FieldLayerHelperCenterElementTestValues(state::field::TileType::Gate, 2 + val1 + val2 + val3 + val4 + val5 + val6 + val7 + val8));
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    return result;
+  };
+};
 
 
 TEST_P(FieldLayerHelperCenterElementTest, ReturnsCorrectValue) {
@@ -126,89 +159,6 @@ TEST_P(FieldLayerHelperCenterElementTest, ReturnsCorrectValue) {
 
 INSTANTIATE_TEST_SUITE_P(FieldLayerHelperValuesTest,
                          FieldLayerHelperCenterElementTest,
-                         ::testing::Values(
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4 + 1)) + (1 << (6 + 1)) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4 + 1)) + (1 << (6 + 1)) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4 + 1)) + (1 << (6 + 1)) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4    )) + (1 << (6 + 1)) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4    )) + (1 << (6 + 1)) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4    )) + (1 << (6 + 1)) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) +                  (1 << (6 + 1)) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) +                  (1 << (6 + 1)) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                                   (1 << (6 + 1)) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4 + 1)) + (1 << (6    )) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4 + 1)) + (1 << (6    )) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4 + 1)) + (1 << (6    )) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4    )) + (1 << (6    )) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4    )) + (1 << (6    )) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4    )) + (1 << (6    )) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) +                  (1 << (6    )) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) +                  (1 << (6    )) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                                   (1 << (6    )) + (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4 + 1)) +                  (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4 + 1)) +                  (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4 + 1)) +                  (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4    )) +                  (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4    )) +                  (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4    )) +                  (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) +                                   (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) +                                   (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                                                    (1 << (8 + 1)) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4 + 1)) + (1 << (6 + 1)) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4 + 1)) + (1 << (6 + 1)) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4 + 1)) + (1 << (6 + 1)) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4    )) + (1 << (6 + 1)) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4    )) + (1 << (6 + 1)) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4    )) + (1 << (6 + 1)) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) +                  (1 << (6 + 1)) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) +                  (1 << (6 + 1)) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                                   (1 << (6 + 1)) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4 + 1)) + (1 << (6    )) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4 + 1)) + (1 << (6    )) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4 + 1)) + (1 << (6    )) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4    )) + (1 << (6    )) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4    )) + (1 << (6    )) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4    )) + (1 << (6    )) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) +                  (1 << (6    )) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) +                  (1 << (6    )) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                                   (1 << (6    )) + (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4 + 1)) +                  (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4 + 1)) +                  (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4 + 1)) +                  (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4    )) +                  (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4    )) +                  (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4    )) +                  (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) +                                   (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) +                                   (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                                                    (1 << (8    )) + (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4 + 1)) + (1 << (6 + 1)) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4 + 1)) + (1 << (6 + 1)) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4 + 1)) + (1 << (6 + 1)) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4    )) + (1 << (6 + 1)) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4    )) + (1 << (6 + 1)) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4    )) + (1 << (6 + 1)) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) +                  (1 << (6 + 1)) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) +                  (1 << (6 + 1)) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                                   (1 << (6 + 1)) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4 + 1)) + (1 << (6    )) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4 + 1)) + (1 << (6    )) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4 + 1)) + (1 << (6    )) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4    )) + (1 << (6    )) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4    )) + (1 << (6    )) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4    )) + (1 << (6    )) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) +                  (1 << (6    )) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) +                  (1 << (6    )) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                                   (1 << (6    )) +                  (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4 + 1)) +                                   (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4 + 1)) +                                   (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4 + 1)) +                                   (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) + (1 << (4    )) +                                   (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) + (1 << (4    )) +                                   (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                  (1 << (4    )) +                                   (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2 + 1)) +                                                    (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 + (1 << (2    )) +                                                    (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1))),
-  FieldLayerHelperCenterElementTestValues(1 +                                                                     (1 << (10 + 1)) + (1 << (12 + 1)) + (1 << (14 + 1)) + (1 << (16 + 1)))
-                         ));
-
+                         ::testing::ValuesIn(FieldLayerHelperCenterElementTest::validInputs()));
 }
 }
