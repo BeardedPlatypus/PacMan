@@ -24,10 +24,19 @@
     <ClInclude Include="include\IRenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\FieldLayer.h">
+    <ClInclude Include="include\field\FieldLayerHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\FieldLayerHelper.h">
+    <ClInclude Include="include\field\FieldSpriteType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\field\FieldLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\field\FieldSpriteOrientation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\field\FieldSpriteDescription.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -36,6 +45,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\field\FieldLayerHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\field\FieldLayerHelper.FieldValueToSpriteType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

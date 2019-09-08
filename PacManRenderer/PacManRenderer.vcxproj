@@ -160,8 +160,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
-    <ClInclude Include="include\FieldLayer.h" />
-    <ClInclude Include="include\FieldLayerHelper.h" />
+    <ClInclude Include="include\field\FieldLayer.h" />
+    <ClInclude Include="include\field\FieldLayerHelper.h" />
+    <ClInclude Include="include\field\FieldSpriteDescription.h" />
+    <ClInclude Include="include\field\FieldSpriteOrientation.h" />
+    <ClInclude Include="include\field\FieldSpriteType.h" />
     <ClInclude Include="include\IRenderComponent.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
@@ -173,7 +176,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\FieldLayerHelper.cpp" />
+    <ClCompile Include="src\field\FieldLayerHelper.cpp" />
+    <ClCompile Include="src\field\FieldLayerHelper.FieldValueToSpriteType.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

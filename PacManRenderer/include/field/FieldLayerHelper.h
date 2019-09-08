@@ -2,8 +2,9 @@
 #define DllExport __declspec( dllexport )
 
 #include <vector>
-#include "field/IField.h"
 
+#include "field/IField.h"
+#include "field/FieldSpriteDescription.h"
 
 namespace pacman {
 namespace renderer {
@@ -25,6 +26,16 @@ public:
   /// A <see cref="std::vector" /> describing the field and its adjacent tiles encoded as unsigned integers.
   /// </returns>
   static std::vector<unsigned int> CalculateFieldVisualisation(const state::field::IField* const p_field);
+ 
+  /// <summary>
+  /// Convert the specified <paramref name="value" /> to the corresponding 
+  /// <see cref="FieldSpriteType" /> and its orientation in degrees.
+  /// </summary>
+  /// <param name="value" /> The value to be converted. </param>
+  /// <returns>
+  /// The <see cref="FieldSpriteType" /> and orientation in degrees corresponding with the value.
+  /// </returns>
+  static FieldSpriteDescription FieldValueToSpriteType(unsigned int value);
 
 private:
   /// <summary>

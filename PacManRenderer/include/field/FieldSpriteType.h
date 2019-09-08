@@ -1,5 +1,5 @@
 #pragma once
-
+#define DllExport __declspec( dllexport )
 
 namespace pacman {
 namespace renderer {
@@ -8,13 +8,14 @@ namespace renderer {
 /// The <see cref="FieldSpriteType" /> decribes the 6 possible sprites with which
 /// the playing field is rendererd.
 /// </summary>
-enum class FieldSpriteType {
+enum class DllExport FieldSpriteType {
   Straight,
   Corner,
   End,
   Junction,
   GateConnect,
   Gate,
+  Undefined,
 };
 
 }
