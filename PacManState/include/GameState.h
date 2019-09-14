@@ -20,7 +20,7 @@ public:
 	void SetGameMode(GameMode game_mode) final;
 
   field::IField* GetField() const final;
-  void SetField(std::unique_ptr<field::IField> p_field) final;
+  void ConstructNewField(const std::vector<std::vector<field::TileType>>& tiles);
 
 private:	
 	/// <summary>

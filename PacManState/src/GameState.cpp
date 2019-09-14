@@ -24,8 +24,8 @@ field::IField* GameState::GetField() const {
 }
 
 
-void GameState::SetField(std::unique_ptr<field::IField> p_field) {
-  this->p_field = std::move(p_field);
+void GameState::ConstructNewField(const std::vector<std::vector<field::TileType>>& tiles) {
+  this->p_field = field::IField::Construct(tiles);
 }
 
 

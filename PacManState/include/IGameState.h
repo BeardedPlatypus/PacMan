@@ -49,14 +49,11 @@ namespace pacman {
       /// </returns>
       virtual field::IField* GetField() const = 0;
       
-       /// <summary>
-      /// Move the <see cref="IField" /> to this <see cref="IGameState" />.
+      /// <summary>
+      /// Construct a new <see cref="field::IField"/> with the provided <paramref name="tiles" />.
       /// </summary>
-      /// <param name="p_field">The p field.</param>
-      /// <post-condition>
-      /// (new this)->GetField() == <paramref name="p_field" />.get()
-      /// </post-condition>
-      virtual void SetField(std::unique_ptr<field::IField> p_field) = 0;
+      /// <param name="tiles">The tiles of the new field.</param>
+      virtual void ConstructNewField(const std::vector<std::vector<field::TileType>>& tiles) = 0;
     };
 
   }
