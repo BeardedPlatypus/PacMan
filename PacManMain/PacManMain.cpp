@@ -74,11 +74,11 @@ void render(pacman::view::IViewManager& manager) {
 
 	manager.initialiseRender();
 	
-	manager.renderSpriteAnimation("anim1", x, y, 4.0);
-	manager.renderSpriteAnimation("anim2", x - 16.F * 4, y, 4.0);
-	manager.renderSpriteAnimation("anim3", x - 32.F * 4, y, 4.0);
-	manager.renderSpriteAnimation("anim4", x - 48.F * 4, y, 4.0);
-	manager.renderSpriteAnimation("anim5", x + 32.F * 4, y, 4.0);
+	manager.renderSpriteAnimation("anim1", (float) x, (float) y, 4.0);
+	manager.renderSpriteAnimation("anim2", (float) x - 16.F * 4, (float) y, 4.0);
+	manager.renderSpriteAnimation("anim3", (float) x - 32.F * 4, (float) y, 4.0);
+	manager.renderSpriteAnimation("anim4", (float) x - 48.F * 4, (float) y, 4.0);
+	manager.renderSpriteAnimation("anim5", (float) x + 32.F * 4, (float) y, 4.0);
 
 	manager.finaliseRender();
 }
@@ -86,21 +86,21 @@ void render(pacman::view::IViewManager& manager) {
 
 class QuitCommand final : public pacman::controller::ICommand {
 public:
-  QuitCommand(pacman::state::GameState* p_gs) : p_gs(p_gs) { }
+  QuitCommand(pacman::state::IGameState* p_gs) : p_gs(p_gs) { }
 
   void Execute() final {
-    this->p_gs->setGameMode(pacman::state::GameMode::ClosedGame);
+    this->p_gs->SetGameMode(pacman::state::GameMode::ClosedGame);
   }
 
 private:
-  pacman::state::GameState* p_gs;
+  pacman::state::IGameState* p_gs;
 };
 
 
 
 int main() {
   auto player_state = pacman::state::PlayerState(5.0, 1.0, 2.0);
-  auto game_state = pacman::state::GameState();
+  auto p_game_state = pacman::state::IGameState::Construct();
 
   auto view_manager = pacman::view::IViewManager::construct();
   view_manager->initialise(800, 600);
@@ -108,17 +108,17 @@ int main() {
 
   auto controller_manager = pacman::controller::IControllerManager::Construct();
   controller_manager->RegisterSystemCommand(pacman::controller::SystemEventType::Quit,
-                                            std::make_unique<QuitCommand>(&game_state));
+                                            std::make_unique<QuitCommand>(p_game_state.get()));
   controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
                                               pacman::controller::keyboard::Scancode::W,
-                                              std::make_unique<QuitCommand>(&game_state));
+                                              std::make_unique<QuitCommand>(p_game_state.get()));
 
   float dtime = 0.0F;
   Uint64 tick_prev = 0;
   Uint64 tick_now  = SDL_GetPerformanceCounter();
   Uint64 freq = SDL_GetPerformanceFrequency();
 
-  while (game_state.getGameMode() != pacman::state::GameMode::ClosedGame) {
+  while (p_game_state->GetGameMode() != pacman::state::GameMode::ClosedGame) {
 	  tick_prev = tick_now;
 	  tick_now  = SDL_GetPerformanceCounter();
 

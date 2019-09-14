@@ -1,58 +1,38 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
+#include "GameMode.h"
+#include "IGameState.h"
 
 namespace pacman {
 namespace state {
 
 /// <summary>
-/// GameMode describes the current state of the game.
-/// </summary>
-enum GameMode
-{
-	MainMenu,
-	PausedGame,
-	ActiveGame,
-	ClosedGame
-};
-
-
-/// <summary>
 /// The GameState describes the overall state of the Game.
 /// </summary>
-class DllExport GameState {
+class GameState final : public IGameState {
 public:			
 	/// <summary>
 	/// Construct a new instance of the <see cref="GameState"/> class.
 	/// </summary>
-	/// <param name="game_mode"> The game mode. </param>
-	GameState(GameMode game_mode);
-
-
-	/// <summary>
-	/// Construct a new instance of the <see cref="GameState"/> class.
-	/// </summary>
 	GameState();
-	
-	/// <summary>
-	/// Get the game mode of this GameState.
-	/// </summary>
-	/// <returns> The game mode of this GameState. </returns>
-	GameMode getGameMode() const;
-	
-	/// <summary>
-	/// Set the game mode of this GameState.
-	/// </summary>
-	/// <post-condition>	
-	/// (new this)->getGameMode() == game_mode
-	/// </post-condition>	
-	void setGameMode(GameMode game_mode);
+
+	GameMode GetGameMode() const final;
+	void SetGameMode(GameMode game_mode) final;
+
+  field::IField* GetField() const final;
+  void SetField(std::unique_ptr<field::IField> p_field) final;
 
 private:	
 	/// <summary>
 	/// The current state of this GameState state machine.
 	/// </summary>
 	GameMode mode;
+  
+  /// <summary>
+  /// A <see cref="std::unique_ptr" /> to the <see cref="field::IField" />
+  /// of this <see cref="GameState" />.
+  /// </summary>
+  std::unique_ptr<field::IField> p_field;
 };
 
 }
