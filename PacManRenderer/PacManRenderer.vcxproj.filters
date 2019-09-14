@@ -39,6 +39,15 @@
     <ClInclude Include="include\field\FieldSpriteDescription.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\field\FieldSpriteValues.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\field\FieldLayerSpriteDescription.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\field\EnumClassHash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -51,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\field\FieldLayerHelper.FieldValueToSpriteType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\field\FieldLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

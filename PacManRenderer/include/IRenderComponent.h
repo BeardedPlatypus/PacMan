@@ -9,6 +9,7 @@ namespace renderer {
 /// to be implemented for a component to be rendered.
 /// </summary>
 class IRenderComponent {
+public:
   virtual ~IRenderComponent() { }
   
   /// <summary>

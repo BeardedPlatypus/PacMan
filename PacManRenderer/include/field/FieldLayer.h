@@ -1,10 +1,14 @@
 #pragma once
 
 #include <manager/IViewManager.h>
+#include <unordered_map>
+#include <vector>
 
 #include "IRenderComponent.h"
 #include "field/IField.h"
-
+#include "field/FieldLayerSpriteDescription.h"
+#include "field/EnumClassHash.h"
+#include "field/FieldSpriteType.h"
 
 namespace pacman {
 namespace renderer {
@@ -15,21 +19,34 @@ namespace renderer {
 /// <seealso cref="IRenderComponent" />
 class FieldLayer final : public IRenderComponent {
 public:    
-  /// <summary> Name of the sprite file containing the field. </summary>
-  const std::string field_sprite_file = "field.png";
-
   /// <summary>
   /// Construct a new <see cref="FieldLayer"/> observing the specified 
   /// <see cref="IField" />.
   /// </summary>
   /// <param name="p_field">The p field.</param>
-  FieldLayer(view::IViewManager p_view_manager,
+  FieldLayer(float scale,
+             view::IViewManager* p_view_manager,
              const state::field::IField* const p_field);
 
   void Initialise() final;
   void Render() const final;
 
-private:  
+private:      
+  /// <summary>
+  /// The scale to render with
+  /// </summary>
+  const float scale;
+
+  /// <summary>
+  /// Initialise the sprites of this <see cref="FieldLayer" />.
+  /// </summary>
+  void InitialiseSprites();
+  
+  /// <summary>
+  /// Initialises the render field of this <see cref="FieldLayer" />.
+  /// </summary>
+  void InitialiseRenderField();
+
   /// <summary>
   /// A pointer to the <see cref="IViewManager" /> used by this 
   /// <see cref="FieldLayer" />. 
@@ -41,6 +58,14 @@ private:
   /// observes.
   /// </summary>
   const state::field::IField* const p_field;
+  
+  /// <summary>
+  /// Pointer to the set of sprites that should be rendered as part of this
+  /// <see cref="FieldLayer" />
+  /// </summary>
+  std::unique_ptr<std::unordered_map<FieldSpriteType,
+                                     std::unique_ptr<std::vector<FieldLayerSpriteDescription>>,
+                                     EnumClassHash>> p_sprite_map;
 };
 
 }

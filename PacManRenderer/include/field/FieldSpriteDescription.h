@@ -14,7 +14,7 @@ namespace renderer {
 /// </summary>
 struct DllExport FieldSpriteDescription {
   /// <summary>
-  /// Construct a new instance <see cref="FieldSpriteDescription"/>.
+  /// Construct a new <see cref="FieldSpriteDescription"/>.
   /// </summary>
   /// <param name="spriteType">Type of the sprite.</param>
   /// <param name="orientation">The orientation.</param>
