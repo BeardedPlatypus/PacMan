@@ -168,7 +168,9 @@
     <ClInclude Include="include\field\FieldSpriteOrientation.h" />
     <ClInclude Include="include\field\FieldSpriteType.h" />
     <ClInclude Include="include\field\FieldSpriteValues.h" />
-    <ClInclude Include="include\IRenderComponent.h" />
+    <ClInclude Include="include\IRenderLayer.h" />
+    <ClInclude Include="include\manager\IRendererManager.h" />
+    <ClInclude Include="include\manager\RendererManager.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +184,8 @@
     <ClCompile Include="src\field\FieldLayer.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.FieldValueToSpriteType.cpp" />
+    <ClCompile Include="src\manager\IRendererManager.cpp" />
+    <ClCompile Include="src\manager\RendererManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

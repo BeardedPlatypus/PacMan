@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "IRenderComponent.h"
+#include "IRenderLayer.h"
 #include "field/IField.h"
 #include "field/FieldLayerSpriteDescription.h"
 #include "field/EnumClassHash.h"
@@ -17,7 +17,7 @@ namespace renderer {
 /// <see cref="FieldLayer" /> visualises a <see cref="IField" />.
 /// </summary>
 /// <seealso cref="IRenderComponent" />
-class FieldLayer final : public IRenderComponent {
+class FieldLayer final : public IRenderLayer {
 public:    
   /// <summary>
   /// Construct a new <see cref="FieldLayer"/> observing the specified 
@@ -26,7 +26,7 @@ public:
   /// <param name="p_field">The p field.</param>
   FieldLayer(float scale,
              view::IViewManager* p_view_manager,
-             const state::field::IField* const p_field);
+             state::field::IField* p_field);
 
   void Initialise() final;
   void Render() const final;
@@ -57,7 +57,7 @@ private:
   /// Pointer to the <see cref="IField" /> this <see cref="FieldLayer" /> 
   /// observes.
   /// </summary>
-  const state::field::IField* const p_field;
+  state::field::IField* p_field;
   
   /// <summary>
   /// Pointer to the set of sprites that should be rendered as part of this

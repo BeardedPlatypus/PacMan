@@ -8,9 +8,9 @@ namespace renderer {
 /// <see cref="IRenderComponent" /> provides the methods required
 /// to be implemented for a component to be rendered.
 /// </summary>
-class IRenderComponent {
+class IRenderLayer {
 public:
-  virtual ~IRenderComponent() { }
+  virtual ~IRenderLayer() { }
   
   /// <summary>
   /// Initialise this <see cref="IRenderComponent" />.

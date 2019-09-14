@@ -13,7 +13,7 @@ namespace renderer {
 
 FieldLayer::FieldLayer(float scale,
                        view::IViewManager* p_view_manager,
-                       const state::field::IField* const p_field) :
+                       state::field::IField* p_field) :
     scale(scale),
     p_view_manager(p_view_manager),
     p_field(p_field),
