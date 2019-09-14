@@ -15,7 +15,7 @@ RendererManager::RendererManager(state::IGameState* p_game_state,
 
 
 void RendererManager::Initialise() {
-  auto p_field_layer = std::make_unique<FieldLayer>(1.F,
+  auto p_field_layer = std::make_unique<FieldLayer>(2.F,
                                                     this->p_view_manager,
                                                     this->p_game_state->GetField());
   this->render_layers.push_back(std::move(p_field_layer));

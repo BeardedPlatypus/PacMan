@@ -8,7 +8,7 @@ namespace values {
   /// <summary>
   /// The field sprite file 
   /// </summary>
-  const std::string field_sprite_file = "field.png";
+  const std::string field_sprite_file = "./assets/field.png";
   
   /// <summary>
   /// The field sprite: straight 

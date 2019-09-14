@@ -49,7 +49,7 @@ void FieldLayer::InitialiseSprites() {
                                                      values::tile_size, 
                                                      values::tile_size));
 
-  this->p_view_manager->requestSprite(values::field_sprite_end,
+  this->p_view_manager->requestSprite(values::field_sprite_junction,
                                       values::field_sprite_file,
                                       view::ClipRect(values::tile_size * 3,
                                                      0, 
@@ -107,8 +107,8 @@ void FieldLayer::Render() const {
   for (auto val : sprite_types) {
     for (auto sprite_def : *(this->p_sprite_map->at(val.first))) {
       this->p_view_manager->renderSprite(val.second,
-                                         sprite_def.x * (float) values::tile_size,
-                                         sprite_def.y * (float) values::tile_size,
+                                         sprite_def.x * (float) values::tile_size * this->scale,
+                                         sprite_def.y * (float) values::tile_size * this->scale,
                                          this->scale);
     }
   }

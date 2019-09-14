@@ -7,6 +7,10 @@
 #include <GameState.h>
 #include <manager/IViewManager.h>
 #include <manager/IControllerManager.h>
+#include <manager/IRendererManager.h>
+
+#include <field/FieldDefinition.h>
+
 #include <ICommand.h>
 
 #include <SDL2/SDL.h>
@@ -98,13 +102,22 @@ private:
 
 
 
-int main() {
+int main(int argc, char **argv) {
+  if (argc != 1) return 1;
+
   auto player_state = pacman::state::PlayerState(5.0, 1.0, 2.0);
   auto p_game_state = pacman::state::IGameState::Construct();
 
+  p_game_state->ConstructNewField(pacman::state::field::GetFieldDefinition());
+  //p_game_state->ConstructNewField(pacman::state::field::GetSimpleFieldDefinition());
+
   auto view_manager = pacman::view::IViewManager::construct();
   view_manager->initialise(800, 600);
-  viewConfiguration(*view_manager);
+
+  //viewConfiguration(*view_manager);
+  auto p_renderer_manager = pacman::renderer::IRendererManager::Construct(p_game_state.get(),
+                                                                          view_manager.get());
+  p_renderer_manager->Initialise();
 
   auto controller_manager = pacman::controller::IControllerManager::Construct();
   controller_manager->RegisterSystemCommand(pacman::controller::SystemEventType::Quit,
@@ -129,7 +142,12 @@ int main() {
 	  //   Update current state based on updated behaviour.
 	  //   Render the current state.
 	  view_manager->update(dtime);
-	  render(*view_manager);
+
+	  //render(*view_manager);
+    view_manager->initialiseRender();
+    p_renderer_manager->Render();
+    view_manager->finaliseRender();
+
 	  //   Play music or anything like that.
   }
  
