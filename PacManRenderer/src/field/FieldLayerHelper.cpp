@@ -82,7 +82,7 @@ void FieldLayerHelper::AddFieldValuesToVisualisation(std::vector<unsigned int> &
 }
 
 
-void FieldLayerHelper::AddCornerValuesToVisualisation(std::vector<unsigned int>& visualisation_field, int x_dim, int y_dim) {
+void FieldLayerHelper::AddSideValuesToVisualisation(std::vector<unsigned int>& visualisation_field, int x_dim, int y_dim) {
   auto left_border = ((1 << 12) + (1 << 13) +
                       (1 <<  8) + (1 <<  9) +
                       (1 <<  2) + (1 <<  3));
@@ -114,31 +114,39 @@ void FieldLayerHelper::AddCornerValuesToVisualisation(std::vector<unsigned int>&
 }
 
 
-void FieldLayerHelper::AddSideValuesToVisualisation(std::vector<unsigned int>& visualisation_field, 
+void FieldLayerHelper::AddCornerValuesToVisualisation(std::vector<unsigned int>& visualisation_field, 
                                                     int x_dim, int y_dim) {
   auto top_left_corner = 0;
   if (visualisation_field[top_left_corner] > 0)
-    visualisation_field[top_left_corner] += ((1 << 2) + (1 << 3) +
-                                             (1 << 8) + (1 << 9) +
-                                             (1 << 4) + (1 << 5));
+    visualisation_field[top_left_corner] += ((1 <<  2) + (1 <<  3) +
+                                             (1 <<  8) + (1 <<  9) +
+                                             (1 <<  4) + (1 <<  5) + 
+                                             (1 <<  6) + (1 <<  7) +
+                                             (1 << 12) + (1 << 13));
 
   auto top_right_corner = x_dim - 1;
   if (visualisation_field[x_dim - 1] > 0)
     visualisation_field[x_dim - 1] += ((1 <<  6) + (1 <<  7) +
                                        (1 <<  4) + (1 <<  5) +
-                                       (1 << 10) + (1 << 11));
+                                       (1 <<  2) + (1 <<  3) +
+                                       (1 << 10) + (1 << 11) + 
+                                       (1 << 16) + (1 << 17));
 
   auto bottom_left_corner = (y_dim - 1) * x_dim;
   if (visualisation_field[bottom_left_corner] > 0)
     visualisation_field[bottom_left_corner] += ((1 << 12) + (1 << 13) + 
                                                 (1 <<  8) + (1 <<  9) +
-                                                (1 << 14) + (1 << 15));
+                                                (1 <<  2) + (1 <<  3) +
+                                                (1 << 14) + (1 << 15) +
+                                                (1 << 16) + (1 << 17));
 
   auto bottom_right_corner = (y_dim * x_dim) - 1;
   if (visualisation_field[bottom_right_corner] > 0)
     visualisation_field[bottom_right_corner] += ((1 << 16) + (1 << 17) +
                                                  (1 << 14) + (1 << 15) +
-                                                 (1 << 10) + (1 << 11));
+                                                 (1 << 10) + (1 << 11) +
+                                                 (1 << 12) + (1 << 13) +
+                                                 (1 <<  6) + (1 <<  7));
   
   // Correction for playing fields with only one dimension:
   // Since this should be a rare occurrence, we fix our values
@@ -147,18 +155,18 @@ void FieldLayerHelper::AddSideValuesToVisualisation(std::vector<unsigned int>& v
   // Bottom-left corner is equal to Bottom-right corner
   if (x_dim == 1) {
     if (visualisation_field[top_left_corner] > 0)
-      visualisation_field[top_left_corner] -= ((1 << 4) + (1 << 5));
+      visualisation_field[top_left_corner] -= ((1 << 2) + (1 << 3) + (1 << 4) + (1 << 5) + (1 << 6) + (1 << 7));
     if (visualisation_field[bottom_left_corner] > 0)
-      visualisation_field[bottom_left_corner] -= ((1 << 14) + (1 << 15));
+      visualisation_field[bottom_left_corner] -= ((1 << 12) + (1 << 13) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17));
   }
 
   // Top-left corner is equal to Bottom-left corner and
   // Top-right corner is equal to Bottom-right corner
   if (y_dim == 1) {
     if (visualisation_field[top_left_corner] > 0)
-      visualisation_field[top_left_corner] -= ((1 << 8) + (1 << 9));
+      visualisation_field[top_left_corner] -= ((1 << 2) + (1 << 3) + (1 << 8) + (1 << 9) + (1 << 12) + (1 << 13));
     if (visualisation_field[top_right_corner] > 0)
-      visualisation_field[top_right_corner] -= ((1 << 10) + (1 << 11));
+      visualisation_field[top_right_corner] -= ((1 << 10) + (1 << 11) + (1 << 6) + (1 << 7) + (1 << 16) + (1 << 17));
   }
 }
 

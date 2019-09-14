@@ -225,15 +225,15 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |x|o|o|
   // |x|x|x|
   // |-|-|-|
-  case (1 + (1 << 4) + (1 << 6) + (1 << 7) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17)):
+  case (1 + (1 << 4) + (1 << 6) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17)):
   // |o|o|o|
   // |x|x|x|
   // |-|-|-|
-  case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 7) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17)):
+  case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17)):
   // |o|o|x|
   // |x|x|x|
   // |-|-|-|
-  case (1 + (1 << 2) + (1 << 4) + (1 << 7) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17)):
+  case (1 + (1 << 2) + (1 << 4) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17)):
   // |x|x|x|
   // |x|x|x|
   // |o|o|o|
@@ -278,6 +278,14 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |x|x|x|
   // |x|x|x|
   case (1 + (1 << 2) + (1 << 4) + (1 << 6)):
+  // |x|o|o|
+  // |x|x|x|
+  // |x|x|x|
+  case (1 + (1 << 4) + (1 << 6)):
+  // |o|o|x|
+  // |x|x|x|
+  // |x|x|x|
+  case (1 + (1 << 2) + (1 << 4)):
     return FieldSpriteDescription(FieldSpriteType::Straight, FieldSpriteOrientation(90.F));
   default:
     return FieldSpriteDescription(FieldSpriteType::Undefined, 
