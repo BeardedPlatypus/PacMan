@@ -153,6 +153,7 @@
     <ClInclude Include="include\Direction.h" />
     <ClInclude Include="include\EntityState.h" />
     <ClInclude Include="include\field\Field.h" />
+    <ClInclude Include="include\field\FieldDefinition.h" />
     <ClInclude Include="include\field\IField.h" />
     <ClInclude Include="include\field\TileType.h" />
     <ClInclude Include="include\IEntityState.h" />
