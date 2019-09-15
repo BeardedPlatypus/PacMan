@@ -21,14 +21,14 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |x|x|o|
   // |o|o|o|
   case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 10) + (1 << 12) + (1 << 14) + (1 <<16)):
-  // |x|x|-|
+  // |-|-|-|
   // |x|x|-|
   // |o|o|-|
-  case (1 + (1 << 6) + (1 << 7) + (1 << 10) + (1 << 11) + (1 << 12) + (1 << 14) + (1 << 16) + (1 << 17)):
+  case (1 + (1 << 2) + (1 << 3) + (1 << 4) + (1 << 5) + (1 << 6) + (1 << 7) + (1 << 10) + (1 << 11) + (1 << 12) + (1 << 14) + (1 << 16) + (1 << 17)):
   // |o|o|-|
   // |x|x|-|
-  // |x|x|-|
-  case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 7) + (1 << 10) + (1 << 11) + (1 << 16) + (1 << 17)):
+  // |-|-|-|
+  case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 7) + (1 << 10) + (1 << 11) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17)):
     return FieldSpriteDescription(FieldSpriteType::End, FieldSpriteOrientation(90.F));
   // |o|x|o|
   // |o|x|o|
@@ -39,14 +39,14 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |o|x|x|
   // |o|o|o|
   case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 8) + (1 << 12) + (1 << 14) + (1 <<16)):
-  // |-|x|x|
+  // |-|-|-|
   // |-|x|x|
   // |-|o|o|
-  case (1 + (1 << 2) + (1 << 3) + (1 << 8) + (1 << 9) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 16)):
+  case (1 + (1 << 2) + (1 << 3) + (1 << 4) + (1 << 5) + (1 << 6) + (1 << 7) + (1 << 8) + (1 << 9) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 16)):
   // |-|o|o|
   // |-|x|x|
-  // |-|x|x|
-  case (1 + (1 << 2) + (1 << 3) + (1 << 4) + (1 << 6) + (1 << 8) + (1 << 9) + (1 << 12) + (1 << 13)):
+  // |-|-|-|
+  case (1 + (1 << 2) + (1 << 3) + (1 << 4) + (1 << 6) + (1 << 8) + (1 << 9) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17)):
     return FieldSpriteDescription(FieldSpriteType::End, FieldSpriteOrientation(90.F));
   // Junction parts
   // |-|x|o|
@@ -107,6 +107,10 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |o|x|x|
   // |o|x|x|
   case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 8) + (1 << 12)):
+  // |o|o|o|
+  // |o|x|x|
+  // |o|x|-|
+  case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 8) + (1 << 12) + (1 << 16) + (1 << 17)):
     return FieldSpriteDescription(FieldSpriteType::Corner, FieldSpriteOrientation(0.F));
   // |-|-|-|
   // |x|x|-|
@@ -120,6 +124,10 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |x|x|o|
   // |x|x|o|
   case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 10) + (1 << 16)):
+  // |o|o|o|
+  // |x|x|o|
+  // |-|x|o|
+  case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 10) + (1 << 12) + (1 << 13) + (1 << 16)):
     return FieldSpriteDescription(FieldSpriteType::Corner, FieldSpriteOrientation(90.F));
   // |o|x|-|
   // |x|x|-|
@@ -133,6 +141,10 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |x|x|o|
   // |o|o|o|
   case (1 + (1 << 6) + (1 << 10) + (1 << 12) + (1 << 14) + (1 << 16)):
+  // |-|x|o|
+  // |x|x|o|
+  // |o|o|o|
+  case (1 + (1 << 2) + (1 << 3) + (1 << 6) + (1 << 10) + (1 << 12) + (1 << 14) + (1 << 16)):
     return FieldSpriteDescription(FieldSpriteType::Corner, FieldSpriteOrientation(180.F));
   // |-|x|o|
   // |-|x|x|
@@ -146,12 +158,24 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |o|x|x|
   // |o|o|o|
   case (1 + (1 << 2) + (1 << 8) + (1 << 12) + (1 << 14) + (1 << 16)):
+  // |o|x|-|
+  // |o|x|x|
+  // |o|o|o|
+  case (1 + (1 << 2) + (1 << 6) + (1 << 7) + (1 << 8) + (1 << 12) + (1 << 14) + (1 << 16)):
     return FieldSpriteDescription(FieldSpriteType::Corner, FieldSpriteOrientation(270.F));
   // Vertical Straight
   // |-|x|o|
   // |-|x|o|
   // |-|x|o|
   case (1 + (1 << 2) + (1 << 3) + (1 << 6) + (1 << 8) + (1 << 9) + (1 << 10) + (1 << 12) + (1 << 13) + (1 << 16)):
+  // |x|x|o|
+  // |-|x|o|
+  // |-|x|o|
+  case (1 + (1 << 6) + (1 << 8) + (1 << 9) + (1 << 10) + (1 << 12) + (1 << 13) + (1 << 16)):
+  // |-|x|o|
+  // |-|x|o|
+  // |x|x|o|
+  case (1 + (1 << 2) + (1 << 3) + (1 << 6) + (1 << 8) + (1 << 9) + (1 << 10) + (1 << 16)):
   // |-|x|x|
   // |-|x|o|
   // |-|x|o|
@@ -164,6 +188,14 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |o|x|-|
   // |o|x|-|
   case (1 + (1 << 2) + (1 << 6) + (1 << 7) + (1 << 8) + (1 << 10) + (1 << 11) + (1 << 12) + (1 << 16) + (1 << 17)):
+  // |o|x|-|
+  // |o|x|-|
+  // |o|x|x|
+  case (1 + (1 << 2) + (1 << 6) + (1 << 7) + (1 << 8) + (1 << 10) + (1 << 11) + (1 << 12)):
+  // |o|x|x|
+  // |o|x|-|
+  // |o|x|-|
+  case (1 + (1 << 2) + (1 << 8) + (1 << 10) + (1 << 11) + (1 << 12) + (1 << 16) + (1 << 17)):
   // |x|x|-|
   // |o|x|-|
   // |o|x|-|
@@ -218,6 +250,14 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |x|x|x|
   // |o|o|o|
   case (1 + (1 << 2) + (1 << 3) + (1 << 4) + (1 << 5) + (1 << 6) + (1 << 7) + (1 << 12) + (1 << 14) + (1 << 16)):
+  // |x|-|-|
+  // |x|x|x|
+  // |o|o|o|
+  case (1 + (1 << 4) + (1 << 5) + (1 << 6) + (1 << 7) + (1 << 12) + (1 << 14) + (1 << 16)):
+  // |-|-|x|
+  // |x|x|x|
+  // |o|o|o|
+  case (1 + (1 << 2) + (1 << 3) + (1 << 4) + (1 << 5) + (1 << 12) + (1 << 14) + (1 << 16)):
   // |-|-|-|
   // |x|x|x|
   // |o|o|x|
@@ -230,6 +270,14 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |x|x|x|
   // |-|-|-|
   case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17)):
+  // |o|o|o|
+  // |x|x|x|
+  // |-|-|x|
+  case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 15)):
+  // |o|o|o|
+  // |x|x|x|
+  // |x|-|-|
+  case (1 + (1 << 2) + (1 << 4) + (1 << 6) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17)):
   // |o|o|x|
   // |x|x|x|
   // |-|-|-|

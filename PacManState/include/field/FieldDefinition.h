@@ -4,6 +4,7 @@
 #define X TileType::Solid
 #define _ TileType::Space
 #define G TileType::Gate
+#define O TileType::OutOfBounds
 
 #include <vector>
 #include "field/TileType.h" 
@@ -24,13 +25,13 @@ DllExport std::vector<std::vector<TileType>> GetFieldDefinition() {
     { X, _, X, X, X, _, X, _, X, X, X, X, X, _, X, _, X, X, X, _, X },
     { X, _, _, _, _, _, X, _, _, _, X, _, _, _, X, _, _, _, _, _, X },
     { X, X, X, X, X, _, X, X, X, _, X, _, X, X, X, _, X, X, X, X, X }, 
-    { X, X, X, X, X, _, X, _, _, _, _, _, _, _, X, _, X, X, X, X, X }, 
-    { X, X, X, X, X, _, X, _, X, X, G, X, X, _, X, _, X, X, X, X, X }, 
+    { O, O, O, O, X, _, X, _, _, _, _, _, _, _, X, _, X, O, O, O, O }, 
+    { O, O, O, O, X, _, X, _, X, X, G, X, X, _, X, _, X, O, O, O, O }, 
     { X, X, X, X, X, _, X, _, X, _, _, _, X, _, X, _, X, X, X, X, X }, 
     { _, _, _, _, _, _, _, _, X, _, _, _, X, _, _, _, _, _, _, _, _ }, 
     { X, X, X, X, X, _, X, _, X, X, X, X, X, _, X, _, X, X, X, X, X }, 
-    { X, X, X, X, X, _, X, _, _, _, _, _, _, _, X, _, X, X, X, X, X }, 
-    { X, X, X, X, X, _, X, _, X, X, X, X, X, _, X, _, X, X, X, X, X }, 
+    { O, O, O, O, X, _, X, _, _, _, _, _, _, _, X, _, X, O, O, O, O }, 
+    { O, O, O, O, X, _, X, _, X, X, X, X, X, _, X, _, X, O, O, O, O }, 
     { X, X, X, X, X, _, X, _, X, X, X, X, X, _, X, _, X, X, X, X, X }, 
     { X, _, _, _, _, _, _, _, _, _, X, _, _, _, _, _, _, _, _, _, X },
     { X, _, X, X, X, _, X, X, X, _, X, _, X, X, X, _, X, X, X, _, X },

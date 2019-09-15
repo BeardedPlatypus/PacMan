@@ -25,19 +25,23 @@ void FieldLayerHelper::AddFieldValuesToVisualisation(std::vector<unsigned int> &
   auto y_dim = p_field->GetYDimension();
 
   std::vector<unsigned int> space_values = std::vector<unsigned int>();
-  std::vector<unsigned int> gate_values  = std::vector<unsigned int>();
+  std::vector<unsigned int> gate_values = std::vector<unsigned int>();
+  std::vector<unsigned int> out_of_bounds_values  = std::vector<unsigned int>();
 
   for (auto i = 1; i < 5; ++i) {
     space_values.push_back(1 << (i * 2));
     gate_values.push_back(1 << ((i * 2) + 1));
+    out_of_bounds_values.push_back((1 << (i * 2)) + (1 << ((i * 2) + 1)));
   }
 
   space_values.push_back(-1);
   gate_values.push_back(-1);
+  out_of_bounds_values.push_back(-1);
 
   for (auto i = 5; i < 9; ++i) {
     space_values.push_back(1 << (i * 2));
     gate_values.push_back(1 << ((i * 2) + 1));
+    out_of_bounds_values.push_back((1 << (i * 2)) + (1 << ((i * 2) + 1)));
   }
 
   std::vector<unsigned int>* active_values = nullptr;
@@ -56,6 +60,10 @@ void FieldLayerHelper::AddFieldValuesToVisualisation(std::vector<unsigned int> &
       case pacman::state::field::TileType::Gate:
         visualisation_field[i + j * x_dim] += 1;
         active_values = &gate_values;
+        break;
+      case pacman::state::field::TileType::OutOfBounds:
+        visualisation_field[i + j * x_dim] = 0;
+        active_values = &out_of_bounds_values;
         break;
       default:
         continue;

@@ -31,6 +31,25 @@ TEST(FieldLayerHelperTest, CalculateFieldValue_SingleSpace) {
 }
 
 
+TEST(FieldLayerHelperTest, CalculateFieldValue_SingleOutOfBounds) {
+  // Given
+  std::vector<std::vector<state::field::TileType>> tiles = { {state::field::TileType::OutOfBounds } };
+  std::vector<unsigned int> expected_result = { 0 };
+  std::unique_ptr<state::field::IField> p_field = state::field::IField::Construct(tiles);
+
+  // When
+  std::vector<unsigned int> result = 
+    FieldLayerHelper::CalculateFieldVisualisation(p_field.get());
+
+  // Then
+  ASSERT_THAT(result.size(), Eq(expected_result.size()));
+
+  for (size_t i = 0; i < result.size(); ++i) {
+    ASSERT_THAT(result[i], Eq(expected_result[i]));
+  }
+}
+
+
 TEST(FieldLayerHelperTest, CalculateFieldValue_SingleSolid) {
   // Given
   std::vector<std::vector<state::field::TileType>> tiles = { {state::field::TileType::Solid } };

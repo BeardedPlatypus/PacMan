@@ -14,6 +14,7 @@ enum class DllExport TileType {
   Space,
   Solid,
   Gate,
+  OutOfBounds,
 };
 
 }
