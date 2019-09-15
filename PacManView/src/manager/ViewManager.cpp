@@ -55,18 +55,25 @@ void ViewManager::initialiseRender() {
 }
 
 void ViewManager::renderSprite(const std::string& label,
-							   float x, float y, float scale) {
+                               float x, 
+                               float y,
+                               float scale, 
+                               float angle,
+                               bool flip_horizontally,
+                               bool flip_vertically) {
 	const Sprite& requested_sprite = this->getSpriteManager().getSprite(label);
-	requested_sprite.Render(this->getRenderer(), x, y, scale);
+	requested_sprite.Render(this->getRenderer(), x, y, scale, angle, flip_horizontally, flip_vertically);
 }
 
 void ViewManager::renderSpriteAnimation(const std::string& label,
-										float x, float y, float scale) {
+										                    float x, 
+                                        float y, 
+                                        float scale) {
 	SpriteAnimation& requested_anim = this->getSpriteManager().getSpriteAnimation(label);
 	requested_anim.updateTime(this->getNextUpdateTime());
 
 	const Sprite& active_frame = requested_anim.getActiveSprite();
-	active_frame.Render(this->getRenderer(), x, y, scale);
+	active_frame.Render(this->getRenderer(), x, y, scale, 0.F, false, false);
 }
 
 void ViewManager::finaliseRender() {

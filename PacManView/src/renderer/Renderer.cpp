@@ -27,12 +27,27 @@ void Renderer::Init(SDL_Window* p_window) {
 
 
 void Renderer::RenderCopy(SDL_Texture* p_texture,
-						  const SDL_Rect* p_texture_clip,
-						  const SDL_Rect* p_destination) {
-	SDL_RenderCopy(this->p_renderer.get(),
-				   p_texture,
-				   p_texture_clip,
-				   p_destination);
+                          const SDL_Rect* p_texture_clip,
+                          const SDL_Rect* p_destination, 
+                          float angle, 
+                          bool flip_horizontally, 
+                          bool flip_vertically) {
+  SDL_RendererFlip flip = SDL_FLIP_NONE;
+
+  if (flip_horizontally && !flip_vertically)
+    flip = SDL_FLIP_HORIZONTAL;
+  else if (!flip_horizontally && flip_vertically)
+    flip = SDL_FLIP_VERTICAL;
+  else if (flip_horizontally && flip_vertically)
+    flip = (SDL_RendererFlip) (SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
+
+	SDL_RenderCopyEx(this->p_renderer.get(),
+				           p_texture,
+				           p_texture_clip,
+				           p_destination,
+                   angle, 
+                   NULL, 
+                   flip);
 }
 
 

@@ -47,7 +47,7 @@ FieldSpriteDescription FieldLayerHelper::FieldValueToSpriteType(unsigned int val
   // |-|x|x|
   // |-|-|-|
   case (1 + (1 << 2) + (1 << 3) + (1 << 4) + (1 << 6) + (1 << 8) + (1 << 9) + (1 << 12) + (1 << 13) + (1 << 14) + (1 << 15) + (1 << 16) + (1 << 17)):
-    return FieldSpriteDescription(FieldSpriteType::End, FieldSpriteOrientation(90.F));
+    return FieldSpriteDescription(FieldSpriteType::End, FieldSpriteOrientation(270.F));
   // Junction parts
   // |-|x|o|
   // |-|x|x|

@@ -26,18 +26,23 @@ public:
 
 	virtual ~IRenderer() {}
 
-	/// <summary>
-	/// Copy the specified <paramref name="sprite" /> at the specified 
-	/// (<paramref name="x" />, <paramref name="y" />) location with the 
-	/// specified <paramref name="scale" />.
-	/// </summary>
-	/// <param name="sprite">The sprite.</param>
-	/// <param name="x">The x location.</param>
-	/// <param name="y">The y location.</param>
-	/// <param name="scale">The scale.</param>
-	virtual void RenderCopy(SDL_Texture* p_texture,
+  /// <summary>
+  /// Copy the specified <paramref name="sprite" /> at the specified
+  /// (<paramref name="x" />, <paramref name="y" />) location with the
+  /// specified <paramref name="scale" />.
+  /// </summary>
+  /// <param name="p_texture">The p texture.</param>
+  /// <param name="p_texture_clip">The p texture clip.</param>
+  /// <param name="p_destination">The p destination.</param>
+  /// <param name="angle">The angle in degrees.</param>
+  /// <param name="flip_horizontally">if set to <c>true</c> [flip horizontally].</param>
+  /// <param name="flip_vertically">if set to <c>true</c> [flip vertically].</param>
+  virtual void RenderCopy(SDL_Texture* p_texture,
 							const SDL_Rect* p_texture_clip,
-							const SDL_Rect* p_destination) = 0;
+							const SDL_Rect* p_destination,
+              float angle, 
+              bool flip_horizontally,
+              bool flip_vertically) = 0;
 
 	/// <summary>
 	/// Present the current render buffer contents.

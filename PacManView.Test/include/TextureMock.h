@@ -7,7 +7,10 @@
 class TextureMock : public pacman::view::ITexture {
 public:
 	MOCK_CONST_METHOD0(GetDimensions, SDL_Rect());
-	MOCK_CONST_METHOD3(Render, void(pacman::view::IRenderer& renderer,
-									SDL_Rect& clip,
-									SDL_Rect& dst));
+	MOCK_CONST_METHOD6(Render, void(pacman::view::IRenderer& renderer,
+									                SDL_Rect& clip,
+									                SDL_Rect& dst, 
+                                  float angle,
+                                  bool flip_horizontally,
+                                  bool flip_vertically));
 };

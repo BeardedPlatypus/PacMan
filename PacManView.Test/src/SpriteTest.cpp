@@ -14,6 +14,7 @@ using ::testing::AllOf;
 using ::testing::Field;
 using ::testing::Matcher;
 using ::testing::Return;
+using ::testing::Eq;
 #pragma endregion
 
 
@@ -98,8 +99,8 @@ TEST(SpriteTest, GivenATextureAndASpriteAndARendererAndALocation_WhenRenderIsCal
 
 	auto clip_matcher = AllOf(Field(&SDL_Rect::x, expected_clip.x),
 	                          Field(&SDL_Rect::y, expected_clip.y),
-							  Field(&SDL_Rect::w, expected_clip.w),
-							  Field(&SDL_Rect::h, expected_clip.h));
+							              Field(&SDL_Rect::w, expected_clip.w),
+							              Field(&SDL_Rect::h, expected_clip.h));
 
 	SDL_Rect expected_dst;
 	expected_dst.x = 50;
@@ -109,13 +110,20 @@ TEST(SpriteTest, GivenATextureAndASpriteAndARendererAndALocation_WhenRenderIsCal
 
 	auto dst_matcher = AllOf(Field(&SDL_Rect::x, expected_dst.x),
 	                         Field(&SDL_Rect::y, expected_dst.y),
-						     Field(&SDL_Rect::w, expected_dst.w),
-						     Field(&SDL_Rect::h, expected_dst.h));
+						               Field(&SDL_Rect::w, expected_dst.w),
+						               Field(&SDL_Rect::h, expected_dst.h));
+
+  float expected_angle = 30.F;
+  bool expected_horizontal_flip = true;
+  bool expected_vertical_flip = false;
 
 	EXPECT_CALL(texture, 
 				Render(Ref(renderer), 
-					   clip_matcher, 
-					   dst_matcher));
+					     clip_matcher, 
+					     dst_matcher, 
+               Eq(expected_angle), 
+               Eq(expected_horizontal_flip), 
+               Eq(expected_vertical_flip)));
 
 	Sprite sprite = Sprite(texture,
 						   expected_clip.x,
@@ -127,7 +135,10 @@ TEST(SpriteTest, GivenATextureAndASpriteAndARendererAndALocation_WhenRenderIsCal
 	sprite.Render(renderer, 
 				  expected_dst.x, 
 				  expected_dst.y,
-				  1.5);
+				  1.5,
+          expected_angle, 
+          expected_horizontal_flip,
+          expected_vertical_flip);
 }
 
 }

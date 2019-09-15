@@ -26,12 +26,19 @@ SDL_Rect Texture::GetDimensions() const {
 }
 
 
+
 void Texture::Render(IRenderer& renderer,
-					 SDL_Rect& clip,
-					 SDL_Rect& dst) const {
+					           SDL_Rect& clip,
+					           SDL_Rect& dst, 
+                     float angle,
+                     bool flip_horizontally, 
+                     bool flip_vertically) const {
 	   renderer.RenderCopy(this->p_tex.get(), 
-						   &clip,
-						   &dst);
+                         &clip,
+						             &dst, 
+                         angle, 
+                         flip_horizontally, 
+                         flip_vertically);
 }
 
 

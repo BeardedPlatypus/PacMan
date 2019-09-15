@@ -55,15 +55,23 @@ public:
 	/// </returns>
 	inline const ITexture& GetTexture() const { return this->texture; }
 	
-	/// <summary>
-	/// Render this <see cref="Sprite" /> with the given 
-	/// <paramref name="renderer /> at the given location with the given scale.
-	/// </summary>
-	/// <param name="renderer">The renderer used .</param>
-	/// <param name="x"> The x location. </param>
-	/// <param name="y"> The y location. </param>
-	/// <param name="scale"> The scale. </param>
-	void Render(IRenderer& renderer, float x, float y, float scale) const;
+  /// <summary>
+  /// Renders the specified renderer.
+  /// </summary>
+  /// <param name="renderer">The renderer.</param>
+  /// <param name="x">The x.</param>
+  /// <param name="y">The y.</param>
+  /// <param name="scale">The scale.</param>
+  /// <param name="angle">The angle.</param>
+  /// <param name="flip_horizontally">if set to <c>true</c> [flip horizontally].</param>
+  /// <param name="flip_vertically">if set to <c>true</c> [flip vertically].</param>
+  void Render(IRenderer& renderer,
+              float x, 
+              float y, 
+              float scale,
+              float angle,
+              bool flip_horizontally,
+              bool flip_vertically) const;
 
 private:	
 	/// <summary> 

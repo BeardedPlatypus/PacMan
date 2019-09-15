@@ -109,7 +109,10 @@ void FieldLayer::Render() const {
       this->p_view_manager->renderSprite(val.second,
                                          sprite_def.x * (float) values::tile_size * this->scale,
                                          sprite_def.y * (float) values::tile_size * this->scale,
-                                         this->scale);
+                                         this->scale, 
+                                         sprite_def.Orientation.Rotation,
+                                         sprite_def.Orientation.IsFlippedX,
+                                         sprite_def.Orientation.IsFlippedY);
     }
   }
 }

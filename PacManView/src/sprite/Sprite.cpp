@@ -22,7 +22,14 @@ Sprite::Sprite(const ITexture& tex) :
 }
 
 
-void Sprite::Render(IRenderer& renderer, float x, float y, float scale) const {
+
+void Sprite::Render(IRenderer& renderer,
+                    float x, 
+                    float y, 
+                    float scale, 
+                    float angle,
+                    bool flip_horizontally,
+                    bool flip_vertically) const {
 	SDL_Rect dst;
 	dst.x = x;
 	dst.y = y;
@@ -31,7 +38,12 @@ void Sprite::Render(IRenderer& renderer, float x, float y, float scale) const {
 
 	SDL_Rect clip_cp = this->GetClip();
 
-	this->GetTexture().Render(renderer, clip_cp, dst);
+	this->GetTexture().Render(renderer, 
+                            clip_cp, 
+                            dst, 
+                            angle, 
+                            flip_horizontally, 
+                            flip_vertically);
 }
 
 }

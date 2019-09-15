@@ -24,16 +24,22 @@ public:
 	/// </returns>
 	virtual SDL_Rect GetDimensions() const = 0;
 	
-	/// <summary>
-	/// Render the specified <paramref name="clip" /> of this 
-	/// <see cref="ITexture" /> to the specified <paramref name="dst" />.
-	/// </summary>
-	/// <param name="renderer"> The renderer. </param>
-	/// <param name="clip"> The section of the texture to render. </param>
-	/// <param name="dst"> The destination to which the render. </param>
-	virtual void Render(IRenderer& renderer,
-						SDL_Rect& clip,
-						SDL_Rect& dst) const = 0;
+  /// <summary>
+  /// Render the specified <paramref name="clip" /> of this
+  /// <see cref="ITexture" /> to the specified <paramref name="dst" />.
+  /// </summary>
+  /// <param name="renderer">The renderer.</param>
+  /// <param name="clip">The section of the texture to render.</param>
+  /// <param name="dst">The destination to which the render.</param>
+  /// <param name="angle">The angle.</param>
+  /// <param name="flip_horizontally">if set to <c>true</c> [flip horizontally].</param>
+  /// <param name="flip_vertically">if set to <c>true</c> [flip vertically].</param>
+  virtual void Render(IRenderer& renderer,
+						          SDL_Rect& clip,
+						          SDL_Rect& dst,
+                      float angle,
+                      bool flip_horizontally,
+                      bool flip_vertically) const = 0;
 };
 
 }
