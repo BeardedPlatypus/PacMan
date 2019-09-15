@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "EntityState.h"
+#include "entity/EntityState.h"
 
 
 namespace pacman {

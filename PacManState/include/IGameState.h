@@ -5,7 +5,7 @@
 
 #include "GameMode.h"
 #include "field/Field.h"
-#include "IEntityState.h"
+#include "entity/IEntityState.h"
 
 
 namespace pacman {

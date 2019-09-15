@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "IEntityState.h"
+#include "entity/IEntityState.h"
 
-#include "EntityState.h"
+#include "entity/EntityState.h"
 
 
 namespace pacman {

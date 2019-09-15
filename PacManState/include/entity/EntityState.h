@@ -1,7 +1,7 @@
 #pragma once
 #define DllExport __declspec( dllexport )
 
-#include "IEntityState.h"
+#include "entity/IEntityState.h"
 
 
 namespace pacman {

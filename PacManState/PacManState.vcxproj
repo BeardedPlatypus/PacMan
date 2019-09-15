@@ -150,15 +150,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\Direction.h" />
-    <ClInclude Include="include\EntityState.h" />
+    <ClInclude Include="include\entity\Direction.h" />
+    <ClInclude Include="include\entity\EntityState.h" />
     <ClInclude Include="include\field\Field.h" />
     <ClInclude Include="include\field\FieldDefinition.h" />
     <ClInclude Include="include\field\IField.h" />
     <ClInclude Include="include\IGameState.h" />
     <ClInclude Include="include\field\TileType.h" />
     <ClInclude Include="include\GameMode.h" />
-    <ClInclude Include="include\IEntityState.h" />
+    <ClInclude Include="include\entity\IEntityState.h" />
     <ClInclude Include="include\GameState.h" />
     <ClInclude Include="include\PlayerState.h" />
     <ClInclude Include="include\Position.h" />
@@ -168,11 +168,11 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="PacManState.cpp" />
-    <ClCompile Include="src\EntityState.cpp" />
+    <ClCompile Include="src\entity\EntityState.cpp" />
     <ClCompile Include="src\field\Field.cpp" />
     <ClCompile Include="src\field\IField.cpp" />
     <ClCompile Include="src\GameState.cpp" />
-    <ClCompile Include="src\IEntityState.cpp" />
+    <ClCompile Include="src\entity\IEntityState.cpp" />
     <ClCompile Include="src\IGameState.cpp" />
     <ClCompile Include="src\PlayerState.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -3,8 +3,7 @@
 
 #include <memory>
 
-#include "Position.h"
-#include "Direction.h"
+#include "entity/Direction.h"
 
 
 namespace pacman {

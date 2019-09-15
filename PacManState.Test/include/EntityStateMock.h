@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IEntityState.h"
+#include "entity/IEntityState.h"
 #include "gmock/gmock.h"
 
 
