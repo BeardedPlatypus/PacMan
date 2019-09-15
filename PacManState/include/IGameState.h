@@ -5,6 +5,7 @@
 
 #include "GameMode.h"
 #include "field/Field.h"
+#include "IEntityState.h"
 
 
 namespace pacman {
@@ -54,8 +55,22 @@ namespace pacman {
       /// </summary>
       /// <param name="tiles">The tiles of the new field.</param>
       virtual void ConstructNewField(const std::vector<std::vector<field::TileType>>& tiles) = 0;
+      
+      /// <summary>
+      /// Get a pointer to the state of the player.
+      /// </summary>
+      /// <returns>A pointer to the state of the player.</returns>
+      virtual IEntityState* GetPlayerState() const = 0;
+      
+      /// <summary>
+      /// Set the state of the player to the specified <paramref name="p_player_state" />.
+      /// </summary>
+      /// <param name="p_player_state">Pointer to the state of the player.</param>
+      /// <post-condition>
+      /// (new this)->GetPlayerState() == p_player_state.get();
+      /// </post-condition>
+      virtual void SetPlayerState(std::unique_ptr<IEntityState> p_player_state) = 0;
     };
-
   }
 }
 

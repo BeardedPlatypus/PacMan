@@ -1,4 +1,8 @@
-#include "gtest/gtest.h"
+#include "EntityStateMock.h"
+
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
+
 #include "GameState.h"
 
 
@@ -29,6 +33,22 @@ TEST(GameStateTest, GivenAGameStateAndAGameMode_WhenThisModeIsSetOnThisState_The
 	// Then
 	GameMode retrieved_mode = game_state->GetGameMode();
 	EXPECT_EQ(retrieved_mode, expected_mode);
+}
+
+
+TEST(GameStateTest, GivenAGameStateAndAEntityState_WhenSetPlayerStateIsSet_ThenGetPlayerStateReturnsTheCorrectPointer) {
+  // Given
+  std::unique_ptr<IEntityState> p_entity_state_mock = 
+    std::make_unique<EntityStateMock>();
+  auto game_state = IGameState::Construct();
+
+  IEntityState* expected_pointer = p_entity_state_mock.get();
+
+  // When
+  game_state->SetPlayerState(std::move(p_entity_state_mock));
+
+  // Then
+  EXPECT_EQ(game_state->GetPlayerState(), expected_pointer);
 }
 
 } // state
