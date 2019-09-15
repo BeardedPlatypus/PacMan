@@ -3,7 +3,6 @@
 #include "pch.h"
 #include <iostream>
 
-#include <PlayerState.h>
 #include <GameState.h>
 #include <manager/IViewManager.h>
 #include <manager/IControllerManager.h>
@@ -105,7 +104,6 @@ private:
 int main(int argc, char **argv) {
   if (argc != 1) return 1;
 
-  auto player_state = pacman::state::PlayerState(5.0, 1.0, 2.0);
   auto p_game_state = pacman::state::IGameState::Construct();
 
   p_game_state->ConstructNewField(pacman::state::field::GetFieldDefinition());

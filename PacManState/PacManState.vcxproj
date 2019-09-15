@@ -160,8 +160,6 @@
     <ClInclude Include="include\GameMode.h" />
     <ClInclude Include="include\entity\IEntityState.h" />
     <ClInclude Include="include\GameState.h" />
-    <ClInclude Include="include\PlayerState.h" />
-    <ClInclude Include="include\Position.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -174,7 +172,6 @@
     <ClCompile Include="src\GameState.cpp" />
     <ClCompile Include="src\entity\IEntityState.cpp" />
     <ClCompile Include="src\IGameState.cpp" />
-    <ClCompile Include="src\PlayerState.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

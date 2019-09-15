@@ -21,9 +21,6 @@
     <ClCompile Include="src\GameStateTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PositionTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\EntityStateTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
