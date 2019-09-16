@@ -55,6 +55,9 @@
         <File Source="..\Release\PacManView.dll" />
       </Component>
       <Component>
+        <File Source="..\Release\PacManRenderer.dll" />
+      </Component>
+      <Component>
         <File Source="..\Release\SDL2.dll" />
       </Component>
       <Component>
@@ -71,6 +74,7 @@
 		<ComponentGroup Id="AssetComponents" Directory="ASSETSFOLDER">
       <Component>
         <File Source="..\assets\characters.png"/>
+        <File Source="..\assets\field.png"/>
       </Component>
 		</ComponentGroup>
 	</Fragment>
