@@ -28,16 +28,5 @@ void GameState::ConstructNewField(const std::vector<std::vector<field::TileType>
   this->p_field = field::IField::Construct(tiles);
 }
 
-
-IEntityState* GameState::GetPlayerState() const {
-  return this->p_player_state.get();
-}
-
-
-void GameState::SetPlayerState(std::unique_ptr<IEntityState> p_player_state) {
-  this->p_player_state = std::move(p_player_state);
-}
-
-
 }
 }

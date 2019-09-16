@@ -151,7 +151,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\entity\Direction.h" />
+    <ClInclude Include="include\entity\EntityManager.h" />
     <ClInclude Include="include\entity\EntityState.h" />
+    <ClInclude Include="include\entity\IEntityManager.h" />
     <ClInclude Include="include\field\Field.h" />
     <ClInclude Include="include\field\FieldDefinition.h" />
     <ClInclude Include="include\field\IField.h" />
@@ -166,7 +168,9 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="PacManState.cpp" />
+    <ClCompile Include="src\entity\EntityManager.cpp" />
     <ClCompile Include="src\entity\EntityState.cpp" />
+    <ClCompile Include="src\entity\IEntityManager.cpp" />
     <ClCompile Include="src\field\Field.cpp" />
     <ClCompile Include="src\field\IField.cpp" />
     <ClCompile Include="src\GameState.cpp" />

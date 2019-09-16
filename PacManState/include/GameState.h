@@ -22,8 +22,6 @@ public:
   field::IField* GetField() const final;
   void ConstructNewField(const std::vector<std::vector<field::TileType>>& tiles);
 
-  IEntityState* GetPlayerState() const final;
-  void SetPlayerState(std::unique_ptr<IEntityState> p_player_state);
 private:	
 	/// <summary>
 	/// The current state of this GameState state machine.
@@ -35,12 +33,6 @@ private:
   /// of this <see cref="GameState" />.
   /// </summary>
   std::unique_ptr<field::IField> p_field;
-  
-  /// <summary>
-  /// A <see cref="std::unique_ptr" /> to the <see cref="IEntityState" />
-  /// describing the player state of this <see cref="IEntityState"/>
-  /// </summary>
-  std::unique_ptr<IEntityState> p_player_state;
 };
 
 }

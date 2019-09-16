@@ -21,7 +21,7 @@ public:
   /// <param name="x"> The world x position. </param>
   /// <param name="y"> The world y position. </param>
   /// <param name="dir"> The <see cref="Direction" />. </param>
-  /// <returns></returns>
+  /// <returns>A <see cref="std::unique_ptr"/> containing an instance of a <see cref="IEntityState"/>.</returns>
   static std::unique_ptr<IEntityState> Construct(float x, float y, Direction dir);
 
   virtual ~IEntityState() {}
