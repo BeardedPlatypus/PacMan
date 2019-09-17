@@ -74,6 +74,8 @@
 		<ComponentGroup Id="AssetComponents" Directory="ASSETSFOLDER">
       <Component>
         <File Source="..\assets\characters.png"/>
+      </Component>
+      <Component>
         <File Source="..\assets\field.png"/>
       </Component>
 		</ComponentGroup>
