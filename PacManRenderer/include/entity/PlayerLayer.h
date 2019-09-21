@@ -9,25 +9,21 @@
 namespace pacman {
 namespace renderer {
   
-/// <summary>
-/// <see cref="EntityLayer" /> visualises a <see cref="IEntityComponent" />.
-/// </summary>
-/// <seealso cref="IRenderLayer" />
-class EntityLayer final : public IRenderLayer {
+class PlayerLayer final : public IRenderLayer {
 public:  
   /// <summary>
-  /// Construct a new <see cref="EntityLayer" />.
+  /// Construct a new <see cref="PlayerLayer" />.
   /// </summary>
   /// <param name="scale">The scale.</param>
   /// <param name="p_view_manager">A pointer to the view manager.</param>
-  /// <param name="p_entity_manager">A pointer to the state entity manager.</param>
+  /// <param name="p_player_state">A pointer to the player state.</param>
   /// <precondition>
   /// | p_view_manager != nullptr
-  /// | p_entity_manager != nullptr
+  /// | p_player_state != nullptr
   /// </precondition>
-  EntityLayer(float scale,
+  PlayerLayer(float scale,
               view::IViewManager* p_view_manager,
-              state::IEntityManager* p_entity_manager);
+              state::IEntityState* p_player_state);
 
   void Initialise() final;
   void Render() const final;
@@ -53,7 +49,7 @@ private:
   /// A pointer to the <see cref="IEntityManager" /> used by this
   /// <see cref="EntityLayer" />. 
   /// </summary>
-  state::IEntityManager* p_entity_manager;
+  state::IEntityState* p_player_state;
 };
 
 }

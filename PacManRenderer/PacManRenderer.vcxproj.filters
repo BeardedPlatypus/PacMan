@@ -54,10 +54,10 @@
     <ClInclude Include="include\IRenderLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\entity\IEntity.h">
+    <ClInclude Include="include\entity\PlayerLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\entity\EntityLayer.h">
+    <ClInclude Include="include\entity\EntitySpriteValues.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -81,6 +81,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\manager\IRendererManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\PlayerLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

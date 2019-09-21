@@ -55,6 +55,21 @@ namespace pacman {
       /// </summary>
       /// <param name="tiles">The tiles of the new field.</param>
       virtual void ConstructNewField(const std::vector<std::vector<field::TileType>>& tiles) = 0;
+      
+      /// <summary>
+      /// Get a pointer to state of the player.
+      /// </summary>
+      /// <returns>A pointer to the state of the player.</returns>
+      virtual IEntityState* GetPlayerState() const = 0;
+      
+      /// <summary>
+      /// Set the pointer to the player state.
+      /// </summary>
+      /// <param name="p_player_state">State of the p player.</param>
+      /// <postcondition>
+      /// | (new this)->GetPlayerState() == p_player_state.get()
+      /// </postcondition>
+      virtual void SetPlayerState(std::unique_ptr<IEntityState> p_player_state) = 0;
     };
   }
 }

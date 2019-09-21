@@ -2,6 +2,7 @@
 #include "manager/RendererManager.h"
 
 #include "field/FieldLayer.h"
+#include "entity/PlayerLayer.h"
 
 
 namespace pacman {
@@ -15,10 +16,15 @@ RendererManager::RendererManager(state::IGameState* p_game_state,
 
 
 void RendererManager::Initialise() {
-  auto p_field_layer = std::make_unique<FieldLayer>(2.F,
+  auto p_field_layer = std::make_unique<FieldLayer>(4.F,
                                                     this->p_view_manager,
                                                     this->p_game_state->GetField());
   this->render_layers.push_back(std::move(p_field_layer));
+
+  auto p_player_layer = std::make_unique<PlayerLayer>(4.F,
+                                                      this->p_view_manager,
+                                                      this->p_game_state->GetPlayerState());
+  this->render_layers.push_back(std::move(p_player_layer));
 
   for (size_t i = 0; i < this->render_layers.size(); i++) {
     render_layers[i]->Initialise();

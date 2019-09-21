@@ -32,9 +32,9 @@ public:
   /// Set the state of the player to the specified <paramref name="p_player_state" />.
   /// </summary>
   /// <param name="p_player_state">Pointer to the state of the player.</param>
-  /// <post-condition>
-  /// (new this)->GetPlayerState() == p_player_state.get();
-  /// </post-condition>
+  /// <postcondition>
+  /// | (new this)->GetPlayerState() == p_player_state.get();
+  /// </postcondition>
   virtual void SetPlayerState(std::unique_ptr<IEntityState> p_player_state) = 0;
 };
 

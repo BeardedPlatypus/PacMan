@@ -160,8 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
-    <ClInclude Include="include\entity\EntityLayer.h" />
-    <ClInclude Include="include\entity\IEntity.h" />
+    <ClInclude Include="include\entity\PlayerLayer.h" />
     <ClInclude Include="include\field\EnumClassHash.h" />
     <ClInclude Include="include\field\FieldLayer.h" />
     <ClInclude Include="include\field\FieldLayerHelper.h" />
@@ -173,6 +172,7 @@
     <ClInclude Include="include\IRenderLayer.h" />
     <ClInclude Include="include\manager\IRendererManager.h" />
     <ClInclude Include="include\manager\RendererManager.h" />
+    <ClInclude Include="include\entity\EntitySpriteValues.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +188,7 @@
     <ClCompile Include="src\field\FieldLayerHelper.FieldValueToSpriteType.cpp" />
     <ClCompile Include="src\manager\IRendererManager.cpp" />
     <ClCompile Include="src\manager\RendererManager.cpp" />
+    <ClCompile Include="src\entity\PlayerLayer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,6 +7,7 @@
 #include <manager/IViewManager.h>
 #include <manager/IControllerManager.h>
 #include <manager/IRendererManager.h>
+#include <entity/EntityState.h>
 
 #include <field/FieldDefinition.h>
 
@@ -107,10 +108,16 @@ int main(int argc, char **argv) {
   auto p_game_state = pacman::state::IGameState::Construct();
 
   p_game_state->ConstructNewField(pacman::state::field::GetFieldDefinition());
+
+  auto p_player_state = pacman::state::IEntityState::Construct(10.F,
+                                                               20.F,
+                                                               pacman::state::Direction::Left);
+  p_game_state->SetPlayerState(std::move(p_player_state));
+
   //p_game_state->ConstructNewField(pacman::state::field::GetSimpleFieldDefinition());
 
   auto view_manager = pacman::view::IViewManager::construct();
-  view_manager->initialise(800, 600);
+  view_manager->initialise(800, 1000);
 
   //viewConfiguration(*view_manager);
   auto p_renderer_manager = pacman::renderer::IRendererManager::Construct(p_game_state.get(),
