@@ -2,6 +2,7 @@
 #include "manager/UpdateManager.h"
 
 #include "commands/QuitCommand.h"
+#include "commands/ChangePlayerDirectionCommand.h"
 
 namespace pacman {
 namespace update {
@@ -29,6 +30,24 @@ void UpdateManager::InitialiseCommands() {
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
                                                       pacman::controller::keyboard::Scancode::Escape,
                                                       commands::GetQuitCommand(this->p_game_state));
+
+  this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
+                                                      pacman::controller::keyboard::Scancode::W,
+                                                      commands::GetChangePlayerDirectionCommand(this->p_game_state->GetPlayerState(), 
+                                                                                                state::Direction::Up));
+  this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
+                                                      pacman::controller::keyboard::Scancode::A,
+                                                      commands::GetChangePlayerDirectionCommand(this->p_game_state->GetPlayerState(), 
+                                                                                                state::Direction::Left));
+  this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
+                                                      pacman::controller::keyboard::Scancode::S,
+                                                      commands::GetChangePlayerDirectionCommand(this->p_game_state->GetPlayerState(), 
+                                                                                                state::Direction::Down));
+  this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
+                                                      pacman::controller::keyboard::Scancode::D,
+                                                      commands::GetChangePlayerDirectionCommand(this->p_game_state->GetPlayerState(), 
+                                                                                                state::Direction::Right));
+
 }
 
 }
