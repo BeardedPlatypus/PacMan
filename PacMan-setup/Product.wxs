@@ -58,6 +58,9 @@
         <File Source="..\Release\PacManRenderer.dll" />
       </Component>
       <Component>
+        <File Source="..\Release\PacManUpdate.dll" />
+      </Component>
+      <Component>
         <File Source="..\Release\SDL2.dll" />
       </Component>
       <Component>
