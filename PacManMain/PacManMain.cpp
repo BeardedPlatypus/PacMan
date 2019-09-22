@@ -7,6 +7,8 @@
 #include <manager/IViewManager.h>
 #include <manager/IControllerManager.h>
 #include <manager/IRendererManager.h>
+#include <manager/IUpdateManager.h>
+
 #include <entity/EntityState.h>
 
 #include <field/FieldDefinition.h>
@@ -90,7 +92,12 @@ int main(int argc, char **argv) {
                                                                           view_manager.get());
   p_renderer_manager->Initialise();
 
-  auto controller_manager = pacman::controller::IControllerManager::Construct();
+  auto p_controller_manager = pacman::controller::IControllerManager::Construct();
+
+  auto p_update_manager = pacman::update::IUpdateManager::Construct(p_game_state.get(),
+                                                                    p_controller_manager.get());
+  p_update_manager->Initialise();
+  
 
   float dtime = 0.0F;
   Uint64 tick_prev = 0;
@@ -104,7 +111,8 @@ int main(int argc, char **argv) {
 	  dtime = ((float)(tick_now - tick_prev)) / freq;
 	  // Game Loop
 	  //   Update behaviour based on previous state.
-	  controller_manager->Update();
+	  p_controller_manager->Update();
+    p_update_manager->Update(dtime);
 	  //   Update current state based on updated behaviour.
 	  //   Render the current state.
 	  view_manager->update(dtime);
