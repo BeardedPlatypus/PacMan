@@ -11,7 +11,6 @@
 
 #include <field/FieldDefinition.h>
 
-#include <ICommand.h>
 
 #include <SDL2/SDL.h>
 
@@ -72,36 +71,6 @@ void viewConfiguration(pacman::view::IViewManager& manager) {
 }
 
 
-void render(pacman::view::IViewManager& manager) {
-	int x = 640 / 2 - 16;
-	int y = 48 * 2 + 4;
-
-	manager.initialiseRender();
-	
-	manager.renderSpriteAnimation("anim1", (float) x, (float) y, 4.0);
-	manager.renderSpriteAnimation("anim2", (float) x - 16.F * 4, (float) y, 4.0);
-	manager.renderSpriteAnimation("anim3", (float) x - 32.F * 4, (float) y, 4.0);
-	manager.renderSpriteAnimation("anim4", (float) x - 48.F * 4, (float) y, 4.0);
-	manager.renderSpriteAnimation("anim5", (float) x + 32.F * 4, (float) y, 4.0);
-
-	manager.finaliseRender();
-}
-
-
-class QuitCommand final : public pacman::controller::ICommand {
-public:
-  QuitCommand(pacman::state::IGameState* p_gs) : p_gs(p_gs) { }
-
-  void Execute() final {
-    this->p_gs->SetGameMode(pacman::state::GameMode::ClosedGame);
-  }
-
-private:
-  pacman::state::IGameState* p_gs;
-};
-
-
-
 int main(int argc, char **argv) {
   if (argc != 1) return 1;
 
@@ -114,22 +83,14 @@ int main(int argc, char **argv) {
                                                                pacman::state::Direction::Left);
   p_game_state->SetPlayerState(std::move(p_player_state));
 
-  //p_game_state->ConstructNewField(pacman::state::field::GetSimpleFieldDefinition());
-
   auto view_manager = pacman::view::IViewManager::construct();
   view_manager->initialise(800, 1000);
 
-  //viewConfiguration(*view_manager);
   auto p_renderer_manager = pacman::renderer::IRendererManager::Construct(p_game_state.get(),
                                                                           view_manager.get());
   p_renderer_manager->Initialise();
 
   auto controller_manager = pacman::controller::IControllerManager::Construct();
-  controller_manager->RegisterSystemCommand(pacman::controller::SystemEventType::Quit,
-                                            std::make_unique<QuitCommand>(p_game_state.get()));
-  controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
-                                              pacman::controller::keyboard::Scancode::W,
-                                              std::make_unique<QuitCommand>(p_game_state.get()));
 
   float dtime = 0.0F;
   Uint64 tick_prev = 0;
@@ -148,7 +109,6 @@ int main(int argc, char **argv) {
 	  //   Render the current state.
 	  view_manager->update(dtime);
 
-	  //render(*view_manager);
     view_manager->initialiseRender();
     p_renderer_manager->Render();
     view_manager->finaliseRender();
