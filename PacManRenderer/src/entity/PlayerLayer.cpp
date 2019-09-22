@@ -53,7 +53,7 @@ void PlayerLayer::Render() const {
 void PlayerLayer::InitialiseSprites() {
   this->p_view_manager->requestSprite(values::pacman_default,
                                       values::entity_sprite_file,
-                                      pacman::view::ClipRect(0, 0, 16, 16));
+                                      pacman::view::ClipRect(16, 0, 16, 16));
 }
 
 }
