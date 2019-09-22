@@ -22,7 +22,7 @@ public:
   /// <param name="y"> The world y position. </param>
   /// <param name="dir"> The <see cref="Direction" />. </param>
   /// <returns>A <see cref="std::unique_ptr"/> containing an instance of a <see cref="IEntityState"/>.</returns>
-  static std::unique_ptr<IEntityState> Construct(float x, float y, Direction dir);
+  static std::unique_ptr<IEntityState> Construct(float x, float y, Direction dir, float speed);
 
   virtual ~IEntityState() {}
   
@@ -46,18 +46,18 @@ public:
   /// Set the world x-position of this <see cref="IEntityState" />.
   /// </summary>
   /// <param name="new_x">The ne world x position.</param>
-  // <post-condition> 
+  // <postcondition> 
   // | (new this)->GetXPosition() == <paramref name="new_x" />
-  // </post-condition>
+  // </postcondition>
   virtual void SetXPosition(float new_x) = 0;
 
   /// <summary>
   /// Set the world y-position of this <see cref="IEntityState" />.
   /// </summary>
   /// <param name="new_y">The ne world y position.</param>
-  // <post-condition> 
+  // <postcondition> 
   // | (new this)->GetYPosition() == <paramref name="new_y" />
-  // </post-condition>
+  // </postcondition>
   virtual void SetYPosition(float new_y) = 0;
   
   /// <summary>
@@ -72,10 +72,26 @@ public:
   /// Set the direction of this <see cref="IEntityState" />.
   /// </summary>
   /// <param name="direction"> The new  <see cref="Direction" />. </param>
-  // <post-condition>
+  // <postcondition>
   // | (new this)->GetDirection() == <paramref name="direction" />
-  // </post-condition>
+  // </postcondition>
   virtual void SetDirection(Direction direction) = 0;
+  
+  /// <summary>
+  /// Get the speed of this <see cref="IEntityState" />.
+  /// </summary>
+  /// <returns>The speed of this <see cref="IEntityState" />.</returns>
+  virtual float GetSpeed() const = 0;
+  
+  /// <summary>
+  /// Set the speed of this <see cref="IEntityState" /> to
+  /// <paramref name="speed" />.
+  /// </summary>
+  /// <param name="speed">The new speed.</param>
+  /// <postcondition>
+  /// | (new this)->GetSpeed() == <paramref name="speed" />
+  /// </postcondition>
+  virtual void SetSpeed(float speed) = 0;
 };
 
 }

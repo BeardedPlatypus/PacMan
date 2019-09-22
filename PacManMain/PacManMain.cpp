@@ -82,7 +82,8 @@ int main(int argc, char **argv) {
 
   auto p_player_state = pacman::state::IEntityState::Construct(10.F,
                                                                20.F,
-                                                               pacman::state::Direction::Left);
+                                                               pacman::state::Direction::Left,
+                                                               2.5F);
   p_game_state->SetPlayerState(std::move(p_player_state));
 
   auto view_manager = pacman::view::IViewManager::construct();

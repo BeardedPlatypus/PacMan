@@ -14,12 +14,13 @@ namespace state {
 class EntityState sealed : public IEntityState {
 public:  
   /// <summary>
-  /// Construct a new <see cref="EntityState"/>.
+  /// Construct a new <see cref="EntityState" />.
   /// </summary>
-  /// <param name="x"> The world x position. </param>
-  /// <param name="y"> The world y position. </param>
-  /// <param name="dir"> The <see cref="Direction" />. </param>
-  EntityState(float x, float y, Direction dir);
+  /// <param name="x">The world x position.</param>
+  /// <param name="y">The world y position.</param>
+  /// <param name="dir">The <see cref="Direction" />.</param>
+  /// <param name="speed">The speed.</param>
+  EntityState(float x, float y, Direction dir, float speed);
 
   float GetXPosition() const final;
   void SetXPosition(float new_x) final;
@@ -29,6 +30,9 @@ public:
 
   Direction GetDirection() const final;
   void SetDirection(Direction direction) final;
+
+  float GetSpeed() const final;
+  void SetSpeed(float speed) final;
 
 private:    
   /// <summary>
@@ -45,6 +49,11 @@ private:
   /// The <see cref="Direction" /> of this <see cref="EntityState" />.
   /// </summary>
   Direction dir;
+  
+  /// <summary>
+  /// The speed of this <see cref="EntityState" />.
+  /// </summary>
+  float speed;
 };
 
 }

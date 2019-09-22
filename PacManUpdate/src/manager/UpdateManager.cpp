@@ -3,6 +3,7 @@
 
 #include "commands/QuitCommand.h"
 #include "commands/ChangePlayerDirectionCommand.h"
+#include "entity/UpdatePlayer.h"
 
 namespace pacman {
 namespace update {
@@ -19,7 +20,9 @@ void UpdateManager::Initialise() {
 
 
 void UpdateManager::Update(float dt) {
-
+  UpdatePlayer(this->p_game_state->GetPlayerState(),
+               this->p_game_state->GetField(),
+               dt);
 }
 
 

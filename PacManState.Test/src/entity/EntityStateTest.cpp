@@ -15,16 +15,19 @@ TEST(EntityStateTest, ctor_setsExpectedValues) {
   float expected_x = 5.403F;
   float expected_y = 1029.0298F;
   Direction expected_dir = Direction::Right;
+  float expected_speed = 20.326F;
 
   // When
   std::unique_ptr<IEntityState> p_state = IEntityState::Construct(expected_x,
                                                                   expected_y,
-                                                                  expected_dir);
+                                                                  expected_dir, 
+                                                                  expected_speed);
 
   // Then
   ASSERT_THAT(p_state->GetXPosition(), Eq(expected_x));
   ASSERT_THAT(p_state->GetYPosition(), Eq(expected_y));
   ASSERT_THAT(p_state->GetDirection(), Eq(expected_dir));
+  ASSERT_THAT(p_state->GetSpeed(), Eq(expected_speed));
 }
 
 
@@ -32,9 +35,10 @@ TEST(EntityStateTest, SetDirection_ValidDirection) {
   // Given
   Direction expected_dir = Direction::Right;
 
-  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.0,
-                                                                  0.0,
-                                                                  Direction::Left);
+  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.F,
+                                                                  0.F,
+                                                                  Direction::Left, 
+                                                                  0.F);
 
   // When
   p_state->SetDirection(expected_dir);
@@ -48,9 +52,10 @@ TEST(EntityStateTest, SetXPosition_ValidFloat) {
   // Given
   float expected_x = 1159.0298F;
 
-  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.0,
-                                                                  0.0,
-                                                                  Direction::Left);
+  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.F,
+                                                                  0.F,
+                                                                  Direction::Left,
+                                                                  0.F);
 
   // When
   p_state->SetXPosition(expected_x);
@@ -64,9 +69,10 @@ TEST(EntityStateTest, SetYPosition_ValidFloat) {
   // Given
   float expected_y = 1159.0298F;
 
-  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.0,
-                                                                  0.0,
-                                                                  Direction::Left);
+  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.F,
+                                                                  0.F,
+                                                                  Direction::Left,
+                                                                  0.F);
 
   // When
   p_state->SetYPosition(expected_y);

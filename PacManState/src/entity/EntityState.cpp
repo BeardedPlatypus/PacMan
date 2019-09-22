@@ -5,9 +5,11 @@
 namespace pacman {
 namespace state {
 
-EntityState::EntityState(float x, float y, Direction dir) :
+
+  EntityState::EntityState(float x, float y, Direction dir, float speed) :
     x(x), y(y),
-    dir(dir) { }
+    dir(dir),
+    speed(speed) { }
 
 
 float EntityState::GetXPosition() const {
@@ -38,6 +40,15 @@ void EntityState::SetDirection(Direction dir) {
   this->dir = dir;
 }
 
+
+float EntityState::GetSpeed() const {
+  return this->speed;
+}
+
+
+void EntityState::SetSpeed(float speed) {
+  this->speed = speed;
+}
 
 }
 }

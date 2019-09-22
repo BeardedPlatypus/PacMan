@@ -169,6 +169,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\commands\ChangePlayerDirectionCommand.h" />
     <ClInclude Include="include\commands\QuitCommand.h" />
+    <ClInclude Include="include\entity\UpdatePlayer.h" />
     <ClInclude Include="include\manager\IUpdateManager.h" />
     <ClInclude Include="include\manager\UpdateManager.h" />
     <ClInclude Include="PacManUpdate.h" />
@@ -185,6 +186,7 @@
     </ClCompile>
     <ClCompile Include="src\commands\ChangePlayerDirectionCommand.cpp" />
     <ClCompile Include="src\commands\QuitCommand.cpp" />
+    <ClCompile Include="src\entity\UpdatePlayer.cpp" />
     <ClCompile Include="src\manager\IUpdateManager.cpp" />
     <ClCompile Include="src\manager\UpdateManager.cpp" />
   </ItemGroup>

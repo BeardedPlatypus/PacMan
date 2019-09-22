@@ -13,4 +13,7 @@ public:
 
   MOCK_CONST_METHOD0(GetDirection, pacman::state::Direction());
   MOCK_METHOD1(SetDirection, void(pacman::state::Direction direction));
+
+  MOCK_CONST_METHOD0(GetSpeed, float());
+  MOCK_METHOD1(SetSpeed, void(float new_speed));
 };
