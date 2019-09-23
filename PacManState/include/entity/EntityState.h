@@ -2,7 +2,7 @@
 #define DllExport __declspec( dllexport )
 
 #include "entity/IEntityState.h"
-
+#include "entity/EntityAxis.h"
 
 namespace pacman {
 namespace state {
@@ -22,11 +22,8 @@ public:
   /// <param name="speed">The speed.</param>
   EntityState(float x, float y, Direction dir, float speed);
 
-  float GetXPosition() const final;
-  void SetXPosition(float new_x) final;
-
-  float GetYPosition() const final;
-  void SetYPosition(float new_y) final;
+  IEntityAxis* GetXAxis() const final;
+  IEntityAxis* GetYAxis() const final;
 
   Direction GetDirection() const final;
   void SetDirection(Direction direction) final;
@@ -34,16 +31,16 @@ public:
   float GetSpeed() const final;
   void SetSpeed(float speed) final;
 
-private:    
+private:      
   /// <summary>
-  /// The x world position of this <see cref="EntityState" />.
+  /// The x axis
   /// </summary>
-  float x;
+  EntityAxis x_axis;  
 
   /// <summary>
-  /// The y world position of this <see cref="EntityState" />.
+  /// The y axis
   /// </summary>
-  float y;
+  EntityAxis y_axis;
 
   /// <summary>
   /// The <see cref="Direction" /> of this <see cref="EntityState" />.

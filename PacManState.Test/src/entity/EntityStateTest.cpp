@@ -24,8 +24,8 @@ TEST(EntityStateTest, ctor_setsExpectedValues) {
                                                                   expected_speed);
 
   // Then
-  ASSERT_THAT(p_state->GetXPosition(), Eq(expected_x));
-  ASSERT_THAT(p_state->GetYPosition(), Eq(expected_y));
+  ASSERT_THAT(p_state->GetXAxis()->GetPosition(), Eq(expected_x));
+  ASSERT_THAT(p_state->GetYAxis()->GetPosition(), Eq(expected_y));
   ASSERT_THAT(p_state->GetDirection(), Eq(expected_dir));
   ASSERT_THAT(p_state->GetSpeed(), Eq(expected_speed));
 }
@@ -58,10 +58,10 @@ TEST(EntityStateTest, SetXPosition_ValidFloat) {
                                                                   0.F);
 
   // When
-  p_state->SetXPosition(expected_x);
+  p_state->GetXAxis()->SetPosition(expected_x);
 
   // Then
-  ASSERT_THAT(p_state->GetXPosition(), Eq(expected_x));
+  ASSERT_THAT(p_state->GetXAxis()->GetPosition(), Eq(expected_x));
 }
 
 
@@ -75,10 +75,10 @@ TEST(EntityStateTest, SetYPosition_ValidFloat) {
                                                                   0.F);
 
   // When
-  p_state->SetYPosition(expected_y);
+  p_state->GetYAxis()->SetPosition(expected_y);
 
   // Then
-  ASSERT_THAT(p_state->GetYPosition(), Eq(expected_y));
+  ASSERT_THAT(p_state->GetYAxis()->GetPosition(), Eq(expected_y));
 }
 
 

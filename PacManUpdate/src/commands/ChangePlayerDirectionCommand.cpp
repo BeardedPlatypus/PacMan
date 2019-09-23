@@ -6,19 +6,19 @@ namespace pacman {
 namespace update {
 namespace commands {
 
-ChangePlayerDirectionCommand::ChangePlayerDirectionCommand(state::IEntityState* p_player_state,
-                                                           state::Direction direction) : 
+ChangePlayerDirectionCommand::ChangePlayerDirectionCommand(IUpdatablePlayerEntity* p_player_state,
+                                                           std::optional<state::Direction> direction) : 
     p_player_state(p_player_state), 
     direction(direction) {}
 
 
 void ChangePlayerDirectionCommand::Execute() {
-  this->p_player_state->SetDirection(this->direction);
+  this->p_player_state->SetNextDirection(this->direction);
 }
 
 
-std::unique_ptr<controller::ICommand> GetChangePlayerDirectionCommand(state::IEntityState* p_player_state,
-                                                                      state::Direction direction) {
+std::unique_ptr<controller::ICommand> GetChangePlayerDirectionCommand(IUpdatablePlayerEntity* p_player_state,
+                                                                      std::optional<state::Direction> direction) {
   return std::make_unique<ChangePlayerDirectionCommand>(p_player_state, direction);
 }
 

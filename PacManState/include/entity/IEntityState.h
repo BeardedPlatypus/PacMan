@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "entity/Direction.h"
+#include "entity/IEntityAxis.h"
 
 
 namespace pacman {
@@ -25,40 +26,18 @@ public:
   static std::unique_ptr<IEntityState> Construct(float x, float y, Direction dir, float speed);
 
   virtual ~IEntityState() {}
-  
+    
   /// <summary>
-  /// Get the world x-position of this <see cref="IEntityState" />.
+  /// Gets the x <see cref="IEntityAxis"/> of this <see cref="IEntityState"/>.
   /// </summary>
-  /// <returns> 
-  /// The x-position of this <see cref="IEntityState" />
-  /// </returns>
-  virtual float GetXPosition() const = 0;
-  
-  /// <summary>
-  /// Get the world y-position of this <see cref="IEntityState" />.
-  /// </summary>
-  /// <returns> 
-  /// The y-position of this <see cref="IEntityState" />
-  /// </returns>
-  virtual float GetYPosition() const = 0;
-  
-  /// <summary>
-  /// Set the world x-position of this <see cref="IEntityState" />.
-  /// </summary>
-  /// <param name="new_x">The ne world x position.</param>
-  // <postcondition> 
-  // | (new this)->GetXPosition() == <paramref name="new_x" />
-  // </postcondition>
-  virtual void SetXPosition(float new_x) = 0;
+  /// <returns>The x <see cref="IEntityAxis"/>.</returns>
+  virtual IEntityAxis* GetXAxis() const = 0;
 
   /// <summary>
-  /// Set the world y-position of this <see cref="IEntityState" />.
+  /// Gets the y <see cref="IEntityAxis"/> of this <see cref="IEntityState"/>.
   /// </summary>
-  /// <param name="new_y">The ne world y position.</param>
-  // <postcondition> 
-  // | (new this)->GetYPosition() == <paramref name="new_y" />
-  // </postcondition>
-  virtual void SetYPosition(float new_y) = 0;
+  /// <returns>The x <see cref="IEntityAxis"/>.</returns>
+  virtual IEntityAxis* GetYAxis() const = 0;
   
   /// <summary>
   /// Get the direction of this <see cref="Direction" />.

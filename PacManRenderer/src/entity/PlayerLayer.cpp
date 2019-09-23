@@ -41,8 +41,8 @@ void PlayerLayer::Render() const {
   }
 
   this->p_view_manager->renderSprite(values::pacman_default,
-                                     (this->p_player_state->GetXPosition() - 0.5F * 0.5) * (float)values::tile_size * this->scale,
-                                     (this->p_player_state->GetYPosition() - 0.5F * 0.5) * (float)values::tile_size * this->scale,
+                                     (this->p_player_state->GetXAxis()->GetPosition() - 0.5F * 0.5) * (float)values::tile_size * this->scale,
+                                     (this->p_player_state->GetYAxis()->GetPosition() - 0.5F * 0.5) * (float)values::tile_size * this->scale,
                                      this->scale * 0.75,
                                      rotation,
                                      false,

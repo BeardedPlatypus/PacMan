@@ -4,6 +4,7 @@
 #include <ICommand.h>
 #include <entity/IEntityState.h>
 
+#include "entity/IUpdatablePlayerEntity.h"
 
 namespace pacman {
 namespace update {
@@ -20,8 +21,8 @@ public:
   /// Construct a new <see cref="ChangePlayerDirectionCommand"/>.
   /// </summary>
   /// <param name="p_player_state">Pointer to the player's <see cref="state::IEntityState" />.</param>
-  ChangePlayerDirectionCommand(state::IEntityState* p_player_state,
-                               state::Direction direction);
+  ChangePlayerDirectionCommand(IUpdatablePlayerEntity* p_player_state,
+                               std::optional<state::Direction> direction);
 
   void Execute() final;
 
@@ -29,16 +30,17 @@ private:
   /// <summary>
   /// The player's <see cref="state::IEntityState" /> this command changes.
   /// </summary>
-  state::IEntityState* p_player_state;
+  IUpdatablePlayerEntity* p_player_state;
   
   /// <summary>
   /// The direction to which the player's direction will be set.
   /// </summary>
-  state::Direction direction;
+  std::optional<state::Direction> direction;
 };
 
-DllExport std::unique_ptr<controller::ICommand> GetChangePlayerDirectionCommand(state::IEntityState* p_player_state,
-                                                                                state::Direction direction);
+
+DllExport std::unique_ptr<controller::ICommand> GetChangePlayerDirectionCommand(IUpdatablePlayerEntity* p_player_state,
+                                                                                std::optional<state::Direction> direction);
 
 }
 }

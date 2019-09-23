@@ -1,6 +1,7 @@
 #pragma once
 
 #include "manager/IUpdateManager.h"
+#include "entity/IUpdatablePlayerEntity.h"
 
 
 namespace pacman {
@@ -29,6 +30,8 @@ private:
   /// A pointer to the <see cref="controller::IControllerManager" />.
   /// </summary>
   controller::IControllerManager* p_controller_manager;
+
+  std::unique_ptr<IUpdatablePlayerEntity> p_player_entity;
 
 };
 

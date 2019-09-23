@@ -169,6 +169,10 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\commands\ChangePlayerDirectionCommand.h" />
     <ClInclude Include="include\commands\QuitCommand.h" />
+    <ClInclude Include="include\entity\IUpdatablePlayerEntity.h" />
+    <ClInclude Include="include\entity\IUpdatableEntityAxis.h" />
+    <ClInclude Include="include\entity\UpdatableEntityAxis.h" />
+    <ClInclude Include="include\entity\UpdatablePlayerEntity.h" />
     <ClInclude Include="include\entity\UpdatePlayer.h" />
     <ClInclude Include="include\manager\IUpdateManager.h" />
     <ClInclude Include="include\manager\UpdateManager.h" />
@@ -186,6 +190,10 @@
     </ClCompile>
     <ClCompile Include="src\commands\ChangePlayerDirectionCommand.cpp" />
     <ClCompile Include="src\commands\QuitCommand.cpp" />
+    <ClCompile Include="src\entity\IUpdatableEntityAxis.cpp" />
+    <ClCompile Include="src\entity\IUpdatablePlayerEntity.cpp" />
+    <ClCompile Include="src\entity\UpdatableEntityAxis.cpp" />
+    <ClCompile Include="src\entity\UpdatablePlayerEntity.cpp" />
     <ClCompile Include="src\entity\UpdatePlayer.cpp" />
     <ClCompile Include="src\manager\IUpdateManager.cpp" />
     <ClCompile Include="src\manager\UpdateManager.cpp" />

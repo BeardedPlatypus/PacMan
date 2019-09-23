@@ -15,14 +15,19 @@ UpdateManager::UpdateManager(state::IGameState* p_game_state,
 
 
 void UpdateManager::Initialise() {
+  this->p_player_entity = IUpdatablePlayerEntity::Construct(this->p_game_state->GetPlayerState());
+
   this->InitialiseCommands();
 }
 
 
 void UpdateManager::Update(float dt) {
-  UpdatePlayer(this->p_game_state->GetPlayerState(),
-               this->p_game_state->GetField(),
-               dt);
+  UpdatePlayerDirection(this->p_player_entity.get(),
+                        this->p_game_state->GetField());
+
+  UpdatePlayerLocation(this->p_player_entity.get(),
+                       this->p_game_state->GetField(),
+                       dt);
 }
 
 
@@ -36,20 +41,42 @@ void UpdateManager::InitialiseCommands() {
 
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
                                                       pacman::controller::keyboard::Scancode::W,
-                                                      commands::GetChangePlayerDirectionCommand(this->p_game_state->GetPlayerState(), 
+                                                      commands::GetChangePlayerDirectionCommand(this->p_player_entity.get(), 
                                                                                                 state::Direction::Up));
+  this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
+                                                      pacman::controller::keyboard::Scancode::W,
+                                                      commands::GetChangePlayerDirectionCommand(this->p_player_entity.get(), 
+                                                                                                std::nullopt));
+
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
                                                       pacman::controller::keyboard::Scancode::A,
-                                                      commands::GetChangePlayerDirectionCommand(this->p_game_state->GetPlayerState(), 
+                                                      commands::GetChangePlayerDirectionCommand(this->p_player_entity.get(), 
                                                                                                 state::Direction::Left));
+
+  this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
+                                                      pacman::controller::keyboard::Scancode::A,
+                                                      commands::GetChangePlayerDirectionCommand(this->p_player_entity.get(), 
+                                                                                                std::nullopt));
+
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
                                                       pacman::controller::keyboard::Scancode::S,
-                                                      commands::GetChangePlayerDirectionCommand(this->p_game_state->GetPlayerState(), 
+                                                      commands::GetChangePlayerDirectionCommand(this->p_player_entity.get(), 
                                                                                                 state::Direction::Down));
+
+  this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
+                                                      pacman::controller::keyboard::Scancode::S,
+                                                      commands::GetChangePlayerDirectionCommand(this->p_player_entity.get(), 
+                                                                                                std::nullopt));
+
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
                                                       pacman::controller::keyboard::Scancode::D,
-                                                      commands::GetChangePlayerDirectionCommand(this->p_game_state->GetPlayerState(), 
+                                                      commands::GetChangePlayerDirectionCommand(this->p_player_entity.get(), 
                                                                                                 state::Direction::Right));
+
+  this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
+                                                      pacman::controller::keyboard::Scancode::D,
+                                                      commands::GetChangePlayerDirectionCommand(this->p_player_entity.get(), 
+                                                                                                std::nullopt));
 
 }
 
