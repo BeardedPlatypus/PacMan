@@ -3,7 +3,11 @@
 
 namespace pacman {
 namespace state {
-
+  
+/// <summary>
+/// <see cref="IEntityAxis"/> describes a position on an axis of an
+/// entity.
+/// </summary>
 class DllExport IEntityAxis {
 public:
   /// <summary>

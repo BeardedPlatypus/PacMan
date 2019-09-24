@@ -6,6 +6,11 @@
 namespace pacman {
 namespace state {
 
+/// <summary>
+/// <see cref="EntityAxis"/> provides a concrete implementation of the 
+/// <see cref="IEntityAxis"/> interface.
+/// </summary>
+/// <seealso cref="IEntityAxis" />
 class EntityAxis final : public IEntityAxis {
 public:  
   /// <summary>
