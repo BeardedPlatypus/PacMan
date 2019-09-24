@@ -39,6 +39,17 @@ private:
 };
 
 
+/// <summary>
+/// Get a new command which changes the direction of the provided 
+/// <paramref cref="p_player_state"/> to the provided 
+/// <paramref cref="direction"/> when executed.
+/// </summary>
+/// <param name="p_player_state"/>A pointer to the player state to be updated.</param>
+/// <param name="direction"/>The direction to which the player state is changed.</param>
+/// <returns>
+/// An <see cref="controller::ICommand"/> which changes the direction 
+/// of the provided player state.
+/// </returns>
 DllExport std::unique_ptr<controller::ICommand> GetChangePlayerDirectionCommand(IUpdatablePlayerEntity* p_player_state,
                                                                                 std::optional<state::Direction> direction);
 

@@ -1,4 +1,5 @@
 #pragma once
+#define DllExport __declspec( dllexport )
 
 #include <memory>
 #include <entity/IEntityState.h>
@@ -10,7 +11,7 @@
 namespace pacman {
 namespace update {
 
-class IUpdatablePlayerEntity {
+class DllExport IUpdatablePlayerEntity {
 public:
   static std::unique_ptr<IUpdatablePlayerEntity> Construct(state::IEntityState* p_player_state);
 
