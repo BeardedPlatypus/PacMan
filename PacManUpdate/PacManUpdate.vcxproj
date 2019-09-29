@@ -193,6 +193,7 @@
     </ClCompile>
     <ClCompile Include="src\commands\ChangePlayerDirectionCommand.cpp" />
     <ClCompile Include="src\commands\QuitCommand.cpp" />
+    <ClCompile Include="src\entity\IPlayerMovementAxis.cpp" />
     <ClCompile Include="src\entity\IUpdatableEntityAxis.cpp" />
     <ClCompile Include="src\entity\IUpdatablePlayerEntity.cpp" />
     <ClCompile Include="src\entity\PlayerMovementAxis.cpp" />
