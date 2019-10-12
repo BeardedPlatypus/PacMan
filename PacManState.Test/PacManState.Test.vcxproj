@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\entity\EntityAxisTest.cpp" />
     <ClCompile Include="src\entity\EntityManagerTest.cpp" />
     <ClCompile Include="src\entity\EntityStateTest.cpp" />
     <ClCompile Include="src\field\FieldTest.cpp" />

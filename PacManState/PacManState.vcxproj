@@ -172,6 +172,7 @@
     <ClCompile Include="PacManState.cpp" />
     <ClCompile Include="src\entity\EntityManager.cpp" />
     <ClCompile Include="src\entity\EntityState.cpp" />
+    <ClCompile Include="src\entity\IEntityAxis.cpp" />
     <ClCompile Include="src\entity\IEntityManager.cpp" />
     <ClCompile Include="src\field\Field.cpp" />
     <ClCompile Include="src\field\IField.cpp" />

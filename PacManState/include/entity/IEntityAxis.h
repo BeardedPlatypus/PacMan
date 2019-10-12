@@ -1,6 +1,8 @@
 #pragma once
 #define DllExport __declspec( dllexport )
 
+#include <memory>
+
 namespace pacman {
 namespace state {
   
@@ -9,7 +11,14 @@ namespace state {
 /// entity.
 /// </summary>
 class DllExport IEntityAxis {
-public:
+public:  
+  /// <summary>
+  /// Construct a new <see cref="IEntityAxis" />.
+  /// </summary>
+  /// <param name="position" >The position. </param>
+  /// <returns>A <see cref="std::unique_ptr"/> with the constructed <see cref="IEntityAxis"/>.</returns>
+  static std::unique_ptr<IEntityAxis> Construct(float position);
+
   /// <summary>
   /// Get the world position on this <see cref="IEntityAxis"/>.
   /// </summary>
