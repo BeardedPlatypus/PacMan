@@ -63,6 +63,15 @@
     <ClInclude Include="include\entity\PlayerMovementAxis.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\state_machine\INode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\state_machine\events\PlayerControlEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\state_machine\Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PacManUpdate.cpp">
@@ -105,6 +114,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\entity\IPlayerMovementAxis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\state_machine\INode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\state_machine\Node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

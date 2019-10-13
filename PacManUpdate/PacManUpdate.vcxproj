@@ -179,6 +179,9 @@
     <ClInclude Include="include\entity\UpdatePlayer.h" />
     <ClInclude Include="include\manager\IUpdateManager.h" />
     <ClInclude Include="include\manager\UpdateManager.h" />
+    <ClInclude Include="include\state_machine\events\PlayerControlEvent.h" />
+    <ClInclude Include="include\state_machine\INode.h" />
+    <ClInclude Include="include\state_machine\Node.h" />
     <ClInclude Include="PacManUpdate.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
@@ -200,8 +203,10 @@
     <ClCompile Include="src\entity\UpdatableEntityAxis.cpp" />
     <ClCompile Include="src\entity\UpdatablePlayerEntity.cpp" />
     <ClCompile Include="src\entity\UpdatePlayer.cpp" />
+    <ClCompile Include="src\state_machine\INode.cpp" />
     <ClCompile Include="src\manager\IUpdateManager.cpp" />
     <ClCompile Include="src\manager\UpdateManager.cpp" />
+    <ClCompile Include="src\state_machine\Node.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
