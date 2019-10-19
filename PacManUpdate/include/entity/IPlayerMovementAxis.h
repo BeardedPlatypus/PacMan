@@ -1,8 +1,10 @@
 #pragma once
+#define DllExport __declspec( dllexport )
 
 #include <memory>
 
-#include "AxisDirection.h"
+#include "entity/AxisDirection.h"
+#include "state_machine/events/PlayerControlEvent.h"
 
 
 namespace pacman {
@@ -14,7 +16,7 @@ namespace update {
 /// <see cref="IUpdatablePlayerEntity"/> which can query this 
 /// <see cref="IPlayerMovementAxis"/>. to determine the next direction.
 /// </summary>
-class IPlayerMovementAxis {
+class DllExport IPlayerMovementAxis {
 public:  
   /// <summary>
   /// Construct a new <see cref="IPlayerMovementAxis"/>.
@@ -41,8 +43,8 @@ public:
   /// <summary>
   /// Change the state with the given event.
   /// </summary>
-  /// <param name="axis_direction">The axis direction.</param>
-  virtual void ChangeState(AxisDirection axis_direction) = 0;
+  /// <param name="control_event">The control event.</param>
+  virtual void ChangeState(state_machine::PlayerControlEvent control_event) = 0;
 };
 
 }

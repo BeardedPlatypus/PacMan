@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\entity\PlayerMovementAxisTest.cpp" />
     <ClCompile Include="src\state_machine\NodeTest.cpp" />
     <ClCompile Include="src\state_machine\StateMachineTest.cpp" />
   </ItemGroup>

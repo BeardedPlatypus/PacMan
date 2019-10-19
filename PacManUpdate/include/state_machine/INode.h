@@ -2,8 +2,9 @@
 #define DllExport __declspec( dllexport )
 
 #include <memory>
-#include <entity/AxisDirection.h>
-#include <state_machine/events/PlayerControlEvent.h>
+#include "entity/AxisDirection.h"
+#include "state_machine/events/PlayerControlEvent.h"
+#include "state_machine/values/PlayerControlValue.h"
 
 
 namespace pacman {
@@ -53,7 +54,9 @@ public:
   virtual void AddConnection(INode<TValue, TEvent>* p_node, TEvent e) = 0;
 };
 
+template class INode<PlayerControlValue, PlayerControlEvent>;
 template class INode<AxisDirection, PlayerControlEvent>;
+
 }
 }
 }

@@ -3,6 +3,8 @@
 #include <memory>
 #include <entity/IEntityAxis.h>
 
+#include "entity/AxisDirection.h"
+
 namespace pacman {
 namespace update {
   
@@ -60,6 +62,18 @@ public:
   /// | (new this)->GetPosition() == this->GetPosition() + d_Pos;
   /// </postcondition>
   virtual void Move(float d_pos) = 0;
+  
+  /// <summary>
+  /// Get the current <see cref="AxisDirection"/>.
+  /// </summary>
+  /// <returns>The current <see cref="AxisDirection"/>.</returns>
+  virtual AxisDirection GetCurrentAxisDirection() const = 0;
+  
+  /// <summary>
+  /// Set the current <see cref="AxisDirection"/> to <paramref name ="new_direction"/>.
+  /// </summary>
+  /// <param name="new_direction">The new direction.</param>
+  virtual void SetCurrentAxisDirection(AxisDirection new_direction) = 0;
 };
 
 }

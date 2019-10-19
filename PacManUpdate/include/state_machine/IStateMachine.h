@@ -15,7 +15,7 @@ namespace state_machine {
 /// <see cref="IStateMachine"/> provides an interface for 
 /// managing and interacting with a set of <see cref="INode"/>.
 /// </summary>
-template<class TValue, class TEvent>
+template <class TValue, class TEvent>
 class DllExport IStateMachine {  
 public:
   /// <summary>
@@ -27,8 +27,11 @@ public:
   /// A <see cref="std::unique_ptr"/> containing the new instance of 
   /// <see cref="IStateMachine"/>.
   /// </returns>
-  static std::unique_ptr<IStateMachine> Construct(std::vector<std::unique_ptr<INode<TValue, TEvent>>>& nodes,
-                                                  int active_node);
+  static std::unique_ptr<IStateMachine<TValue, TEvent>> Construct(
+    std::vector<std::unique_ptr<INode<TValue, TEvent>>>& nodes,
+    int active_node);
+
+  virtual ~IStateMachine() {}
   
   /// <summary>
   /// Get the current value of this <see cref="IStateMachine"/>.
@@ -44,6 +47,7 @@ public:
 };
 
 template class IStateMachine<AxisDirection, PlayerControlEvent>;
+template class IStateMachine<PlayerControlValue, PlayerControlEvent>;
 
 }
 }

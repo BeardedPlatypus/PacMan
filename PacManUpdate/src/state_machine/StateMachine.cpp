@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "state_machine/StateMachine.h"
 
+
 namespace pacman {
 namespace update {
 namespace state_machine {
@@ -24,7 +25,11 @@ TValue StateMachine<TValue, TEvent>::GetCurrentValue() const {
 
 template<class TValue, class TEvent>
 void StateMachine<TValue, TEvent>::Move(TEvent e) {
-  this->p_active_node = this->p_active_node->GetConnectedNode(e);
+  INode<TValue, TEvent>* p_next_node = this->p_active_node->GetConnectedNode(e);
+
+  if (p_next_node != nullptr) {
+    this->p_active_node = p_next_node;
+  }
 }
 
 

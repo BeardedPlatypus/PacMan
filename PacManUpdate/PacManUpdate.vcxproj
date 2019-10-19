@@ -184,6 +184,7 @@
     <ClInclude Include="include\state_machine\IStateMachine.h" />
     <ClInclude Include="include\state_machine\Node.h" />
     <ClInclude Include="include\state_machine\StateMachine.h" />
+    <ClInclude Include="include\state_machine\values\PlayerControlValue.h" />
     <ClInclude Include="PacManUpdate.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

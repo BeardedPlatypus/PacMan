@@ -8,9 +8,18 @@ namespace pacman {
 namespace update {
 namespace state_machine {
 
+/// <summary>
+/// <see cref="StateMachine"/> provides an implementation of the 
+/// <see cref="IStateMachine"/> interface.
+/// </summary>
 template<class TValue, class TEvent>
 class StateMachine : public IStateMachine<TValue, TEvent> {
-public:
+public:  
+  /// <summary>
+  /// Construct a new <see cref="StateMachine"/>.
+  /// </summary>
+  /// <param name="nodes">The nodes of this new <see cref="StateMachine"/>.</param>
+  /// <param name="active_node">The active node.</param>
   StateMachine(std::vector<std::unique_ptr<INode<TValue, TEvent>>>& nodes,
                int active_node);
 
@@ -30,7 +39,9 @@ private:
   INode<TValue, TEvent>* p_active_node;
 };
 
+
 template class StateMachine<AxisDirection, PlayerControlEvent>;
+template class StateMachine<PlayerControlValue, PlayerControlEvent>;
 
 }
 }

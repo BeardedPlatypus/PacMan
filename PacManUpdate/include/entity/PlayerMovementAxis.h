@@ -1,6 +1,8 @@
 #pragma once
 
 #include "IPlayerMovementAxis.h"
+#include "state_machine/values/PlayerControlValue.h"
+#include "state_machine/IStateMachine.h"
 
 
 namespace pacman {
@@ -20,33 +22,29 @@ public:
 
   void Update(float dt) final;
   AxisDirection GetNextDirection() const final;
-  void ChangeState(AxisDirection changedEventDirection);
+  void ChangeState(state_machine::PlayerControlEvent control_event);
 
 private:  
   /// <summary>
-  /// Set of states this <see cref="PlayerMovementAxis"/> can be in.
+  /// Initialise the state machine of this <see cref="PlayerMovementAxis"/>.
   /// </summary>
-  enum class InternalState {
-    NoPressed,
-    PositivePressed,
-    PositiveReleased,
-    NegativePressed,
-    NegativeReleased,
-    PositiveThenNegativePressed,
-    NegativeThenPositivePressed,
-  };
-  
+  void InitialiseStateMachine();
+
   /// <summary>
-  /// The current state of this <see cref="PlayerMovementAxis"/>.
+  /// A pointer to the state machine of this <see cref="PlayerMovementAxis"/>.
   /// </summary>
-  InternalState current_state;
+  std::unique_ptr<state_machine::IStateMachine<state_machine::PlayerControlValue,
+                                               state_machine::PlayerControlEvent>> p_state;
   
   /// <summary>
   /// The time elapsed since going into a release key press.
   /// </summary>
   float time_elapsed;
-
-  const float sticky_key_time = 0.05;
+  
+  /// <summary>
+  /// The sticky key time.
+  /// </summary>
+  const float sticky_key_time = 0.05F;
 };
 
 }

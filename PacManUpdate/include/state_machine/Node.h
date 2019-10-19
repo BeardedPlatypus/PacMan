@@ -34,6 +34,7 @@ private:
 };
 
 template class Node<AxisDirection, PlayerControlEvent>;
+template class Node<PlayerControlValue, PlayerControlEvent>;
 
 }
 }
