@@ -18,90 +18,130 @@ state::Direction GetOppositeDirection(state::Direction dir) {
   }
 }
 
-void UpdatePlayerDirection(IUpdatablePlayerEntity* p_player_entity,
-                           state::field::IField* p_field) {
-  std::optional<state::Direction> opt_next_direction = p_player_entity->GetNextDirection();
-  if (!opt_next_direction.has_value()) return;
 
-  state::Direction next_direction = opt_next_direction.value();
-  state::Direction moving_direction = p_player_entity->GetMovingDirection();
+bool ShouldFlipDirection(AxisDirection next_dir,
+                         AxisDirection cur_dir) {
+  return next_dir != AxisDirection::None && next_dir != cur_dir;
+}
 
-  if (moving_direction == next_direction) return;
-  if (moving_direction == GetOppositeDirection(next_direction)) {
-    p_player_entity->SetMovingDirection(next_direction);
-    return;
-  }
 
-  IUpdatableEntityAxis* p_x_axis = p_player_entity->GetXAxis();
-  IUpdatableEntityAxis* p_y_axis = p_player_entity->GetYAxis();
+bool HasOtherDirection(IUpdatablePlayerEntity* p_player_entity) {
+  return p_player_entity->GetInactivePlayerMovementAxis()->GetNextDirection() != AxisDirection::None;
+}
 
-  IUpdatableEntityAxis* p_active_axis;
-  if (moving_direction == state::Direction::Up ||
-      moving_direction == state::Direction::Down) {
-    p_active_axis = p_y_axis;
-  }
-  else {
-    p_active_axis = p_x_axis;
-  }
 
-  if (abs(p_active_axis->GetPosition() - p_active_axis->GetCurrentIndex()) > 0.05) {
-    return;
-  }
+bool IsAtTileCenter(IUpdatablePlayerEntity* p_player_entity) {
+  return abs(p_player_entity->GetActiveAxis()->GetPosition() -
+             p_player_entity->GetActiveAxis()->GetCurrentIndex()) < 0.05;
+}
 
-  int next_x_pos = p_x_axis->GetCurrentIndex();
-  int next_y_pos = p_y_axis->GetCurrentIndex();
 
-  switch (next_direction)
+AxisDirection GetOppositeDirection(AxisDirection direction) {
+  switch (direction)
   {
-  case state::Direction::Up:
-    next_y_pos -= 1;
-    break;
-  case state::Direction::Down:
-    next_y_pos += 1;
-    break;
-  case state::Direction::Left:
-    next_x_pos -= 1;
-    break;
-  case state::Direction::Right:
-    next_x_pos += 1;
-    break;
+  case AxisDirection::Positive:
+    return AxisDirection::Negative;
+  case AxisDirection::Negative:
+    return AxisDirection::Positive;
+  case AxisDirection::None:
   default:
-    break;
-  }
-
-  if (p_field->GetTileType(next_x_pos, next_y_pos) == state::field::TileType::Space) {
-    p_player_entity->SetMovingDirection(next_direction);
+    return AxisDirection::None;
   }
 }
 
+
+void SetActiveDirection(IUpdatablePlayerEntity* p_player_entity,
+                        AxisDirection next_direction) {
+  p_player_entity->GetActiveAxis()->SetCurrentAxisDirection(next_direction);
+}
+
+void UpdatePlayerDirection(IUpdatablePlayerEntity* p_player_entity,
+                           state::field::IField* p_field) {
+  AxisDirection next_active_direction =
+    p_player_entity->GetActivePlayerMovementAxis()->GetNextDirection();
+  AxisDirection cur_active_direction =
+    p_player_entity->GetActiveAxis()->GetCurrentAxisDirection();
+
+  if (ShouldFlipDirection(next_active_direction, cur_active_direction)) {
+    SetActiveDirection(p_player_entity, next_active_direction);
+    return;
+  }
+
+  if (!IsAtTileCenter(p_player_entity) ||
+      !HasOtherDirection(p_player_entity)) {
+    return;
+  }
+
+  IUpdatableEntityAxis* p_active_axis = 
+    p_player_entity->GetActiveAxis();
+
+  int next_pos_x_location = p_player_entity->GetXAxis()->GetCurrentIndex();
+  int next_pos_y_location = p_player_entity->GetYAxis()->GetCurrentIndex();
+
+  if (p_player_entity->GetActiveAxisType() == AxisType::X) {
+    switch (p_player_entity->GetPlayerMovementYAxis()->GetNextDirection())
+    {
+    case AxisDirection::Positive:
+      next_pos_y_location += 1;
+      break;
+    case AxisDirection::Negative:
+      next_pos_y_location -= 1;
+      break;
+    case AxisDirection::None:
+    default:
+      break;
+    }
+  }
+  else {
+    switch (p_player_entity->GetPlayerMovementXAxis()->GetNextDirection())
+    {
+    case AxisDirection::Positive:
+      next_pos_x_location += 1;
+      break;
+    case AxisDirection::Negative:
+      next_pos_x_location -= 1;
+      break;
+    case AxisDirection::None:
+    default:
+      break;
+    }
+  }
+
+  if (p_field->GetTileType(next_pos_x_location, next_pos_y_location) == state::field::TileType::Space) {
+    if (p_player_entity->GetActiveAxisType() == AxisType::X)
+      p_player_entity->SetActiveAxisType(AxisType::Y);
+    else
+      p_player_entity->SetActiveAxisType(AxisType::X);
+  }
+}
 
 
 void UpdatePlayerLocation(IUpdatablePlayerEntity* p_player_state,
                           state::field::IField* p_field,
                           float dt) {
-  state::Direction player_direction = p_player_state->GetMovingDirection();
   IUpdatableEntityAxis* p_x_axis = p_player_state->GetXAxis();
   IUpdatableEntityAxis* p_y_axis = p_player_state->GetYAxis();
 
-  bool is_move_vertical;
-  IUpdatableEntityAxis* p_active_axis;
-  if (player_direction == state::Direction::Up ||
-    player_direction == state::Direction::Down) {
-    p_active_axis = p_y_axis;
-    is_move_vertical = true;
-  }
-  else {
-    p_active_axis = p_x_axis;
-    is_move_vertical = false;
-  }
+  IUpdatableEntityAxis* p_active_axis = p_player_state->GetActiveAxis();
+  bool is_move_vertical = p_player_state->GetActiveAxisType() == AxisType::Y;
 
+  int direction_val;
 
-  int direction_val = 1;
-
-  if (player_direction == state::Direction::Up ||
-    player_direction == state::Direction::Left) {
+  switch (p_active_axis->GetCurrentAxisDirection())
+  {
+  case AxisDirection::Negative:
     direction_val = -1;
+    break;
+  case AxisDirection::Positive:
+    direction_val = 1;
+    break;
+  case AxisDirection::None:
+    direction_val = 0;
+    break;
+  default:
+    break;
   }
+
 
   float d_pos = p_player_state->GetSpeed() * dt;
 

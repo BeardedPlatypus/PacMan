@@ -170,6 +170,7 @@
     <ClInclude Include="include\commands\ChangePlayerDirectionCommand.h" />
     <ClInclude Include="include\commands\QuitCommand.h" />
     <ClInclude Include="include\entity\AxisDirection.h" />
+    <ClInclude Include="include\entity\AxisType.h" />
     <ClInclude Include="include\entity\IPlayerMovementAxis.h" />
     <ClInclude Include="include\entity\IUpdatablePlayerEntity.h" />
     <ClInclude Include="include\entity\IUpdatableEntityAxis.h" />

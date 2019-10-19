@@ -6,20 +6,20 @@ namespace pacman {
 namespace update {
 namespace commands {
 
-ChangePlayerDirectionCommand::ChangePlayerDirectionCommand(IUpdatablePlayerEntity* p_player_state,
-                                                           std::optional<state::Direction> direction) : 
-    p_player_state(p_player_state), 
-    direction(direction) {}
+ChangePlayerDirectionCommand::ChangePlayerDirectionCommand(IPlayerMovementAxis* p_axis,
+                                                           state_machine::PlayerControlEvent direction_changed_event) : 
+    p_movement_axis(p_axis), 
+    direction_changed_event(direction_changed_event) {}
 
 
 void ChangePlayerDirectionCommand::Execute() {
-  this->p_player_state->SetNextDirection(this->direction);
+  this->p_movement_axis->ChangeState(this->direction_changed_event);
 }
 
 
-std::unique_ptr<controller::ICommand> GetChangePlayerDirectionCommand(IUpdatablePlayerEntity* p_player_state,
-                                                                      std::optional<state::Direction> direction) {
-  return std::make_unique<ChangePlayerDirectionCommand>(p_player_state, direction);
+std::unique_ptr<controller::ICommand> GetChangePlayerDirectionCommand(IPlayerMovementAxis* p_axis,
+                                                                      state_machine::PlayerControlEvent direction_changed_event) {
+  return std::make_unique<ChangePlayerDirectionCommand>(p_axis, direction_changed_event);
 }
 
 }

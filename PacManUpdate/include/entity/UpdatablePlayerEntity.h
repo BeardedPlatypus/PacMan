@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include "IUpdatablePlayerEntity.h"
 
 namespace pacman {
@@ -9,25 +10,31 @@ class UpdatablePlayerEntity final : public IUpdatablePlayerEntity {
 public:
   UpdatablePlayerEntity(state::IEntityState* p_player_state);
 
+  inline AxisType GetActiveAxisType() const final;
+  inline void SetActiveAxisType(AxisType new_active_axis_type) final;
+
   inline IUpdatableEntityAxis* GetXAxis() const final;
   inline IUpdatableEntityAxis* GetYAxis() const final;
+  inline IUpdatableEntityAxis* GetActiveAxis() const final;
+
+  inline IPlayerMovementAxis* GetPlayerMovementXAxis() const final;
+  inline IPlayerMovementAxis* GetPlayerMovementYAxis() const final;
+  inline IPlayerMovementAxis* GetActivePlayerMovementAxis() const final;
+  inline IPlayerMovementAxis* GetInactivePlayerMovementAxis() const final;
 
   inline float GetSpeed() const final;
 
   inline state::Direction GetMovingDirection() const final;
-  inline void SetMovingDirection(state::Direction direction) final;
 
-  inline std::optional<state::Direction> GetNextDirection() const final;
-  inline void SetNextDirection(std::optional<state::Direction> direction) final;
+  void Update(float dt) final;
 
 private:
   state::IEntityState* p_player_state;
 
-  std::unique_ptr<IUpdatableEntityAxis> p_x_axis;
-  std::unique_ptr<IUpdatableEntityAxis> p_y_axis;
+  int active_axis;
 
-
-  std::optional<state::Direction> next_direction;
+  std::array<std::unique_ptr<IUpdatableEntityAxis>, 2> axii;
+  std::array<std::unique_ptr<IPlayerMovementAxis>, 2> movement_axii;
 };
 
 }
