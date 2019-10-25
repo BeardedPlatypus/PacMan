@@ -69,12 +69,10 @@ void PlayerMovementAxis::Update(float dt) {
   if (this->p_state->GetCurrentValue() == state_machine::PlayerControlValue::NegativeSticky ||
       this->p_state->GetCurrentValue() == state_machine::PlayerControlValue::PositiveSticky) {
 
+    this->time_elapsed += dt;
     if (this->time_elapsed >= this->sticky_key_time) {
       this->p_state->Move(state_machine::PlayerControlEvent::TimeOut);
       this->time_elapsed = 0.F;
-    }
-    else {
-      this->time_elapsed += dt;
     }
   }
 }
