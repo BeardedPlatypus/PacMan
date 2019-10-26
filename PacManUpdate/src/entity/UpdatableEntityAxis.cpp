@@ -25,6 +25,30 @@ int UpdatableEntityAxis::GetPreviousIndex() const {
 }
 
 
+int UpdatableEntityAxis::GetNextTileCenter() const {
+  float pos = this->GetPosition();
+  
+
+  if (this->GetCurrentAxisDirection() == AxisDirection::Positive) {
+    return (int)ceilf(pos);
+  }
+  else {
+    return (int)floorf(pos);
+  }
+}
+
+
+int UpdatableEntityAxis::GetPreviousTileCenter() const {
+  float pos = this->GetPosition();
+  if (this->GetCurrentAxisDirection() == AxisDirection::Positive) {
+    return (int)floorf(pos);
+  }
+  else {
+    return (int)ceilf(pos);
+  }
+}
+
+
 void UpdatableEntityAxis::Move(float d_pos) {
   this->previous_index = this->GetCurrentIndex();
   this->p_axis->SetPosition(this->GetPosition() + d_pos);

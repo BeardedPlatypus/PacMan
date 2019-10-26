@@ -13,6 +13,8 @@ public:
   inline float GetPosition() const final;
   inline int GetCurrentIndex() const final;
   inline int GetPreviousIndex() const final;
+  int GetNextTileCenter() const final;
+  int GetPreviousTileCenter() const final;
 
   void Move(float d_pos) final;
 

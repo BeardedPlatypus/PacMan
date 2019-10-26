@@ -178,6 +178,7 @@
     <ClInclude Include="include\entity\UpdatableEntityAxis.h" />
     <ClInclude Include="include\entity\UpdatablePlayerEntity.h" />
     <ClInclude Include="include\entity\UpdatePlayer.h" />
+    <ClInclude Include="include\entity\util\PlayerUpdateUtils.h" />
     <ClInclude Include="include\manager\IUpdateManager.h" />
     <ClInclude Include="include\manager\UpdateManager.h" />
     <ClInclude Include="include\state_machine\events\PlayerControlEvent.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="src\entity\UpdatableEntityAxis.cpp" />
     <ClCompile Include="src\entity\UpdatablePlayerEntity.cpp" />
     <ClCompile Include="src\entity\UpdatePlayer.cpp" />
+    <ClCompile Include="src\entity\util\PlayerUpdateUtils.cpp" />
     <ClCompile Include="src\state_machine\INode.cpp" />
     <ClCompile Include="src\manager\IUpdateManager.cpp" />
     <ClCompile Include="src\manager\UpdateManager.cpp" />

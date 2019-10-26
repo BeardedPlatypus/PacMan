@@ -23,9 +23,6 @@ void UpdateManager::Initialise() {
 
 void UpdateManager::Update(float dt) {
   this->p_player_entity->Update(dt);
-  UpdatePlayerDirection(this->p_player_entity.get(),
-                        this->p_game_state->GetField());
-
   UpdatePlayerLocation(this->p_player_entity.get(),
                        this->p_game_state->GetField(),
                        dt);

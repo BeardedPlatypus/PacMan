@@ -7,14 +7,24 @@
 
 namespace pacman {
 namespace update {
-  void UpdatePlayerDirection(IUpdatablePlayerEntity* p_player_entity,
-                             state::field::IField* p_field);
-
-
   /// <summary>
-  /// Update the <paramref cref="p_player_state" /> given the 
-  /// <paramref cref="p_field" /> and the passed time <paramref cref="dt" />.
+  /// Update the location and orientation of the 
+  /// <paramref name="p_player_entity"/>, given the <paramref name="p_field"/>
+  /// and time passed <paramref name="dt"/>.
   /// </summary>
+  /// <param name="p_player_entity"/>
+  /// A pointer to the <see cref="IUpdatablePlayerEntity"/> to be updated.
+  /// </param>
+  /// <param name="p_field"/>
+  /// A pointer to the <see cref="IField"/> that the 
+  /// <paramref name="p_player_entity"/> exists in.
+  /// </param>
+  /// <param name="dt"/> The time that has passed since the last update. </param>
+  /// <precondition>
+  /// | p_player_entity != null_ptr
+  /// | p_field != null_ptr
+  /// | dt >= 0.F
+  /// </precondition>
   void UpdatePlayerLocation(IUpdatablePlayerEntity* p_player_entity,
                             state::field::IField* p_field,
                             float dt);

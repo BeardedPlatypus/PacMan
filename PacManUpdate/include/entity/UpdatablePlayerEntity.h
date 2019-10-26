@@ -21,6 +21,7 @@ public:
   inline IPlayerMovementAxis* GetPlayerMovementYAxis() const final;
   inline IPlayerMovementAxis* GetActivePlayerMovementAxis() const final;
   inline IPlayerMovementAxis* GetInactivePlayerMovementAxis() const final;
+  inline void SwapActiveAxis() final;
 
   inline float GetSpeed() const final;
 

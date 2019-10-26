@@ -91,6 +91,11 @@ public:
   /// </summary>
   /// <returns>The axis on which pacman is NOT travelling.</returns>
   virtual IPlayerMovementAxis* GetInactivePlayerMovementAxis() const = 0;
+  
+  /// <summary>
+  /// Swap the active and inactive axii.
+  /// </summary>
+  virtual void SwapActiveAxis() = 0;
 
   /// <summary>
   /// Get the current moving direction of this 

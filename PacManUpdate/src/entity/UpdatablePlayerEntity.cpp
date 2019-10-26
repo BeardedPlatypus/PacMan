@@ -74,6 +74,11 @@ IPlayerMovementAxis* UpdatablePlayerEntity::GetInactivePlayerMovementAxis() cons
 }
 
 
+void UpdatablePlayerEntity::SwapActiveAxis() {
+  this->active_axis = abs(this->active_axis - 1);
+}
+
+
 float UpdatablePlayerEntity::GetSpeed() const {
   return this->p_player_state->GetSpeed();
 }

@@ -54,6 +54,24 @@ public:
   virtual int GetPreviousIndex() const = 0;
   
   /// <summary>
+  /// Get the position of the next tile center on this <See cref="IUpdatableEntityAxis"/> 
+  /// given the current direction of this <see cref="IUpdatableEntityAxis"/>.
+  /// </summary>
+  /// <returns>
+  /// The integer corresponding with the position of the next tile center.
+  /// </returns>
+  virtual int GetNextTileCenter() const = 0;
+
+  /// <summary>
+  /// Get the position of the previous tile center on this <See cref="IUpdatableEntityAxis"/> 
+  /// given the current direction of this <see cref="IUpdatableEntityAxis"/>.
+  /// </summary>
+  /// <returns>
+  /// The integer corresponding with the position of the previous tile center.
+  /// </returns>
+  virtual int GetPreviousTileCenter() const = 0;
+  
+  /// <summary>
   /// Move the position of this <see cref="IUpdatableEntityAxis" /> by
   /// the specific <paramref name="d_pos" />.
   /// </summary>
