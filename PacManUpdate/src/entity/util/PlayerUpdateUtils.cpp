@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "entity/util/PlayerUpdateUtils.h"
 
-#include <iostream>
 
 namespace pacman {
 namespace update {
@@ -83,12 +82,12 @@ bool CanMoveInNextDirectionAtNextTileCenter(IUpdatablePlayerEntity* p_player_ent
 
   int direction_val = GetDirectionValue(p_player_entity->GetInactivePlayerMovementAxis()->GetNextDirection());
   if (p_player_entity->GetActiveAxisType() == AxisType::X) {
-    next_x = x_axis->GetPreviousTileCenter() + 1;
+    next_x = x_axis->GetNextTileCenter();
     next_y = y_axis->GetCurrentIndex() + direction_val;
   }
   else {
     next_x = x_axis->GetCurrentIndex() + direction_val;
-    next_y = y_axis->GetPreviousTileCenter();
+    next_y = y_axis->GetNextTileCenter();
   }
 
   return CanMoveToPosition(p_field, next_x, next_y);
