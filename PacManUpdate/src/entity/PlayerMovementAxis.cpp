@@ -77,10 +77,6 @@ void PlayerMovementAxis::Update(float dt) {
 
 
 void PlayerMovementAxis::HandleControlEvents() {
-  if (this->frameEvents.size() > 1) {
-    auto durp = true;
-  }
-
   for (auto e : this->frameEvents) {
     this->p_state->Move(e);
   }
