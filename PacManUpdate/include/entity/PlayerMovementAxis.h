@@ -45,6 +45,11 @@ private:
   /// The sticky key time.
   /// </summary>
   const float sticky_key_time = 0.05F;
+
+  void HandleTimeOut(float dt);
+  void HandleControlEvents();
+
+  std::vector<state_machine::PlayerControlEvent> frameEvents;
 };
 
 }

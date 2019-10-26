@@ -10,8 +10,10 @@ namespace state_machine {
 /// events of the player control state machine.
 /// </summary>
 enum class DllExport PlayerControlEvent {
-  PositiveKey,
-  NegativeKey,
+  PositiveKeyPress,
+  PositiveKeyRelease,
+  NegativeKeyPress,
+  NegativeKeyRelease,
   TimeOut,
 };
 

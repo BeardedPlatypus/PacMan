@@ -32,61 +32,61 @@ public:
   static std::vector<PlayerMovementAxisStateMachineTestValues> GetTestValues() {
     auto result = std::vector<PlayerMovementAxisStateMachineTestValues>();
 
-    std::vector<state_machine::PlayerControlEvent> valuesPositive = { state_machine::PlayerControlEvent::PositiveKey };
+    std::vector<state_machine::PlayerControlEvent> valuesPositive = { state_machine::PlayerControlEvent::PositiveKeyPress };
     result.push_back(PlayerMovementAxisStateMachineTestValues(valuesPositive, AxisDirection::Positive));
 
     std::vector<state_machine::PlayerControlEvent> valuesPositiveSticky = {
-      state_machine::PlayerControlEvent::PositiveKey,
-      state_machine::PlayerControlEvent::PositiveKey
+      state_machine::PlayerControlEvent::PositiveKeyPress,
+      state_machine::PlayerControlEvent::PositiveKeyRelease
     };
     result.push_back(PlayerMovementAxisStateMachineTestValues(valuesPositiveSticky, AxisDirection::Positive));
 
     std::vector<state_machine::PlayerControlEvent> valuesPositiveNegative = {
-      state_machine::PlayerControlEvent::PositiveKey,
-      state_machine::PlayerControlEvent::NegativeKey,
+      state_machine::PlayerControlEvent::PositiveKeyPress,
+      state_machine::PlayerControlEvent::NegativeKeyPress,
     };
     result.push_back(PlayerMovementAxisStateMachineTestValues(valuesPositiveNegative, AxisDirection::Negative));
 
     std::vector<state_machine::PlayerControlEvent> valuesPositiveNegativeNegative = {
-      state_machine::PlayerControlEvent::PositiveKey,
-      state_machine::PlayerControlEvent::NegativeKey,
-      state_machine::PlayerControlEvent::NegativeKey,
+      state_machine::PlayerControlEvent::PositiveKeyPress,
+      state_machine::PlayerControlEvent::NegativeKeyPress,
+      state_machine::PlayerControlEvent::NegativeKeyRelease,
     };
     result.push_back(PlayerMovementAxisStateMachineTestValues(valuesPositiveNegativeNegative, AxisDirection::Positive));
 
     std::vector<state_machine::PlayerControlEvent> valuesPositiveNegativePositive = {
-      state_machine::PlayerControlEvent::PositiveKey,
-      state_machine::PlayerControlEvent::NegativeKey,
-      state_machine::PlayerControlEvent::PositiveKey,
+      state_machine::PlayerControlEvent::PositiveKeyPress,
+      state_machine::PlayerControlEvent::NegativeKeyPress,
+      state_machine::PlayerControlEvent::PositiveKeyRelease,
     };
     result.push_back(PlayerMovementAxisStateMachineTestValues(valuesPositiveNegativePositive, AxisDirection::Negative));
 
-    std::vector<state_machine::PlayerControlEvent> valuesNegative = { state_machine::PlayerControlEvent::NegativeKey };
+    std::vector<state_machine::PlayerControlEvent> valuesNegative = { state_machine::PlayerControlEvent::NegativeKeyPress };
     result.push_back(PlayerMovementAxisStateMachineTestValues(valuesNegative, AxisDirection::Negative));
 
     std::vector<state_machine::PlayerControlEvent> valuesNegativeSticky = {
-      state_machine::PlayerControlEvent::NegativeKey,
-      state_machine::PlayerControlEvent::NegativeKey
+      state_machine::PlayerControlEvent::NegativeKeyPress,
+      state_machine::PlayerControlEvent::NegativeKeyRelease
     };
     result.push_back(PlayerMovementAxisStateMachineTestValues(valuesNegativeSticky, AxisDirection::Negative));
 
     std::vector<state_machine::PlayerControlEvent> valuesNegativePositive = {
-      state_machine::PlayerControlEvent::NegativeKey,
-      state_machine::PlayerControlEvent::PositiveKey,
+      state_machine::PlayerControlEvent::NegativeKeyPress,
+      state_machine::PlayerControlEvent::PositiveKeyPress,
     };
     result.push_back(PlayerMovementAxisStateMachineTestValues(valuesNegativePositive, AxisDirection::Positive));
 
     std::vector<state_machine::PlayerControlEvent> valuesNegativePositiveNegative = {
-      state_machine::PlayerControlEvent::NegativeKey,
-      state_machine::PlayerControlEvent::PositiveKey,
-      state_machine::PlayerControlEvent::NegativeKey,
+      state_machine::PlayerControlEvent::NegativeKeyPress,
+      state_machine::PlayerControlEvent::PositiveKeyPress,
+      state_machine::PlayerControlEvent::NegativeKeyRelease,
     };
     result.push_back(PlayerMovementAxisStateMachineTestValues(valuesNegativePositiveNegative, AxisDirection::Positive));
 
     std::vector<state_machine::PlayerControlEvent> valuesNegativePositivePositive = {
-      state_machine::PlayerControlEvent::NegativeKey,
-      state_machine::PlayerControlEvent::PositiveKey,
-      state_machine::PlayerControlEvent::PositiveKey,
+      state_machine::PlayerControlEvent::NegativeKeyPress,
+      state_machine::PlayerControlEvent::PositiveKeyPress,
+      state_machine::PlayerControlEvent::PositiveKeyRelease,
     };
     result.push_back(PlayerMovementAxisStateMachineTestValues(valuesNegativePositivePositive, AxisDirection::Negative));
 
@@ -105,6 +105,7 @@ TEST_P(PlayerMovementAxisStateMachineTest, ReturnsCorrectDirection) {
   // Call
   for (state_machine::PlayerControlEvent control_event : events) {
     p_axis->ChangeState(control_event);
+    p_axis->Update(0.F);
   }
 
   // Assert
@@ -118,12 +119,13 @@ INSTANTIATE_TEST_SUITE_P(PlayerMovementAxisTest,
 
 
 
-class PlayerMovementAxisTimeOutTest : public ::testing::TestWithParam<state_machine::PlayerControlEvent> {
+
+class PlayerMovementAxisTimeOutTest : public ::testing::TestWithParam<std::vector<state_machine::PlayerControlEvent>> {
 public:
-  static std::vector<state_machine::PlayerControlEvent> GetTestValues() {
-    std::vector<state_machine::PlayerControlEvent> result = {
-      state_machine::PlayerControlEvent::NegativeKey,
-      state_machine::PlayerControlEvent::PositiveKey,
+  static std::vector<std::vector<state_machine::PlayerControlEvent>> GetTestValues() {
+    std::vector<std::vector<state_machine::PlayerControlEvent>> result = {
+      { state_machine::PlayerControlEvent::NegativeKeyPress, state_machine::PlayerControlEvent::NegativeKeyRelease },
+      { state_machine::PlayerControlEvent::PositiveKeyPress, state_machine::PlayerControlEvent::PositiveKeyRelease },
     };
 
     return result;
@@ -134,11 +136,14 @@ public:
 TEST_P(PlayerMovementAxisTimeOutTest, UpdateCorrectlyTimesOut) {
   // Setup
   auto p_axis = IPlayerMovementAxis::Construct();
-  state_machine::PlayerControlEvent event_type = this->GetParam();
+  std::vector<state_machine::PlayerControlEvent> events = this->GetParam();
 
   // bring the axis in a timed out state;
-  p_axis->ChangeState(event_type);
-  p_axis->ChangeState(event_type);
+  for (auto e : events) {
+    p_axis->ChangeState(e);
+    p_axis->Update(0.F);
+  }
+
 
   // Call
   p_axis->Update(100.F);

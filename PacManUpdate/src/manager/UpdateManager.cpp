@@ -43,41 +43,41 @@ void UpdateManager::InitialiseCommands() {
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
                                                       pacman::controller::keyboard::Scancode::W,
                                                       commands::GetChangePlayerDirectionCommand(this->p_player_entity->GetPlayerMovementYAxis(), 
-                                                                                                state_machine::PlayerControlEvent::NegativeKey));
+                                                                                                state_machine::PlayerControlEvent::NegativeKeyPress));
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
                                                       pacman::controller::keyboard::Scancode::W,
                                                       commands::GetChangePlayerDirectionCommand(this->p_player_entity->GetPlayerMovementYAxis(), 
-                                                                                                state_machine::PlayerControlEvent::NegativeKey));
+                                                                                                state_machine::PlayerControlEvent::NegativeKeyRelease));
 
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
                                                       pacman::controller::keyboard::Scancode::A,
                                                       commands::GetChangePlayerDirectionCommand(this->p_player_entity->GetPlayerMovementXAxis(), 
-                                                                                                state_machine::PlayerControlEvent::NegativeKey));
+                                                                                                state_machine::PlayerControlEvent::NegativeKeyPress));
 
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
                                                       pacman::controller::keyboard::Scancode::A,
                                                       commands::GetChangePlayerDirectionCommand(this->p_player_entity->GetPlayerMovementXAxis(), 
-                                                                                                state_machine::PlayerControlEvent::NegativeKey));
+                                                                                                state_machine::PlayerControlEvent::NegativeKeyRelease));
 
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
                                                       pacman::controller::keyboard::Scancode::S,
                                                       commands::GetChangePlayerDirectionCommand(this->p_player_entity->GetPlayerMovementYAxis(), 
-                                                                                                state_machine::PlayerControlEvent::PositiveKey));
+                                                                                                state_machine::PlayerControlEvent::PositiveKeyPress));
 
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
                                                       pacman::controller::keyboard::Scancode::S,
                                                       commands::GetChangePlayerDirectionCommand(this->p_player_entity->GetPlayerMovementYAxis(), 
-                                                                                                state_machine::PlayerControlEvent::PositiveKey));
+                                                                                                state_machine::PlayerControlEvent::PositiveKeyRelease));
 
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyDown,
                                                       pacman::controller::keyboard::Scancode::D,
                                                       commands::GetChangePlayerDirectionCommand(this->p_player_entity->GetPlayerMovementXAxis(), 
-                                                                                                state_machine::PlayerControlEvent::PositiveKey));
+                                                                                                state_machine::PlayerControlEvent::PositiveKeyPress));
 
   this->p_controller_manager->RegisterKeyboardCommand(pacman::controller::KeyboardEventType::KeyUp,
                                                       pacman::controller::keyboard::Scancode::D,
                                                       commands::GetChangePlayerDirectionCommand(this->p_player_entity->GetPlayerMovementXAxis(), 
-                                                                                                state_machine::PlayerControlEvent::PositiveKey));
+                                                                                                state_machine::PlayerControlEvent::PositiveKeyRelease));
 }
 
 }

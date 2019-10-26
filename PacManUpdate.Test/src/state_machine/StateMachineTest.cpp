@@ -42,7 +42,7 @@ TEST(StateMachineTest, Move_MovesActiveNode) {
 
   auto p_node1 = INode<AxisDirection, PlayerControlEvent>::Construct(AxisDirection::None);
 
-  PlayerControlEvent expected_event = PlayerControlEvent::NegativeKey;
+  PlayerControlEvent expected_event = PlayerControlEvent::NegativeKeyPress;
   p_node1->AddConnection(p_node0.get(), expected_event);
 
   std::vector<std::unique_ptr<INode<AxisDirection, PlayerControlEvent>>> nodes = {};

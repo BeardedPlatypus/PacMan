@@ -25,7 +25,7 @@ TEST(NodeTest, Constructor_ExpectedValues) {
 TEST(NodeTest, GetConnectedNode_ExpectedValue) {
   // Setup
   auto p_node = INode<AxisDirection, PlayerControlEvent>::Construct(AxisDirection::None);
-  auto e = PlayerControlEvent::NegativeKey;
+  auto e = PlayerControlEvent::NegativeKeyPress;
 
   // Call
   INode<AxisDirection, PlayerControlEvent>* result = p_node->GetConnectedNode(e);
@@ -40,7 +40,7 @@ TEST(NodeTest, AddConnection_ExpectedValue) {
   auto p_node = INode<AxisDirection, PlayerControlEvent>::Construct(AxisDirection::None);
 
   auto p_connected_node = INode<AxisDirection, PlayerControlEvent>::Construct(AxisDirection::None);
-  auto e = PlayerControlEvent::NegativeKey;
+  auto e = PlayerControlEvent::NegativeKeyPress;
 
   p_node->AddConnection(p_connected_node.get(), e);
 
