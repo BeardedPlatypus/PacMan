@@ -44,7 +44,7 @@ private:
   /// <summary>
   /// The sticky key time.
   /// </summary>
-  const float sticky_key_time = 0.05F;
+  const float sticky_key_time = 0.25F;
 
   void HandleTimeOut(float dt);
   void HandleControlEvents();
