@@ -27,7 +27,6 @@ int UpdatableEntityAxis::GetPreviousIndex() const {
 
 int UpdatableEntityAxis::GetNextTileCenter() const {
   float pos = this->GetPosition();
-  
 
   if (this->GetCurrentAxisDirection() == AxisDirection::Positive) {
     return (int)ceilf(pos);

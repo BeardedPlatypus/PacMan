@@ -27,6 +27,9 @@
     <ClCompile Include="src\entity\PlayerMovementAxisTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\UpdatableEntityAxisTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\NodeMock.h">
