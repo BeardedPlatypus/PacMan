@@ -68,12 +68,15 @@ void ViewManager::renderSprite(const std::string& label,
 void ViewManager::renderSpriteAnimation(const std::string& label,
 										                    float x, 
                                         float y, 
-                                        float scale) {
+                                        float scale,
+                                        float angle,
+                                        bool flip_horizontally,
+                                        bool flip_vertically) {
 	SpriteAnimation& requested_anim = this->getSpriteManager().getSpriteAnimation(label);
 	requested_anim.updateTime(this->getNextUpdateTime());
 
 	const Sprite& active_frame = requested_anim.getActiveSprite();
-	active_frame.Render(this->getRenderer(), x, y, scale, 0.F, false, false);
+	active_frame.Render(this->getRenderer(), x, y, scale, angle, flip_horizontally, flip_vertically);
 }
 
 void ViewManager::finaliseRender() {

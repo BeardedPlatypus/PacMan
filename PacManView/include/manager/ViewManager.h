@@ -49,8 +49,13 @@ public:
                     bool flip_horizontally,
                     bool flip_vertically) final;
 
-	void renderSpriteAnimation(const std::string& label,
-							   float x, float y, float scale) final;
+  void renderSpriteAnimation(const std::string& label,
+                             float x,
+                             float y,
+                             float scale,
+                             float angle,
+                             bool flip_horizontally,
+                             bool flip_vertically) final;
 
 	void finaliseRender() final;
 

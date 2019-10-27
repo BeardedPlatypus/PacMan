@@ -165,7 +165,12 @@ public:
 	/// Thrown when <paramref name="label" /> does not exist. 
 	/// </exception>
 	virtual void renderSpriteAnimation(const std::string& label,
-									   float x, float y, float scale) = 0;
+                                     float x, 
+                                     float y, 
+                                     float scale,
+                                     float angle=0.F,
+                                     bool flip_horizontally=false,
+                                     bool flip_vertically=false) = 0;
 	
 	/// <summary>
 	/// Finalise the current render frame by actually rendering all specified
