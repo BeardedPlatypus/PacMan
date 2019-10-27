@@ -197,6 +197,14 @@ namespace util {
   void ConditiallyMoveDistance(IUpdatablePlayerEntity* p_player_entity, 
                                state::field::IField* p_field,
                                float max_distance_to_move);
+
+  /// <summary>
+  /// Update the direction of <paramref name="p_player_entity"/>.
+  /// </summary>
+  /// <param name="p_player_entity">
+  /// A pointer to the <see cref="IUpdatablePlayerEntity"/> to be updated.
+  /// </param>
+  void UpdateDirection(IUpdatablePlayerEntity* p_player_entity);
 }
 }
 }

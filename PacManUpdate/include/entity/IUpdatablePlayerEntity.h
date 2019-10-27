@@ -96,13 +96,20 @@ public:
   /// Swap the active and inactive axii.
   /// </summary>
   virtual void SwapActiveAxis() = 0;
-
+  
   /// <summary>
   /// Get the current moving direction of this 
   /// <see cref="IUpdatablePlayerEntity" />.
   /// </summary>
   /// <returns>The current moving direction.</returns>
   virtual state::Direction GetMovingDirection() const = 0;  
+  
+  /// <summary>
+  /// Set the current moving direction of this 
+  /// <see cref="IUpdatablePlayerEntity"/>.
+  /// </summary>
+  /// <param name="direction">The new direction.</param>
+  virtual void SetMovingDirection(state::Direction direction) = 0;
 
   /// <summary>
   /// Update this <see cref="IUpdatablePlayerEntity"/> with the provided time change.

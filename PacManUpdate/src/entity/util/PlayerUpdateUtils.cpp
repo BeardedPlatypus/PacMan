@@ -168,6 +168,28 @@ void ConditiallyMoveDistance(IUpdatablePlayerEntity* p_player_entity,
 }
 
 
+void UpdateDirection(IUpdatablePlayerEntity* p_player_entity) {
+  AxisType axis_type = p_player_entity->GetActiveAxisType();
+  AxisDirection axis_direction = p_player_entity->GetActiveAxis()->GetCurrentAxisDirection();
+
+  if (axis_type == AxisType::X) {
+    if (axis_direction == AxisDirection::Negative) {
+      p_player_entity->SetMovingDirection(state::Direction::Left);
+    }
+    else if (axis_direction == AxisDirection::Positive){
+      p_player_entity->SetMovingDirection(state::Direction::Right);
+    }
+  }
+  else if (axis_type == AxisType::Y) {
+    if (axis_direction == AxisDirection::Negative) {
+      p_player_entity->SetMovingDirection(state::Direction::Up);
+    }
+    else if (axis_direction == AxisDirection::Positive){
+      p_player_entity->SetMovingDirection(state::Direction::Down);
+    }
+  }
+}
+
 }
 }
 }

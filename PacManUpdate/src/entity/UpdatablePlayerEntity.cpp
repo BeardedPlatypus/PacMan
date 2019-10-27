@@ -89,6 +89,11 @@ state::Direction UpdatablePlayerEntity::GetMovingDirection() const {
 }
 
 
+void UpdatablePlayerEntity::SetMovingDirection(state::Direction direction) {
+  this->p_player_state->SetDirection(direction);
+}
+
+
 void UpdatablePlayerEntity::Update(float dt) {
   this->movement_axii[0]->Update(dt);
   this->movement_axii[1]->Update(dt);

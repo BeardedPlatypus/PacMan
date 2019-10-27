@@ -26,6 +26,7 @@ public:
   inline float GetSpeed() const final;
 
   inline state::Direction GetMovingDirection() const final;
+  void SetMovingDirection(state::Direction direction) final;
 
   void Update(float dt) final;
 
