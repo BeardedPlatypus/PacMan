@@ -79,14 +79,14 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>GTEST_LINKED_AS_SHARED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)PacManState\include;$(SolutionDir)PacManUpdate\include;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)PacManController\include;$(SolutionDir)PacManState\include;$(SolutionDir)PacManUpdate\include;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PacManUpdate.lib;PacManState.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PacManUpdate.lib;PacManState.lib;PacManController.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo "" &gt; "$(TargetPath).is_google_test</Command>
@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\commands\QuitCommandTest.cpp" />
     <ClCompile Include="src\entity\PlayerMovementAxisTest.cpp" />
     <ClCompile Include="src\entity\UpdatableEntityAxisTest.cpp" />
     <ClCompile Include="src\state_machine\NodeTest.cpp" />

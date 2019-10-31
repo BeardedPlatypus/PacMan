@@ -30,6 +30,9 @@
     <ClCompile Include="src\entity\UpdatableEntityAxisTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\commands\QuitCommandTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\NodeMock.h">
