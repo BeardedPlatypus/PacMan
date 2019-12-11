@@ -144,6 +144,7 @@ TEST(Unit_SpriteAnimationTest, setExactTime) {
   EXPECT_THAT(p_animation->getExactTime(), FloatEq(new_time));
 }
 
+
 // - updateTime:
 // Given a SpriteAnimation
 //   and a dTime
@@ -205,6 +206,7 @@ TEST(Unit_SpriteAnimationTest, resetTime) {
   // Then
   EXPECT_THAT(p_animation->getExactTime(), FloatEq(0.F));
 }
+
 
 // - getActiveSprite:
 // Given a SpriteAnimation with a set of sprite

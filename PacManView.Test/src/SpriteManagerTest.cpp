@@ -176,6 +176,7 @@ TEST(SpriteManagerTest, initSprite_WithoutClippingRectangle) {
 	EXPECT_THAT(result.GetClip(), clip_matcher);
 }
 
+
 // Given an ISpriteManager
 //   and a label that already exists
 //   and a sprite_sheet_path
@@ -374,6 +375,7 @@ TEST(SpriteManagerTest, initSpriteAnimation_AlreadyExistingLabelThrowsException)
 												   labels),
 				 ViewException);
 }
+
 
 // Given an ISpriteManager
 //   and a label
