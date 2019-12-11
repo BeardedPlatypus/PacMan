@@ -30,17 +30,17 @@ public:
   SpriteAnimation(float time_per_frame,
   				        const std::vector<std::reference_wrapper<const Sprite>>& sprites);
 
-  void updateTime(float d_time) override;
-  void resetTime() override;
-  inline float getExactTime() const override;
-  inline void setExactTime(float new_time) override;
-  inline float getInternalTime() const override { return this->internal_cur_time; }
-  void setInternalTime(float new_time) override;
-  inline int getNFrames() const override { return this->n_frames; }
-  inline float getFramesPerSecond() const override { return this->frames_per_second; }
-  inline float getTimePerFrame() const override { return this->seconds_per_frame; }
-  const Sprite& getActiveSprite() const override;
-  std::unique_ptr<ISpriteAnimation> DeepClone() const override;
+  void updateTime(float d_time) final;
+  void resetTime() final;
+  inline float getExactTime() const final;
+  inline void setExactTime(float new_time) final;
+  inline float getInternalTime() const final { return this->internal_cur_time; }
+  void setInternalTime(float new_time) final;
+  inline int getNFrames() const final { return this->n_frames; }
+  inline float getFramesPerSecond() const final { return this->frames_per_second; }
+  inline float getTimePerFrame() const final { return this->seconds_per_frame; }
+  const Sprite& getActiveSprite() const final;
+  std::unique_ptr<ISpriteAnimation> DeepClone() const final;
 
 private:	
   /// <summary> 
