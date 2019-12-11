@@ -15,7 +15,7 @@ namespace view {
 /// <see cref="SpriteManager" /> implements <see cref="ISpriteManager" />.
 /// It is responsible for storing all <see cref="Sprite" />s  constructed within the PacMan 
 /// game. It provides the methods to request new <see cref="Sprite" />s and
-/// <see cref="SpriteAnimation" />s.
+/// <see cref="ISpriteAnimation" />s.
 /// </summary>
 class SpriteManager final : public ISpriteManager {
 public:	
@@ -38,12 +38,12 @@ public:
   const Sprite& getSprite(const std::string& label) const final;
 
   void initSpriteAnimation(const std::string& label,
-						   float time_per_frame,
-						   const std::vector<std::string>& sprites) final;
+						               float time_per_frame,
+						               const std::vector<std::string>& sprites) final;
 
   bool hasSpriteAnimation(const std::string& label) const final;
 
-  SpriteAnimation& getSpriteAnimation(const std::string& label) final;
+  ISpriteAnimation* getSpriteAnimation(const std::string& label) final;
 
 private:	
 	/// <summary> 
@@ -52,9 +52,9 @@ private:
 	std::map<std::string, Sprite> sprite_map;
 	
 	/// <summary>
-	/// Map containing labels to <see cref="SpriteAnimation" />.
+	/// Map containing labels to <see cref="ISpriteAnimation" />.
 	/// </summary>
-	std::map<std::string, SpriteAnimation> sprite_animation_map;
+	std::map<std::string, std::unique_ptr<ISpriteAnimation>> sprite_animation_map;
 	
   /// <summary> 
   /// Get the texture associated with the provided 

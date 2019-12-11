@@ -4,7 +4,7 @@
 #include <string>
 #include "texture/ITextureManager.h"
 #include "sprite/Sprite.h"
-#include "sprite/SpriteAnimation.h"
+#include "sprite/ISpriteAnimation.h"
 
 
 namespace pacman {
@@ -88,19 +88,19 @@ public:
   virtual const Sprite& getSprite(const std::string& label) const = 0;
   
   /// <summary>
-  /// Initialize a new <see cref="SpriteAnimation" /> with the given 
+  /// Initialize a new <see cref="ISpriteAnimation" /> with the given 
   /// <paramref name="label" />, <paramref name="time_per_frame" /> and a set
   /// of sprite labels in <paramref name="sprites" />.
   /// </summary>
-  /// <param name="label"> The label of the new <see cref="SpriteAnimation" />. </param>
+  /// <param name="label"> The label of the new <see cref="ISpriteAnimation" />. </param>
   /// <param name="time_per_frame"> The time per frame. </param>
   /// <param name="sprites"> The set of sprite labels. </param>
   /// <exception cref="ViewException"> this->hasSpriteAnimation(label) </exception>
   /// <exception cref="ViewException"> <paramref name="time_per_frame" /> <= 0.F </exception>
   /// <exception cref="ViewException"> FOR label IN sprites: NOT this->hasSprite(sprite_label) </exception>
   virtual void initSpriteAnimation(const std::string& label,
-								   float time_per_frame,
-								   const std::vector<std::string>& sprites) = 0;
+								                   float time_per_frame,
+								                   const std::vector<std::string>& sprites) = 0;
 
   /// <summary>
   /// Determine whether a <see cref="ISpriteAnimation" /> with the corresponding 
@@ -115,17 +115,17 @@ public:
   virtual bool hasSpriteAnimation(const std::string& label) const = 0;
   
   /// <summary>
-  /// Get the <see cref="SpriteAnimation" /> associated with the <paramref name="label" />.
+  /// Get the <see cref="ISpriteAnimation" /> associated with the <paramref name="label" />.
   /// </summary>
   /// <param name="label">
-  /// The label with which a <see cref="SpriteAnimation" /> is associated.
+  /// The label with which a <see cref="ISpriteAnimation" /> is associated.
   /// </param>
   /// <returns>
-  /// The <see cref="SpriteAnimation" /> associated with the specified
+  /// The <see cref="ISpriteAnimation" /> associated with the specified
   /// <paramref name="label" />.
   /// </returns>
   /// <exception cref="ViewException"> NOT this->hasSpriteAnimation(label) </exception>
-  virtual SpriteAnimation& getSpriteAnimation(const std::string& label) = 0;
+  virtual ISpriteAnimation* getSpriteAnimation(const std::string& label) = 0;
 };
 
 }

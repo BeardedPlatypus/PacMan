@@ -54,8 +54,8 @@ const Sprite& SpriteManager::getSprite(const std::string& label) const {
 
 
 void SpriteManager::initSpriteAnimation(const std::string& label, 
-										float time_per_frame,
-			 						    const std::vector<std::string>& sprite_labels) {
+										                    float time_per_frame,
+			 						                      const std::vector<std::string>& sprite_labels) {
 	if (time_per_frame <= 0.F)
 		throw ViewException("initSpriteAnimation", "");
 	if (this->hasSpriteAnimation(label))
@@ -67,7 +67,7 @@ void SpriteManager::initSpriteAnimation(const std::string& label,
 		sprites.push_back(this->getSprite(sprite_label));
 	}
 
-	this->sprite_animation_map.try_emplace(label, time_per_frame, sprites);
+	this->sprite_animation_map.try_emplace(label, ISpriteAnimation::Construct(time_per_frame, sprites));
 }
 
 
@@ -76,9 +76,9 @@ bool SpriteManager::hasSpriteAnimation(const std::string& label) const {
 }
 
 
-SpriteAnimation& SpriteManager::getSpriteAnimation(const std::string& label) {
+ISpriteAnimation* SpriteManager::getSpriteAnimation(const std::string& label) {
 	try {
-		return this->sprite_animation_map.at(label);
+		return this->sprite_animation_map.at(label).get();
 	}
 	catch (std::out_of_range) {
 		throw ViewException("getSpriteAnimation", "");
