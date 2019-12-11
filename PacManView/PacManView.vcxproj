@@ -166,6 +166,7 @@
     <ClInclude Include="include\renderer\ViewCore.h" />
     <ClInclude Include="include\sdl_util\SDLDestructor.h" />
     <ClInclude Include="include\sprite\ClipRect.h" />
+    <ClInclude Include="include\sprite\ISpriteAnimation.h" />
     <ClInclude Include="include\sprite\ISpriteManager.h" />
     <ClInclude Include="include\sprite\Sprite.h" />
     <ClInclude Include="include\sprite\SpriteAnimation.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="src\renderer\IViewCore.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\renderer\ViewCore.cpp" />
+    <ClCompile Include="src\sprite\ISpriteAnimation.cpp" />
     <ClCompile Include="src\sprite\ISpriteManager.cpp" />
     <ClCompile Include="src\sprite\Sprite.cpp" />
     <ClCompile Include="src\sprite\SpriteAnimation.cpp" />

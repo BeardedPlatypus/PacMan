@@ -51,9 +51,9 @@ const Sprite& SpriteAnimation::getActiveSprite() const {
 }
 
 
-SpriteAnimation SpriteAnimation::DeepClone() const {
-	return SpriteAnimation(this->getTimePerFrame(),
-						   this->animation_sprites);
+std::unique_ptr<ISpriteAnimation> SpriteAnimation::DeepClone() const {
+	return ISpriteAnimation::Construct(this->getTimePerFrame(),
+						                         this->animation_sprites);
 }
 
 } // view
