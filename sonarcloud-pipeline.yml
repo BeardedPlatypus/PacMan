@@ -9,10 +9,11 @@ variables:
   buildPlatform: 'x86'
   buildConfiguration: 'Release'
   buildWrapperOutputDir: 'build_wrapper_output_directory'
+  buildWrapperExe: '**/tools/build-wrapper-win-x86-64.exe'
 
 steps:
 - script: |
-    '.\tools\build-wrapper-win-x86-64.exe'
+    '$(buildWrapperExe)'
   displayName: SonarCloud - Verify build-wrapper
 
 - script: |
@@ -42,7 +43,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      '.\build-wrapper-win-x86\build-wrapper-win-x86-64.exe' --out-dir '$(buildWrapperOutputDir)' 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe' PacMan.sln -nologo -p:Configuration='$(buildConfiguration)' -p:Platform='$(buildPlatform)'
+      '$(buildWrapperExe)' --out-dir '$(buildWrapperOutputDir)' 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe' PacMan.sln -nologo -p:Configuration='$(buildConfiguration)' -p:Platform='$(buildPlatform)'
 
 - task: SonarCloudAnalyze@1
   displayName: 'SonarCloud - Analyze'
