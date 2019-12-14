@@ -9,7 +9,7 @@ variables:
   buildPlatform: 'x86'
   buildConfiguration: 'Release'
   buildWrapperOutputDir: 'build_wrapper_output_directory'
-  buildWrapperExe: '$(Build.Repository.LocalPath)\PacMan\tools\build-wrapper-win-x86-64.exe'
+  buildWrapperExe: 'tools\build-wrapper-win-x86-64.exe'
 
 steps:
 - script: |
