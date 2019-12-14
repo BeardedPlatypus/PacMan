@@ -29,29 +29,12 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: SonarCloudPrepare@1
-  displayName: 'SonarCloud - Prepare'
-  inputs:
-    SonarCloud: 'PacManSonarCloud'
-    organization: 'beardedplatypus'
-    scannerMode: 'MSBuild'
-    projectKey: 'BeardedPlatypus_PacMan'
-    projectName: 'PacMan'
-
 - task: VSBuild@1
   displayName: 'Build - Executables'
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
-- task: SonarCloudAnalyze@1
-  displayName: 'SonarCloud - Analyze'
-
-- task: SonarCloudPublish@1
-  displayName: 'SonarCloud - Publish'
-  inputs:
-    pollingTimeoutSec: '300'
 
 - task: VisualStudioTestPlatformInstaller@1
   displayName: 'Test - Install'
