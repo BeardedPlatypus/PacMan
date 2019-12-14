@@ -10,8 +10,20 @@ variables:
   buildConfiguration: 'Release'
   buildWrapperOutputDir: 'build_wrapper_output_directory'
 
-
 steps:
+- task: PowerShell@2
+  displayName: 'SonarCloud - Download build-wrapper'
+  inputs:
+    targetType: 'inline'
+    script: 'wget https://sonarcloud.io/static/cpp/build-wrapper-win-x86.zip -OutFile build-wrapper-win-x86.zip'
+
+- task: ExtractFiles@1
+  displayName: 'SonarCloud - Extract build-wrapper'
+  inputs:
+    archiveFilePatterns: 'build-wrapper-win-x86.zip'
+    destinationFolder: '.'
+    cleanDestinationFolder: false
+
 - script: |
     vcpkg install sdl2 sdl2-image gtest
     vcpkg integrate install
@@ -24,19 +36,6 @@ steps:
   displayName: 'Nuget - Restore Packages'
   inputs:
     restoreSolution: '$(solution)'
-
-- task: PowerShell@2
-  displayName: 'SonarCloud - Download build-wrapper'
-  inputs:
-    targetType: 'inline'
-    script: 'wget https://sonarcloud.io/static/cpp/build-wrapper-win-x86.zip -OutFile build-wrapper-win-x86.zip'
-
-- task: ExtractFiles@1
-  displayName: 'SonarCloud - Extract build-wrapper'
-  inputs:
-    archiveFilePatterns: 'build-wrapper-win-x86.zip'
-    destinationFolder: '.'
-    cleanDestinationFolder: true
 
 - task: SonarCloudPrepare@1
   displayName: 'SonarCloud - Prepare'
