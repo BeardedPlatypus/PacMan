@@ -25,6 +25,10 @@ steps:
     cleanDestinationFolder: false
 
 - script: |
+    '.\build-wrapper-win-x86\build-wrapper-win-x86-64.exe'
+  displayName: SonarCloud - Verify build-wrapper
+
+- script: |
     vcpkg install sdl2 sdl2-image gtest
     vcpkg integrate install
   displayName: vcpkg
