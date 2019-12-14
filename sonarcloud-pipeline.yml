@@ -11,21 +11,8 @@ variables:
   buildWrapperOutputDir: 'build_wrapper_output_directory'
 
 steps:
-- task: PowerShell@2
-  displayName: 'SonarCloud - Download build-wrapper'
-  inputs:
-    targetType: 'inline'
-    script: 'wget https://sonarcloud.io/static/cpp/build-wrapper-win-x86.zip -OutFile build-wrapper-win-x86.zip'
-
-- task: ExtractFiles@1
-  displayName: 'SonarCloud - Extract build-wrapper'
-  inputs:
-    archiveFilePatterns: 'build-wrapper-win-x86.zip'
-    destinationFolder: '.'
-    cleanDestinationFolder: false
-
 - script: |
-    '.\build-wrapper-win-x86\build-wrapper-win-x86-64.exe'
+    '.\tools\build-wrapper-win-x86-64.exe'
   displayName: SonarCloud - Verify build-wrapper
 
 - script: |
