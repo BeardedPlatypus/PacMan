@@ -14,6 +14,7 @@ variables:
   msBuildExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
   codeCoverageExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Team Tools\Dynamic Code Coverage Tools\codecoverage.exe'
   coverageFile: '**/TestResults/**/*.coverage'
+  testResults: '**/TestResults'
   outputCoverageXML: '$(Build.SourcesDirectory)/codeCoverage.xml'
 
 steps:
@@ -70,25 +71,25 @@ steps:
       !**\$(buildConfiguration)\zlib1.dll
     codeCoverageEnabled: true
 
+- task: CopyFiles@2
+  displayName: 'Code Coverage - Copy .coverage files'
+  inputs:
+    SourceFolder: '$(testResults)'
+    Contents: '**/*.coverage'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+    
+- task: PublishPipelineArtifact@0
+  displayName: 'Code Coverage - Publish .coverage files'
+  inputs:
+    artifactName: 'BuildWrapperOutput'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+
 - task: PowerShell@2
   displayName: 'Test - Convert code coverage to xml'
   inputs:
     targetType: 'inline'
     script: '& "$(codeCoverageExe)" analyze /output:$(outputCoverageXML) $(coverageFile)'
-
-- task: CopyFiles@2
-  displayName: 'SonarCloud - Copy build-wrapper output'
-  inputs:
-    SourceFolder: '$(buildWrapperOutputDir)'
-    Contents: '**/*'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    CleanTargetFolder: true
-    
-- task: PublishPipelineArtifact@0
-  displayName: 'SonarCloud - Publish build-wrapper output'
-  inputs:
-    artifactName: 'BuildWrapperOutput'
-    targetPath: '$(Build.ArtifactStagingDirectory)'
 
 - task: SonarCloudAnalyze@1
   displayName: 'SonarCloud - Analyze'
