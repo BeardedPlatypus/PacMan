@@ -34,8 +34,7 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'BeardedPlatypus_PacMan'
     projectName: 'PacMan'
-    extraProperties: |
-      'sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)'
+    extraProperties: 'sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)'
 
 
 - task: PowerShell@2
