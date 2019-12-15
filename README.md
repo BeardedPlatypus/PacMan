@@ -1,6 +1,7 @@
 # Pacman
 
 [![Build Status](https://dev.azure.com/mwtegelaers/PacMan/_apis/build/status/BeardedPlatypus.PacMan?branchName=master)](https://dev.azure.com/mwtegelaers/PacMan/_build/latest?definitionId=1&branchName=master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=BeardedPlatypus_PacMan&metric=alert_status)](https://sonarcloud.io/dashboard?id=BeardedPlatypus_PacMan)
 
 A simple WIP PacMan clone written in C++ with SDL2.
 
