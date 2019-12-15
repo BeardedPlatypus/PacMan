@@ -80,6 +80,7 @@ steps:
     TargetFolder: '$(testResults2)'
     CleanTargetFolder: true
     flattenFolders: true
+    OverWrite: true
     
 - task: PublishPipelineArtifact@0
   displayName: 'Code Coverage - Publish .coverage files'
