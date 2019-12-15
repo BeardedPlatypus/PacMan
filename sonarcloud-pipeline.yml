@@ -5,19 +5,14 @@ pool:
   vmImage: 'windows-2019'
 
 variables:
-  solution: '**/PacMan.sln'
+  solution: '$(Build.SourcesDirectory)/PacMan.sln'
   buildPlatform: 'x86'
   buildConfiguration: 'Release'
   buildWrapperOutputDir: 'build_wrapper_output_directory'
   buildWrapperExe: '$(Build.SourcesDirectory)/tools/build-wrapper-win-x86-64.exe'
+  msBuildExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
 
 steps:
-- task: PowerShell@2
-  displayName: SonarCloud - Verify build-wrapper
-  inputs:
-    targetType: 'inline'
-    script: '& $(buildWrapperExe)'
-
 - script: |
     vcpkg install sdl2 sdl2-image gtest
     vcpkg integrate install
@@ -42,10 +37,12 @@ steps:
     extraProperties: |
       'sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)'
 
-- task: CmdLine@2
+
+- task: PowerShell@2
+  displayName: MSBuild
   inputs:
-    script: |
-      '$(buildWrapperExe)' --out-dir '$(buildWrapperOutputDir)' 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe' PacMan.sln -nologo -p:Configuration='$(buildConfiguration)' -p:Platform='$(buildPlatform)'
+    targetType: 'inline'
+    script: '& $(buildWrapperExe) --out-dir $(buildWrapperOutputDir) $(msBuildExe) $(solution) -nologo -p:Configuration=$(buildConfiguration) -p:Platform=$(buildPlatform)'
 
 - task: SonarCloudAnalyze@1
   displayName: 'SonarCloud - Analyze'
