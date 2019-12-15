@@ -8,7 +8,7 @@ variables:
   solution: '$(Build.SourcesDirectory)/PacMan.sln'
   buildPlatform: 'x86'
   buildConfiguration: 'Release'
-  buildWrapperOutputDir: 'build_wrapper_output_directory'
+  buildWrapperOutputDir: '$(Build.SourcesDirectory)/build_wrapper_output_directory'
   buildWrapperExe: '$(Build.SourcesDirectory)/tools/build-wrapper-win-x86-64.exe'
   msBuildExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
 
