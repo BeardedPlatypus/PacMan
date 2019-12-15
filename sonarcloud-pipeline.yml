@@ -42,7 +42,7 @@ steps:
   displayName: MSBuild
   inputs:
     targetType: 'inline'
-    script: '& $(buildWrapperExe) --out-dir $(buildWrapperOutputDir) $(msBuildExe) $(solution) -nologo -p:Configuration=$(buildConfiguration) -p:Platform=$(buildPlatform)'
+    script: '& $(buildWrapperExe) --out-dir $(buildWrapperOutputDir) "$(msBuildExe)" $(solution) -nologo -p:Configuration=$(buildConfiguration) -p:Platform=$(buildPlatform)'
 
 - task: SonarCloudAnalyze@1
   displayName: 'SonarCloud - Analyze'
