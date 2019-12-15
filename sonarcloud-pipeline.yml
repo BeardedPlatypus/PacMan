@@ -13,8 +13,9 @@ variables:
   buildWrapperExe: '$(Build.SourcesDirectory)/tools/build-wrapper-win-x86-64.exe'
   msBuildExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
   codeCoverageExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Team Tools\Dynamic Code Coverage Tools\codecoverage.exe'
-  coverageFile: '**/TestResults/**/*.coverage'
   testResults: '$(Agent.TempDirectory)/TestResults'
+  testResults2: '$(Build.SourcesDirectory)/TestResults'
+  coverageFile: '$(testResults2)/*.coverage'
   outputCoverageXML: '$(Build.SourcesDirectory)/codeCoverage.xml'
 
 steps:
@@ -76,14 +77,15 @@ steps:
   inputs:
     SourceFolder: '$(testResults)'
     Contents: '**/*.coverage'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    TargetFolder: '$(testResults2)'
     CleanTargetFolder: true
+    flattenFolders: true
     
 - task: PublishPipelineArtifact@0
   displayName: 'Code Coverage - Publish .coverage files'
   inputs:
     artifactName: 'BuildWrapperOutput'
-    targetPath: '$(Build.ArtifactStagingDirectory)'
+    targetPath: '$(testResults2)'
 
 - task: PowerShell@2
   displayName: 'Test - Convert code coverage to xml'
