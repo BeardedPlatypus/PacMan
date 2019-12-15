@@ -12,9 +12,11 @@ variables:
   buildWrapperExe: '$(Build.SourcesDirectory)/tools/build-wrapper-win-x86-64.exe'
 
 steps:
-- script: |
-    '$(buildWrapperExe)'
+- task: PowerShell@2
   displayName: SonarCloud - Verify build-wrapper
+  inputs:
+    targetType: 'inline'
+    script: '& $(buildWrapperExe)'
 
 - script: |
     vcpkg install sdl2 sdl2-image gtest
