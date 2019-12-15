@@ -14,7 +14,7 @@ variables:
   msBuildExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
   codeCoverageExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Team Tools\Dynamic Code Coverage Tools\codecoverage.exe'
   coverageFile: '**/TestResults/**/*.coverage'
-  testResults: '**/TestResults'
+  testResults: '$(Build.SourcesDirectory)/TestResults'
   outputCoverageXML: '$(Build.SourcesDirectory)/codeCoverage.xml'
 
 steps:
