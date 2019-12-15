@@ -44,6 +44,20 @@ steps:
     targetType: 'inline'
     script: '& $(buildWrapperExe) --out-dir $(buildWrapperOutputDir) "$(msBuildExe)" $(solution) -nologo -p:Configuration=$(buildConfiguration) -p:Platform=$(buildPlatform)'
 
+- task: CopyFiles@2
+  displayName: 'SonarCloud - Copy build-wrapper output'
+  inputs:
+    SourceFolder: '$(buildWrapperOutputDir)'
+    Contents: '**/*'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+    
+- task: PublishPipelineArtifact@0
+  displayName: 'SonarCloud - Publish build-wrapper output'
+  inputs:
+    artifactName: 'BuildWrapperOutput'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+
 - task: SonarCloudAnalyze@1
   displayName: 'SonarCloud - Analyze'
 
