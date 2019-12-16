@@ -1,3 +1,4 @@
+# SonarCloud pipeline for the PacMan.
 trigger:
 - master
 
@@ -5,29 +6,19 @@ pool:
   vmImage: 'windows-2019'
 
 variables:
-  solution: '**/PacMan.sln'
+  solution: '$(Build.SourcesDirectory)/PacMan.sln'
   buildPlatform: 'x86'
   buildConfiguration: 'Release'
-  buildWrapperOutputDir: 'build_wrapper_output_directory'
+  buildWrapperOutputDir: '$(Build.SourcesDirectory)/build_wrapper_output_directory'
+  buildWrapperExe: '$(Build.SourcesDirectory)/tools/build-wrapper-win-x86-64.exe'
+  msBuildExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
+  codeCoverageExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Team Tools\Dynamic Code Coverage Tools\codecoverage.exe'
+  testResults: '$(Agent.TempDirectory)/TestResults'
+  testResults2: '$(Build.SourcesDirectory)/TestResults'
+  coverageFile: '$(testResults2)/*.coverage'
+  outputCoverageXML: '$(Build.SourcesDirectory)/codeCoverage.xml'
 
 steps:
-- task: PowerShell@2
-  displayName: 'SonarCloud - Download build-wrapper'
-  inputs:
-    targetType: 'inline'
-    script: 'wget https://sonarcloud.io/static/cpp/build-wrapper-win-x86.zip -OutFile build-wrapper-win-x86.zip'
-
-- task: ExtractFiles@1
-  displayName: 'SonarCloud - Extract build-wrapper'
-  inputs:
-    archiveFilePatterns: 'build-wrapper-win-x86.zip'
-    destinationFolder: '.'
-    cleanDestinationFolder: false
-
-- script: |
-    '.\build-wrapper-win-x86\build-wrapper-win-x86-64.exe'
-  displayName: SonarCloud - Verify build-wrapper
-
 - script: |
     vcpkg install sdl2 sdl2-image gtest
     vcpkg integrate install
@@ -51,11 +42,57 @@ steps:
     projectName: 'PacMan'
     extraProperties: |
       'sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)'
+      'sonar.cfamily.vscoveragexml.reportsPath=$(outputCoverageXML)'
 
-- task: CmdLine@2
+- task: PowerShell@2
+  displayName: MSBuild
   inputs:
-    script: |
-      '.\build-wrapper-win-x86\build-wrapper-win-x86-64.exe' --out-dir '$(buildWrapperOutputDir)' 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe' PacMan.sln -nologo -p:Configuration='$(buildConfiguration)' -p:Platform='$(buildPlatform)'
+    targetType: 'inline'
+    script: '& $(buildWrapperExe) --out-dir $(buildWrapperOutputDir) "$(msBuildExe)" $(solution) -nologo -p:Configuration=$(buildConfiguration) -p:Platform=$(buildPlatform)'
+
+- task: VisualStudioTestPlatformInstaller@1
+  displayName: 'Test - Install'
+  inputs:
+    packageFeedSelector: 'nugetOrg'
+    versionSelector: 'latestStable'
+
+- task: VSTest@2
+  displayName: 'Test - Run'
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    testAssemblyVer2: |
+      **\$(buildConfiguration)\*.Test.exe
+      !**\*TestAdapter.dll
+      !**\obj\**
+      !**\$(buildConfiguration)\gmock.dll
+      !**\$(buildConfiguration)\libpng16.dll
+      !**\$(buildConfiguration)\SDL2.dll
+      !**\$(buildConfiguration)\SDL2_image.dll
+      !**\$(buildConfiguration)\zlib1.dll
+    codeCoverageEnabled: true
+
+- task: CopyFiles@2
+  displayName: 'Code Coverage - Copy .coverage files'
+  inputs:
+    SourceFolder: '$(testResults)'
+    Contents: '**/*.coverage'
+    TargetFolder: '$(testResults2)'
+    CleanTargetFolder: true
+    flattenFolders: true
+    OverWrite: true
+    
+- task: PublishPipelineArtifact@0
+  displayName: 'Code Coverage - Publish .coverage files'
+  inputs:
+    artifactName: 'BuildWrapperOutput'
+    targetPath: '$(testResults2)'
+
+- task: PowerShell@2
+  displayName: 'Test - Convert code coverage to xml'
+  inputs:
+    targetType: 'inline'
+    script: '& "$(codeCoverageExe)" analyze /output:$(outputCoverageXML) $(coverageFile)'
 
 - task: SonarCloudAnalyze@1
   displayName: 'SonarCloud - Analyze'
