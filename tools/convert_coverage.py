@@ -40,9 +40,12 @@ def convert_coverage_to_xml(code_coverage_exe: Path,
         output_path (Path): Path to the output .xml file to create. 
     """
     output_file_path = output_folder / (coverage_path.with_suffix(".xml")).name
+    print(str(output_file_path))
+
     coverage_convert_cmd = "'{}' analyze /output:'{}' '{}'".format(str(code_coverage_exe),
                                                                    str(output_file_path), 
                                                                    str(coverage_path))
+    print(coverage_convert_cmd)
 
     p = subprocess.run(coverage_convert_cmd, shell=True, stdout=subprocess.PIPE)
     print(str(p.stdout))
@@ -65,6 +68,7 @@ def run(coverage_dir: Path, output_dir: Path) -> None:
         output_dir.mkdir(parents=True)
 
     code_coverage_exe = get_coverage_exe_path()
+    print(str(code_coverage_exe))
 
     for coverage_file in find_coverage_files(coverage_dir):
         convert_coverage_to_xml(code_coverage_exe, 
