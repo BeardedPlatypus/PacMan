@@ -44,28 +44,32 @@ def convert_coverage_to_xml(code_coverage_exe: Path,
                                                                    str(output_file_path), 
                                                                    str(coverage_path))
 
-    p = subprocess.run(coverage_convert_cmd, shell=True)
+    p = subprocess.run(coverage_convert_cmd, shell=True, stdout=subprocess.PIPE)
+    print(str(p.stdout))
 
 
-def run(coverage_dir: Path, output_folder=None) -> None:
+
+def run(coverage_dir: Path, output_dir: Path) -> None:
     """
     Convert the .coverage files within coverage_dir to .xml files.
 
     Parameters:
         coverage_dir (Path): the root directory in which to find the .coverage
                              files.
-        output_folder (Path): The output folder to which to export the .xml files.
-
-    Remarks:
-        If no output_folder is provided, the .xml files are generated within the
-        parent directory of the .coverage files.
+        output_dir (Path): The output folder to which to export the .xml files.
     """
+    print(str(coverage_dir))
+    print(str(output_dir))
+
+    if (not (output_dir.exists() and output_dir.is_dir())):
+        output_dir.mkdir(parents=True)
+
     code_coverage_exe = get_coverage_exe_path()
 
     for coverage_file in find_coverage_files(coverage_dir):
         convert_coverage_to_xml(code_coverage_exe, 
                                 coverage_file, 
-                                output_folder)
+                                output_dir)
 
 
 def parse_arguments():
