@@ -16,7 +16,7 @@ variables:
   testResults: '$(Agent.TempDirectory)/TestResults'
   testResults2: '$(Build.SourcesDirectory)/TestResults'
   coverageFile: '$(testResults2)/*.coverage'
-  outputCoverageXML: '$(Build.SourcesDirectory)/codeCoverage.xml'
+  outputCoverageXML: '$(testResults2)/*.xml'
 
 steps:
 - script: |
@@ -72,27 +72,23 @@ steps:
       !**\$(buildConfiguration)\zlib1.dll
     codeCoverageEnabled: true
 
-- task: CopyFiles@2
-  displayName: 'Code Coverage - Copy .coverage files'
+- task: UsePythonVersion@0
   inputs:
-    SourceFolder: '$(testResults)'
-    Contents: '**/*.coverage'
-    TargetFolder: '$(testResults2)'
-    CleanTargetFolder: true
-    flattenFolders: true
-    OverWrite: true
+    versionSpec: '3.x'
+    addToPath: true
+    architecture: 'x64'
+
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'filePath'
+    scriptPath: '$(Build.SourcesDirectory)/tools/convert_coverage.py'
+    arguments: '$(testResults) $(testResults2)'
     
 - task: PublishPipelineArtifact@0
   displayName: 'Code Coverage - Publish .coverage files'
   inputs:
-    artifactName: 'BuildWrapperOutput'
+    artifactName: 'convertedCoverage'
     targetPath: '$(testResults2)'
-
-- task: PowerShell@2
-  displayName: 'Test - Convert code coverage to xml'
-  inputs:
-    targetType: 'inline'
-    script: '& "$(codeCoverageExe)" analyze /output:$(outputCoverageXML) $(coverageFile)'
 
 - task: SonarCloudAnalyze@1
   displayName: 'SonarCloud - Analyze'
