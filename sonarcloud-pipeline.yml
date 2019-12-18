@@ -16,8 +16,8 @@ variables:
   codeCoverageLocationRunsettings: '$(Build.SourcesDirectory)/code_coverage_loc.runsettings'
   testResults: '$(Agent.TempDirectory)/TestResults'
   testResults2: '$(Build.SourcesDirectory)/TestResults'
-  coverageFile: '$(testResults2)/*.coverage'
-  outputCoverageXML: '$(testResults2)/*.xml'
+  coverageFile: '$(testResults2)/**/*.coverage'
+  outputCoverageXML: '$(testResults2)/coverage.xml'
 
 steps:
 - script: |
@@ -86,11 +86,11 @@ steps:
     codeCoverageEnabled: true
     runSettingsFile: '$(codeCoverageLocationRunsettings)'
 
-- task: PythonScript@0
+- task: PowerShell@2
+  displayName: 'Test - Convert code coverage to xml'
   inputs:
-    scriptSource: 'filePath'
-    scriptPath: '$(Build.SourcesDirectory)/tools/convert_coverage.py'
-    arguments: '$(testResults2) $(testResults2)'
+    targetType: 'inline'
+    script: '& "$(codeCoverageExe)" analyze /output:$(outputCoverageXML) $(coverageFile)'
     
 - task: PublishPipelineArtifact@0
   displayName: 'Code Coverage - Publish .coverage files'
