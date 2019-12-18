@@ -13,6 +13,7 @@ variables:
   buildWrapperExe: '$(Build.SourcesDirectory)/tools/build-wrapper-win-x86-64.exe'
   msBuildExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
   codeCoverageExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Team Tools\Dynamic Code Coverage Tools\codecoverage.exe'
+  codeCoverageLocationRunsettings: '$(Build.SourcesDirectory)/code_coverage_loc.runsettings'
   testResults: '$(Agent.TempDirectory)/TestResults'
   testResults2: '$(Build.SourcesDirectory)/TestResults'
   coverageFile: '$(testResults2)/*.coverage'
@@ -56,6 +57,18 @@ steps:
     packageFeedSelector: 'nugetOrg'
     versionSelector: 'latestStable'
 
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+    architecture: 'x64'
+
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'filePath'
+    scriptPath: '$(Build.SourcesDirectory)/tools/location_runsettings.py'
+    arguments: '$(codeCoverageLocationRunsettings) $(testResults2)'
+
 - task: VSTest@2
   displayName: 'Test - Run'
   inputs:
@@ -71,18 +84,13 @@ steps:
       !**\$(buildConfiguration)\SDL2_image.dll
       !**\$(buildConfiguration)\zlib1.dll
     codeCoverageEnabled: true
-
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.x'
-    addToPath: true
-    architecture: 'x64'
+    runSettingsFile: '$(codeCoverageLocationRunsettings)'
 
 - task: PythonScript@0
   inputs:
     scriptSource: 'filePath'
     scriptPath: '$(Build.SourcesDirectory)/tools/convert_coverage.py'
-    arguments: '$(testResults) $(testResults2)'
+    arguments: '$(testResults2) $(testResults2)'
     
 - task: PublishPipelineArtifact@0
   displayName: 'Code Coverage - Publish .coverage files'
