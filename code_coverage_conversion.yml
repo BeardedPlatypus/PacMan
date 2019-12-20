@@ -5,22 +5,21 @@ pool:
   vmImage: 'windows-2019'
 
 variables:
-  coverageDownloadLocation: '$(System.ArtifactsDirectory)'
+  coverageDownloadLocation: '$(Build.SourcesDirectory)/DownloadedCoverage'
   convertedOutputLocation: '$(Build.SourcesDirectory)/TestResults'
   toolsLocation: '$(Build.SourcesDirectory)/tools'
 
 steps:
-- task: DownloadBuildArtifacts@0
+- task: DownloadPipelineArtifact@2
   inputs:
     buildType: 'specific'
     project: '41987b1d-47e2-4fea-90ac-c2b42d11a558'
-    pipeline: '1'
+    definition: '1'
     specificBuildWithTriggering: true
     buildVersionToDownload: 'latest'
-    downloadType: 'single'
     artifactName: 'convertedCoverage'
     itemPattern: '**/*.coverage'
-    downloadPath: '$(coverageDownloadLocation)'
+    targetPath: '$(coverageDownloadLocation)'
 
 - task: UsePythonVersion@0
   inputs:
