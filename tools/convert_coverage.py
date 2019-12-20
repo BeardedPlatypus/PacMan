@@ -56,10 +56,10 @@ def convert_coverage_to_xml(code_coverage_exe: Path,
                        stderr=subprocess.PIPE)
 
     print("stdout:")
-    print("{}\n".format(str(p.stdout.decode(encoding))))
+    print("{}\n".format(str(p.stdout)))
 
     print("stderr:")
-    print("{}\n".format(str(p.stderr.decode(encoding))))
+    print("{}\n".format(str(p.stderr)))
 
 
 def run(coverage_dir: Path, output_dir: Path) -> None:
