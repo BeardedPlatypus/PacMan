@@ -1,0 +1,44 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-2019'
+
+variables:
+  coverageDownloadLocation: '$(System.ArtifactsDirectory)'
+  convertedOutputLocation: '$(Build.SourcesDirectory)/TestResults'
+  toolsLocation: '$(Build.SourcesDirectory)/tools'
+
+steps:
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'specific'
+    project: '41987b1d-47e2-4fea-90ac-c2b42d11a558'
+    pipeline: '1'
+    specificBuildWithTriggering: true
+    buildVersionToDownload: 'latest'
+    downloadType: 'specific'
+    itemPattern: '**/*.coverage'
+    downloadPath: '$(coverageDownloadLocation)'
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+    architecture: 'x64'
+
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'filePath'
+    scriptPath: '$(toolsDirectory)/location_runsettings.py'
+    arguments: '$(coverageDownloadLocation) $(convertedOutputLocation)'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'downloadedCoverage'
+    targetPath: '$(coverageDownloadLocation)'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'convertedCoverage'
+    targetPath: '$(convertedOutputLocation)'
