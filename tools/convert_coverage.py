@@ -40,16 +40,26 @@ def convert_coverage_to_xml(code_coverage_exe: Path,
         output_path (Path): Path to the output .xml file to create. 
     """
     output_file_path = output_folder / (coverage_path.with_suffix(".coveragexml")).name
-    print(str(output_file_path))
+
+    print("output file path: {}".format(str(output_file_path)))
 
     coverage_convert_cmd = "'{}' analyze /output:'{}' '{}'".format(str(code_coverage_exe),
                                                                    str(output_file_path), 
                                                                    str(coverage_path))
-    print(coverage_convert_cmd)
+    print("coverage path:\n  {}".format(coverage_convert_cmd))
 
-    p = subprocess.run(coverage_convert_cmd, shell=True, stdout=subprocess.PIPE)
-    print(str(p.stdout))
+    encoding = "utf-8"
+    p = subprocess.run(coverage_convert_cmd, 
+                       shell=True, 
+                       encoding=encoding,
+                       stdout=subprocess.PIPE,
+                       stderr=subprocess.PIPE)
 
+    print("stdout:")
+    print("{}\n".format(str(p.stdout.decode(encoding))))
+
+    print("stderr:")
+    print("{}\n".format(str(p.stderr.decode(encoding))))
 
 
 def run(coverage_dir: Path, output_dir: Path) -> None:
