@@ -39,7 +39,7 @@ def convert_coverage_to_xml(code_coverage_exe: Path,
         coverage_path (Path): .coverage file to convert
         output_path (Path): Path to the output .xml file to create. 
     """
-    output_file_path = output_folder / (coverage_path.with_suffix(".coveragexml")).name
+    output_file_path = Path("../TestResults/coverage.xml") #output_folder / (coverage_path.with_suffix(".coveragexml")).name
 
     print("output file path: {}".format(str(output_file_path)))
 
@@ -80,10 +80,10 @@ def run(coverage_dir: Path, output_dir: Path) -> None:
     code_coverage_exe = get_coverage_exe_path()
     print(str(code_coverage_exe))
 
-    for coverage_file in find_coverage_files(coverage_dir):
-        convert_coverage_to_xml(code_coverage_exe, 
-                                coverage_file, 
-                                output_dir)
+    coverage_file = next(find_coverage_files(coverage_dir))
+    convert_coverage_to_xml(code_coverage_exe, 
+                            coverage_file, 
+                            output_dir)
 
 
 def parse_arguments():
