@@ -30,7 +30,7 @@ steps:
 - task: PythonScript@0
   inputs:
     scriptSource: 'filePath'
-    scriptPath: '$(toolsDirectory)/convert_coverage.py'
+    scriptPath: '$(toolsLocation)/convert_coverage.py'
     arguments: '$(coverageDownloadLocation) $(convertedOutputLocation)'
 
 - task: PublishPipelineArtifact@0
