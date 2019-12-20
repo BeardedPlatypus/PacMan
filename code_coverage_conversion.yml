@@ -17,7 +17,8 @@ steps:
     pipeline: '1'
     specificBuildWithTriggering: true
     buildVersionToDownload: 'latest'
-    downloadType: 'specific'
+    downloadType: 'single'
+    artifactName: 'convertedCoverage'
     itemPattern: '**/*.coverage'
     downloadPath: '$(coverageDownloadLocation)'
 
