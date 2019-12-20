@@ -25,7 +25,7 @@ def find_coverage_files(src_path: Path) -> Sequence:
     Returns:
         (Sequence) The set of .coverage files within the specified folder.
     """
-    return Path("TestResults").glob("**/*.coverage")
+    return Path(".").glob("**/*.coverage")
 
 
 def convert_coverage_to_xml(code_coverage_exe: Path,
