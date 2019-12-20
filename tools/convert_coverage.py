@@ -43,7 +43,7 @@ def convert_coverage_to_xml(code_coverage_exe: Path,
 
     print("output file path: {}".format(str(output_file_path)))
 
-    coverage_convert_cmd = "'{}' analyze /output:'{}' '{}'".format(str(code_coverage_exe),
+    coverage_convert_cmd = "'{}' analyze /output:{} {}".format(str(code_coverage_exe),
                                                                    str(output_file_path), 
                                                                    str(coverage_path))
     print("coverage path:\n  {}".format(coverage_convert_cmd))
