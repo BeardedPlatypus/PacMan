@@ -5,17 +5,6 @@ from typing import Sequence
 import shutil
 
 
-def get_coverage_exe_path() -> Path:
-    """
-    Get the codecoverage.exe
-
-    Returns:
-        (Path) The path to the codecoverage.exe
-    """
-    base_path = Path("C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise")
-    return next(base_path.glob("**/codecoverage.exe"))
-
-
 def find_coverage_files(src_path: Path) -> Sequence:
     """
     Find the coverage files within the specified src_path.
@@ -83,7 +72,7 @@ def convert_coverage_to_xml(code_coverage_exe: Path,
     print("{}\n".format(str(p.stderr)))
 
 
-def run(coverage_dir: Path) -> None:
+def run(coverage_exe: Path, coverage_dir: Path) -> None:
     """
     Convert the .coverage files within coverage_dir to .xml files.
 
@@ -92,17 +81,13 @@ def run(coverage_dir: Path) -> None:
                              files.
     """
     print(str(coverage_dir))
-
-    code_coverage_exe = get_coverage_exe_path()
-    print(str(code_coverage_exe))
-
     src_coverage_files = find_coverage_files(coverage_dir)
     copy_coverage_files_to_cwd(src_coverage_files)
 
     cwd_coverage_files = find_coverage_files(".")
 
     for coverage_path in cwd_coverage_files:
-        convert_coverage_to_xml(code_coverage_exe, 
+        convert_coverage_to_xml(coverage_exe, 
                                 coverage_path)
 
 
@@ -111,6 +96,7 @@ def parse_arguments():
     Parse the arguments provided to this script.
     """
     parser = argparse.ArgumentParser("Convert .coverage to .xml.")
+    parser.add_argument("coverage_exe", help="The path to the coverage executable.")
     parser.add_argument("coverage_folder", help="The folder containing the coverage files.")
     return parser.parse_args()
 
@@ -118,5 +104,6 @@ def parse_arguments():
 if __name__ == "__main__":
     args = parse_arguments()
 
+    coverage_exe = Path(args.coverage_exe)
     coverage_dir = Path(args.coverage_folder)
-    run(coverage_dir)
+    run(coverage_exe, coverage_dir)
