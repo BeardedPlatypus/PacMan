@@ -5,6 +5,15 @@ from typing import Sequence
 import shutil
 
 
+def get_coverage_exe_path() -> Path:	
+    """	
+    Get the codecoverage.exe	
+    Returns:	
+        (Path) The path to the codecoverage.exe	
+    """	
+    base_path = Path("C:\\PROGRA~2\\Microsoft Visual Studio\\2019\\Enterprise")	
+    return next(base_path.glob("**/codecoverage.exe"))
+
 def find_coverage_files(src_path: Path) -> Sequence:
     """
     Find the coverage files within the specified src_path.
@@ -53,9 +62,9 @@ def convert_coverage_to_xml(code_coverage_exe: Path,
         the behaviour is undefined.
     """
     output_file_path = coverage_path.with_suffix(".xml")
-    coverage_convert_cmd = "{} analyze /output:{} {}".format(str(code_coverage_exe),
-                                                             output_file_path.name, 
-                                                             coverage_path.name)
+    coverage_convert_cmd = '"{}" analyze /output:{} {}'.format(str(code_coverage_exe),
+                                                               output_file_path.name, 
+                                                               coverage_path.name)
     print("coverage path:\n  {}".format(coverage_convert_cmd))
 
     encoding = "utf-8"
@@ -80,6 +89,8 @@ def run(coverage_exe: Path, coverage_dir: Path) -> None:
         coverage_dir (Path): the root directory in which to find the .coverage
                              files.
     """
+    coverage_exe = get_coverage_exe_path()
+
     print(str(coverage_dir))
     src_coverage_files = find_coverage_files(coverage_dir)
     copy_coverage_files_to_cwd(src_coverage_files)
