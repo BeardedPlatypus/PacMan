@@ -24,8 +24,6 @@ public:
   /// </summary>
   EventParser() { }
 
-  virtual ~EventParser() { }
-
   void Visit(IMouseEvent*    p_event) override { this->Visit<IMouseEvent>(p_event);    };
   void Visit(IKeyboardEvent* p_event) override { this->Visit<IKeyboardEvent>(p_event); };
   void Visit(ISystemEvent*   p_event) override { this->Visit<ISystemEvent>(p_event);   };
