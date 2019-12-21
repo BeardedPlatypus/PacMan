@@ -19,7 +19,7 @@ public:
   /// Construct a new <see cref="QuitCommand"/>.
   /// </summary>
   /// <param name="p_game_state">A pointer to the <see cref="IGameState" />.</param>
-  QuitCommand(state::IGameState* p_game_state);
+  explicit QuitCommand(state::IGameState* p_game_state);
   
   void Execute() final;
 private:  
