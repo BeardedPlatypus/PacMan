@@ -21,7 +21,7 @@ public:
   /// <param name="p_event_store"> 
   /// A pointer to the <see cref="IEventStore" />. 
   /// </param>
-  EventGenerator(IEventStore* p_event_store);
+  explicit EventGenerator(IEventStore* p_event_store);
 
   void PollEvents() final;
 
