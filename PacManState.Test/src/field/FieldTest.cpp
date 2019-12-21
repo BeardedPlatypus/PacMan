@@ -3,6 +3,9 @@
 
 #include "field/IField.h"
 
+#include <random>
+
+
 #pragma region using_statements
 using ::testing::Eq;
 #pragma endregion
@@ -19,13 +22,17 @@ struct FieldTestValues {
 
     this->tiles = std::vector<std::vector<TileType>>();
 
+    std::default_random_engine generator;
+    std::uniform_int_distribution<int> distribution(0, 2);
+    auto type_selector = std::bind(distribution, generator);
+
     for (size_t j = 0; j < y_dim; j++)
     {
       std::vector<TileType> x_row = std::vector<TileType>();
 
       for (size_t i = 0; i < x_dim; i++)
       {
-        x_row.push_back(types[rand() % 3]);
+        x_row.push_back(types[type_selector()]);
       }
 
       this->tiles.push_back(x_row);
