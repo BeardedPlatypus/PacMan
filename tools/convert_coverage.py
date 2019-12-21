@@ -96,10 +96,6 @@ def run(coverage_dir: Path) -> None:
     """
     print(str(coverage_dir))
 
-    output_dir = Path(".").resolve()
-    if (not output_dir.exists()):
-        output_dir.mkdir(parents=True)
-
     code_coverage_exe = get_coverage_exe_path()
     print(str(code_coverage_exe))
 
