@@ -15,7 +15,7 @@ public:
   /// Construct a new <see cref="SystemEvent"/> with the given type.
   /// </summary>
   /// <param name="type">The type of this <see cref="SystemEvent" />.</param>
-  SystemEvent(SystemEventType type);
+  explicit SystemEvent(SystemEventType type);
 
   SystemEventType GetType() const override { return this->type; }
 
