@@ -117,4 +117,4 @@ if __name__ == "__main__":
     args = parse_arguments()
 
     coverage_dir = Path(args.coverage_folder)
-    run(coverage_exe, coverage_dir)
+    run(coverage_dir)
