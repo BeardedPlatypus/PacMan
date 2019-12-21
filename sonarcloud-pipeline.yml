@@ -78,8 +78,8 @@ steps:
     projectKey: 'BeardedPlatypus_PacMan'
     projectName: 'PacMan'
     extraProperties: |
-      'sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)'
-      'sonar.cfamily.vscoveragexml.reportsPath=$(coverageFiles)'
+      sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)
+      sonar.cfamily.vscoveragexml.reportsPath=$(coverageFiles)
 
 - task: PowerShell@2
   displayName: MSBuild
