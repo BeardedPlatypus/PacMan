@@ -86,19 +86,18 @@ def convert_coverage_to_xml(code_coverage_exe: Path,
     print("{}\n".format(str(p.stderr)))
 
 
-def run(coverage_dir: Path, output_dir: Path) -> None:
+def run(coverage_dir: Path) -> None:
     """
     Convert the .coverage files within coverage_dir to .xml files.
 
     Parameters:
         coverage_dir (Path): the root directory in which to find the .coverage
                              files.
-        output_dir (Path): The output folder to which to export the .xml files.
     """
     print(str(coverage_dir))
-    print(str(output_dir))
 
-    if (not (output_dir.exists() and output_dir.is_dir())):
+    output_dir = Path(".").resolve()
+    if (not output_dir.exists()):
         output_dir.mkdir(parents=True)
 
     code_coverage_exe = get_coverage_exe_path()
@@ -119,10 +118,7 @@ def parse_arguments():
     Parse the arguments provided to this script.
     """
     parser = argparse.ArgumentParser("Convert .coverage to .xml.")
-
     parser.add_argument("coverage_folder", help="The folder containing the coverage files.")
-    parser.add_argument("output_folder", help="The folder to which to export the coverage files.")
-
     return parser.parse_args()
 
 
@@ -130,7 +126,4 @@ if __name__ == "__main__":
     args = parse_arguments()
 
     coverage_dir = Path(args.coverage_folder)
-    output_dir = Path(args.output_folder)
-
-    run(coverage_dir, 
-        output_dir)
+    run(coverage_dir)
