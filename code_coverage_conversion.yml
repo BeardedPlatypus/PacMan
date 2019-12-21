@@ -8,6 +8,7 @@ variables:
   coverageDownloadLocation: '$(Build.SourcesDirectory)\DownloadedCoverage'
   coverageOutputLocation: '$(Build.SourcesDirectory)\TestResults'
   toolsLocation: '$(Build.SourcesDirectory)\tools'
+  codeCoverageExecutableLocation: '$(toolsLocation)\CodeCoverage\CodeCoverage.exe'
 
 steps:
 - task: CmdLine@2
@@ -35,7 +36,7 @@ steps:
   inputs:
     scriptSource: 'filePath'
     scriptPath: '$(toolsLocation)/convert_coverage.py'
-    arguments: '$(coverageDownloadLocation)'
+    arguments: '$(codeCoverageExecutableLocation) $(coverageDownloadLocation)'
     workingDirectory: '$(coverageOutputLocation)'
 
 - task: PublishPipelineArtifact@0
