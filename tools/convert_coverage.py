@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 import subprocess
 from typing import Sequence
+import shutil
 
 
 def get_coverage_exe_path() -> Path:
@@ -25,27 +26,50 @@ def find_coverage_files(src_path: Path) -> Sequence:
     Returns:
         (Sequence) The set of .coverage files within the specified folder.
     """
-    return Path(".").glob("**/*.coverage")
+    return Path(src_path).glob("**/*.coverage")
+
+
+def copy_coverage_files_to_cwd(coverage_files: Sequence) -> None:
+    """
+    Copy the Sequence of coverage files to the current working 
+    directory as coverage_<n>.coverage.
+
+    Parameters:
+        coverage_files (Sequence): Sequence of Paths to copy to the working directory
+    """
+    i = 0
+    new_coverage_name_template = "coverage_{}.coverage"
+
+    for cov_path in coverage_files:
+        new_name = new_coverage_name_template.format(i)
+        goal_path = Path(new_name)
+
+        shutil.move(str(cov_path), str(goal_path))
+
+        i += 1
 
 
 def convert_coverage_to_xml(code_coverage_exe: Path,
-                            coverage_path: Path, 
-                            output_folder: Path) -> None:
+                            coverage_path: Path) -> None:
     """
     Convert the specified coverage_path to xml, and return the newly 
     generated Path.
 
     Parameters:
-        coverage_path (Path): .coverage file to convert
+        coverage_path (Path): .coverage file to convert located in the current folder
         output_path (Path): Path to the output .xml file to create. 
-    """
-    output_file_path = output_folder / (coverage_path.with_suffix(".coveragexml")).name
 
-    print("output file path: {}".format(str(output_file_path)))
+    Remarks:
+        If a coverage_path is provided other than the current working directory,
+        the behaviour is undefined.
+    """
+    output_file_path = coverage_path.with_suffix(".xml")
+
+    print("output file path: {}".format(str(output_file_name)))
 
     coverage_convert_cmd = "'{}' analyze /output:{} {}".format(str(code_coverage_exe),
-                                                                   str(output_file_path), 
-                                                                   str(coverage_path))
+                                                               output_file_path.name, 
+                                                               coverage_path.name)
     print("coverage path:\n  {}".format(coverage_convert_cmd))
 
     encoding = "utf-8"
@@ -80,10 +104,14 @@ def run(coverage_dir: Path, output_dir: Path) -> None:
     code_coverage_exe = get_coverage_exe_path()
     print(str(code_coverage_exe))
 
-    coverage_file = next(find_coverage_files(coverage_dir))
-    convert_coverage_to_xml(code_coverage_exe, 
-                            coverage_file, 
-                            output_dir)
+    src_coverage_files = find_coverage_files(coverage_dir)
+    copy_coverage_files_to_cwd(src_coverage_files)
+
+    cwd_coverage_files = find_coverage_files(".")
+
+    for coverage_path in cwd_coverage_files:
+        convert_coverage_to_xml(code_coverage_exe, 
+                                coverage_path)
 
 
 def parse_arguments():
