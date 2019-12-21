@@ -20,7 +20,7 @@ public:
   /// <postcondition>
   /// (new this)->GetPosition() == position;
   /// </postcondition>
-  EntityAxis(float position) : position(position) {}
+  explicit EntityAxis(float position) : position(position) {}
 
   inline float GetPosition() const final { return this->position;  }
   void SetPosition(float position) final { this->position = position; }
