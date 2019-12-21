@@ -6,7 +6,7 @@ pool:
 
 variables:
   coverageDownloadLocation: '$(Build.SourcesDirectory)/DownloadedCoverage'
-  convertedOutputLocation: '$(Build.SourcesDirectory)/TestResults'
+  coverageOutputLocation: '$(Build.SourcesDirectory)/TestResults'
   toolsLocation: '$(Build.SourcesDirectory)/tools'
 
 steps:
@@ -41,4 +41,4 @@ steps:
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'convertedCoverage'
-    targetPath: '$(convertedOutputLocation)'
+    targetPath: '$(coverageOutputLocation)'
