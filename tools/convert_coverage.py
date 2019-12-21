@@ -53,9 +53,9 @@ def convert_coverage_to_xml(code_coverage_exe: Path,
         the behaviour is undefined.
     """
     output_file_path = coverage_path.with_suffix(".xml")
-    coverage_convert_cmd = "'{}' analyze /output:{} {}".format(str(code_coverage_exe),
-                                                               output_file_path.name, 
-                                                               coverage_path.name)
+    coverage_convert_cmd = "{} analyze /output:{} {}".format(str(code_coverage_exe),
+                                                             output_file_path.name, 
+                                                             coverage_path.name)
     print("coverage path:\n  {}".format(coverage_convert_cmd))
 
     encoding = "utf-8"
