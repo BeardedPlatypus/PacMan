@@ -32,7 +32,7 @@ class EventGeneratorHelperTestCanConvert :  public ::testing::TestWithParam<EGHT
 
 TEST_P(EventGeneratorHelperTestCanConvert, CanConvertSdlEvent_ValidKeyEventWithValidScancode) {
   // Given a SDL_event
-  EGHTVCValues val = this->GetParam();
+  EGHTVCValues val = GetParam();
 
   SDL_Event sdl_event;
   sdl_event.type = val.event_type;
@@ -74,7 +74,7 @@ class EventGeneratorHelperTestCanConvertInvalid :  public ::testing::TestWithPar
 
 TEST_P(EventGeneratorHelperTestCanConvertInvalid, CanConvertSdlEvent_ValidKeyEventWithInvalidScancode) {
   // Given a SDL_event
-  EGHTVCValues val = this->GetParam();
+  EGHTVCValues val = GetParam();
 
   SDL_Event sdl_event;
   sdl_event.type = val.event_type;
@@ -165,7 +165,7 @@ class EventGeneratorHelperTestConvertKeyboard :  public ::testing::TestWithParam
 
 TEST_P(EventGeneratorHelperTestConvertKeyboard, ConvertSdlEvent_Keyboard) {
   // Given a SDL_event
-  ConvertValues val = this->GetParam();
+  ConvertValues val = GetParam();
 
   SDL_Event sdl_event;
   sdl_event.type = val.event_type;
