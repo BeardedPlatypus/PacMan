@@ -17,7 +17,7 @@ public:
   /// Construct a new <see cref="Field"/> with the given <paramref name="tiles" />.
   /// </summary>
   /// <param name="tiles"> The tiles of this new <see cref="Field" />. </param>
-  Field(const std::vector<std::vector<TileType>>& tiles);
+  explicit Field(const std::vector<std::vector<TileType>>& tiles);
 
   inline int GetXDimension() const final { return this->x_dimension; }
   inline int GetYDimension() const final { return this->y_dimension; }
