@@ -8,14 +8,15 @@ variables:
   coverageDownloadLocation: '$(Build.SourcesDirectory)\DownloadedCoverage'
   coverageOutputLocation: '$(Build.SourcesDirectory)\TestResults'
   toolsLocation: '$(Build.SourcesDirectory)\tools'
-  codeCoverageExecutableLocation: '$(toolsLocation)\CodeCoverage\CodeCoverage.exe'
 
 steps:
 - task: CmdLine@2
+  displayName: Create output directory.
   inputs:
     script: 'mkdir $(coverageOutputLocation)'
 
 - task: DownloadPipelineArtifact@2
+  displayName: Download .coverage artifacts
   inputs:
     buildType: 'specific'
     project: '41987b1d-47e2-4fea-90ac-c2b42d11a558'
@@ -27,19 +28,22 @@ steps:
     targetPath: '$(coverageDownloadLocation)'
 
 - task: UsePythonVersion@0
+  displayName: Set up python version.
   inputs:
     versionSpec: '3.x'
     addToPath: true
     architecture: 'x64'
 
 - task: PythonScript@0
+  displayName: Convert .coverage files to .xml
   inputs:
     scriptSource: 'filePath'
     scriptPath: '$(toolsLocation)/convert_coverage.py'
-    arguments: '$(codeCoverageExecutableLocation) $(coverageDownloadLocation)'
+    arguments: '$(coverageDownloadLocation)'
     workingDirectory: '$(coverageOutputLocation)'
 
 - task: PublishPipelineArtifact@0
+  displayName: Publish .xml files
   inputs:
     artifactName: 'convertedCoverage'
     targetPath: '$(coverageOutputLocation)'
