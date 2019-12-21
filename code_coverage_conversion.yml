@@ -21,11 +21,6 @@ steps:
     itemPattern: '**/*.coverage'
     targetPath: '$(coverageDownloadLocation)'
 
-- task: PublishPipelineArtifact@0
-  inputs:
-    artifactName: 'downloadedCoverage'
-    targetPath: '$(coverageDownloadLocation)'
-
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '3.x'
@@ -36,8 +31,8 @@ steps:
   inputs:
     scriptSource: 'filePath'
     scriptPath: '$(toolsLocation)/convert_coverage.py'
-    arguments: '$(coverageDownloadLocation) $(convertedOutputLocation)'
-    workingDirectory: '$(coverageDownloadLocation)'
+    arguments: '$(coverageDownloadLocation)'
+    workingDirectory: '$(coverageOutputLocation)'
 
 - task: PublishPipelineArtifact@0
   inputs:
