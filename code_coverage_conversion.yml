@@ -5,11 +5,15 @@ pool:
   vmImage: 'windows-2019'
 
 variables:
-  coverageDownloadLocation: '$(Build.SourcesDirectory)/DownloadedCoverage'
-  coverageOutputLocation: '$(Build.SourcesDirectory)/TestResults'
-  toolsLocation: '$(Build.SourcesDirectory)/tools'
+  coverageDownloadLocation: '$(Build.SourcesDirectory)\DownloadedCoverage'
+  coverageOutputLocation: '$(Build.SourcesDirectory)\TestResults'
+  toolsLocation: '$(Build.SourcesDirectory)\tools'
 
 steps:
+- task: CmdLine@2
+  inputs:
+    script: 'mkdir $(coverageOutputLocation)'
+
 - task: DownloadPipelineArtifact@2
   inputs:
     buildType: 'specific'
@@ -26,10 +30,6 @@ steps:
     versionSpec: '3.x'
     addToPath: true
     architecture: 'x64'
-
-- task: CmdLine@2
-  inputs:
-    script: 'mkdir $(coverageOutputLocation)'
 
 - task: PythonScript@0
   inputs:
