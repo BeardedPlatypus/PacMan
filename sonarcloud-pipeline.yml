@@ -1,6 +1,12 @@
 # SonarCloud pipeline for the PacMan.
-trigger:
-- master
+trigger: none
+
+schedules:
+- cron: "0 0,6,9,12,15,18,21 * * *"
+  displayName: Scheduled SonarCloud Build
+  branches:
+    include:
+    - master
 
 pool:
   vmImage: 'windows-2019'
