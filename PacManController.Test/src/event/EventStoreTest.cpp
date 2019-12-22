@@ -19,7 +19,7 @@ namespace pacman {
       auto key_event_type = KeyboardEventType::KeyDown;
 
       // When
-      IKeyboardEvent* p_event = p_event_store->GetKeyboardEvent(key_event_type, key_scancode);
+      const IKeyboardEvent* p_event = p_event_store->GetKeyboardEvent(key_event_type, key_scancode);
 
       // Then
       ASSERT_THAT(p_event->GetScancode(), Eq(key_scancode));
@@ -33,10 +33,10 @@ namespace pacman {
       auto key_scancode = keyboard::Scancode::A;
       auto key_event_type = KeyboardEventType::KeyDown;
 
-      IKeyboardEvent* p_event_first = p_event_store->GetKeyboardEvent(key_event_type, key_scancode);
+      const IKeyboardEvent* p_event_first = p_event_store->GetKeyboardEvent(key_event_type, key_scancode);
 
       // When
-      IKeyboardEvent* p_event_second = p_event_store->GetKeyboardEvent(key_event_type, key_scancode);
+      const IKeyboardEvent* p_event_second = p_event_store->GetKeyboardEvent(key_event_type, key_scancode);
 
       // Then
       ASSERT_THAT(p_event_second, Eq(p_event_first));
@@ -49,7 +49,7 @@ namespace pacman {
       auto system_event_type = SystemEventType::Quit;
 
       // When
-      ISystemEvent* p_event = p_event_store->GetSystemEvent(system_event_type);
+      const ISystemEvent* p_event = p_event_store->GetSystemEvent(system_event_type);
 
       // Then
       ASSERT_THAT(p_event->GetType(), Eq(system_event_type));
@@ -61,10 +61,10 @@ namespace pacman {
       std::unique_ptr<IEventStore> p_event_store = IEventStore::Construct();
       auto system_event_type = SystemEventType::Quit;
 
-      ISystemEvent* p_event_first = p_event_store->GetSystemEvent(system_event_type);
+      const ISystemEvent* p_event_first = p_event_store->GetSystemEvent(system_event_type);
 
       // When
-      ISystemEvent* p_event_second = p_event_store->GetSystemEvent(system_event_type);
+      const ISystemEvent* p_event_second = p_event_store->GetSystemEvent(system_event_type);
 
       // Then
       ASSERT_THAT(p_event_second, Eq(p_event_first));
