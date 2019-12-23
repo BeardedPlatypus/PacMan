@@ -8,7 +8,7 @@ namespace update {
 
 class UpdatableEntityAxis final : public IUpdatableEntityAxis {
 public:
-  UpdatableEntityAxis(state::IEntityAxis* p_axis);
+  explicit UpdatableEntityAxis(state::IEntityAxis* p_axis);
 
   inline float GetPosition() const final;
   inline int GetCurrentIndex() const final;
