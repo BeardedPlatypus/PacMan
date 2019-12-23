@@ -10,17 +10,17 @@ UpdatableEntityAxis::UpdatableEntityAxis(state::IEntityAxis* p_axis) : p_axis(p_
 }
 
 
-float UpdatableEntityAxis::GetPosition() const {
+inline float UpdatableEntityAxis::GetPosition() const {
   return this->p_axis->GetPosition();
 }
 
 
-int UpdatableEntityAxis::GetCurrentIndex() const {
+inline int UpdatableEntityAxis::GetCurrentIndex() const {
   return (int)floorf(this->GetPosition() + 0.5F);
 }
 
 
-int UpdatableEntityAxis::GetPreviousIndex() const {
+inline int UpdatableEntityAxis::GetPreviousIndex() const {
   return this->previous_index;
 }
 

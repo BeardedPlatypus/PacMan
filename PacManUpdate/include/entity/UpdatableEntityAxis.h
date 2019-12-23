@@ -10,9 +10,9 @@ class UpdatableEntityAxis final : public IUpdatableEntityAxis {
 public:
   explicit UpdatableEntityAxis(state::IEntityAxis* p_axis);
 
-  inline float GetPosition() const final;
-  inline int GetCurrentIndex() const final;
-  inline int GetPreviousIndex() const final;
+  float GetPosition() const final;
+  int GetCurrentIndex() const final;
+  int GetPreviousIndex() const final;
   int GetNextTileCenter() const final;
   int GetPreviousTileCenter() const final;
 
