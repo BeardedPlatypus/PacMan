@@ -15,8 +15,7 @@ namespace state {
 namespace field {
 
 struct FieldTestValues {
-  FieldTestValues(int x_dim, int y_dim) :
-      tiles(std::vector<std::vector<TileType>>()) {
+  FieldTestValues(int x_dim, int y_dim) {
     TileType types[] = { TileType::Gate,
                          TileType::Solid,
                          TileType::Space };
@@ -38,7 +37,8 @@ struct FieldTestValues {
     }
   }
 
-  std::vector<std::vector<TileType>> tiles;
+  std::vector<std::vector<TileType>> tiles = 
+    std::vector<std::vector<TileType>>();
 };
 
 
