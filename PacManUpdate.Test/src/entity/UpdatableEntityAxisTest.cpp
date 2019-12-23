@@ -46,8 +46,8 @@ public:
 
 TEST_P(UpdatableEntityAxisCurrentIndexTest, GetCurrentIndex_ReturnsCorrectValue) {
   // Setup
-  float position = this->GetParam().position;
-  int expected_value = this->GetParam().expected_value;
+  float position = GetParam().position;
+  int expected_value = GetParam().expected_value;
 
   auto p_entity_axis = state::IEntityAxis::Construct(position);
 
@@ -75,7 +75,7 @@ public:
 
 TEST_P(UpdatableEntityAxisAxisDirectionTest, SetCurrentAxisDirection_SetsCorrectValue) {
   // Setup
-  AxisDirection axis_direction = this->GetParam();
+  AxisDirection axis_direction = GetParam();
   auto p_entity_axis = state::IEntityAxis::Construct(0.F);
   auto p_updatable_entity_axis = IUpdatableEntityAxis::Construct(p_entity_axis.get());
 
@@ -118,7 +118,7 @@ public:
 
 TEST_P(UpdatableEntityAxisNextTileCenterTest, NextTileCenter_ReturnsCorrectValue) {
   // Setup
-  auto test_value = this->GetParam();
+  auto test_value = GetParam();
 
   auto p_entity_axis = state::IEntityAxis::Construct(test_value.position);
   auto p_updatable_entity_axis = IUpdatableEntityAxis::Construct(p_entity_axis.get());
@@ -150,7 +150,7 @@ public:
 
 TEST_P(UpdatableEntityAxisPreviousTileCenterTest, PreviousTileCenter_ReturnsCorrectValue) {
   // Setup
-  auto test_value = this->GetParam();
+  auto test_value = GetParam();
 
   auto p_entity_axis = state::IEntityAxis::Construct(test_value.position);
   auto p_updatable_entity_axis = IUpdatableEntityAxis::Construct(p_entity_axis.get());
@@ -196,7 +196,7 @@ public:
 
 TEST_P(UpdatableEntityAxisMoveTest, PreviousTileCenter_ReturnsCorrectValue) {
   // Setup
-  auto test_value = this->GetParam();
+  auto test_value = GetParam();
 
   auto p_entity_axis = state::IEntityAxis::Construct(test_value.position);
   auto p_updatable_entity_axis = IUpdatableEntityAxis::Construct(p_entity_axis.get());
