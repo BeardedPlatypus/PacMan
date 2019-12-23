@@ -8,7 +8,7 @@ namespace update {
 
 class UpdatablePlayerEntity final : public IUpdatablePlayerEntity {
 public:
-  UpdatablePlayerEntity(state::IEntityState* p_player_state);
+  explicit UpdatablePlayerEntity(state::IEntityState* p_player_state);
 
   AxisType GetActiveAxisType() const final;
   void SetActiveAxisType(AxisType new_active_axis_type) final;
