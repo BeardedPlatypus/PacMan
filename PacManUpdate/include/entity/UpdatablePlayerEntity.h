@@ -10,22 +10,22 @@ class UpdatablePlayerEntity final : public IUpdatablePlayerEntity {
 public:
   UpdatablePlayerEntity(state::IEntityState* p_player_state);
 
-  inline AxisType GetActiveAxisType() const final;
-  inline void SetActiveAxisType(AxisType new_active_axis_type) final;
+  AxisType GetActiveAxisType() const final;
+  void SetActiveAxisType(AxisType new_active_axis_type) final;
 
-  inline IUpdatableEntityAxis* GetXAxis() const final;
-  inline IUpdatableEntityAxis* GetYAxis() const final;
-  inline IUpdatableEntityAxis* GetActiveAxis() const final;
+  IUpdatableEntityAxis* GetXAxis() const final;
+  IUpdatableEntityAxis* GetYAxis() const final;
+  IUpdatableEntityAxis* GetActiveAxis() const final;
 
-  inline IPlayerMovementAxis* GetPlayerMovementXAxis() const final;
-  inline IPlayerMovementAxis* GetPlayerMovementYAxis() const final;
-  inline IPlayerMovementAxis* GetActivePlayerMovementAxis() const final;
-  inline IPlayerMovementAxis* GetInactivePlayerMovementAxis() const final;
-  inline void SwapActiveAxis() final;
+  IPlayerMovementAxis* GetPlayerMovementXAxis() const final;
+  IPlayerMovementAxis* GetPlayerMovementYAxis() const final;
+  IPlayerMovementAxis* GetActivePlayerMovementAxis() const final;
+  IPlayerMovementAxis* GetInactivePlayerMovementAxis() const final;
+  void SwapActiveAxis() final;
 
-  inline float GetSpeed() const final;
+  float GetSpeed() const final;
 
-  inline state::Direction GetMovingDirection() const final;
+  state::Direction GetMovingDirection() const final;
   void SetMovingDirection(state::Direction direction) final;
 
   void Update(float dt) final;

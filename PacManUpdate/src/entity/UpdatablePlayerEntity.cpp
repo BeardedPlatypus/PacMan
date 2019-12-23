@@ -19,7 +19,7 @@ UpdatablePlayerEntity::UpdatablePlayerEntity(state::IEntityState* p_player_state
   };
 }
 
-AxisType UpdatablePlayerEntity::GetActiveAxisType() const {
+inline AxisType UpdatablePlayerEntity::GetActiveAxisType() const {
   if (this->active_axis == 0) {
     return AxisType::X;
   }
@@ -29,7 +29,7 @@ AxisType UpdatablePlayerEntity::GetActiveAxisType() const {
 }
 
 
-void UpdatablePlayerEntity::SetActiveAxisType(AxisType new_active_axis_type) {
+inline void UpdatablePlayerEntity::SetActiveAxisType(AxisType new_active_axis_type) {
   if (new_active_axis_type == AxisType::X) {
     this->active_axis = 0;
   }
@@ -39,57 +39,57 @@ void UpdatablePlayerEntity::SetActiveAxisType(AxisType new_active_axis_type) {
 }
 
 
-IUpdatableEntityAxis* UpdatablePlayerEntity::GetXAxis() const {
+inline IUpdatableEntityAxis* UpdatablePlayerEntity::GetXAxis() const {
   return this->axii[0].get();
 }
 
 
-IUpdatableEntityAxis* UpdatablePlayerEntity::GetYAxis() const {
+inline IUpdatableEntityAxis* UpdatablePlayerEntity::GetYAxis() const {
   return this->axii[1].get();
 }
 
 
-IUpdatableEntityAxis* UpdatablePlayerEntity::GetActiveAxis() const {
+inline IUpdatableEntityAxis* UpdatablePlayerEntity::GetActiveAxis() const {
   return this->axii[this->active_axis].get();
 }
 
 
-IPlayerMovementAxis* UpdatablePlayerEntity::GetPlayerMovementXAxis() const {
+inline IPlayerMovementAxis* UpdatablePlayerEntity::GetPlayerMovementXAxis() const {
   return this->movement_axii[0].get();
 }
 
 
-IPlayerMovementAxis* UpdatablePlayerEntity::GetPlayerMovementYAxis() const {
+inline IPlayerMovementAxis* UpdatablePlayerEntity::GetPlayerMovementYAxis() const {
   return this->movement_axii[1].get();
 }
 
 
-IPlayerMovementAxis* UpdatablePlayerEntity::GetActivePlayerMovementAxis() const {
+inline IPlayerMovementAxis* UpdatablePlayerEntity::GetActivePlayerMovementAxis() const {
   return this->movement_axii[this->active_axis].get();
 }
 
 
-IPlayerMovementAxis* UpdatablePlayerEntity::GetInactivePlayerMovementAxis() const {
+inline IPlayerMovementAxis* UpdatablePlayerEntity::GetInactivePlayerMovementAxis() const {
   return this->movement_axii[abs(this->active_axis - 1)].get();
 }
 
 
-void UpdatablePlayerEntity::SwapActiveAxis() {
+inline void UpdatablePlayerEntity::SwapActiveAxis() {
   this->active_axis = abs(this->active_axis - 1);
 }
 
 
-float UpdatablePlayerEntity::GetSpeed() const {
+inline float UpdatablePlayerEntity::GetSpeed() const {
   return this->p_player_state->GetSpeed();
 }
 
 
-state::Direction UpdatablePlayerEntity::GetMovingDirection() const {
+inline state::Direction UpdatablePlayerEntity::GetMovingDirection() const {
   return this->p_player_state->GetDirection();
 }
 
 
-void UpdatablePlayerEntity::SetMovingDirection(state::Direction direction) {
+inline void UpdatablePlayerEntity::SetMovingDirection(state::Direction direction) {
   this->p_player_state->SetDirection(direction);
 }
 
