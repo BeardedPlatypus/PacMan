@@ -165,8 +165,8 @@ public:
 
 
 TEST_P(FieldLayerHelperCenterElementTest, ReturnsCorrectValue) {
-  unsigned int expected_value = this->GetParam().expectedValue;
-  std::unique_ptr<state::field::IField> p_field = state::field::IField::Construct(this->GetParam().tiles);
+  unsigned int expected_value = GetParam().expectedValue;
+  std::unique_ptr<state::field::IField> p_field = state::field::IField::Construct(GetParam().tiles);
 
   std::vector<unsigned int> result = 
     FieldLayerHelper::CalculateFieldVisualisation(p_field.get());
