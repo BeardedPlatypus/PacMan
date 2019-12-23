@@ -17,7 +17,7 @@ public:
   /// Construct a new <see cref="Node"/>.
   /// </summary>
   /// <param name="value">The value.</param>
-  Node(TValue value);
+  explicit Node(TValue value);
 
   TValue GetValue() const final { return this->value; }
 
