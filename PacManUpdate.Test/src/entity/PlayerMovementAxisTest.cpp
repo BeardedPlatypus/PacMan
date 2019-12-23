@@ -99,8 +99,8 @@ TEST_P(PlayerMovementAxisStateMachineTest, ReturnsCorrectDirection) {
   // Setup
   auto p_axis = IPlayerMovementAxis::Construct();
 
-  AxisDirection expected_value = this->GetParam().expected_value;
-  std::vector<state_machine::PlayerControlEvent> events = this->GetParam().events;
+  AxisDirection expected_value = GetParam().expected_value;
+  std::vector<state_machine::PlayerControlEvent> events = GetParam().events;
 
   // Call
   for (state_machine::PlayerControlEvent control_event : events) {
@@ -243,7 +243,7 @@ public:
 TEST_P(PlayerMovementAxisTimeOutTest, UpdateCorrectlyTimesOut) {
   // Setup
   auto p_axis = IPlayerMovementAxis::Construct();
-  std::vector<state_machine::PlayerControlEvent> events = this->GetParam();
+  std::vector<state_machine::PlayerControlEvent> events = GetParam();
 
   // bring the axis in a timed out state;
   for (auto e : events) {
