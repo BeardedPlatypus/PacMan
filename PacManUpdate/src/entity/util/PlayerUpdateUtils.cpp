@@ -6,13 +6,13 @@ namespace pacman {
 namespace update {
 namespace util {
 
-bool IsActive(IUpdatablePlayerEntity* p_player_entity) {
+bool IsActive(const IUpdatablePlayerEntity* p_player_entity) {
   return !(p_player_entity->GetActiveAxis()->GetCurrentAxisDirection() == AxisDirection::None &&
            p_player_entity->GetActivePlayerMovementAxis()->GetNextDirection() == AxisDirection::None);
 }
 
 
-bool ShouldUpdateDirectionActiveAxis(IUpdatablePlayerEntity* p_player_entity) {
+bool ShouldUpdateDirectionActiveAxis(const IUpdatablePlayerEntity* p_player_entity) {
   AxisDirection next_active_direction =
     p_player_entity->GetActivePlayerMovementAxis()->GetNextDirection();
   AxisDirection cur_active_direction =
@@ -23,7 +23,7 @@ bool ShouldUpdateDirectionActiveAxis(IUpdatablePlayerEntity* p_player_entity) {
 }
 
 
-void UpdateDirectionActiveAxis(IUpdatablePlayerEntity* p_player_entity) {
+void UpdateDirectionActiveAxis(const IUpdatablePlayerEntity* p_player_entity) {
   IUpdatableEntityAxis* p_active_axis = p_player_entity->GetActiveAxis();
   IPlayerMovementAxis* p_movement_axis = p_player_entity->GetActivePlayerMovementAxis();
 
@@ -31,26 +31,25 @@ void UpdateDirectionActiveAxis(IUpdatablePlayerEntity* p_player_entity) {
 }
 
 
-int GetDirectionValue(AxisDirection direction) {
+inline int GetDirectionValue(AxisDirection direction) {
   switch (direction)
   {
   case AxisDirection::Negative:
     return -1;
   case AxisDirection::Positive:
     return 1;
-  case AxisDirection::None:
   default:
     return 0;
   }
 }
 
 
-bool HasOtherDirection(IUpdatablePlayerEntity* p_player_entity) {
+bool HasOtherDirection(const IUpdatablePlayerEntity* p_player_entity) {
   return p_player_entity->GetInactivePlayerMovementAxis()->GetNextDirection() != AxisDirection::None;
 }
 
 
-float GetDistanceToNextCenter(IUpdatablePlayerEntity* p_player_entity) {
+float GetDistanceToNextCenter(const IUpdatablePlayerEntity* p_player_entity) {
   IUpdatableEntityAxis* p_active_axis = p_player_entity->GetActiveAxis();
 
   float pos = p_active_axis->GetPosition();
@@ -58,7 +57,7 @@ float GetDistanceToNextCenter(IUpdatablePlayerEntity* p_player_entity) {
 }
 
 
-float GetDistanceToPreviousCenter(IUpdatablePlayerEntity* p_player_entity) {
+float GetDistanceToPreviousCenter(const IUpdatablePlayerEntity* p_player_entity) {
   IUpdatableEntityAxis* p_active_axis = p_player_entity->GetActiveAxis();
 
   float pos = p_active_axis->GetPosition();
@@ -66,14 +65,14 @@ float GetDistanceToPreviousCenter(IUpdatablePlayerEntity* p_player_entity) {
 }
 
 
-bool CanMoveToPosition(state::field::IField* p_field, int x, int y) {
+bool CanMoveToPosition(const state::field::IField* p_field, int x, int y) {
   state::field::TileType next_tile_type = p_field->GetTileType(x, y);
   return next_tile_type == state::field::TileType::Space;
 }
 
 
-bool CanMoveInNextDirectionAtNextTileCenter(IUpdatablePlayerEntity* p_player_entity,
-                                            state::field::IField* p_field) {
+bool CanMoveInNextDirectionAtNextTileCenter(const IUpdatablePlayerEntity* p_player_entity,
+                                            const state::field::IField* p_field) {
   IUpdatableEntityAxis* x_axis = p_player_entity->GetXAxis();
   IUpdatableEntityAxis* y_axis = p_player_entity->GetYAxis();
 
@@ -94,8 +93,8 @@ bool CanMoveInNextDirectionAtNextTileCenter(IUpdatablePlayerEntity* p_player_ent
 }
 
 
-bool CanMoveInNextDirectionAtPreviousTileCenter(IUpdatablePlayerEntity* p_player_entity,
-                                                state::field::IField* p_field) {
+bool CanMoveInNextDirectionAtPreviousTileCenter(const IUpdatablePlayerEntity* p_player_entity,
+                                                const state::field::IField* p_field) {
   IUpdatableEntityAxis* x_axis = p_player_entity->GetXAxis();
   IUpdatableEntityAxis* y_axis = p_player_entity->GetYAxis();
 
@@ -116,7 +115,7 @@ bool CanMoveInNextDirectionAtPreviousTileCenter(IUpdatablePlayerEntity* p_player
 }
 
 
-void MoveOnActiveAxis(IUpdatablePlayerEntity* p_player_entity,
+void MoveOnActiveAxis(const IUpdatablePlayerEntity* p_player_entity,
                       float distance,
                       bool moveInOppositeDirection) {
   int direction_val = GetDirectionValue(p_player_entity->GetActiveAxis()->GetCurrentAxisDirection());
@@ -126,8 +125,8 @@ void MoveOnActiveAxis(IUpdatablePlayerEntity* p_player_entity,
   p_player_entity->GetActiveAxis()->Move(distance * direction_val);
 }
 
-float GetConfinedDistanceToMove(IUpdatablePlayerEntity* p_player_entity,
-                                state::field::IField* p_field,
+float GetConfinedDistanceToMove(const IUpdatablePlayerEntity* p_player_entity,
+                                const state::field::IField* p_field,
                                 float max_distance_to_move) {
   float distance_to_move = max_distance_to_move;
 
@@ -155,8 +154,8 @@ float GetConfinedDistanceToMove(IUpdatablePlayerEntity* p_player_entity,
 }
 
 
-void ConditiallyMoveDistance(IUpdatablePlayerEntity* p_player_entity,
-                             state::field::IField* p_field,
+void ConditiallyMoveDistance(const IUpdatablePlayerEntity* p_player_entity,
+                             const state::field::IField* p_field,
                              float max_distance_to_move) {
   float distance_to_move = util::GetConfinedDistanceToMove(p_player_entity, 
                                                            p_field, 

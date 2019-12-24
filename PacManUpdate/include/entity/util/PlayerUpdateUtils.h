@@ -18,7 +18,7 @@ namespace util {
   /// <c>true</c> if <paramref name="p_player_entity"/> is active; 
   /// <c>false</c> otherwise.
   /// </returns>
-  bool IsActive(IUpdatablePlayerEntity* p_player_entity);
+  bool IsActive(const IUpdatablePlayerEntity* p_player_entity);
 
   /// <summary>
   /// Indicate whether the direction of the current active axis of this
@@ -31,7 +31,7 @@ namespace util {
   /// <c>true</c> if <paramref name="p_player_entity"/>'s active axis direction
   /// should be updated; <c>false</c> otherwise.
   /// </returns>
-  bool ShouldUpdateDirectionActiveAxis(IUpdatablePlayerEntity* p_player_entity);
+  bool ShouldUpdateDirectionActiveAxis(const IUpdatablePlayerEntity* p_player_entity);
 
   /// <summary>
   /// Update the direction of the active axis of the specified
@@ -40,7 +40,7 @@ namespace util {
   /// <param name="p_player_entity">
   /// A pointer to the <see cref="IUpdatablePlayerEntity"/> to be updated.
   /// </param>
-  void UpdateDirectionActiveAxis(IUpdatablePlayerEntity* p_player_entity);
+  void UpdateDirectionActiveAxis(const IUpdatablePlayerEntity* p_player_entity);
 
   /// <summary>
   /// Get the value corresponding with the specified direction.
@@ -64,7 +64,7 @@ namespace util {
   /// <c>true</c> if <paramref name="p_player_entity"/> has a direction
   /// specified on the inactive axis; <c>false</c> otherwise.
   /// </returns>
-  bool HasOtherDirection(IUpdatablePlayerEntity* p_player_entity);
+  bool HasOtherDirection(const IUpdatablePlayerEntity* p_player_entity);
 
   /// <summary>
   /// Get the distance to the next tile center this 
@@ -77,7 +77,7 @@ namespace util {
   /// The distance to the next tile center this 
   /// <paramref name="p_player_entity"/> will encounter.
   /// <returns>
-  float GetDistanceToNextCenter(IUpdatablePlayerEntity* p_player_entity);
+  float GetDistanceToNextCenter(const IUpdatablePlayerEntity* p_player_entity);
 
   /// <summary>
   /// Get the distance to the previous tile center this 
@@ -90,7 +90,7 @@ namespace util {
   /// The distance to the previous tile center this 
   /// <paramref name="p_player_entity"/> has encountered.
   /// <returns>
-  float GetDistanceToPreviousCenter(IUpdatablePlayerEntity* p_player_entity);
+  float GetDistanceToPreviousCenter(const IUpdatablePlayerEntity* p_player_entity);
 
   /// <summary>
   /// Check whether an entity can move to position 
@@ -101,7 +101,7 @@ namespace util {
   /// </param>
   /// <param name="x">The x location to check.</param>
   /// <param name="y">The y location to check.</param>
-  bool CanMoveToPosition(state::field::IField* p_field, int x, int y);
+  bool CanMoveToPosition(const state::field::IField* p_field, int x, int y);
 
   /// <summary>
   /// Check whether <paramref name="p_player_entity"/> can move in the 
@@ -118,8 +118,8 @@ namespace util {
   /// next direction of its inactive axis at the next tile center;
   /// <c>false</c> otherwise.
   /// </returns>
-  bool CanMoveInNextDirectionAtNextTileCenter(IUpdatablePlayerEntity* p_player_entity,
-                                              state::field::IField* p_field);
+  bool CanMoveInNextDirectionAtNextTileCenter(const IUpdatablePlayerEntity* p_player_entity,
+                                              const state::field::IField* p_field);
 
   /// <summary>
   /// Check whether <paramref name="p_player_entity"/> can move in the 
@@ -136,8 +136,8 @@ namespace util {
   /// next direction of its inactive axis at the previous tile center;
   /// <c>false</c> otherwise.
   /// </returns>
-  bool CanMoveInNextDirectionAtPreviousTileCenter(IUpdatablePlayerEntity* p_player_entity,
-                                                  state::field::IField* p_field);
+  bool CanMoveInNextDirectionAtPreviousTileCenter(const IUpdatablePlayerEntity* p_player_entity,
+                                                  const state::field::IField* p_field);
 
   /// <summary>
   /// Move the <paramref name="p_player_entity"/> along its active axis by
@@ -153,7 +153,7 @@ namespace util {
   /// If true, then the <paramref name="p_player_entity"/> will be moved in its
   /// opposite direction.
   /// </param>
-  void MoveOnActiveAxis(IUpdatablePlayerEntity* p_player_entity,
+  void MoveOnActiveAxis(const IUpdatablePlayerEntity* p_player_entity,
                         float distance,
                         bool moveInOppositeDirection=false);
 
@@ -176,8 +176,8 @@ namespace util {
   /// If the movement is limited, then the maximum distance with 
   /// <paramref name="max_distance_to_move"/> as an upperbound.
   /// </returns>
-  float GetConfinedDistanceToMove(IUpdatablePlayerEntity* p_player_entity,
-                                  state::field::IField* p_field,
+  float GetConfinedDistanceToMove(const IUpdatablePlayerEntity* p_player_entity,
+                                  const state::field::IField* p_field,
                                   float max_distance_to_move);
 
   /// <summary>
@@ -194,8 +194,8 @@ namespace util {
   /// <param name="max_distance_to_move">
   /// The maximum distance which can be moved.
   /// </param>
-  void ConditiallyMoveDistance(IUpdatablePlayerEntity* p_player_entity, 
-                               state::field::IField* p_field,
+  void ConditiallyMoveDistance(const IUpdatablePlayerEntity* p_player_entity, 
+                               const state::field::IField* p_field,
                                float max_distance_to_move);
 
   /// <summary>
