@@ -8,7 +8,7 @@ namespace pacman {
 
 
 void UpdatePlayerLocation(IUpdatablePlayerEntity* p_player_entity,
-                          state::field::IField* p_field,
+                          const state::field::IField* p_field,
                           float dt) {
   if (!util::IsActive(p_player_entity)) {
     return;

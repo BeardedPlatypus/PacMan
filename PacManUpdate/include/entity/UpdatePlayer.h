@@ -26,7 +26,7 @@ namespace update {
   /// | dt >= 0.F
   /// </precondition>
   void UpdatePlayerLocation(IUpdatablePlayerEntity* p_player_entity,
-                            state::field::IField* p_field,
+                            const state::field::IField* p_field,
                             float dt);
 
 }
