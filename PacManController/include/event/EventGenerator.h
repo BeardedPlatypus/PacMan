@@ -35,7 +35,7 @@ private:
   /// <summary>
   /// The vector containing all events of this <see cref="EventGenerator" />.
   /// </summary>
-  std::vector<IEvent*> events_vector;
+  std::vector<IEvent*> events_vector = std::vector<IEvent*>();
    
   /// <summary>
   /// Get a pointer to the <see cref="IEventStore" /> of this

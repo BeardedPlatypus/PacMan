@@ -9,8 +9,7 @@ namespace pacman {
 namespace controller {
 
 EventGenerator::EventGenerator(IEventStore* p_event_store) : 
-    p_event_store(p_event_store),
-    events_vector(std::vector<IEvent*>()) { }
+    p_event_store(p_event_store) { }
 
 
 void EventGenerator::PollEvents() {
