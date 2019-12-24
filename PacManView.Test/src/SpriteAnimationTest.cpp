@@ -208,12 +208,7 @@ TEST(Unit_SpriteAnimationTest, resetTime) {
 }
 
 
-// - getActiveSprite:
-// Given a SpriteAnimation with a set of sprite
-// When this SpriteAnimation is set to certain time
-//  And getActiveSprite is called 
-// Then the correct sprite is returned
-TEST(Unit_SpriteAnimationTest, getActiveSprite) {
+std::vector<std::reference_wrapper<const Sprite>> GetSprites() {
   TextureMock texture;
   auto sprite1 = Sprite(texture, 0, 0, 10, 10);
   auto sprite2 = Sprite(texture, 0, 0, 10, 10);
@@ -222,14 +217,23 @@ TEST(Unit_SpriteAnimationTest, getActiveSprite) {
   auto sprite5 = Sprite(texture, 0, 0, 10, 10);
 
   std::vector<std::reference_wrapper<const Sprite>> sprites { sprite1,
-	                                                          sprite2,
-	                                                          sprite3,
-	                                                          sprite4,
-	                                                          sprite5 };
+	                                                            sprite2,
+	                                                            sprite3,
+	                                                            sprite4,
+	                                                            sprite5 };
+  return sprites;
+}
 
-  const float time_per_frame = 10.F;
-  auto p_animation = ISpriteAnimation::Construct(time_per_frame, sprites);
 
+// - getActiveSprite:
+// Given a SpriteAnimation with a set of sprite
+// When this SpriteAnimation is set to certain time
+//  And getActiveSprite is called 
+// Then the correct sprite is returned
+TEST(Unit_SpriteAnimationTest, getActiveSprite) {
+  // Given
+  std::vector<std::reference_wrapper<const Sprite>> sprites = GetSprites();
+  auto p_animation = ISpriteAnimation::Construct(10.F, sprites);
 
   // When
   const int i = 0;
@@ -249,22 +253,9 @@ TEST(Unit_SpriteAnimationTest, getActiveSprite) {
 // When this SpriteAnimation is deep cloned
 // Then a new deep copy of this SpriteAnimation is created.
 TEST(Unit_SpriteAnimationTest, deepClone) {
-  TextureMock texture;
-  auto sprite1 = Sprite(texture, 0, 0, 10, 10);
-  auto sprite2 = Sprite(texture, 0, 0, 10, 10);
-  auto sprite3 = Sprite(texture, 0, 0, 10, 10);
-  auto sprite4 = Sprite(texture, 0, 0, 10, 10);
-  auto sprite5 = Sprite(texture, 0, 0, 10, 10);
-
-  std::vector<std::reference_wrapper<const Sprite>> sprites { sprite1,
-	                                                          sprite2,
-	                                                          sprite3,
-	                                                          sprite4,
-	                                                          sprite5 };
-
-  const float time_per_frame = 10.F;
-  std::unique_ptr<ISpriteAnimation> p_animation = ISpriteAnimation::Construct(time_per_frame, sprites);
-
+  // Given
+  std::vector<std::reference_wrapper<const Sprite>> sprites = GetSprites();
+  auto p_animation = ISpriteAnimation::Construct(10.F, sprites);
 
   // When
   std::unique_ptr<ISpriteAnimation> result = p_animation->DeepClone();
