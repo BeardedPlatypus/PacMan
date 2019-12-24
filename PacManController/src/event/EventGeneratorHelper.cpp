@@ -11,8 +11,8 @@ namespace controller {
 
 bool EventGeneratorHelper::CanConvertSdlEvent(const SDL_Event* p_event) {
   // Keyboard events
-  if ((p_event->type == SDL_KEYDOWN ||
-       p_event->type == SDL_KEYUP)) {
+  if (p_event->type == SDL_KEYDOWN ||
+      p_event->type == SDL_KEYUP) {
     auto converter = keyboard::ScancodeConverter();
 
     keyboard::Scancode code = converter.Convert(p_event->key.keysym.scancode);
