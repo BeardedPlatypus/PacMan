@@ -25,7 +25,7 @@ bool ShouldUpdateDirectionActiveAxis(const IUpdatablePlayerEntity* p_player_enti
 
 void UpdateDirectionActiveAxis(const IUpdatablePlayerEntity* p_player_entity) {
   IUpdatableEntityAxis* p_active_axis = p_player_entity->GetActiveAxis();
-  IPlayerMovementAxis* p_movement_axis = p_player_entity->GetActivePlayerMovementAxis();
+  const IPlayerMovementAxis* p_movement_axis = p_player_entity->GetActivePlayerMovementAxis();
 
   p_active_axis->SetCurrentAxisDirection(p_movement_axis->GetNextDirection());
 }
@@ -50,7 +50,7 @@ bool HasOtherDirection(const IUpdatablePlayerEntity* p_player_entity) {
 
 
 float GetDistanceToNextCenter(const IUpdatablePlayerEntity* p_player_entity) {
-  IUpdatableEntityAxis* p_active_axis = p_player_entity->GetActiveAxis();
+  const IUpdatableEntityAxis* p_active_axis = p_player_entity->GetActiveAxis();
 
   float pos = p_active_axis->GetPosition();
   return abs(pos - p_active_axis->GetNextTileCenter());
@@ -58,7 +58,7 @@ float GetDistanceToNextCenter(const IUpdatablePlayerEntity* p_player_entity) {
 
 
 float GetDistanceToPreviousCenter(const IUpdatablePlayerEntity* p_player_entity) {
-  IUpdatableEntityAxis* p_active_axis = p_player_entity->GetActiveAxis();
+  const IUpdatableEntityAxis* p_active_axis = p_player_entity->GetActiveAxis();
 
   float pos = p_active_axis->GetPosition();
   return abs(pos - p_active_axis->GetPreviousTileCenter());
@@ -73,8 +73,8 @@ bool CanMoveToPosition(const state::field::IField* p_field, int x, int y) {
 
 bool CanMoveInNextDirectionAtNextTileCenter(const IUpdatablePlayerEntity* p_player_entity,
                                             const state::field::IField* p_field) {
-  IUpdatableEntityAxis* x_axis = p_player_entity->GetXAxis();
-  IUpdatableEntityAxis* y_axis = p_player_entity->GetYAxis();
+  const IUpdatableEntityAxis* x_axis = p_player_entity->GetXAxis();
+  const IUpdatableEntityAxis* y_axis = p_player_entity->GetYAxis();
 
   int next_x; 
   int next_y;
@@ -95,8 +95,8 @@ bool CanMoveInNextDirectionAtNextTileCenter(const IUpdatablePlayerEntity* p_play
 
 bool CanMoveInNextDirectionAtPreviousTileCenter(const IUpdatablePlayerEntity* p_player_entity,
                                                 const state::field::IField* p_field) {
-  IUpdatableEntityAxis* x_axis = p_player_entity->GetXAxis();
-  IUpdatableEntityAxis* y_axis = p_player_entity->GetYAxis();
+  const IUpdatableEntityAxis* x_axis = p_player_entity->GetXAxis();
+  const IUpdatableEntityAxis* y_axis = p_player_entity->GetYAxis();
 
   int next_x; 
   int next_y;
@@ -130,7 +130,7 @@ float GetConfinedDistanceToMove(const IUpdatablePlayerEntity* p_player_entity,
                                 float max_distance_to_move) {
   float distance_to_move = max_distance_to_move;
 
-  IUpdatableEntityAxis* p_active_axis = p_player_entity->GetActiveAxis();
+  const IUpdatableEntityAxis* p_active_axis = p_player_entity->GetActiveAxis();
   bool is_move_vertical = p_player_entity->GetActiveAxisType() == AxisType::Y;
 
   int direction_val = GetDirectionValue(p_active_axis->GetCurrentAxisDirection());
@@ -160,9 +160,6 @@ void ConditiallyMoveDistance(const IUpdatablePlayerEntity* p_player_entity,
   float distance_to_move = util::GetConfinedDistanceToMove(p_player_entity, 
                                                            p_field, 
                                                            max_distance_to_move);
-
-  IUpdatableEntityAxis* p_active_axis = p_player_entity->GetActiveAxis();
-
   MoveOnActiveAxis(p_player_entity, distance_to_move);
 }
 
