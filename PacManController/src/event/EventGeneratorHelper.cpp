@@ -9,7 +9,7 @@
 namespace pacman {
 namespace controller {
 
-bool EventGeneratorHelper::CanConvertSdlEvent(SDL_Event* p_event) {
+bool EventGeneratorHelper::CanConvertSdlEvent(const SDL_Event* p_event) {
   // Keyboard events
   if ((p_event->type == SDL_KEYDOWN ||
        p_event->type == SDL_KEYUP)) {
@@ -28,7 +28,7 @@ bool EventGeneratorHelper::CanConvertSdlEvent(SDL_Event* p_event) {
 }
 
 
-IEvent* EventGeneratorHelper::ConvertSdlEvent(SDL_Event* p_event,
+IEvent* EventGeneratorHelper::ConvertSdlEvent(const SDL_Event* p_event,
                                               IEventStore* p_event_store) {
   auto converter = keyboard::ScancodeConverter();
   keyboard::Scancode code = converter.Convert(p_event->key.keysym.scancode);

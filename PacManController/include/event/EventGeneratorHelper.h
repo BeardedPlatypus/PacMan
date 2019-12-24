@@ -28,7 +28,7 @@ public:
   /// <c>true</c> if this instance [can convert SDL event] the specified p 
   /// event; otherwise, <c>false</c>.
   /// </returns>
-  static bool CanConvertSdlEvent(SDL_Event* p_event);
+  static bool CanConvertSdlEvent(const SDL_Event* p_event);
 
   /// <summary>
   /// Converts the SDL event to a <see cref="IEvent" /> through the
@@ -43,7 +43,7 @@ public:
   /// <returns> 
   /// A pointer to the corresponding <see cref="IEvent" />. 
   /// </returns>
-  static IEvent* ConvertSdlEvent(SDL_Event* p_event, IEventStore* p_event_store);
+  static IEvent* ConvertSdlEvent(const SDL_Event* p_event, IEventStore* p_event_store);
 };
 
 }
