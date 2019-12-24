@@ -6,8 +6,7 @@ namespace pacman {
 namespace update {
 
 UpdatablePlayerEntity::UpdatablePlayerEntity(state::IEntityState* p_player_state) :
-    p_player_state(p_player_state),
-    active_axis(0) {
+    p_player_state(p_player_state) {
   this->axii = { 
     IUpdatableEntityAxis::Construct(this->p_player_state->GetXAxis()), 
     IUpdatableEntityAxis::Construct(this->p_player_state->GetYAxis()) 

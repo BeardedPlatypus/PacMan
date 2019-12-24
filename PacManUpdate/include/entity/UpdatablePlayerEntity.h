@@ -33,7 +33,7 @@ public:
 private:
   state::IEntityState* p_player_state;
 
-  int active_axis;
+  int active_axis = 0;
 
   std::array<std::unique_ptr<IUpdatableEntityAxis>, 2> axii;
   std::array<std::unique_ptr<IPlayerMovementAxis>, 2> movement_axii;
