@@ -24,7 +24,7 @@ public:
   void ConstructNewField(const std::vector<std::vector<field::TileType>>& tiles);
 
   IEntityState* GetPlayerState() const final;
-  virtual void SetPlayerState(std::unique_ptr<IEntityState> p_player_state);
+  void SetPlayerState(std::unique_ptr<IEntityState> p_player_state) final;
 
 private:	
 	/// <summary>
