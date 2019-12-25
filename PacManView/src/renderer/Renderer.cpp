@@ -21,7 +21,7 @@ void Renderer::Init(SDL_Window* p_window) {
 	if (p_renderer == nullptr)
 		throw ViewException("SDL_CreateRenderer", SDL_GetError());
 
-	this->p_renderer = 
+	this->_p_renderer = 
 		std::unique_ptr<SDL_Renderer, SDL_Destructor<SDL_Renderer>>(p_renderer);
 }
 
@@ -41,7 +41,7 @@ void Renderer::RenderCopy(SDL_Texture* p_texture,
   else if (flip_horizontally && flip_vertically)
     flip = (SDL_RendererFlip) (SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 
-	SDL_RenderCopyEx(this->p_renderer.get(),
+	SDL_RenderCopyEx(this->_p_renderer.get(),
 				           p_texture,
 				           p_texture_clip,
 				           p_destination,
@@ -52,17 +52,17 @@ void Renderer::RenderCopy(SDL_Texture* p_texture,
 
 
 void Renderer::RenderPresent() {
-	SDL_RenderPresent(this->p_renderer.get());
+	SDL_RenderPresent(this->_p_renderer.get());
 }
 
 
 void Renderer::RenderClear() {
-	SDL_RenderClear(this->p_renderer.get());
+	SDL_RenderClear(this->_p_renderer.get());
 }
 
 
 std::unique_ptr<ITexture> Renderer::LoadTexture(const std::string& file_path) const {
-	SDL_Texture* p_tex = IMG_LoadTexture(this->p_renderer.get(),
+	SDL_Texture* p_tex = IMG_LoadTexture(this->_p_renderer.get(),
 										 file_path.c_str());
 
 	if (p_tex == nullptr)

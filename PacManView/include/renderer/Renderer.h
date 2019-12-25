@@ -70,7 +70,7 @@ public:
 
 private:
 	/// <summary> A pointer to the renderer. </summary>
-	std::unique_ptr<SDL_Renderer, SDL_Destructor<SDL_Renderer>> p_renderer;
+	std::unique_ptr<SDL_Renderer, SDL_Destructor<SDL_Renderer>> _p_renderer;
 };
 
 
