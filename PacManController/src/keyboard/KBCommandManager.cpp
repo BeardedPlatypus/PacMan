@@ -5,9 +5,7 @@ namespace pacman {
 namespace controller {
 namespace keyboard {
 
-CommandManager::CommandManager() : 
-	p_map(std::make_unique<std::unordered_map<IKeyboardEvent*, std::unique_ptr<ICommand>>>()) {
-}
+CommandManager::CommandManager() {}
 
 
 void CommandManager::RegisterCommand(std::unique_ptr<ICommand> p_command,

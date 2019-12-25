@@ -43,7 +43,8 @@ private:
   /// Pointer to the event command map of this <see cref="CommandManager" /> 
   /// </summary>
   std::unique_ptr<std::unordered_map<IKeyboardEvent*, 
-		                             std::unique_ptr<ICommand>>> p_map;
+		                             std::unique_ptr<ICommand>>> p_map = 
+    std::make_unique<std::unordered_map<IKeyboardEvent*, std::unique_ptr<ICommand>>>();
 };
 
 }
