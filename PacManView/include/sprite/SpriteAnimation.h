@@ -32,8 +32,8 @@ public:
 
   void updateTime(float d_time) final;
   void resetTime() final;
-  inline float getExactTime() const final;
-  inline void setExactTime(float new_time) final;
+  float getExactTime() const final;
+  void setExactTime(float new_time) final;
   inline float getInternalTime() const final { return this->_internal_cur_time; }
   void setInternalTime(float new_time) final;
   inline int getNFrames() const final { return this->_n_frames; }
