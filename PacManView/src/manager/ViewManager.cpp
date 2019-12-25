@@ -20,8 +20,8 @@ void ViewManager::initialise(int screen_width, int screen_height) {
 
 
 void ViewManager::requestSprite(const std::string& label,
-								const std::string& texture_file_path,
-								const ClipRect clipping_rectangle) {
+								                const std::string& texture_file_path,
+								                const ClipRect& clipping_rectangle) {
 	this->getSpriteManager().initSprite(label,
 										texture_file_path,
 										clipping_rectangle.x,

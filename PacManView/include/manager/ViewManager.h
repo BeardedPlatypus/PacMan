@@ -28,7 +28,7 @@ public:
 
 	void requestSprite(const std::string& label,
 					   const std::string& texture_file_path,
-					   const ClipRect clipping_rectangle) final;
+					   const ClipRect& clipping_rectangle) final;
 
 	void requestSprite(const std::string& label,
 					   const std::string& texture_file_path) final;

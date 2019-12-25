@@ -81,7 +81,7 @@ public:
 	/// </exception>
 	virtual void requestSprite(const std::string& label,
 							   const std::string& texture_file_path,
-							   const ClipRect clipping_rectangle) = 0;
+							   const ClipRect& clipping_rectangle) = 0;
 
 	/// <summary> 
 	/// Request a new <see cref="Sprite" /> with the given 
