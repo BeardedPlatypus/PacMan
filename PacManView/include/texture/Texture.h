@@ -21,7 +21,7 @@ public:
 	/// A pointer to the texture which is managed by this 
 	/// <see cref="Texture" />.
 	/// </param>
-	Texture(SDL_Texture* p_tex);
+	explicit Texture(SDL_Texture* p_tex);
 	
 	/// <summary>
 	/// Get the dimensions of this <see cref="ITexture" />.
