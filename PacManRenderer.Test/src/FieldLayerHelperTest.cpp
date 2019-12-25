@@ -50,12 +50,39 @@ TEST(FieldLayerHelperTest, CalculateFieldValue_SingleOutOfBounds) {
 }
 
 
-TEST(FieldLayerHelperTest, CalculateFieldValue_SingleSolid) {
+class FieldLayerHelperCalculateFieldValueTestValues {
+public:
+  FieldLayerHelperCalculateFieldValueTestValues(state::field::TileType tile_type,
+                                                unsigned int expected_result_value) :
+      expected_result_value(expected_result_value) {
+
+    this->tile_type = tile_type;
+  }
+
+  unsigned int expected_result_value;
+  state::field::TileType tile_type;
+};
+
+
+class FieldLayerHelperCalculateFieldValueTest : public ::testing::TestWithParam<FieldLayerHelperCalculateFieldValueTestValues> {
+public:
+  static std::vector<FieldLayerHelperCalculateFieldValueTestValues> values() {
+    auto result = std::vector<FieldLayerHelperCalculateFieldValueTestValues>();
+
+    result.push_back(FieldLayerHelperCalculateFieldValueTestValues(state::field::TileType::Solid, 1));
+    result.push_back(FieldLayerHelperCalculateFieldValueTestValues(state::field::TileType::Gate,  2));
+
+    return result;
+  }
+};
+
+
+TEST_P(FieldLayerHelperCalculateFieldValueTest, CalculateFieldValue) {
   // Given
-  std::vector<std::vector<state::field::TileType>> tiles = { {state::field::TileType::Solid } };
+  std::vector<std::vector<state::field::TileType>> tiles = {{ GetParam().tile_type }};
   std::unique_ptr<state::field::IField> p_field = state::field::IField::Construct(tiles);
 
-  unsigned int result_value = 1;
+  unsigned int result_value = GetParam().expected_result_value;
 
   for (int i = 2; i < 18; i++) {
     result_value += 1 << i;
@@ -76,30 +103,9 @@ TEST(FieldLayerHelperTest, CalculateFieldValue_SingleSolid) {
 }
 
 
-TEST(FieldLayerHelperTest, CalculateFieldValue_SingleGate) {
-  // Given
-  std::vector<std::vector<state::field::TileType>> tiles = { {state::field::TileType::Gate } };
-  std::unique_ptr<state::field::IField> p_field = state::field::IField::Construct(tiles);
-
-  unsigned int result_value = 2;
-
-  for (int i = 2; i < 18; i++) {
-    result_value += 1 << i;
-  }
-
-  std::vector<unsigned int> expected_result = { result_value };
-
-  // When
-  std::vector<unsigned int> result = 
-    FieldLayerHelper::CalculateFieldVisualisation(p_field.get());
-
-  // Then
-  ASSERT_THAT(result.size(), Eq(expected_result.size()));
-
-  for (size_t i = 0; i < result.size(); ++i) {
-    ASSERT_THAT(result[i], Eq(expected_result[i]));
-  }
-}
+INSTANTIATE_TEST_SUITE_P(FieldLayerHelperValuesTest,
+                         FieldLayerHelperCalculateFieldValueTest,
+                         ::testing::ValuesIn(FieldLayerHelperCalculateFieldValueTest::values()));
 
 
 state::field::TileType GetTileType(unsigned int val, unsigned index) {
@@ -111,7 +117,7 @@ state::field::TileType GetTileType(unsigned int val, unsigned index) {
 }
 
 
-struct FieldLayerHelperCenterElementTestValues {
+class FieldLayerHelperCenterElementTestValues {
 public:
   FieldLayerHelperCenterElementTestValues(state::field::TileType center_tile, unsigned int val) : expectedValue(val) {
     this->tiles =
