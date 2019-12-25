@@ -5,14 +5,11 @@
 namespace pacman {
 namespace view {
 
-Texture::Texture(SDL_Texture* p_tex) {
-	this->p_tex = 
-		std::unique_ptr<SDL_Texture, SDL_Destructor<SDL_Texture>>(p_tex);
-}
+Texture::Texture(SDL_Texture* p_tex) : 
+	  p_tex(std::unique_ptr<SDL_Texture, SDL_Destructor<SDL_Texture>>(p_tex)) { }
 
 
 SDL_Rect Texture::GetDimensions() const {
-	// TODO: change this to something more convenient.
 	SDL_Rect result;
 	result.x = 0;
 	result.y = 0;
