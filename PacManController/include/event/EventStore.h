@@ -7,7 +7,8 @@
 namespace pacman {
 namespace controller {
 
-struct KeyboardEventKey {
+class KeyboardEventKey {
+public:
   KeyboardEventKey(KeyboardEventType event_type, keyboard::Scancode scancode) : event_type(event_type), scancode(scancode) {}
   KeyboardEventType event_type;
   keyboard::Scancode scancode;
