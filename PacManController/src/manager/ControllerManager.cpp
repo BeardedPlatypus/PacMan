@@ -13,8 +13,8 @@ ControllerManager::ControllerManager(std::unique_ptr<IEventGenerator> p_event_ge
                                      std::unique_ptr<IEventStore> p_event_store) :
     p_event_generator(std::move(p_event_generator)),
     p_keyboard_command_manager(std::move(p_keyboard_command_manager)),
-    p_system_command_manager(std::move(p_system_command_manager)),
     p_keyboard_event_parser(std::move(p_keyboard_event_parser)),
+    p_system_command_manager(std::move(p_system_command_manager)),
     p_system_event_parser(std::move(p_system_event_parser)),
     p_event_store(std::move(p_event_store)) { }
 
