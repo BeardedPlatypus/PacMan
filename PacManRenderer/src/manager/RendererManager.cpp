@@ -11,8 +11,7 @@ namespace renderer {
 RendererManager::RendererManager(state::IGameState* p_game_state,
                                  view::IViewManager* p_view_manager) :
     p_game_state(p_game_state),
-    p_view_manager(p_view_manager),
-    render_layers(std::vector<std::unique_ptr<IRenderLayer>>()) {}
+    p_view_manager(p_view_manager) {}
 
 
 void RendererManager::Initialise() {

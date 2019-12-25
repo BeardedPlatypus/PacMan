@@ -31,7 +31,8 @@ private:
   /// <summary>
   /// An ordered list of <see cref="IRenderLayer"/>.
   /// </summary>
-  std::vector<std::unique_ptr<IRenderLayer>> render_layers;
+  std::vector<std::unique_ptr<IRenderLayer>> render_layers = 
+    std::vector<std::unique_ptr<IRenderLayer>>();
 };
 
 }
