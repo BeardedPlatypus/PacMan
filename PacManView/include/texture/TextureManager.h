@@ -42,7 +42,8 @@ private:
   /// The texture map containing the pointers to the loaded 
   /// <see cref="ITexture" /> associated with the path they belong to.
   /// </summary>
-  std::map<std::string, std::unique_ptr<ITexture>> texture_map;
+  std::map<std::string, std::unique_ptr<ITexture>> texture_map = 
+    std::map<std::string, std::unique_ptr<ITexture>>();
   
   /// <summary>
   /// A reference to renderer of this <see cref="TextureManager" />.

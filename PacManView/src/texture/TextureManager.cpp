@@ -8,10 +8,7 @@
 namespace pacman {
 namespace view {
 
-TextureManager::TextureManager(const IRenderer& renderer) :
-	texture_map(std::map<std::string, std::unique_ptr<ITexture>>()),
-	renderer(renderer)
-{ }
+TextureManager::TextureManager(const IRenderer& renderer) : renderer(renderer) { }
 
 
 void TextureManager::loadTexture(const std::string& file_path) {
