@@ -64,9 +64,10 @@ private:
   /// <summary>
   /// Pointer to the <see cref="std::unordered_map" /> containing all <see cref="IKeyboardEvent" />.
   /// </summary>
-  std::unique_ptr<std::unordered_map<KeyboardEventKey,
-                                     std::unique_ptr<IKeyboardEvent>, 
-                                     KeyboardEventKeyHash>> p_keyboard_event_map;
+  std::unique_ptr<std::unordered_map<KeyboardEventKey, std::unique_ptr<IKeyboardEvent>, 
+                  KeyboardEventKeyHash>> p_keyboard_event_map = 
+    std::make_unique<std::unordered_map<KeyboardEventKey, std::unique_ptr<IKeyboardEvent>, 
+                     KeyboardEventKeyHash>>();
 
   /// <summary>
   /// Gets the map containing all <see cref="ISystemEvent" />.
@@ -79,7 +80,8 @@ private:
   /// <summary>
   /// Pointer to the <see cref="std::unordered_map" /> containing all <see cref="ISystemEvent" />.
   /// </summary>
-  std::unique_ptr<std::unordered_map<SystemEventType, std::unique_ptr<ISystemEvent>>> p_system_event_map;
+  std::unique_ptr<std::unordered_map<SystemEventType, std::unique_ptr<ISystemEvent>>> p_system_event_map =
+    std::make_unique<std::unordered_map<SystemEventType, std::unique_ptr<ISystemEvent>>>();
 };
 
 

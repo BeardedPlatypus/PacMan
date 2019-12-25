@@ -9,10 +9,7 @@
 namespace pacman {
 namespace controller {
 
-EventStore::EventStore() : p_keyboard_event_map(std::make_unique<std::unordered_map<KeyboardEventKey,
-                                                                                    std::unique_ptr<IKeyboardEvent>, 
-                                                                                    KeyboardEventKeyHash>>()),
-                           p_system_event_map(std::make_unique<std::unordered_map<SystemEventType, std::unique_ptr<ISystemEvent>>>()) { }
+EventStore::EventStore() { }
 
 IKeyboardEvent* EventStore::GetKeyboardEvent(KeyboardEventType event_type,
                                              keyboard::Scancode scancode) {
