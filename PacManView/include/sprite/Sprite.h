@@ -36,7 +36,7 @@ public:
 	/// <param name="tex"> 
 	/// Reference to the texture which this sprite describes. 
 	/// </param>
-	Sprite(const ITexture& tex);
+	explicit Sprite(const ITexture& tex);
 	
 	/// <summary>
 	/// Get the clipping rectangle of this <see cref="Sprite" />.
