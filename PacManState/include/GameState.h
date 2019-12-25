@@ -24,13 +24,13 @@ public:
   void ConstructNewField(const std::vector<std::vector<field::TileType>>& tiles);
 
   IEntityState* GetPlayerState() const final;
-  void SetPlayerState(std::unique_ptr<IEntityState> p_player_state) final;
+  void SetPlayerState(std::unique_ptr<IEntityState> p_new_player_state) final;
 
 private:	
 	/// <summary>
 	/// The current state of this GameState state machine.
 	/// </summary>
-	GameMode mode;
+	GameMode mode = MainMenu;
   
   /// <summary>
   /// A <see cref="std::unique_ptr" /> to the <see cref="field::IField" />

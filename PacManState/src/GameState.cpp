@@ -6,7 +6,7 @@ namespace pacman {
 namespace state {
 
 
-GameState::GameState() : mode(MainMenu) { }
+GameState::GameState() { }
 
 
 GameMode GameState::GetGameMode() const {
@@ -34,8 +34,8 @@ IEntityState* GameState::GetPlayerState() const {
 }
 
 
-void GameState::SetPlayerState(std::unique_ptr<IEntityState> p_player_state) {
-  this->p_player_state = std::move(p_player_state);
+void GameState::SetPlayerState(std::unique_ptr<IEntityState> p_new_player_state) {
+  this->p_player_state = std::move(p_new_player_state);
 }
 
 }
