@@ -29,7 +29,7 @@ public:
   /// <paramref name="p_renderer" />.
   /// </summary>
   /// <param name="p_renderer">The p renderer.</param>
-  TextureManager(const IRenderer& p_renderer);
+  explicit TextureManager(const IRenderer& p_renderer);
 	
   void loadTexture(const std::string& file_path) final;
 	
