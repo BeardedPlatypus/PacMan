@@ -28,7 +28,7 @@ public:
   void Visit(IKeyboardEvent* p_event) override { this->Visit<IKeyboardEvent>(p_event); };
   void Visit(ISystemEvent*   p_event) override { this->Visit<ISystemEvent>(p_event);   };
   
-  T* operator() (IEvent* p_event); 
+  T* operator() (const IEvent* p_event) override; 
 
 private:
   /// <summary>

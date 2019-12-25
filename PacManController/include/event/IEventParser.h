@@ -32,7 +32,7 @@ public:
   /// <returns> 
   /// A pointer of type T if IEvent is of type T, else a <c>nullptr</c>
   /// </returns>
-  virtual T* operator() (IEvent* p_event) = 0;
+  virtual T* operator() (const IEvent* p_event) = 0;
 };
 
 }

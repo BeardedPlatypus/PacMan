@@ -6,7 +6,7 @@ namespace pacman {
 namespace controller {
 
 template<class T>
-T* EventParser<T>::operator() (IEvent* p_event) {
+T* EventParser<T>::operator() (const IEvent* p_event) {
   this->SetEvent(nullptr);
 
   // Accept kicks off the visitor pattern, which will set the internal p_return value
