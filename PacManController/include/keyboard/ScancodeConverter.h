@@ -37,7 +37,8 @@ private:
   /// <summary>
   /// The scancode map of this <see cref="ScancodeConverter" />
   /// </summary>
-  std::unordered_map<SDL_Scancode, Scancode> scancode_map;
+  std::unordered_map<SDL_Scancode, Scancode> scancode_map = 
+    std::unordered_map<SDL_Scancode, Scancode>();
 };
 
 }

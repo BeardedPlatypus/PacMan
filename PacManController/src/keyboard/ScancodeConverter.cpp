@@ -6,8 +6,7 @@ namespace pacman {
 namespace controller {
 namespace keyboard {
 
-ScancodeConverter::ScancodeConverter() : 
-    scancode_map(std::unordered_map<SDL_Scancode, Scancode>()) {
+ScancodeConverter::ScancodeConverter() {
   this->scancode_map[SDL_SCANCODE_W] = Scancode::W;
   this->scancode_map[SDL_SCANCODE_A] = Scancode::A;
   this->scancode_map[SDL_SCANCODE_S] = Scancode::S;
