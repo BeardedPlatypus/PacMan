@@ -44,7 +44,7 @@ public:
 	/// <returns>
 	/// The <see cref="IRenderer" /> of this <see cref="IViewCore" />.
 	/// </returns>
-	inline IRenderer& getRenderer() const { return *this->p_renderer; }
+	inline IRenderer& getRenderer() const { return *this->_p_renderer; }
 	
 private:	
 	/// <summary>
@@ -67,22 +67,22 @@ private:
 	/// <summary> 
 	/// A pointer to the <see cref="Renderer" /> of this <see cref="ViewCore" />. 
 	/// </summary>
-	std::unique_ptr<Renderer> p_renderer;
+	std::unique_ptr<Renderer> _p_renderer;
 
 	/// <summary> 
 	/// The pointer to the <see cref="SDL_window" /> of this <see cref="ViewManager" />.
 	/// </summary>
-	std::unique_ptr<SDL_Window, SDL_Destructor<SDL_Window>> p_window;
+	std::unique_ptr<SDL_Window, SDL_Destructor<SDL_Window>> _p_window;
 	
 	/// <summary> 
 	/// Whether SDL has been initialised. 
 	/// </summary>
-	bool sdl_initialised;
+	bool _sdl_initialised;
 
 	/// <summary> 
 	/// Whether SDL_image has been initialised. 
 	/// </summary>
-	bool sdl_image_initialised;
+	bool _sdl_image_initialised;
 };
 
 }

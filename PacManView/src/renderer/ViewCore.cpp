@@ -8,13 +8,11 @@
 namespace pacman {
 namespace view {
 
-ViewCore::ViewCore() { 
-  this->p_renderer = std::make_unique<Renderer>();
-}
+ViewCore::ViewCore() : _p_renderer(std::make_unique<Renderer>()) { }
 
 ViewCore::~ViewCore() {
-  if (this->sdl_image_initialised) IMG_Quit();
-  if (this->sdl_initialised) SDL_Quit();
+  if (this->_sdl_image_initialised) IMG_Quit();
+  if (this->_sdl_initialised) SDL_Quit();
 }
 
 void ViewCore::initialise(int screen_width, int screen_height) {
@@ -25,7 +23,7 @@ void ViewCore::initialise(int screen_width, int screen_height) {
   this->initialiseSDLImage();
   this->initialiseWindow(screen_width, screen_height);
 
-  this->p_renderer->Init(this->p_window.get());
+  this->_p_renderer->Init(this->_p_window.get());
 }
 
 
@@ -36,7 +34,7 @@ void ViewCore::initialiseSDL() {
 		throw ViewException("SDL_Init(SDL_INIT_VIDEO)",
 							SDL_GetError());
 
-	sdl_initialised = true;
+	this->_sdl_initialised = true;
 }
 
 
@@ -46,7 +44,7 @@ void ViewCore::initialiseSDLImage() {
 	if ((sdl_image_init_result & IMG_INIT_PNG) != IMG_INIT_PNG)
 		throw ViewException("IMG_INIT(IMG_INIT_PNG)", "");
 
-	sdl_image_initialised = true;
+	this->_sdl_image_initialised = true;
 }
 
 
@@ -62,7 +60,7 @@ void ViewCore::initialiseWindow(int screenWidth, int screenHeight) {
 		throw ViewException("SDL_CreateWindow",
 							SDL_GetError());
 
-	this->p_window = 
+	this->_p_window = 
 		std::unique_ptr<SDL_Window, SDL_Destructor<SDL_Window>>(p_window);
 }
 
