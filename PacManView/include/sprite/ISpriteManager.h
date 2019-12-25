@@ -69,7 +69,7 @@ public:
   /// <param name="label"> The label of the <see cref="ISprite" />. </param>
   /// <returns>
   /// <c>true</c> if the specified <see cref="ISprite" /> exists within this
-  /// <see cref="ISpriteManager" />.; 
+  /// <see cref="ISpriteManager" />; 
   /// otherwise, <c>false</c>.
   /// </returns>
   virtual bool hasSprite(const std::string& label) const = 0;
@@ -109,7 +109,7 @@ public:
   /// <param name="label"> The label of the <see cref="ISpriteAnimation" />. </param>
   /// <returns>
   /// <c>true</c> if the specified <see cref="ISpriteAnimation" /> exists within this
-  /// <see cref="ISpriteManager" />.; 
+  /// <see cref="ISpriteManager" />; 
   /// otherwise, <c>false</c>.
   /// </returns>
   virtual bool hasSpriteAnimation(const std::string& label) const = 0;
