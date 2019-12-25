@@ -24,7 +24,7 @@ public:
   /// <paramref name="texture_manager" />.
   /// </summary>
   /// <param name="texture_manager">The texture manager.</param>
-  SpriteManager(ITextureManager& texture_manager);
+  explicit SpriteManager(ITextureManager& texture_manager);
 
   void initSprite(const std::string& label,
                   const std::string& sprite_sheet_path, 
