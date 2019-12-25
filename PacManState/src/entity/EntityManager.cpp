@@ -15,8 +15,8 @@ IEntityState* EntityManager::GetPlayerState() const {
 }
 
 
-void EntityManager::SetPlayerState(std::unique_ptr<IEntityState> p_player_state) {
-  this->p_player_state = std::move(p_player_state);
+void EntityManager::SetPlayerState(std::unique_ptr<IEntityState> p_new_player_state) {
+  this->p_player_state = std::move(p_new_player_state);
 }
 
 

@@ -20,7 +20,7 @@ public:
   EntityManager();
 
   IEntityState* GetPlayerState() const final;
-  void SetPlayerState(std::unique_ptr<IEntityState> p_player_state);
+  void SetPlayerState(std::unique_ptr<IEntityState> p_new_player_state);
 private:
   /// <summary>
   /// A <see cref="std::unique_ptr" /> to the <see cref="IEntityState" />
