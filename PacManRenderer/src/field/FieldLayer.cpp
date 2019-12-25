@@ -16,9 +16,7 @@ FieldLayer::FieldLayer(float scale,
                        state::field::IField* p_field) :
     scale(scale),
     p_view_manager(p_view_manager),
-    p_field(p_field),
-    p_sprite_map(std::make_unique<std::unordered_map<FieldSpriteType, std::unique_ptr<std::vector<FieldLayerSpriteDescription>>, EnumClassHash>>()) {
-}
+    p_field(p_field) { }
 
 
 void FieldLayer::Initialise() {

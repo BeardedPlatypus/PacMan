@@ -66,7 +66,10 @@ private:
   /// </summary>
   std::unique_ptr<std::unordered_map<FieldSpriteType,
                                      std::unique_ptr<std::vector<FieldLayerSpriteDescription>>,
-                                     EnumClassHash>> p_sprite_map;
+                                     EnumClassHash>> p_sprite_map = 
+    std::make_unique<std::unordered_map<FieldSpriteType, 
+                                        std::unique_ptr<std::vector<FieldLayerSpriteDescription>>, 
+                                        EnumClassHash>>();
 };
 
 }
