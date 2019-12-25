@@ -34,11 +34,11 @@ public:
   void resetTime() final;
   inline float getExactTime() const final;
   inline void setExactTime(float new_time) final;
-  inline float getInternalTime() const final { return this->internal_cur_time; }
+  inline float getInternalTime() const final { return this->_internal_cur_time; }
   void setInternalTime(float new_time) final;
-  inline int getNFrames() const final { return this->n_frames; }
-  inline float getFramesPerSecond() const final { return this->frames_per_second; }
-  inline float getTimePerFrame() const final { return this->seconds_per_frame; }
+  inline int getNFrames() const final { return this->_n_frames; }
+  inline float getFramesPerSecond() const final { return this->_frames_per_second; }
+  inline float getTimePerFrame() const final { return this->_seconds_per_frame; }
   const Sprite& getActiveSprite() const final;
   std::unique_ptr<ISpriteAnimation> DeepClone() const final;
 
@@ -46,27 +46,27 @@ private:
   /// <summary> 
   /// The set of sprites of this animation. 
   ///</summary>
-  const std::vector<std::reference_wrapper<const Sprite>> animation_sprites;	
+  const std::vector<std::reference_wrapper<const Sprite>> _animation_sprites;	
 
   /// <summary> 
   /// The time per frame. 
   /// </summary>
-  const float frames_per_second;
+  const float _frames_per_second;
   
   /// <summary>
   /// The number of frames per time
   /// </summary>
-  const float seconds_per_frame;
+  const float _seconds_per_frame;
 
   /// <summary> 
   /// The current internal time of this animation. 
   /// </summary>
-  float internal_cur_time;
+  float _internal_cur_time = 0.F;
   
   /// <summary> 
   /// The n frames of this <see cref="SpriteAnimation />. 
   /// </summary>
-  const int n_frames;
+  const int _n_frames;
 };
 
 }
