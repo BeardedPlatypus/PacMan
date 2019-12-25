@@ -95,7 +95,7 @@ public:
   /// <returns> 
   /// The frames per second of this <see cref="ISpriteAnimation" /> 
   /// </returns>
-  virtual inline float getFramesPerSecond() const = 0;
+  virtual float getFramesPerSecond() const = 0;
   
   /// <summary>
   /// Get the seconds per frame of this <see cref="ISpriteAnimation" />.
