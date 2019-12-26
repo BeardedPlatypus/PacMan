@@ -8,7 +8,8 @@
 namespace pacman {
 namespace view {
 
-ViewCore::ViewCore() : _p_renderer(std::make_unique<Renderer>()) { }
+ViewCore::ViewCore() { }
+
 
 ViewCore::~ViewCore() {
   if (this->_sdl_image_initialised) IMG_Quit();

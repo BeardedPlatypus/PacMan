@@ -67,7 +67,7 @@ private:
 	/// <summary> 
 	/// A pointer to the <see cref="Renderer" /> of this <see cref="ViewCore" />. 
 	/// </summary>
-	std::unique_ptr<Renderer> _p_renderer;
+	std::unique_ptr<Renderer> _p_renderer = std::make_unique<Renderer>();
 
 	/// <summary> 
 	/// The pointer to the <see cref="SDL_window" /> of this <see cref="ViewManager" />.
