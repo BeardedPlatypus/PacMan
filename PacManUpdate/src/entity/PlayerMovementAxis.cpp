@@ -10,10 +10,8 @@ namespace pacman {
 namespace update {
 
 
-PlayerMovementAxis::PlayerMovementAxis() : 
-    time_elapsed(0.F) {
+PlayerMovementAxis::PlayerMovementAxis() {
   this->InitialiseStateMachine();
-  this->frameEvents = std::vector<state_machine::PlayerControlEvent>();
 }
 
 
@@ -94,8 +92,6 @@ void PlayerMovementAxis::HandleTimeOut(float dt) {
     }
   }
 }
-
-
 
 
 AxisDirection PlayerMovementAxis::GetNextDirection() const {

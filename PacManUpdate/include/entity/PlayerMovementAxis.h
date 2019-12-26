@@ -39,17 +39,26 @@ private:
   /// <summary>
   /// The time elapsed since going into a release key press.
   /// </summary>
-  float time_elapsed;
+  float time_elapsed = 0.F;
   
   /// <summary>
   /// The sticky key time.
   /// </summary>
   const float sticky_key_time = 0.25F;
-
+  
+  /// <summary>
+  /// Handle a TimeOut event.
+  /// </summary>
+  /// <param name="dt">The time that has passed.</param>
   void HandleTimeOut(float dt);
+
+  /// <summary>
+  /// Handle the control events.
+  /// </summary>
   void HandleControlEvents();
 
-  std::vector<state_machine::PlayerControlEvent> frameEvents;
+  std::vector<state_machine::PlayerControlEvent> frameEvents = 
+    std::vector<state_machine::PlayerControlEvent>();
 };
 
 }
