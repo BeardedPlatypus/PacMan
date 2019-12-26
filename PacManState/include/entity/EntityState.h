@@ -35,22 +35,22 @@ private:
   /// <summary>
   /// The x axis
   /// </summary>
-  EntityAxis x_axis;  
+  EntityAxis _x_axis;  
 
   /// <summary>
   /// The y axis
   /// </summary>
-  EntityAxis y_axis;
+  EntityAxis _y_axis;
 
   /// <summary>
   /// The <see cref="Direction" /> of this <see cref="EntityState" />.
   /// </summary>
-  Direction dir;
+  Direction _dir;
   
   /// <summary>
   /// The speed of this <see cref="EntityState" />.
   /// </summary>
-  float speed;
+  float _speed;
 };
 
 }

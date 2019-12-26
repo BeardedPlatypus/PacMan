@@ -7,38 +7,38 @@ namespace state {
 
 
   EntityState::EntityState(float x, float y, Direction dir, float speed) :
-    x_axis(EntityAxis(x)), y_axis(EntityAxis(y)),
-    dir(dir),
-    speed(speed) { }
+    _x_axis(EntityAxis(x)), _y_axis(EntityAxis(y)),
+    _dir(dir),
+    _speed(speed) { }
 
 
 IEntityAxis* EntityState::GetXAxis() const {
-  return (IEntityAxis*) &(this->x_axis);
+  return (IEntityAxis*) &(this->_x_axis);
 }
 
 
 IEntityAxis* EntityState::GetYAxis() const {
-  return (IEntityAxis*) &(this->y_axis);
+  return (IEntityAxis*) &(this->_y_axis);
 }
 
 
 Direction EntityState::GetDirection() const {
-  return this->dir;
+  return this->_dir;
 }
 
 
 void EntityState::SetDirection(Direction dir) {
-  this->dir = dir;
+  this->_dir = dir;
 }
 
 
 float EntityState::GetSpeed() const {
-  return this->speed;
+  return this->_speed;
 }
 
 
 void EntityState::SetSpeed(float speed) {
-  this->speed = speed;
+  this->_speed = speed;
 }
 
 }
