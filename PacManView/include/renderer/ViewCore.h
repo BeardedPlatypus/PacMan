@@ -24,9 +24,9 @@ public:
 	ViewCore();
 	
 	/// <summary>
-	/// Finalize this <see cref="ViewCore"/>.
+	/// Finalizes this <see cref="ViewCore"/>.
 	/// </summary>
-	~ViewCore();
+	~ViewCore() override;
 	
 	/// <summary> 
 	/// Initialise this <see cref="IViewCore" />.

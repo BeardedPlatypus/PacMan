@@ -22,6 +22,11 @@ public:
 	/// </returns>
 	static std::unique_ptr<IViewCore> construct();
 	
+	/// <summary>
+	/// Finalizes this <see cref="IViewCore"/>.
+	/// </summary>
+	virtual ~IViewCore() = default;
+	
  	/// <summary>
     /// Initialise this <see cref="IViewCore" />.
 	/// </summary>

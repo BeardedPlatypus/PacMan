@@ -12,6 +12,8 @@ ViewCore::ViewCore() { }
 
 
 ViewCore::~ViewCore() {
+	IViewCore::~IViewCore();
+
   if (this->_sdl_image_initialised) IMG_Quit();
   if (this->_sdl_initialised) SDL_Quit();
 }
