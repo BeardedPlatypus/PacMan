@@ -54,10 +54,8 @@ class FieldLayerHelperCalculateFieldValueTestValues {
 public:
   FieldLayerHelperCalculateFieldValueTestValues(state::field::TileType tile_type,
                                                 unsigned int expected_result_value) :
-      expected_result_value(expected_result_value) {
-
-    this->tile_type = tile_type;
-  }
+      expected_result_value(expected_result_value), 
+      tile_type(tile_type) { }
 
   unsigned int expected_result_value;
   state::field::TileType tile_type;
