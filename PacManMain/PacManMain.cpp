@@ -5,7 +5,7 @@
 
 #include <GameState.h>
 #include <IViewAPI.h>
-#include <manager/IControllerManager.h>
+#include <IControllerAPI.h>
 #include <manager/IRendererManager.h>
 #include <manager/IUpdateManager.h>
 
@@ -13,10 +13,10 @@
 
 #include <field/FieldDefinition.h>
 
-
 #include <SDL2/SDL.h>
 
 #undef main // Required for SDL2
+
 
 int main(int argc, char **argv) {
   if (argc != 1) return 1;
@@ -31,17 +31,17 @@ int main(int argc, char **argv) {
                                                                2.5F);
   p_game_state->SetPlayerState(std::move(p_player_state));
 
-  auto view_api = pacman::view::IViewAPI::Construct();
-  view_api->Initialise(800, 1000);
+  auto p_view_api = pacman::view::IViewAPI::Construct();
+  p_view_api->Initialise(800, 1000);
 
   auto p_renderer_manager = pacman::renderer::IRendererManager::Construct(p_game_state.get(),
-                                                                          view_api.get());
+                                                                          p_view_api.get());
   p_renderer_manager->Initialise();
 
-  auto p_controller_manager = pacman::controller::IControllerManager::Construct();
+  auto p_controller_api = pacman::controller::api::IControllerAPI::Construct();
 
   auto p_update_manager = pacman::update::IUpdateManager::Construct(p_game_state.get(),
-                                                                    p_controller_manager.get());
+                                                                    p_controller_api.get());
   p_update_manager->Initialise();
   
 
@@ -57,13 +57,13 @@ int main(int argc, char **argv) {
 	  dtime = ((float)(tick_now - tick_prev)) / freq;
 	  // Game Loop
 	  //   Update behaviour based on previous state.
-	  p_controller_manager->Update();
+	  p_controller_api->Update();
     p_update_manager->Update(dtime);
 	  //   Update current state based on updated behaviour.
 	  //   Render the current state.
-    view_api->InitialiseRender();
+    p_view_api->InitialiseRender();
     p_renderer_manager->Render();
-    view_api->FinaliseRender();
+    p_view_api->FinaliseRender();
 
 	  //   Play music or anything like that.
   }

@@ -134,7 +134,7 @@ xcopy /y /d "$(SolutionDir)\libs\SDL2_image\*.dll" "$(OutDir)"
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)PacManViewAPI\include;$(SolutionDir)PacManRenderer\include;$(SolutionDir)PacManState\include;$(SolutionDir)PacManUpdate\include;$(SolutionDir)PacManController\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)PacManViewAPI\include;$(SolutionDir)PacManRenderer\include;$(SolutionDir)PacManState\include;$(SolutionDir)PacManUpdate\include;$(SolutionDir)PacManControllerAPI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,7 +142,7 @@ xcopy /y /d "$(SolutionDir)\libs\SDL2_image\*.dll" "$(OutDir)"
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PacManState.lib;PacManController.lib;PacManRenderer.lib;PacManUpdate.lib;PacManViewAPI.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PacManState.lib;PacManControllerAPI.lib;PacManRenderer.lib;PacManUpdate.lib;PacManViewAPI.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
