@@ -4,18 +4,15 @@
 
 #include <memory>
 
-#include "event/ISystemEvent.h"
-#include "event/IKeyboardEvent.h"
-#include "ICommand.h"
+#include "SystemEventType.h"
+#include "KeyboardEventType.h"
+#include "ScanCode.h"
+
+#include "IControllerCommand.h"
 
 namespace pacman {
 namespace controller {
-
-// TODO: Move this to a def file.
-//DllExport SystemEventType;
-//DllExport KeyboardEventType;
-//DllExport keyboard::Scancode;
-//DllExport ICommand;
+namespace api {
 
 /// <summary>
 /// <see cref="IControllerAPI" /> defines the interface for external
@@ -54,7 +51,7 @@ public:
   /// <paramref name="system_event_type"/> it will be overwritten.
   /// </remarks>
   virtual void RegisterSystemCommand(SystemEventType system_event_type,
-                                     std::unique_ptr<ICommand> p_command) = 0;
+                                     std::unique_ptr<IControllerCommand> p_command) = 0;
 
   /// <summary>
   /// Deregisters the command associated with the system event of
@@ -82,8 +79,8 @@ public:
   /// it will be overwritten.
   /// </remarks>
   virtual void RegisterKeyboardCommand(KeyboardEventType keyboard_event_type,
-                                       keyboard::Scancode scancode,
-                                       std::unique_ptr<ICommand> p_command) = 0;
+                                       Scancode scancode,
+                                       std::unique_ptr<IControllerCommand> p_command) = 0;
 
   /// <summary>
   /// Deregisters the command associated with the keyboard event of
@@ -95,9 +92,10 @@ public:
   /// If no event was registered, nothing will change.
   /// </remarks>
   virtual void DeregisterKeyboardCommand(KeyboardEventType keyboard_event_type,
-                                         keyboard::Scancode scancode) = 0;
+                                         Scancode scancode) = 0;
 };
 
+}
 }
 }
 

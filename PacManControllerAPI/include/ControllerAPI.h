@@ -2,15 +2,16 @@
 
 #include "IControllerAPI.h"
 
-#include "event/IEventGenerator.h"
-#include "event/IEventParser.h"
-#include "keyboard/IKBCommandManager.h"
-#include "system/ISystemCommandManager.h"
-#include "event/IEventStore.h"
+#include <event/IEventGenerator.h>
+#include <event/IEventParser.h>
+#include <keyboard/IKBCommandManager.h>
+#include <system/ISystemCommandManager.h>
+#include <event/IEventStore.h>
 
 
 namespace pacman {
 namespace controller {
+namespace api {
 
 /// <summary>
 /// <see cref="ControllerAPI"/> implements the interface for external
@@ -51,16 +52,16 @@ public:
   void Update() final;
 
   void RegisterSystemCommand(SystemEventType system_event_type,
-                             std::unique_ptr<ICommand> p_command) final;
+                             std::unique_ptr<IControllerCommand> p_command) final;
 
   void DeregisterSystemCommand(SystemEventType system_event_type) final;
 
   void RegisterKeyboardCommand(KeyboardEventType keyboard_event_type,
-                               keyboard::Scancode scancode,
-                               std::unique_ptr<ICommand> p_command) final;
+                               Scancode scancode,
+                               std::unique_ptr<IControllerCommand> p_command) final;
 
   void DeregisterKeyboardCommand(KeyboardEventType keyboard_event_type,
-                                 keyboard::Scancode scancode) final;
+                                 Scancode scancode) final;
 
 private:
   /// <summary>
@@ -165,6 +166,7 @@ private:
   std::unique_ptr<IEventStore> p_event_store;
 };
 
+}
 }
 }
 

@@ -1,9 +1,12 @@
 #include "pch.h"
 #include "ControllerAPI.h"
 
+#include "conversion/ConversionHelper.h"
+#include "conversion/CommandAdapter.h"
 
 namespace pacman {
 namespace controller {
+namespace api {
 
 ControllerAPI::ControllerAPI(std::unique_ptr<IEventGenerator> p_event_generator,
                              std::unique_ptr<keyboard::ICommandManager> p_keyboard_command_manager,
@@ -41,33 +44,36 @@ void ControllerAPI::Update() {
 
 
 void ControllerAPI::RegisterSystemCommand(SystemEventType system_event_type,
-                                          std::unique_ptr<ICommand> p_command) {
-  ISystemEvent* p_event = this->GetEventStore()->GetSystemEvent(system_event_type);
-  this->GetSystemCommandManager()->RegisterCommand(std::move(p_command), p_event);
+                                          std::unique_ptr<IControllerCommand> p_command) {
+  ISystemEvent* p_event = this->GetEventStore()->GetSystemEvent(ToInternal(system_event_type));
+  this->GetSystemCommandManager()->RegisterCommand(std::make_unique<CommandAdapter>(std::move(p_command)), 
+                                                   p_event);
 }
 
 
 void ControllerAPI::DeregisterSystemCommand(SystemEventType system_event_type) {
-  ISystemEvent* p_event = this->GetEventStore()->GetSystemEvent(system_event_type);
+  ISystemEvent* p_event = this->GetEventStore()->GetSystemEvent(ToInternal(system_event_type));
   this->GetSystemCommandManager()->DeregisterCommand(p_event);
 }
 
 
 void ControllerAPI::RegisterKeyboardCommand(KeyboardEventType keyboard_event_type,
-                                            keyboard::Scancode scancode,
-                                            std::unique_ptr<ICommand> p_command) {
-  IKeyboardEvent* p_event = this->GetEventStore()->GetKeyboardEvent(keyboard_event_type,
-                                                                    scancode);
-  this->GetKeyboardCommandManager()->RegisterCommand(std::move(p_command), p_event);
+                                            Scancode scancode,
+                                            std::unique_ptr<IControllerCommand> p_command) {
+  IKeyboardEvent* p_event = this->GetEventStore()->GetKeyboardEvent(ToInternal(keyboard_event_type),
+                                                                    ToInternal(scancode));
+  this->GetKeyboardCommandManager()->RegisterCommand(std::make_unique<CommandAdapter>(std::move(p_command)), 
+                                                     p_event);
 }
 
 
 void ControllerAPI::DeregisterKeyboardCommand(KeyboardEventType keyboard_event_type,
-                                              keyboard::Scancode scancode) {
-  IKeyboardEvent* p_event = this->GetEventStore()->GetKeyboardEvent(keyboard_event_type,
-                                                                    scancode);
+                                              Scancode scancode) {
+  IKeyboardEvent* p_event = this->GetEventStore()->GetKeyboardEvent(ToInternal(keyboard_event_type),
+                                                                    ToInternal(scancode));
   this->GetKeyboardCommandManager()->DeregisterCommand(p_event);
 }
 
+}
 }
 }
