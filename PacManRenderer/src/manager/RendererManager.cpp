@@ -9,19 +9,19 @@ namespace pacman {
 namespace renderer {
 
 RendererManager::RendererManager(state::IGameState* p_game_state,
-                                 view::IViewManager* p_view_manager) :
+                                 view::IViewAPI* p_view_api) :
     p_game_state(p_game_state),
-    p_view_manager(p_view_manager) {}
+    p_view_api(p_view_api) {}
 
 
 void RendererManager::Initialise() {
   auto p_field_layer = std::make_unique<FieldLayer>(4.F,
-                                                    this->p_view_manager,
+                                                    this->p_view_api,
                                                     this->p_game_state->GetField());
   this->render_layers.push_back(std::move(p_field_layer));
 
   auto p_player_layer = std::make_unique<PlayerLayer>(4.F,
-                                                      this->p_view_manager,
+                                                      this->p_view_api,
                                                       this->p_game_state->GetPlayerState());
   this->render_layers.push_back(std::move(p_player_layer));
 

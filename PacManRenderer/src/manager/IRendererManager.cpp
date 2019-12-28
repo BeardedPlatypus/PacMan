@@ -8,8 +8,8 @@ namespace renderer {
 
 std::unique_ptr<IRendererManager> IRendererManager::Construct(
     state::IGameState* p_game_state,
-    view::IViewManager* p_view_manager) {
-  return std::make_unique<RendererManager>(p_game_state, p_view_manager);
+    view::IViewAPI* p_view_api) {
+  return std::make_unique<RendererManager>(p_game_state, p_view_api);
 }
 
 }

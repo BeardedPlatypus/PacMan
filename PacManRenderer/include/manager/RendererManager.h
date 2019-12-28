@@ -10,23 +10,23 @@ namespace renderer {
 class RendererManager : public IRendererManager {
 public:  
   RendererManager(state::IGameState* p_game_state,
-                  view::IViewManager* p_view_manager);
+                  view::IViewAPI* p_view_api);
 
   void Initialise();
   void Render() const;
 
 private:  
   /// <summary>
-  /// A pointer to the <see cref="state::IGameState" /> this 
-  /// <see cref="RendererManager" /> observes.
+  /// A pointer to the <see cref="state::IGameState"/> this 
+  /// <see cref="RendererManager"/> observes.
   /// </summary>
   state::IGameState* p_game_state;
   
   /// <summary>
-  /// A pointer to the <see cref="view::IViewManager" /> this
-  /// <see cref="RendererManager" /> uses to render.
+  /// A pointer to the <see cref="view::IViewAPI"/> this
+  /// <see cref="RendererManager"/> uses to render.
   /// </summary>
-  view::IViewManager* p_view_manager;
+  view::IViewAPI* p_view_api;
   
   /// <summary>
   /// An ordered list of <see cref="IRenderLayer"/>.

@@ -6,6 +6,7 @@
 #include "field/IField.h"
 #include "field/FieldSpriteDescription.h"
 
+
 namespace pacman {
 namespace renderer {
 

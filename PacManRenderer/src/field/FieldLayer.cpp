@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "field/FieldLayer.h"
 
-#include <sprite/ClipRect.h>
 #include <utility>
 
 #include "field/FieldSpriteValues.h"
@@ -12,10 +11,10 @@ namespace pacman {
 namespace renderer {
 
 FieldLayer::FieldLayer(float scale,
-                       view::IViewManager* p_view_manager,
+                       view::IViewAPI* p_view_api,
                        state::field::IField* p_field) :
     scale(scale),
-    p_view_manager(p_view_manager),
+    p_view_api(p_view_api),
     p_field(p_field) { }
 
 
@@ -26,47 +25,29 @@ void FieldLayer::Initialise() {
 
 
 void FieldLayer::InitialiseSprites() {
-  this->p_view_manager->requestSprite(values::field_sprite_straight,
-                                      values::field_sprite_file,
-                                      view::ClipRect(0,
-                                                     0, 
-                                                     values::tile_size, 
-                                                     values::tile_size));
+  this->p_view_api->RequestSprite(values::field_sprite_straight,
+                                  values::field_sprite_file,
+                                  0, 0, values::tile_size, values::tile_size);
 
-  this->p_view_manager->requestSprite(values::field_sprite_corner,
-                                      values::field_sprite_file,
-                                      view::ClipRect(values::tile_size,
-                                                     0, 
-                                                     values::tile_size, 
-                                                     values::tile_size));
+  this->p_view_api->RequestSprite(values::field_sprite_corner,
+                                  values::field_sprite_file,
+                                  values::tile_size, 0, values::tile_size, values::tile_size);
 
-  this->p_view_manager->requestSprite(values::field_sprite_end,
-                                      values::field_sprite_file,
-                                      view::ClipRect(values::tile_size * 2,
-                                                     0, 
-                                                     values::tile_size, 
-                                                     values::tile_size));
+  this->p_view_api->RequestSprite(values::field_sprite_end,
+                                  values::field_sprite_file,
+                                  values::tile_size * 2, 0, values::tile_size, values::tile_size);
 
-  this->p_view_manager->requestSprite(values::field_sprite_junction,
-                                      values::field_sprite_file,
-                                      view::ClipRect(values::tile_size * 3,
-                                                     0, 
-                                                     values::tile_size, 
-                                                     values::tile_size));
+  this->p_view_api->RequestSprite(values::field_sprite_junction,
+                                  values::field_sprite_file,
+                                  values::tile_size * 3, 0, values::tile_size, values::tile_size);
 
-  this->p_view_manager->requestSprite(values::field_sprite_gate_connect,
-                                      values::field_sprite_file,
-                                      view::ClipRect(0,
-                                                     values::tile_size, 
-                                                     values::tile_size, 
-                                                     values::tile_size));
+  this->p_view_api->RequestSprite(values::field_sprite_gate_connect,
+                                  values::field_sprite_file,
+                                  0, values::tile_size, values::tile_size, values::tile_size);
 
-  this->p_view_manager->requestSprite(values::field_sprite_gate,
-                                      values::field_sprite_file,
-                                      view::ClipRect(values::tile_size,
-                                                     values::tile_size, 
-                                                     values::tile_size, 
-                                                     values::tile_size));
+  this->p_view_api->RequestSprite(values::field_sprite_gate,
+                                  values::field_sprite_file,
+                                  values::tile_size, values::tile_size, values::tile_size, values::tile_size);
 }
 
 
@@ -104,13 +85,13 @@ void FieldLayer::Render() const {
 
   for (auto val : sprite_types) {
     for (auto sprite_def : *(this->p_sprite_map->at(val.first))) {
-      this->p_view_manager->renderSprite(val.second,
-                                         sprite_def.x * (float) values::tile_size * this->scale,
-                                         sprite_def.y * (float) values::tile_size * this->scale,
-                                         this->scale, 
-                                         sprite_def.Orientation.Rotation,
-                                         sprite_def.Orientation.IsFlippedX,
-                                         sprite_def.Orientation.IsFlippedY);
+      this->p_view_api->RenderSprite(val.second,
+                                     sprite_def.x * (float) values::tile_size * this->scale,
+                                     sprite_def.y * (float) values::tile_size * this->scale,
+                                     this->scale, 
+                                     sprite_def.Orientation.Rotation,
+                                     sprite_def.Orientation.IsFlippedX,
+                                     sprite_def.Orientation.IsFlippedY);
     }
   }
 }

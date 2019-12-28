@@ -1,6 +1,6 @@
 #pragma once
 
-#include <manager/IViewManager.h>
+#include <IViewAPI.h>
 #include <unordered_map>
 #include <vector>
 
@@ -26,7 +26,7 @@ public:
   /// </summary>
   /// <param name="p_field">The p field.</param>
   FieldLayer(float scale,
-             view::IViewManager* p_view_manager,
+             view::IViewAPI* p_view_api,
              state::field::IField* p_field);
 
   void Initialise() final;
@@ -52,7 +52,7 @@ private:
   /// A pointer to the <see cref="IViewManager" /> used by this 
   /// <see cref="FieldLayer" />. 
   /// </summary>
-  view::IViewManager* p_view_manager;
+  view::IViewAPI* p_view_api;
 
   /// <summary> 
   /// Pointer to the <see cref="IField" /> this <see cref="FieldLayer" /> 

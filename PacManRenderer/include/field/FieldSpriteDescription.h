@@ -4,6 +4,7 @@
 #include "field/FieldSpriteOrientation.h"
 #include "field/FieldSpriteType.h"
 
+
 namespace pacman {
 namespace renderer {
   
