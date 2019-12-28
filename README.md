@@ -68,4 +68,6 @@ will be provided in the future. This section will be updated.
 ### Blog Articles
 
 Different aspects of the development process will be documented in more detail
-in different articles on my blog. This section will be updated
+in different articles on my blog. This section will be updated.
+
+* [SonarCloud CI](https://beardedplatypus.github.io/sonarcloud-static-code-analysis-in-a-c-project.html)
