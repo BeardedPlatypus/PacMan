@@ -42,13 +42,13 @@ TEST(Unit_SpriteAnimationTest, ctor) {
 
   // Then
   const int expected_n_frames = sprites.size();
-  EXPECT_THAT(p_animation->getNFrames(), Eq(expected_n_frames));
+  EXPECT_THAT(p_animation->GetNFrames(), Eq(expected_n_frames));
 
   const float expected_fps = 1.F / time_per_frame;
-  EXPECT_THAT(p_animation->getFramesPerSecond(), FloatEq(expected_fps));
+  EXPECT_THAT(p_animation->GetFramesPerSecond(), FloatEq(expected_fps));
 
   const float expected_cur_time = 0.F;
-  EXPECT_THAT(p_animation->getInternalTime(), FloatEq(expected_cur_time));
+  EXPECT_THAT(p_animation->GetInternalTime(), FloatEq(expected_cur_time));
 }
 
 
@@ -71,15 +71,15 @@ TEST(Unit_SpriteAnimationTest, setInternalTime_SmallerThanRange) {
   const float time_per_frame = 10.F;
   auto p_animation = ISpriteAnimation::Construct(time_per_frame, sprites);
 
-  ASSERT_THAT(p_animation->getInternalTime(), FloatEq(0.F));
+  ASSERT_THAT(p_animation->GetInternalTime(), FloatEq(0.F));
 
   const float new_time = 2.3F;
 
   // When
-  p_animation->setInternalTime(new_time);
+  p_animation->SetInternalTime(new_time);
 
   // Then
-  EXPECT_THAT(p_animation->getInternalTime(), FloatEq(new_time));
+  EXPECT_THAT(p_animation->GetInternalTime(), FloatEq(new_time));
 }
 
 
@@ -101,16 +101,16 @@ TEST(Unit_SpriteAnimationTest, setInternalTime_GreaterThanRange) {
   const float time_per_frame = 10.F;
   auto p_animation = ISpriteAnimation::Construct(time_per_frame, sprites);
 
-  ASSERT_THAT(p_animation->getInternalTime(), FloatEq(0.0));
+  ASSERT_THAT(p_animation->GetInternalTime(), FloatEq(0.0));
 
   const float new_time = 2.5F;
   const float new_time_large = time_per_frame * 10 + new_time;
 
   // When
-  p_animation->setInternalTime(new_time_large);
+  p_animation->SetInternalTime(new_time_large);
 
   // Then
-  EXPECT_THAT(p_animation->getInternalTime(), FloatEq(new_time));
+  EXPECT_THAT(p_animation->GetInternalTime(), FloatEq(new_time));
 }
 
 
@@ -133,15 +133,15 @@ TEST(Unit_SpriteAnimationTest, setExactTime) {
   const float time_per_frame = 10.F;
   auto p_animation = ISpriteAnimation::Construct(time_per_frame, sprites);
 
-  ASSERT_THAT(p_animation->getExactTime(), FloatEq(0.0));
+  ASSERT_THAT(p_animation->GetExactTime(), FloatEq(0.0));
 
   const float new_time = 12.3F;
 
   // When
-  p_animation->setExactTime(new_time);
+  p_animation->SetExactTime(new_time);
 
   // Then
-  EXPECT_THAT(p_animation->getExactTime(), FloatEq(new_time));
+  EXPECT_THAT(p_animation->GetExactTime(), FloatEq(new_time));
 }
 
 
@@ -165,16 +165,16 @@ TEST(Unit_SpriteAnimationTest, updateTime) {
   auto p_animation = ISpriteAnimation::Construct(time_per_frame, sprites);
 
   const float start_time = 15.F;
-  p_animation->setExactTime(start_time);
-  ASSERT_THAT(p_animation->getExactTime(), FloatEq(start_time));
+  p_animation->SetExactTime(start_time);
+  ASSERT_THAT(p_animation->GetExactTime(), FloatEq(start_time));
 
   const float update_time = 5.F;
 
   // When
-  p_animation->updateTime(update_time);
+  p_animation->UpdateTime(update_time);
 
   // Then
-  EXPECT_THAT(p_animation->getExactTime(), FloatEq(start_time + update_time));
+  EXPECT_THAT(p_animation->GetExactTime(), FloatEq(start_time + update_time));
 }
 
 
@@ -197,14 +197,14 @@ TEST(Unit_SpriteAnimationTest, resetTime) {
   auto p_animation = ISpriteAnimation::Construct(time_per_frame, sprites);
 
   const float start_time = 15.F;
-  p_animation->setExactTime(start_time);
-  ASSERT_THAT(p_animation->getExactTime(), FloatEq(start_time));
+  p_animation->SetExactTime(start_time);
+  ASSERT_THAT(p_animation->GetExactTime(), FloatEq(start_time));
 
   // When
-  p_animation->resetTime();
+  p_animation->ResetTime();
 
   // Then
-  EXPECT_THAT(p_animation->getExactTime(), FloatEq(0.F));
+  EXPECT_THAT(p_animation->GetExactTime(), FloatEq(0.F));
 }
 
 
@@ -238,10 +238,10 @@ TEST(Unit_SpriteAnimationTest, getActiveSprite) {
   // When
   const int i = 0;
   const float new_time = 5.0F + 10.F * i;
-  p_animation->setExactTime(new_time);
-  ASSERT_THAT(p_animation->getExactTime(), FloatEq(new_time));
+  p_animation->SetExactTime(new_time);
+  ASSERT_THAT(p_animation->GetExactTime(), FloatEq(new_time));
 
-  const Sprite& result = p_animation->getActiveSprite();
+  const Sprite& result = p_animation->GetActiveSprite();
 
   // Then
   EXPECT_THAT(result, Ref(sprites.at(i)));
@@ -264,10 +264,10 @@ TEST(Unit_SpriteAnimationTest, deepClone) {
   EXPECT_THAT(result.get(), Ne(p_animation.get()));
 
   const float new_result_time = 20.F;
-  result->setExactTime(new_result_time);
+  result->SetExactTime(new_result_time);
 
-  EXPECT_THAT(result->getExactTime(), FloatEq(new_result_time));
-  EXPECT_THAT(p_animation->getExactTime(), FloatEq(0.F));
+  EXPECT_THAT(result->GetExactTime(), FloatEq(new_result_time));
+  EXPECT_THAT(p_animation->GetExactTime(), FloatEq(0.F));
 }
 
 

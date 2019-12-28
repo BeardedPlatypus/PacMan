@@ -28,7 +28,7 @@ namespace view {
 //   and a TextureManager without the specified texture
 // When initSprite is called with this path
 // Then the specified texture is loaded
-TEST(SpriteManagerTest, initSprite_withClipping_loadsTextureIfNoneExists) {
+TEST(SpriteManagerTest, InitSprite_WithClipping_LoadsTextureIfNoneExists) {
 	// Given
 	TextureManagerMock texture_manager;
 	TextureMock texture;
@@ -41,15 +41,15 @@ TEST(SpriteManagerTest, initSprite_withClipping_loadsTextureIfNoneExists) {
 	const int w = 7;
 	const int h = 8;
 
-	EXPECT_CALL(texture_manager, loadTexture(StrEq(path)));
-	ON_CALL(texture_manager, getTexture(_))
+	EXPECT_CALL(texture_manager, LoadTexture(StrEq(path)));
+	ON_CALL(texture_manager, GetTexture(_))
 		.WillByDefault(ReturnRef(texture));
 
 	std::unique_ptr<ISpriteManager> p_sprite_manager =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
 	// When
-	p_sprite_manager->initSprite(label, path, x, y, w, h);
+	p_sprite_manager->InitSprite(label, path, x, y, w, h);
 }
 
 
@@ -58,7 +58,7 @@ TEST(SpriteManagerTest, initSprite_withClipping_loadsTextureIfNoneExists) {
 //   and a TextureManager without the specified texture
 // When initSprite is called with this path
 // Then the specified texture is loaded
-TEST(SpriteManagerTest, initSprite_withoutClipping_loadsTextureIfNoneExists) {
+TEST(SpriteManagerTest, InitSprite_WithoutClipping_LoadsTextureIfNoneExists) {
 	// Given
 	TextureManagerMock texture_manager;
 	TextureMock texture;
@@ -66,15 +66,15 @@ TEST(SpriteManagerTest, initSprite_withoutClipping_loadsTextureIfNoneExists) {
 	const std::string label = "this_is_a_label";
 	const std::string path = "this/is/a/path.png";
 
-	EXPECT_CALL(texture_manager, loadTexture(StrEq(path)));
-	ON_CALL(texture_manager, getTexture(_))
+	EXPECT_CALL(texture_manager, LoadTexture(StrEq(path)));
+	ON_CALL(texture_manager, GetTexture(_))
 		.WillByDefault(ReturnRef(texture));
 
 	std::unique_ptr<ISpriteManager> p_sprite_manager =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
 	// When
-	p_sprite_manager->initSprite(label, path);
+	p_sprite_manager->InitSprite(label, path);
 }
 
 
@@ -84,13 +84,13 @@ TEST(SpriteManagerTest, initSprite_withoutClipping_loadsTextureIfNoneExists) {
 //   and a clipping square
 // When initSprite is called with these arguments
 // Then ISpriteManager has a corresponding Sprite
-TEST(SpriteManagerTest, initSprite_WithClippingRectangle) {
+TEST(SpriteManagerTest, InitSprite_WithClippingRectangle) {
 	// Given
 	TextureManagerMock texture_manager;
 	TextureMock texture;
 
 	std::unique_ptr<ISpriteManager> p_sprite_man =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
 	const std::string label = "this_is_a_label";
 	const std::string path = "this/is/a/path.png";
@@ -100,11 +100,11 @@ TEST(SpriteManagerTest, initSprite_WithClippingRectangle) {
 	const int expected_w = 7;
 	const int expected_h = 8;
 
-	EXPECT_CALL(texture_manager, getTexture(StrEq(path)))
+	EXPECT_CALL(texture_manager, GetTexture(StrEq(path)))
 		.WillOnce(ReturnRef(texture));
 
 	// When
-	p_sprite_man->initSprite(label,
+	p_sprite_man->InitSprite(label,
 							 path,
 							 expected_x,
 							 expected_y,
@@ -112,9 +112,9 @@ TEST(SpriteManagerTest, initSprite_WithClippingRectangle) {
 							 expected_h);
 
 	// Then
-	EXPECT_TRUE(p_sprite_man->hasSprite(label));
+	EXPECT_TRUE(p_sprite_man->HasSprite(label));
 	
-	const Sprite& result = p_sprite_man->getSprite(label);
+	const Sprite& result = p_sprite_man->GetSprite(label);
 
 	EXPECT_THAT(result.GetTexture(), Ref(texture));
 
@@ -131,7 +131,7 @@ TEST(SpriteManagerTest, initSprite_WithClippingRectangle) {
 //   and a sprite_sheet_path
 // When initSprite is called with these arguments
 // Then ISpriteManager has a corresponding Sprite
-TEST(SpriteManagerTest, initSprite_WithoutClippingRectangle) {
+TEST(SpriteManagerTest, InitSprite_WithoutClippingRectangle) {
 	// Given
 	TextureManagerMock texture_manager;
 	TextureMock texture;
@@ -146,7 +146,7 @@ TEST(SpriteManagerTest, initSprite_WithoutClippingRectangle) {
 	clip_rect.h = expected_h;
 
 	std::unique_ptr<ISpriteManager> p_sprite_man =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
 	const std::string label = "this_is_a_label";
 	const std::string path = "this/is/a/path.png";
@@ -155,17 +155,17 @@ TEST(SpriteManagerTest, initSprite_WithoutClippingRectangle) {
 	ON_CALL(texture, GetDimensions())
 		.WillByDefault(Return(clip_rect));
 
-	EXPECT_CALL(texture_manager, getTexture(StrEq(path)))
+	EXPECT_CALL(texture_manager, GetTexture(StrEq(path)))
 		.WillOnce(ReturnRef(texture));
 
 	// When
-	p_sprite_man->initSprite(label,
+	p_sprite_man->InitSprite(label,
 							 path);
 
 	// Then
-	EXPECT_TRUE(p_sprite_man->hasSprite(label));
+	EXPECT_TRUE(p_sprite_man->HasSprite(label));
 	
-	const Sprite& result = p_sprite_man->getSprite(label);
+	const Sprite& result = p_sprite_man->GetSprite(label);
 
 	EXPECT_THAT(result.GetTexture(), Ref(texture));
 
@@ -182,26 +182,26 @@ TEST(SpriteManagerTest, initSprite_WithoutClippingRectangle) {
 //   and a sprite_sheet_path
 // When initSprite is called with these arguments
 // Then an exception is thrown
-TEST(SpriteManagerTest, initSprite_AlreadyExistingLabelThrowsException) {
+TEST(SpriteManagerTest, InitSprite_AlreadyExistingLabelThrowsException) {
 	// Given
 	TextureManagerMock texture_manager;
 	TextureMock texture;
 
 	std::unique_ptr<ISpriteManager> p_sprite_man =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
 	const std::string label = "this_is_a_label";
 	const std::string path = "this/is/a/path.png";
 
-	ON_CALL(texture_manager, getTexture(StrEq(path)))
+	ON_CALL(texture_manager, GetTexture(StrEq(path)))
 		.WillByDefault(ReturnRef(texture));
 
-	p_sprite_man->initSprite(label,
+	p_sprite_man->InitSprite(label,
 							 path);
 
 	// When | Then
-	ASSERT_THROW(p_sprite_man->initSprite(label, path),
-				 ViewException);
+	ASSERT_THROW(p_sprite_man->InitSprite(label, path),
+				       ViewException);
 }
 
 
@@ -211,25 +211,24 @@ TEST(SpriteManagerTest, initSprite_AlreadyExistingLabelThrowsException) {
 //   and some valid dimensions
 // When initSprite is called with these arguments
 // Then an exception is thrown
-TEST(SpriteManagerTest, initSpriteWithDim_AlreadyExistingLabelThrowsException) {
+TEST(SpriteManagerTest, InitSpriteWithDim_AlreadyExistingLabelThrowsException) {
 	// Given
 	TextureManagerMock texture_manager;
 	TextureMock texture;
 
 	std::unique_ptr<ISpriteManager> p_sprite_man =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
 	const std::string label = "this_is_a_label";
 	const std::string path = "this/is/a/path.png";
 
-	ON_CALL(texture_manager, getTexture(StrEq(path)))
+	ON_CALL(texture_manager, GetTexture(StrEq(path)))
 		.WillByDefault(ReturnRef(texture));
 
-	p_sprite_man->initSprite(label,
-							 path);
+	p_sprite_man->InitSprite(label, path);
 
 	// When | Then
-	ASSERT_THROW(p_sprite_man->initSprite(label, path, 10, 10, 100, 100),
+	ASSERT_THROW(p_sprite_man->InitSprite(label, path, 10, 10, 100, 100),
 				 ViewException);
 }
 
@@ -243,25 +242,24 @@ class InitSpriteDimensionPatternTest : public ::testing::TestWithParam<ClipRect>
 //   and an invalid dimension
 // When initSprite is called with these arguments
 // Then an exception is thrown
-TEST_P(InitSpriteDimensionPatternTest, initSprite_InvalidDimensionThrowsException) {
+TEST_P(InitSpriteDimensionPatternTest, InitSprite_InvalidDimensionThrowsException) {
 	// Given
 	TextureManagerMock texture_manager;
 	TextureMock texture;
 
 	std::unique_ptr<ISpriteManager> p_sprite_man =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
 	const std::string label = "this_is_a_label";
 	const std::string path = "this/is/a/path.png";
 
-	ON_CALL(texture_manager, getTexture(StrEq(path)))
+	ON_CALL(texture_manager, GetTexture(StrEq(path)))
 		.WillByDefault(ReturnRef(texture));
 
 	ClipRect dim = GetParam();
 
 	// When | Then
-	ASSERT_THROW(p_sprite_man->initSprite(label, path, dim.x, dim.y, dim.w, dim.h),
-				 ViewException);
+	ASSERT_THROW(p_sprite_man->InitSprite(label, path, dim.x, dim.y, dim.w, dim.h), ViewException);
 }
 
 
@@ -279,18 +277,17 @@ INSTANTIATE_TEST_SUITE_P(InitSpriteWithInvalidDimension,
 //   and a label of a non-existing sprite 
 // When getSprite is called with this label
 // Then an exception is thrown
-TEST(SpriteManagerTest, getSprite_NoExistingLabelThrowsException) {
+TEST(SpriteManagerTest, GetSprite_NoExistingLabelThrowsException) {
 	// Given
 	TextureManagerMock texture_manager;
 
 	std::unique_ptr<ISpriteManager> p_sprite_man =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
 	const std::string label = "this_is_a_label";
 
 	// When | Then
-	ASSERT_THROW(p_sprite_man->getSprite(label),
-				 ViewException);
+	ASSERT_THROW(p_sprite_man->GetSprite(label), ViewException);
 }
 
 
@@ -300,37 +297,45 @@ TEST(SpriteManagerTest, getSprite_NoExistingLabelThrowsException) {
 //   and a set of sprites
 // When initSpriteAnimation is called
 // Then ISpriteManager has the corresponding SpriteAnimation
-TEST(SpriteManagerTest, initSpriteAnimation) {
+TEST(SpriteManagerTest, InitSpriteAnimation) {
 	// Given
 	TextureManagerMock texture_manager;
 	TextureMock texture;
 
 	std::unique_ptr<ISpriteManager> p_sprite_man =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
-	const std::vector<std::string> labels = { "this_is_a_label",
-											  "this_is_a_label_too"
+	const std::vector<std::string> labels = { 
+		"this_is_a_label",
+		"this_is_a_label_too"
 	};
 
 	const std::string path = "this/is/a/path.png";
 
-	ON_CALL(texture_manager, getTexture(StrEq(path)))
+	ON_CALL(texture_manager, GetTexture(StrEq(path)))
 		.WillByDefault(ReturnRef(texture));
 
 	// Set up two sprites we will use.
 	for(auto label : labels)
-		p_sprite_man->initSprite(label, path);
+		p_sprite_man->InitSprite(label, path);
 
 	float expected_time_per_frame = 10.F;
 
 	const std::string animation_label = "this_is_an_animation_label";
 
 	// When
-	p_sprite_man->initSpriteAnimation(animation_label, expected_time_per_frame, labels);
+	p_sprite_man->InitSpriteAnimation(animation_label, expected_time_per_frame, labels);
 
 
 	// Then
-	EXPECT_TRUE(p_sprite_man->hasSpriteAnimation(animation_label));
+	EXPECT_TRUE(p_sprite_man->HasSpriteAnimation(animation_label));
+
+	ISpriteAnimation* sprite_anim = p_sprite_man->GetSpriteAnimation(animation_label);
+	EXPECT_THAT(sprite_anim->GetTimePerFrame(), Eq(expected_time_per_frame));
+	EXPECT_THAT(sprite_anim->GetActiveSprite(), Ref(p_sprite_man->GetSprite(labels[0])));
+
+	sprite_anim->SetInternalTime(1.5F);
+	EXPECT_THAT(sprite_anim->GetActiveSprite(), Ref(p_sprite_man->GetSprite(labels[1])));
 }
 
 
@@ -340,40 +345,40 @@ TEST(SpriteManagerTest, initSpriteAnimation) {
 //   and a set of sprites
 // When initSpriteAnimation is called
 // Then an exception is thrown
-TEST(SpriteManagerTest, initSpriteAnimation_AlreadyExistingLabelThrowsException) {
+TEST(SpriteManagerTest, InitSpriteAnimation_AlreadyExistingLabelThrowsException) {
 	// Given
 	TextureManagerMock texture_manager;
 	TextureMock texture;
 
 	std::unique_ptr<ISpriteManager> p_sprite_man =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
-	const std::vector<std::string> labels = { "this_is_a_label",
-											  "this_is_a_label_too"
+	const std::vector<std::string> labels = { 
+		"this_is_a_label",
+		"this_is_a_label_too"
 	};
 
 	const std::string path = "this/is/a/path.png";
 
-	ON_CALL(texture_manager, getTexture(StrEq(path)))
+	ON_CALL(texture_manager, GetTexture(StrEq(path)))
 		.WillByDefault(ReturnRef(texture));
 
 	// Set up two sprites we will use.
 	for(auto label : labels)
-		p_sprite_man->initSprite(label, path);
+		p_sprite_man->InitSprite(label, path);
 
 	float expected_time_per_frame = 10.F;
-
 	const std::string animation_label = "this_is_an_animation_label";
 
-	p_sprite_man->initSpriteAnimation(animation_label, 
-									  expected_time_per_frame, 
-									  labels);
+	p_sprite_man->InitSpriteAnimation(animation_label, 
+									                  expected_time_per_frame, 
+									                  labels);
 	
 	// When | Then
-	ASSERT_THROW(p_sprite_man->initSpriteAnimation(animation_label, 
-												   expected_time_per_frame, 
-												   labels),
-				 ViewException);
+	ASSERT_THROW(p_sprite_man->InitSpriteAnimation(animation_label, 
+												                         expected_time_per_frame, 
+												                         labels),
+				       ViewException);
 }
 
 
@@ -383,13 +388,13 @@ TEST(SpriteManagerTest, initSpriteAnimation_AlreadyExistingLabelThrowsException)
 //   and a set of sprites containing non existent sprites
 // When initSpriteAnimation is called
 // Then an exception is thrown
-TEST(SpriteManagerTest, initSpriteAnimation_SpriteLabelNotExistingThrowsException) {
+TEST(SpriteManagerTest, InitSpriteAnimation_SpriteLabelNotExistingThrowsException) {
 	// Given
 	TextureManagerMock texture_manager;
 	TextureMock texture;
 
 	std::unique_ptr<ISpriteManager> p_sprite_man =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
 	const std::vector<std::string> labels = { "this_is_a_label",
 											  "this_is_a_label_too"
@@ -400,7 +405,7 @@ TEST(SpriteManagerTest, initSpriteAnimation_SpriteLabelNotExistingThrowsExceptio
 	const std::string animation_label = "this_is_an_animation_label";
 
 	// When | Then
-	ASSERT_THROW(p_sprite_man->initSpriteAnimation(animation_label, 
+	ASSERT_THROW(p_sprite_man->InitSpriteAnimation(animation_label, 
 												   expected_time_per_frame, 
 												   labels),
 				 ViewException);
@@ -413,13 +418,13 @@ TEST(SpriteManagerTest, initSpriteAnimation_SpriteLabelNotExistingThrowsExceptio
 //   and a set of sprites
 // When initSpriteAnimation is called
 // Then an exception is thrown
-TEST(SpriteManagerTest, initSpriteAnimation_InvalidTimePerFrameThrowsException) {
+TEST(SpriteManagerTest, InitSpriteAnimation_InvalidTimePerFrameThrowsException) {
 	// Given
 	TextureManagerMock texture_manager;
 	TextureMock texture;
 
 	std::unique_ptr<ISpriteManager> p_sprite_man =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
 	const std::vector<std::string> labels = { "this_is_a_label",
 											  "this_is_a_label_too"
@@ -427,17 +432,17 @@ TEST(SpriteManagerTest, initSpriteAnimation_InvalidTimePerFrameThrowsException) 
 
 	const std::string path = "this/is/a/path.png";
 
-	ON_CALL(texture_manager, getTexture(StrEq(path)))
+	ON_CALL(texture_manager, GetTexture(StrEq(path)))
 		.WillByDefault(ReturnRef(texture));
 
 	// Set up two sprites we will use.
 	for(auto label : labels)
-		p_sprite_man->initSprite(label, path);
+		p_sprite_man->InitSprite(label, path);
 
 	const std::string animation_label = "this_is_an_animation_label";
 
 	// When | Then
-	ASSERT_THROW(p_sprite_man->initSpriteAnimation(animation_label, 
+	ASSERT_THROW(p_sprite_man->InitSpriteAnimation(animation_label, 
 												   -10.0,
 												   labels),
 				 ViewException);
@@ -448,20 +453,19 @@ TEST(SpriteManagerTest, initSpriteAnimation_InvalidTimePerFrameThrowsException) 
 //   and a label of a non-existing sprite animation
 // When getSpriteAnimation is called with this label
 // Then an exception is thrown
-TEST(SpriteManagerTest, getSpriteAnimation_NoExistingLabelThrowsException) {
+TEST(SpriteManagerTest, GetSpriteAnimation_NoExistingLabelThrowsException) {
 	// Given
 	TextureManagerMock texture_manager;
 
 	std::unique_ptr<ISpriteManager> p_sprite_man =
-		ISpriteManager::construct(texture_manager);
+		ISpriteManager::Construct(texture_manager);
 
 	const std::string label = "this_is_a_label";
 
 	// When | Then
-	ASSERT_THROW(p_sprite_man->getSpriteAnimation(label),
+	ASSERT_THROW(p_sprite_man->GetSpriteAnimation(label),
 				 ViewException);
 }
-
 
 }
 }
