@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <stdexcept>
 
@@ -11,7 +10,7 @@ namespace view {
 /// exceptions.
 /// </summary>
 /// <seealso cref="std::runtime_error" />
-class DllExport ViewException : public std::runtime_error {
+class ViewException : public std::runtime_error {
 public:	
 	/// <summary>
 	/// Construct a new instance of the <see cref="ViewException"/> class.
@@ -19,7 +18,7 @@ public:
 	/// <param name="what_arg">The what argument.</param>
 	/// <param name="SDL_error">The SDL error.</param>
 	ViewException(const std::string& what_arg,
-				  const std::string& SDL_error);
+				        const std::string& SDL_error);
 	
 	/// <summary> The SDL error of this ViewException. </summary>
 	const std::string SDL_error;
