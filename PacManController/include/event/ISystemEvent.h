@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include "IEvent.h"
 
@@ -10,7 +9,7 @@ namespace controller {
 /// <summary>
 /// The type of <see cref="ISystemEvent" />.
 /// </summary>
-enum class DllExport SystemEventType {
+enum class SystemEventType {
   Quit,
 };
 
@@ -20,10 +19,8 @@ enum class DllExport SystemEventType {
 /// system specific information.
 /// </summary>
 /// <seealso cref="IEvent" />
-class DllExport ISystemEvent : public IEvent {
+class ISystemEvent : public IEvent {
 public:
-	virtual ~ISystemEvent() {}
-
 	void Accept(IEventVisitor* visitor) override { visitor->Visit(this); }
   
   /// <summary>

@@ -24,9 +24,6 @@
     <ClInclude Include="include\ICommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\manager\IControllerManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\event\IEventVisitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -87,18 +84,12 @@
     <ClInclude Include="include\keyboard\IKBCommandManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\manager\ControllerManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PacManController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\event\EventParser.cpp">
@@ -138,12 +129,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\keyboard\IKBCommandManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\manager\ControllerManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\manager\IControllerManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\event\IEventGenerator.cpp">

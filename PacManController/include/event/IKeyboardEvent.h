@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include "IEvent.h"
 #include "keyboard/Scancode.h"
@@ -9,24 +8,22 @@ namespace pacman {
 namespace controller {
 
 /// <summary>
-/// The type of <see cref="IKeyboardEvent" />.
+/// The type of <see cref="IKeyboardEvent"/>.
 /// </summary>
-enum class DllExport KeyboardEventType {
+enum class KeyboardEventType {
   KeyDown,
   KeyUp,
 };
 
 
 /// <summary>
-/// <see cref="IKeyboardEvent" /> extends the <see cref="IEvent" class with 
+/// <see cref="IKeyboardEvent" /> extends the <see cref="IEvent"/> class with 
 /// keyboard specific information.
 /// </summary>
 /// <seealso cref="IEvent" />
-class DllExport IKeyboardEvent : public IEvent {
+class IKeyboardEvent : public IEvent {
 public:
-	virtual ~IKeyboardEvent() {}
-
-	void Accept(IEventVisitor* visitor) override { visitor->Visit(this); }
+	inline void Accept(IEventVisitor* visitor) override { visitor->Visit(this); }
   
   /// <summary>
   /// Get the <see cref="KeyboardEventType" /> of this 

@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <string>
 
@@ -10,16 +9,15 @@ namespace pacman {
 namespace controller {
 	
 /// <summary>
-/// <see cref="keyboard::IEvent" /> specifies a single keyboard event, which
-/// can be used to register <see cref="ICommand" /> to.
+/// <see cref="keyboard::IEvent"/> specifies a single keyboard event, which
+/// can be used to register <see cref="ICommand"/> to.
 /// 
-/// The <see cref="IEvent" /> implements the Visitor pattern, which can be 
-/// used by implementing a <see cref="IEventVisitor" />.
+/// The <see cref="IEvent"/> implements the Visitor pattern, which can be 
+/// used by implementing a <see cref="IEventVisitor"/>.
 /// </summary>
-class DllExport IEvent {
+class IEvent {
 public:  
-
-	virtual ~IEvent() {}
+  virtual ~IEvent() = default;
 
   /// <summary>
   /// Accept the <paramref name="visitor"> by passing the implementing instance

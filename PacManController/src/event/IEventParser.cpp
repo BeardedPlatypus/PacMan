@@ -7,7 +7,7 @@ namespace pacman {
 namespace controller {
 
 template<class T>
-std::unique_ptr<IEventParser<T>> IEventParser<T>::construct() {
+std::unique_ptr<IEventParser<T>> IEventParser<T>::Construct() {
   return std::make_unique<EventParser<T>>();
 }
 

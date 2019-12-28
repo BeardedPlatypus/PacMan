@@ -1,7 +1,7 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <memory>
+
 
 namespace pacman {
 namespace controller {
@@ -13,15 +13,15 @@ class IEvent;
 /// to events to pointers of their subclass.
 /// </summary>
 template<class T>
-class DllExport IEventParser {  
+class IEventParser {  
 public:
   /// <summary>
   /// Construct a <see cref="IEventParser" />.
   /// </summary>
   /// <returns>A <see cref="IeventParser" /></returns>
-  static std::unique_ptr<IEventParser> construct();
+  static std::unique_ptr<IEventParser> Construct();
 
-	virtual ~IEventParser() {}
+  virtual ~IEventParser() = default;
 
   /// <summary>
   /// Obtain a pointer of T, where T is a subclass of <see cref="IEvent" />,

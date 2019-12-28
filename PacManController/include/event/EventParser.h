@@ -19,11 +19,6 @@ namespace controller {
 template<class T>
 class EventParser final : public IEventParser<T>, public IEventVisitor  {
 public:  
-  /// <summary>
-  /// Construct a new <see cref="EventParser"/>.
-  /// </summary>
-  EventParser() { }
-
   void Visit(IMouseEvent*    p_event) override { this->Visit<IMouseEvent>(p_event);    };
   void Visit(IKeyboardEvent* p_event) override { this->Visit<IKeyboardEvent>(p_event); };
   void Visit(ISystemEvent*   p_event) override { this->Visit<ISystemEvent>(p_event);   };

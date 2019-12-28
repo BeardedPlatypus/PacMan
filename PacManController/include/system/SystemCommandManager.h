@@ -4,6 +4,7 @@
 
 #include "system/ISystemCommandManager.h"
 
+
 namespace pacman {
 namespace controller {
 namespace system {

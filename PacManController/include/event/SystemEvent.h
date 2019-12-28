@@ -17,7 +17,7 @@ public:
   /// <param name="type">The type of this <see cref="SystemEvent" />.</param>
   explicit SystemEvent(SystemEventType type);
 
-  SystemEventType GetType() const override { return this->type; }
+  inline SystemEventType GetType() const override { return this->type; }
 
 private:  
   /// <summary>

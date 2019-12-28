@@ -1,10 +1,10 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <memory>
 
 #include "ICommand.h"
 #include "event/ISystemEvent.h"
+
 
 namespace pacman {
 namespace controller {
@@ -19,7 +19,7 @@ namespace system {
 /// Upon deletion of the <see cref="system::ICommandManager /> all associated
 /// <see cref="ICommand" /> will be freed as well.
 /// </summary>
-class DllExport ICommandManager {
+class ICommandManager {
 public:
   /// <summary>
   /// Construct a new <see cref="system::ICommandManager" />.
@@ -28,9 +28,9 @@ public:
   /// A <see cref="std::unique_ptr" /> containing a new 
   /// <see cref="ICommandManager" />.
   /// </returns>
-  static std::unique_ptr<ICommandManager> construct();
+  static std::unique_ptr<ICommandManager> Construct();
 
-  virtual ~ICommandManager() {}
+  virtual ~ICommandManager() = default;
 
   /// <summary>
   /// Register the specified <paramref name="p_command"> to the specified 
