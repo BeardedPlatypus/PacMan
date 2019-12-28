@@ -4,7 +4,7 @@
 #include <memory>
 
 #include <IGameState.h>
-#include <manager/IControllerManager.h>
+#include <IControllerAPI.h>
 
 
 namespace pacman {
@@ -22,7 +22,7 @@ public:
   /// <see cref="IUpdateManager" />.
   /// </returns>
   static std::unique_ptr<IUpdateManager> Construct(state::IGameState* p_game_state,
-                                                   controller::IControllerManager* p_controller_manager);
+                                                   controller::api::IControllerAPI* p_controller_manager);
 
   virtual void Initialise() = 0;
 

@@ -17,7 +17,7 @@ void ChangePlayerDirectionCommand::Execute() {
 }
 
 
-std::unique_ptr<controller::ICommand> GetChangePlayerDirectionCommand(IPlayerMovementAxis* p_axis,
+std::unique_ptr<controller::api::IControllerCommand> GetChangePlayerDirectionCommand(IPlayerMovementAxis* p_axis,
                                                                       state_machine::PlayerControlEvent direction_changed_event) {
   return std::make_unique<ChangePlayerDirectionCommand>(p_axis, direction_changed_event);
 }

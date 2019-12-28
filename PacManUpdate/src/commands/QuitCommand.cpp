@@ -14,7 +14,7 @@ void QuitCommand::Execute() {
 }
 
 
-std::unique_ptr<controller::ICommand> GetQuitCommand(state::IGameState* p_game_state) {
+std::unique_ptr<controller::api::IControllerCommand> GetQuitCommand(state::IGameState* p_game_state) {
   return std::make_unique<QuitCommand>(p_game_state);
 }
 
