@@ -33,7 +33,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -157,8 +157,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\exceptions\ViewException.h" />
-    <ClInclude Include="include\manager\IViewManager.h" />
-    <ClInclude Include="include\manager\ViewManager.h" />
     <ClInclude Include="include\Renderable.h" />
     <ClInclude Include="include\renderer\IRenderer.h" />
     <ClInclude Include="include\renderer\IViewCore.h" />
@@ -179,11 +177,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="PacManView.cpp" />
     <ClCompile Include="src\exceptions\ViewException.cpp" />
-    <ClCompile Include="src\manager\IViewManager.cpp" />
-    <ClCompile Include="src\manager\ViewManager.cpp" />
     <ClCompile Include="src\renderer\IRenderer.cpp" />
     <ClCompile Include="src\renderer\IViewCore.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
