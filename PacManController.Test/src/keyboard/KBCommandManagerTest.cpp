@@ -23,7 +23,7 @@ namespace keyboard {
 TEST(KeyboardCommandManagerTest, HasEvent_WithoutEventRegistered) {
   // Given
   KeyboardEventMock event_mock;
-  std::unique_ptr<ICommandManager> p_manager = ICommandManager::construct();
+  std::unique_ptr<ICommandManager> p_manager = ICommandManager::Construct();
 
   ASSERT_THAT(p_manager->HasEvent(&event_mock), Eq(false));
 }
@@ -42,7 +42,7 @@ TEST(KeyboardCommandManagerTest, RegisterCommand) {
   std::unique_ptr<ICommand> p_command = std::make_unique<CommandMock>();
   ICommand* p_command_reference = p_command.get();
 
-  std::unique_ptr<ICommandManager> p_manager = ICommandManager::construct();
+  std::unique_ptr<ICommandManager> p_manager = ICommandManager::Construct();
   ASSERT_THAT(p_manager->HasEvent(&event_mock), Eq(false));
 
   // When
@@ -67,7 +67,7 @@ TEST(KeyboardCommandManagerTest, DeregisterCommand_WithCommandRegistered) {
   std::unique_ptr<ICommand> p_command = std::make_unique<CommandMock>();
   ICommand* p_command_reference = p_command.get();
 
-  std::unique_ptr<ICommandManager> p_manager = ICommandManager::construct();
+  std::unique_ptr<ICommandManager> p_manager = ICommandManager::Construct();
   p_manager->RegisterCommand(std::move(p_command), &event_mock);
   ASSERT_THAT(p_manager->HasEvent(&event_mock), Eq(true));
   ASSERT_THAT(p_manager->GetCommand(&event_mock), Eq(p_command_reference));
@@ -90,7 +90,7 @@ TEST(KeyboardCommandManagerTest, DeregisterCommand_WithCommandRegistered) {
 TEST(KeyboardCommandManagerTest, DeregisterCommand_WithoutCommandRegistered) {
   // Given
   KeyboardEventMock event_mock;
-  std::unique_ptr<ICommandManager> p_manager = ICommandManager::construct();
+  std::unique_ptr<ICommandManager> p_manager = ICommandManager::Construct();
 
   // When | Then
   ASSERT_NO_THROW(p_manager->DeregisterCommand(&event_mock));

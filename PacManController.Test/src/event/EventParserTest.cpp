@@ -28,7 +28,7 @@ template<typename T>
 class EventParserTestCorrect : public ::testing::Test {
 public:
   std::unique_ptr<IEventParser<typename T::ParserType>> p_event_parser = 
-    IEventParser<typename T::ParserType>::construct();
+    IEventParser<typename T::ParserType>::Construct();
   std::unique_ptr<typename T::EventType> p_event = std::make_unique<typename T::EventType>();
 };
 
@@ -53,7 +53,7 @@ template<typename T>
 class EventParserTestIncorrect : public ::testing::Test {
 public:
   std::unique_ptr<IEventParser<typename T::ParserType>> p_event_parser = 
-    IEventParser<typename T::ParserType>::construct();
+    IEventParser<typename T::ParserType>::Construct();
   std::unique_ptr<typename T::EventType> p_event = std::make_unique<typename T::EventType>();
 };
 
