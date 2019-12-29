@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 namespace pacman {
 namespace controller {
@@ -10,12 +9,12 @@ namespace controller {
 /// command which will be executed when the event it was registered 
 /// to is triggered.
 /// </summary>
-class DllExport ICommand {
+class ICommand {
 public:
-	virtual ~ICommand() {}
+	virtual ~ICommand() = default;
 
 	/// <summary>
-	/// Execute the logic associated with this <see cref="ICommand" />.
+	/// Execute the logic associated with this <see cref="ICommand"/>.
 	/// <summary>
 	virtual void Execute() = 0;
 };

@@ -9,10 +9,10 @@ namespace pacman {
 namespace renderer {
 
 PlayerLayer::PlayerLayer(float scale, 
-                         view::IViewManager* p_view_manager,
+                         view::IViewAPI* p_view_api,
                          state::IEntityState* p_player_state) :
     scale(scale),
-    p_view_manager(p_view_manager),
+    p_view_api(p_view_api),
     p_player_state(p_player_state) { }
 
 
@@ -40,30 +40,30 @@ void PlayerLayer::Render() const {
     break;
   }
 
-  this->p_view_manager->renderSpriteAnimation(values::pacman_moving_anim,
-                                              (this->p_player_state->GetXAxis()->GetPosition() - 0.5F * 0.5) * (float)values::tile_size * this->scale,
-                                              (this->p_player_state->GetYAxis()->GetPosition() - 0.5F * 0.5) * (float)values::tile_size * this->scale,
-                                              this->scale * 0.75,
-                                              rotation,
-                                              false,
-                                              false);
+  this->p_view_api->RenderSpriteAnimation(values::pacman_moving_anim,
+                                          (this->p_player_state->GetXAxis()->GetPosition() - 0.5F * 0.5) * (float)values::tile_size * this->scale,
+                                          (this->p_player_state->GetYAxis()->GetPosition() - 0.5F * 0.5) * (float)values::tile_size * this->scale,
+                                          this->scale * 0.75,
+                                          rotation,
+                                          false,
+                                          false);
 }
 
 
 void PlayerLayer::InitialiseSprites() {
-  this->p_view_manager->requestSprite(values::pacman_default,
-                                      values::entity_sprite_file,
-                                      pacman::view::ClipRect(16, 0, 16, 16));
+  this->p_view_api->RequestSprite(values::pacman_default,
+                                  values::entity_sprite_file,
+                                  16, 0, 16, 16);
 
   auto anim_0_label = "pacman_moving_anim_0";
-  this->p_view_manager->requestSprite(anim_0_label,
-                                      values::entity_sprite_file,
-                                      pacman::view::ClipRect(0, 0, 16, 16));
+  this->p_view_api->RequestSprite(anim_0_label,
+                                  values::entity_sprite_file,
+                                  0, 0, 16, 16);
 
   auto anim_2_label = "pacman_moving_anim_2";
-  this->p_view_manager->requestSprite(anim_2_label,
-                                      values::entity_sprite_file,
-                                      pacman::view::ClipRect(32, 0, 16, 16));
+  this->p_view_api->RequestSprite(anim_2_label,
+                                  values::entity_sprite_file,
+                                  32, 0, 16, 16);
 
   std::vector<std::string> pacman_anim_sprites = {
     anim_0_label,
@@ -72,7 +72,7 @@ void PlayerLayer::InitialiseSprites() {
     values::pacman_default,
   };
 
-	this->p_view_manager->requestSpriteAnimation(values::pacman_moving_anim, 0.175F, pacman_anim_sprites);
+	this->p_view_api->RequestSpriteAnimation(values::pacman_moving_anim, 0.175F, pacman_anim_sprites);
 }
 
 }

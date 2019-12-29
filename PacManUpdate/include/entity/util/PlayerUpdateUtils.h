@@ -1,8 +1,8 @@
 #pragma once
 
-
 #include <field/IField.h>
 #include "entity/UpdatablePlayerEntity.h"
+
 
 namespace pacman {
 namespace update {

@@ -4,6 +4,7 @@
 #include "event/IEventStore.h"
 #include <functional>
 
+
 namespace pacman {
 namespace controller {
 

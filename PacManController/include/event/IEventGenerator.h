@@ -6,6 +6,7 @@
 #include "event/IEvent.h"
 #include "event/IEventStore.h"
 
+
 namespace pacman {
 namespace controller {
   
@@ -20,9 +21,9 @@ public:
   /// Construct a new <see cref="IEventGenerator" />.
   /// </summary>
   /// <returns> A new <see cref="IEventGenerator" /></returns>
-  static std::unique_ptr<IEventGenerator> construct(IEventStore* p_event_store);
+  static std::unique_ptr<IEventGenerator> Construct(IEventStore* p_event_store);
 
-  virtual ~IEventGenerator() {}
+  virtual ~IEventGenerator() = default;
 
   /// <summary>
   /// Poll the set of <see cref="IEvent" />s of the current frame.

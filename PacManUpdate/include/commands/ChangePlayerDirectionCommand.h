@@ -1,9 +1,7 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
-#include <ICommand.h>
+#include "IControllerCommand.h"
 #include <entity/IEntityState.h>
-
 #include <optional>
 #include "entity/IPlayerMovementAxis.h"
 #include "state_machine/events/PlayerControlEvent.h"
@@ -17,13 +15,13 @@ namespace commands {
 /// player's <see cref="IEntityState" />.
 /// </summary>
 /// <seealso cref="controller::ICommand" />
-class ChangePlayerDirectionCommand final : public controller::ICommand {
+class ChangePlayerDirectionCommand final : public controller::api::IControllerCommand {
 public:  
   /// <summary>
   /// Construct a new <see cref="ChangePlayerDirectionCommand"/>.
   /// </summary>
   /// <param name="p_axis">Pointer to the relevant <see cref="IPlayerMovmentAxis"/>.</param>
-/// <param name="direction_changed_event"/>The event with which the axis should be changed.</param>
+  /// <param name="direction_changed_event"/>The event with which the axis should be changed.</param>
   ChangePlayerDirectionCommand(IPlayerMovementAxis* p_axis,
                                state_machine::PlayerControlEvent direction_changed_event);
 
@@ -53,8 +51,8 @@ private:
 /// An <see cref="controller::ICommand"/> which changes the direction 
 /// of the provided player state.
 /// </returns>
-DllExport std::unique_ptr<controller::ICommand> GetChangePlayerDirectionCommand(IPlayerMovementAxis* p_axis,
-                                                                                state_machine::PlayerControlEvent direction_changed_event);
+std::unique_ptr<controller::api::IControllerCommand> GetChangePlayerDirectionCommand(IPlayerMovementAxis* p_axis,
+                                                                                     state_machine::PlayerControlEvent direction_changed_event);
 
 }
 }

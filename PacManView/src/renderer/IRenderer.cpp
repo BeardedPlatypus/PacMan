@@ -6,7 +6,7 @@
 namespace pacman {
 namespace view {
 
-std::unique_ptr<IRenderer> IRenderer::construct() {
+std::unique_ptr<IRenderer> IRenderer::Construct() {
 	return std::make_unique<Renderer>();
 }
 

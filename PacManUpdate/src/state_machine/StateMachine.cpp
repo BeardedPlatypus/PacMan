@@ -32,7 +32,6 @@ void StateMachine<TValue, TEvent>::Move(TEvent e) {
   }
 }
 
-
 }
 }
 }

@@ -13,12 +13,12 @@ namespace keyboard {
 /// <see cref="CommandManager" /> implements the <see cref="ICommandManager" />. 
 /// </summary>
 /// <seealso cref="ICommandManager" />
-class CommandManager final : public ICommandManager {
+class KeyboardCommandManager final : public IKeyboardCommandManager {
 public:	
   /// <summary>
   /// Construct a new <see cref="CommandManager"/>.
   /// </summary>
-  CommandManager();
+  KeyboardCommandManager();
 
   void RegisterCommand(std::unique_ptr<ICommand> p_command,
 	                     IKeyboardEvent* kb_event) final;

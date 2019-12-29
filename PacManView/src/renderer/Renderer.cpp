@@ -15,8 +15,9 @@ Renderer::~Renderer() { }
 
 void Renderer::Init(SDL_Window* p_window) {
 	SDL_Renderer* p_renderer = 
-		SDL_CreateRenderer(p_window, -1, SDL_RENDERER_ACCELERATED | 
-						                 SDL_RENDERER_PRESENTVSYNC);
+		SDL_CreateRenderer(p_window, 
+			                 -1, 
+			                 SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 	if (p_renderer == nullptr)
 		throw ViewException("SDL_CreateRenderer", SDL_GetError());

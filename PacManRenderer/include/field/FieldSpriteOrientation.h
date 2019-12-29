@@ -1,5 +1,5 @@
 #pragma once
-#define DllExport __declspec( dllexport )
+
 
 namespace pacman {
 namespace renderer {
@@ -8,7 +8,7 @@ namespace renderer {
 /// <see cref="FieldSpriteOrientation" /> describes the orientation
 /// of a sprite of a field tile.
 /// </summary>
-struct DllExport FieldSpriteOrientation {    
+struct FieldSpriteOrientation {    
   /// <summary>
   /// Initializes a new <see cref="FieldSpriteOrientation"/>.
   /// </summary>

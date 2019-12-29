@@ -1,6 +1,6 @@
 #pragma once
 
-#include <manager/IViewManager.h>
+#include <IViewAPI.h>
 #include <entity/IEntityManager.h>
 
 #include "IRenderLayer.h"
@@ -22,7 +22,7 @@ public:
   /// | p_player_state != nullptr
   /// </precondition>
   PlayerLayer(float scale,
-              view::IViewManager* p_view_manager,
+              view::IViewAPI* p_view_api,
               state::IEntityState* p_player_state);
 
   void Initialise() final;
@@ -43,7 +43,7 @@ private:
   /// A pointer to the <see cref="IViewManager" /> used by this 
   /// <see cref="EntityLayer" />. 
   /// </summary>
-  view::IViewManager* p_view_manager;
+  view::IViewAPI* p_view_api;
   
   /// <summary>
   /// A pointer to the <see cref="IEntityManager" /> used by this

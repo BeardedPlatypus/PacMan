@@ -21,9 +21,9 @@ public:
   KeyboardEvent(KeyboardEventType type,
                 keyboard::Scancode scancode);
 
-  KeyboardEventType GetType() const override { return this->type; }
+  inline KeyboardEventType GetType() const override { return this->type; }
 
-  keyboard::Scancode GetScancode() const override { return this->scancode; }
+  inline keyboard::Scancode GetScancode() const override { return this->scancode; }
 
 private:  
   /// <summary> The type of this <see cref="KeyboardEvent" />. </summary>

@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <SDL2/SDL.h>
 #include <renderer/IRenderer.h>
@@ -9,24 +8,24 @@ namespace pacman {
 namespace view {
 
 /// <summary>
-/// ITexture describes the interface with which the View system interacts
+/// <see cref="ITexture"/> describes the interface with which the View system interacts
 /// with textures.
 /// </summary>
-class DllExport ITexture {
+class ITexture {
 public:
-	virtual ~ITexture() {}
+  virtual ~ITexture() = default;
 
 	/// <summary>
-	/// Get the dimensions of this <see cref="ITexture" />.
+	/// Get the dimensions of this <see cref="ITexture"/>.
 	/// </summary>
 	/// <returns> 
-	/// An <see cref="SDL_Rect" /> describing the dimensions of this texture. 
+	/// An <see cref="SDL_Rect"/> describing the dimensions of this texture. 
 	/// </returns>
 	virtual SDL_Rect GetDimensions() const = 0;
 	
   /// <summary>
-  /// Render the specified <paramref name="clip" /> of this
-  /// <see cref="ITexture" /> to the specified <paramref name="dst" />.
+  /// Render the specified <paramref name="clip"/> of this
+  /// <see cref="ITexture"/> to the specified <paramref name="dst"/>.
   /// </summary>
   /// <param name="renderer">The renderer.</param>
   /// <param name="clip">The section of the texture to render.</param>

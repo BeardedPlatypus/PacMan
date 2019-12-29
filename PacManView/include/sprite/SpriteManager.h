@@ -12,64 +12,64 @@ namespace pacman {
 namespace view {
 
 /// <summary>
-/// <see cref="SpriteManager" /> implements <see cref="ISpriteManager" />.
-/// It is responsible for storing all <see cref="Sprite" />s  constructed within the PacMan 
-/// game. It provides the methods to request new <see cref="Sprite" />s and
-/// <see cref="ISpriteAnimation" />s.
+/// <see cref="SpriteManager"/> implements <see cref="ISpriteManager"/>.
+/// It is responsible for storing all <see cref="Sprite"/>s  constructed within the PacMan 
+/// game. It provides the methods to request new <see cref="Sprite"/>s and
+/// <see cref="ISpriteAnimation"/>s.
 /// </summary>
 class SpriteManager final : public ISpriteManager {
 public:	
   /// <summary>
-  /// Construct a new <see cref="SpriteManager"/> with the given 
-  /// <paramref name="texture_manager" />.
+  /// Create a new <see cref="SpriteManager"/> with the given 
+  /// <paramref name="texture_manager"/>.
   /// </summary>
-  /// <param name="texture_manager">The texture manager.</param>
+  /// <param name="texture_manager"> The texture manager. </param>
   explicit SpriteManager(ITextureManager& texture_manager);
 
-  void initSprite(const std::string& label,
+  void InitSprite(const std::string& label,
                   const std::string& sprite_sheet_path, 
                   int x, int y, int w, int h) final;
 
-  void initSprite(const std::string& label,
+  void InitSprite(const std::string& label,
                   const std::string& sprite_sheet_path) final;
 
-  bool hasSprite(const std::string& label) const final;
+  bool HasSprite(const std::string& label) const final;
 
-  const Sprite& getSprite(const std::string& label) const final;
+  const Sprite& GetSprite(const std::string& label) const final;
 
-  void initSpriteAnimation(const std::string& label,
+  void InitSpriteAnimation(const std::string& label,
 						               float time_per_frame,
 						               const std::vector<std::string>& sprites) final;
 
-  bool hasSpriteAnimation(const std::string& label) const final;
+  bool HasSpriteAnimation(const std::string& label) const final;
 
-  ISpriteAnimation* getSpriteAnimation(const std::string& label) final;
+  ISpriteAnimation* GetSpriteAnimation(const std::string& label) final;
 
 private:	
 	/// <summary> 
-	/// Map containing labels to <see cref="Sprite" />. 
+	/// Map containing labels to <see cref="Sprite"/>. 
 	/// </summary>
 	std::map<std::string, Sprite> sprite_map;
 	
 	/// <summary>
-	/// Map containing labels to <see cref="ISpriteAnimation" />.
+	/// Map containing labels to <see cref="ISpriteAnimation"/>.
 	/// </summary>
 	std::map<std::string, std::unique_ptr<ISpriteAnimation>> sprite_animation_map;
 	
   /// <summary> 
   /// Get the texture associated with the provided 
-  /// <paramref name="texture_path" />.
+  /// <paramref name="texture_path"/>.
   /// </summary>
   /// <param name="texture_path"> The texture path. </param>
   /// <returns> 
-  /// The <see cref="ITexture" /> associated the specified 
-  /// <paramref name="texture_path" />
+  /// The <see cref="ITexture"/> associated the specified 
+  /// <paramref name="texture_path"/>
   /// </returns>
-  const ITexture& getTexture(const std::string& texture_path);
+  const ITexture& GetTexture(const std::string& texture_path);
 	
 	/// <summary>
-	/// A reference to <see cref="ITextureManager" /> this 
-	/// <see cref="SpriteManager" /> uses.
+	/// A reference to <see cref="ITextureManager"/> this 
+	/// <see cref="SpriteManager"/> uses.
 	/// </summary>
 	ITextureManager& texture_manager;
 };

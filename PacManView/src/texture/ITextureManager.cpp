@@ -6,7 +6,7 @@
 namespace pacman {
 namespace view {
 
-std::unique_ptr<ITextureManager> ITextureManager::construct(const IRenderer& renderer) {
+std::unique_ptr<ITextureManager> ITextureManager::Construct(const IRenderer& renderer) {
 	return std::make_unique<TextureManager>(renderer);
 }
 

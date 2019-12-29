@@ -16,7 +16,7 @@ class ISystemEvent;
 /// </summary>
 class IEventVisitor {
 public:  
-	virtual ~IEventVisitor() {}
+  virtual ~IEventVisitor() = default;
 
   /// <summary>
   /// Visit the specified <see cref="MouseEvent" /> pointer.

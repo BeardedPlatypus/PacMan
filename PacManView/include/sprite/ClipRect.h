@@ -10,10 +10,10 @@ namespace view {
 /// <see cref="Sprite">. It provides a constructor, and 4 fields used 
 /// to store the relevant information.
 /// </summary>
-struct DllExport ClipRect {	
+class DllExport ClipRect {	
 public:
   /// <summary>
-  /// Construct a new <see cref="ClipRect"/> with the given parameters.
+  /// Create a new <see cref="ClipRect"/> with the given parameters.
   /// </summary>
   /// <param name="x"> The x position in pixels. </param>
   /// <param name="y"> The y position in pixels. </param>

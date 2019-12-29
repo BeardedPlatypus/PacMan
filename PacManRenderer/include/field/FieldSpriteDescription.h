@@ -1,8 +1,8 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include "field/FieldSpriteOrientation.h"
 #include "field/FieldSpriteType.h"
+
 
 namespace pacman {
 namespace renderer {
@@ -12,7 +12,7 @@ namespace renderer {
 /// type of a corresponding FieldSprite. This is used to construct the 
 /// <see cref="FiledLayer" />.
 /// </summary>
-struct DllExport FieldSpriteDescription {
+struct FieldSpriteDescription {
   /// <summary>
   /// Construct a new <see cref="FieldSpriteDescription"/>.
   /// </summary>

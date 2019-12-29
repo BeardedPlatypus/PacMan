@@ -35,16 +35,16 @@ TEST(TextureManagerTest, loadTexture_Single) {
 	  .WillOnce(Return(ByMove(std::make_unique<TextureMock>())));
 
   std::unique_ptr<ITextureManager> p_tex_man =
-	  ITextureManager::construct(renderer);
+	  ITextureManager::Construct(renderer);
 
-  ASSERT_THAT(p_tex_man->hasTexture(texture_path), Eq(false));
+  ASSERT_THAT(p_tex_man->HasTexture(texture_path), Eq(false));
 
   // When
-  p_tex_man->loadTexture(texture_path);
+  p_tex_man->LoadTexture(texture_path);
 
   // Then
-  EXPECT_THAT(p_tex_man->hasTexture(texture_path), Eq(true));
-  EXPECT_THAT(p_tex_man->hasTexture("SomeUnloadedPath.png"), Eq(false));
+  EXPECT_THAT(p_tex_man->HasTexture(texture_path), Eq(true));
+  EXPECT_THAT(p_tex_man->HasTexture("SomeUnloadedPath.png"), Eq(false));
 }
 
 // Given a TextureManager
@@ -67,22 +67,22 @@ TEST(TextureManagerTest, loadTexture_Multiple) {
 	  .WillOnce(Return(ByMove(std::make_unique<TextureMock>())));
 
   std::unique_ptr<ITextureManager> p_tex_man =
-	  ITextureManager::construct(renderer);
+	  ITextureManager::Construct(renderer);
 
-  ASSERT_THAT(p_tex_man->hasTexture(texture_path1), Eq(false));
-  ASSERT_THAT(p_tex_man->hasTexture(texture_path2), Eq(false));
-  ASSERT_THAT(p_tex_man->hasTexture(texture_path3), Eq(false));
+  ASSERT_THAT(p_tex_man->HasTexture(texture_path1), Eq(false));
+  ASSERT_THAT(p_tex_man->HasTexture(texture_path2), Eq(false));
+  ASSERT_THAT(p_tex_man->HasTexture(texture_path3), Eq(false));
 
   // When
-  p_tex_man->loadTexture(texture_path1);
-  p_tex_man->loadTexture(texture_path2);
-  p_tex_man->loadTexture(texture_path3);
+  p_tex_man->LoadTexture(texture_path1);
+  p_tex_man->LoadTexture(texture_path2);
+  p_tex_man->LoadTexture(texture_path3);
 
   // Then
-  EXPECT_THAT(p_tex_man->hasTexture(texture_path1), Eq(true));
-  EXPECT_THAT(p_tex_man->hasTexture(texture_path2), Eq(true));
-  EXPECT_THAT(p_tex_man->hasTexture(texture_path3), Eq(true));
-  EXPECT_THAT(p_tex_man->hasTexture("SomeUnloadedPath.png"), Eq(false));
+  EXPECT_THAT(p_tex_man->HasTexture(texture_path1), Eq(true));
+  EXPECT_THAT(p_tex_man->HasTexture(texture_path2), Eq(true));
+  EXPECT_THAT(p_tex_man->HasTexture(texture_path3), Eq(true));
+  EXPECT_THAT(p_tex_man->HasTexture("SomeUnloadedPath.png"), Eq(false));
 }
 
 // Given a TextureManager
@@ -99,18 +99,18 @@ TEST(TextureManagerTest, loadTexture_SameTextureMultiple) {
 	  .WillOnce(Return(ByMove(std::make_unique<TextureMock>())));
 
   std::unique_ptr<ITextureManager> p_tex_man =
-	  ITextureManager::construct(renderer);
+	  ITextureManager::Construct(renderer);
 
-  ASSERT_THAT(p_tex_man->hasTexture(texture_path), Eq(false));
+  ASSERT_THAT(p_tex_man->HasTexture(texture_path), Eq(false));
 
   // When
-  p_tex_man->loadTexture(texture_path);
-  p_tex_man->loadTexture(texture_path);
-  p_tex_man->loadTexture(texture_path);
+  p_tex_man->LoadTexture(texture_path);
+  p_tex_man->LoadTexture(texture_path);
+  p_tex_man->LoadTexture(texture_path);
 
   // Then
-  EXPECT_THAT(p_tex_man->hasTexture(texture_path), Eq(true));
-  EXPECT_THAT(p_tex_man->hasTexture("SomeUnloadedPath.png"), Eq(false));
+  EXPECT_THAT(p_tex_man->HasTexture(texture_path), Eq(true));
+  EXPECT_THAT(p_tex_man->HasTexture("SomeUnloadedPath.png"), Eq(false));
 }
 
 }

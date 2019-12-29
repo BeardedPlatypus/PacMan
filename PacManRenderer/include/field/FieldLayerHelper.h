@@ -1,10 +1,10 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <vector>
 
 #include "field/IField.h"
 #include "field/FieldSpriteDescription.h"
+
 
 namespace pacman {
 namespace renderer {
@@ -13,7 +13,7 @@ namespace renderer {
 /// The <see cref="FieldLayerHelper" /> exposes several methods used to 
 /// construct a <see cref="FieldLayer" /> from a <see cref="state::field::IField" />.
 /// </summary>
-class DllExport FieldLayerHelper {
+class FieldLayerHelper {
 public:
   /// <summary> 
   /// Calculate a the field visualisation as a list of integers encoding the type of sprite to

@@ -128,7 +128,7 @@ TEST(EventGeneratorHelperTest, ConvertSdlEvent_QuitEvent) {
   SDL_Event sdl_event;
   sdl_event.type = SDL_QUIT;
 
-  auto parser = IEventParser<ISystemEvent>::construct();
+  auto parser = IEventParser<ISystemEvent>::Construct();
   auto p_store = IEventStore::Construct();
 
   // When
@@ -171,7 +171,7 @@ TEST_P(EventGeneratorHelperTestConvertKeyboard, ConvertSdlEvent_Keyboard) {
   sdl_event.type = val.event_type;
   sdl_event.key.keysym.scancode = val.scancode;
 
-  auto parser = IEventParser<IKeyboardEvent>::construct();
+  auto parser = IEventParser<IKeyboardEvent>::Construct();
   auto p_store = IEventStore::Construct();
 
   // When

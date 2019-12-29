@@ -8,18 +8,19 @@ namespace pacman {
 namespace controller {
   
 /// <summary>
-/// The <see cref="EventGenerator" /> implements the <see cref="IEventGenerator" />
-/// interface. It is responsible for generating <see cref="IEvents" />. These
-/// events can then be obtained through the GetEvents method.
+/// The <see cref="EventGenerator"/> implements the 
+/// <see cref="IEventGenerator"/> interface. It is responsible for generating 
+/// <see cref="IEvents"/>. These events can then be obtained through the 
+// GetEvents method.
 /// </summary>
-/// <seealso cref="IEventGenerator" />
+/// <seealso cref="IEventGenerator"/>
 class EventGenerator final : public IEventGenerator {
 public:  
   /// <summary>
-  /// Construct a new of the <see cref="EventGenerator"/>.
+  /// Construct a new <see cref="EventGenerator"/>.
   /// </summary>
   /// <param name="p_event_store"> 
-  /// A pointer to the <see cref="IEventStore" />. 
+  /// A pointer to the <see cref="IEventStore"/>. 
   /// </param>
   explicit EventGenerator(IEventStore* p_event_store);
 
@@ -33,23 +34,23 @@ private:
   }
 
   /// <summary>
-  /// The vector containing all events of this <see cref="EventGenerator" />.
+  /// The vector containing all events of this <see cref="EventGenerator"/>.
   /// </summary>
   std::vector<IEvent*> events_vector = std::vector<IEvent*>();
    
   /// <summary>
-  /// Get a pointer to the <see cref="IEventStore" /> of this
-  /// <see cref="EventGenerator" />
+  /// Get a pointer to the <see cref="IEventStore"/> of this
+  /// <see cref="EventGenerator"/>
   /// </summary>
   /// <returns> 
-  /// A pointer to the <see cref="IventStore" /> of this <see cref="EventGenerator" />. 
+  /// A pointer to the <see cref="IventStore"/> of this <see cref="EventGenerator"/>. 
   /// </returns>
   inline IEventStore* GetEventStore() const {
     return this->p_event_store;
   }
 
   /// <summary>
-  /// The <see cref="IEventStore" /> of this <see cref="EventGenerator" />.
+  /// The <see cref="IEventStore"/> of this <see cref="EventGenerator"/>.
   /// </summary>
   IEventStore* p_event_store;
 };

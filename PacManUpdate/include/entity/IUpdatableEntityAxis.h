@@ -1,10 +1,10 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <memory>
 #include <entity/IEntityAxis.h>
 
 #include "entity/AxisDirection.h"
+
 
 namespace pacman {
 namespace update {
@@ -14,7 +14,7 @@ namespace update {
 /// <see cref="state::IEntityAxis"/> and defines an additional
 /// current and previous index, as well as a move method.
 /// </summary>
-class DllExport IUpdatableEntityAxis {
+class IUpdatableEntityAxis {
 public:  
   /// <summary>
   /// Construct a new <see cref="IUpdatableEntityAxis"/> with the given

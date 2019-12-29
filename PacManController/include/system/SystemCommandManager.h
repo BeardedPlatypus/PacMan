@@ -4,6 +4,7 @@
 
 #include "system/ISystemCommandManager.h"
 
+
 namespace pacman {
 namespace controller {
 namespace system {
@@ -14,12 +15,12 @@ namespace system {
 /// linked to <see cref="ISystemEvent" />s.
 /// </summary>
 /// <seealso cref="ICommandManager" />
-class CommandManager final : public ICommandManager {  
+class SystemCommandManager final : public ISystemCommandManager {  
 public:
   /// <summary>
   /// Construct a new <see cref="CommandManager" />.
   /// </summary>
-  CommandManager();
+  SystemCommandManager();
 
   void RegisterCommand(std::unique_ptr<ICommand> p_command,
                        ISystemEvent* kb_event) final;

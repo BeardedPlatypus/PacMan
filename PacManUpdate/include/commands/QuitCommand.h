@@ -1,7 +1,7 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
-#include <ICommand.h>
+// TODO: Fix weird buggy behaviour from this path.
+#include "../../PacManControllerAPI/include/IControllerCommand.h"
 #include <IGameState.h>
 
 
@@ -13,7 +13,7 @@ namespace commands {
 /// The <see cref="QuitCommand" /> sets the <see cref="IGameState" /> to quit.
 /// </summary>
 /// <seealso cref="controller::ICommand" />
-class QuitCommand final : public controller::ICommand {
+class QuitCommand final : public controller::api::IControllerCommand {
 public:  
   /// <summary>
   /// Construct a new <see cref="QuitCommand"/>.
@@ -29,7 +29,7 @@ private:
   state::IGameState* p_game_state;
 };
 
-DllExport std::unique_ptr<controller::ICommand> GetQuitCommand(state::IGameState* p_game_state);
+std::unique_ptr<controller::api::IControllerCommand> GetQuitCommand(state::IGameState* p_game_state);
 
 }
 }

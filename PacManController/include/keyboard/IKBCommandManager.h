@@ -1,10 +1,10 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <memory>
 
 #include "ICommand.h"
 #include "event/IKeyboardEvent.h"
+
 
 namespace pacman {
 namespace controller {
@@ -19,8 +19,10 @@ namespace keyboard {
 /// Upon deletion of the <see cref="keyboard::ICommandManager /> all associated
 /// <see cref="ICommand" /> will be freed as well.
 /// </summary>
-class DllExport ICommandManager {	
+class IKeyboardCommandManager {	
 public:
+  ~IKeyboardCommandManager() = default;
+
   /// <summary>
   /// Construct a new <see cref="IViewManager" />.
   /// </summary>
@@ -28,7 +30,7 @@ public:
   /// A <see cref="std::unique_ptr" /> containing a new 
   /// <see cref="ICommandManager" />.
   /// </returns>
-  static std::unique_ptr<ICommandManager> construct();
+  static std::unique_ptr<IKeyboardCommandManager> Construct();
   
   /// <summary>
   /// Register the specified <paramref name="p_command"> to the specified 

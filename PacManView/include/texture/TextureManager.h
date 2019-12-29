@@ -11,14 +11,14 @@ namespace pacman {
 namespace view {
 
 /// <summary>
-/// <see cref="TextureManager" /> implements the <see cref="ITextureManager" />.
-/// It is responsible for loading all <see cref="ITexture" /> from the file 
+/// <see cref="TextureManager"/> implements the <see cref="ITextureManager"/>.
+/// It is responsible for loading all <see cref="ITexture"/> from the file 
 /// system. It provides the methods to load textures as well as query the 
-/// <see cref="TextureManager /> has already loaded said textures.
+/// <see cref="TextureManager"/> has already loaded said textures.
 /// 
-/// All <see cref="ITexture" /> used within this project should be constructed
-/// through this <see cref="TextureManager" />. This will allow the manager to
-/// properly control the lifetime of all <see cref="ITexture" />. 
+/// All <see cref="ITexture"/> used within this project should be constructed
+/// through this <see cref="TextureManager"/>. This will allow the manager to
+/// properly control the lifetime of all <see cref="ITexture"/>. 
 /// 
 /// All textures are destroyed upon destroying this manager.
 /// </summary>
@@ -26,16 +26,14 @@ class TextureManager final : public ITextureManager {
 public:	
   /// <summary>
   /// Construct a new <see cref="TextureManager"/> with the specified
-  /// <paramref name="p_renderer" />.
+  /// <paramref name="p_renderer"/>.
   /// </summary>
-  /// <param name="p_renderer">The p renderer.</param>
+  /// <param name="p_renderer"> The p renderer. </param>
   explicit TextureManager(const IRenderer& p_renderer);
 	
-  void loadTexture(const std::string& file_path) final;
-	
-  bool hasTexture(const std::string& file_path) const final;
-	
-  const ITexture& getTexture(const std::string& file_path) const final;
+  void LoadTexture(const std::string& file_path) final;
+  bool HasTexture(const std::string& file_path) const final;
+  const ITexture& GetTexture(const std::string& file_path) const final;
 
 private:  
   /// <summary>

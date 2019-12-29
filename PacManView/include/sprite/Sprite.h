@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <SDL2/SDL.h>
 
@@ -11,14 +10,15 @@ namespace pacman {
 namespace view {
 
 /// <summary>
-/// A Sprite describing a clipped section of a <see cref="ITexture" />. 
+/// <see cref="Sprite"/> describes a clipped section of a <see cref="ITexture"/>. 
 /// It contains the logic to render this section at a given position, with a
 /// given size.
 /// </summary>
-class DllExport Sprite {
+class Sprite {
 public:	
 	/// <summary>
-	/// Construct a new instance of the <see cref="Sprite"/> class.
+	/// Create a new <see cref="Sprite"/> describing the specified subsection
+	/// of <paramref name="tex"/>.
 	/// </summary>
 	/// <param name="tex"> 
 	/// Reference to the texture on which this sprite is located.
@@ -30,8 +30,7 @@ public:
 	Sprite(const ITexture& tex, int x, int y, int w, int h);
 	
 	/// <summary>
-	/// Construct a new instance of the <see cref="Sprite"/> class 
-	/// describing the whole <paramref name="tex" />.
+	/// Creates a new <see cref="Sprite"/> describing the whole <paramref name="tex"/>.
 	/// </summary>
 	/// <param name="tex"> 
 	/// Reference to the texture which this sprite describes. 
