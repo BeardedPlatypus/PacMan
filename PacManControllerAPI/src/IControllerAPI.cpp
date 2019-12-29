@@ -11,8 +11,8 @@ namespace api {
 std::unique_ptr<IControllerAPI> IControllerAPI::Construct() {
   std::unique_ptr<keyboard::IKeyboardCommandManager> p_keyboard_command_manager = 
     keyboard::IKeyboardCommandManager::Construct();
-  std::unique_ptr<system::ICommandManager> p_system_command_manager = 
-    system::ICommandManager::Construct();
+  std::unique_ptr<system::ISystemCommandManager> p_system_command_manager = 
+    system::ISystemCommandManager::Construct();
 
   std::unique_ptr<IEventParser<IKeyboardEvent>> p_keyboard_event_parser = 
     IEventParser<IKeyboardEvent>::Construct();

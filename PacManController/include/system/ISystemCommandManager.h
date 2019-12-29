@@ -19,7 +19,7 @@ namespace system {
 /// Upon deletion of the <see cref="system::ICommandManager /> all associated
 /// <see cref="ICommand" /> will be freed as well.
 /// </summary>
-class ICommandManager {
+class ISystemCommandManager {
 public:
   /// <summary>
   /// Construct a new <see cref="system::ICommandManager" />.
@@ -28,9 +28,9 @@ public:
   /// A <see cref="std::unique_ptr" /> containing a new 
   /// <see cref="ICommandManager" />.
   /// </returns>
-  static std::unique_ptr<ICommandManager> Construct();
+  static std::unique_ptr<ISystemCommandManager> Construct();
 
-  virtual ~ICommandManager() = default;
+  virtual ~ISystemCommandManager() = default;
 
   /// <summary>
   /// Register the specified <paramref name="p_command"> to the specified 

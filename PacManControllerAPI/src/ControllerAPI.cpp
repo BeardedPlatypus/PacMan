@@ -10,7 +10,7 @@ namespace api {
 
 ControllerAPI::ControllerAPI(std::unique_ptr<IEventGenerator> p_event_generator,
                              std::unique_ptr<keyboard::IKeyboardCommandManager> p_keyboard_command_manager,
-                             std::unique_ptr<system::ICommandManager> p_system_command_manager,
+                             std::unique_ptr<system::ISystemCommandManager> p_system_command_manager,
                              std::unique_ptr<IEventParser<IKeyboardEvent>> p_keyboard_event_parser,
                              std::unique_ptr<IEventParser<ISystemEvent>> p_system_event_parser,
                              std::unique_ptr<IEventStore> p_event_store) :

@@ -23,7 +23,8 @@ namespace system {
 TEST(SystemCommandManagerTest, HasEvent_WithoutEventRegistered) {
   // Given
   SystemEventMock event_mock;
-  std::unique_ptr<ICommandManager> p_manager = ICommandManager::Construct();
+  std::unique_ptr<ISystemCommandManager> p_manager = 
+    ISystemCommandManager::Construct();
 
   ASSERT_THAT(p_manager->HasEvent(&event_mock), Eq(false));
 }
@@ -42,7 +43,8 @@ TEST(SystemCommandManagerTest, RegisterCommand) {
   std::unique_ptr<ICommand> p_command = std::make_unique<CommandMock>();
   ICommand* p_command_reference = p_command.get();
 
-  std::unique_ptr<ICommandManager> p_manager = ICommandManager::Construct();
+  std::unique_ptr<ISystemCommandManager> p_manager = 
+    ISystemCommandManager::Construct();
   ASSERT_THAT(p_manager->HasEvent(&event_mock), Eq(false));
 
   // When
@@ -67,7 +69,8 @@ TEST(SystemCommandManagerTest, DeregisterCommand_WithCommandRegistered) {
   std::unique_ptr<ICommand> p_command = std::make_unique<CommandMock>();
   ICommand* p_command_reference = p_command.get();
 
-  std::unique_ptr<ICommandManager> p_manager = ICommandManager::Construct();
+  std::unique_ptr<ISystemCommandManager> p_manager = 
+    ISystemCommandManager::Construct();
   p_manager->RegisterCommand(std::move(p_command), &event_mock);
   ASSERT_THAT(p_manager->HasEvent(&event_mock), Eq(true));
   ASSERT_THAT(p_manager->GetCommand(&event_mock), Eq(p_command_reference));
@@ -90,7 +93,8 @@ TEST(SystemCommandManagerTest, DeregisterCommand_WithCommandRegistered) {
 TEST(SystemCommandManagerTest, DeregisterCommand_WithoutCommandRegistered) {
   // Given
   SystemEventMock event_mock;
-  std::unique_ptr<ICommandManager> p_manager = ICommandManager::Construct();
+  std::unique_ptr<ISystemCommandManager> p_manager = 
+    ISystemCommandManager::Construct();
 
   // When | Then
   ASSERT_NO_THROW(p_manager->DeregisterCommand(&event_mock));

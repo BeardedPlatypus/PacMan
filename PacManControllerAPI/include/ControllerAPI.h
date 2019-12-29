@@ -44,7 +44,7 @@ public:
   /// </param>
   ControllerAPI(std::unique_ptr<IEventGenerator> p_event_generator,
                 std::unique_ptr<keyboard::IKeyboardCommandManager> p_keyboard_command_manager,
-                std::unique_ptr<system::ICommandManager> p_system_command_manager,
+                std::unique_ptr<system::ISystemCommandManager> p_system_command_manager,
                 std::unique_ptr<IEventParser<IKeyboardEvent>> p_keyboard_event_parser,
                 std::unique_ptr<IEventParser<ISystemEvent>> p_system_event_parser,
                 std::unique_ptr<IEventStore> p_event_store);
@@ -123,14 +123,14 @@ private:
   // A pointer to the <see cref="system::ICommandManager"/> of this 
   // <see cref="ControllerManager"/>
   // </returns>
-  inline system::ICommandManager* GetSystemCommandManager() {
+  inline system::ISystemCommandManager* GetSystemCommandManager() {
     return this->p_system_command_manager.get();
   }
 
   /// <summary>
   /// The <see cref="system::ICommandManager"/> of this <see cref="ControllerManager"/>.
   /// </summary>
-  std::unique_ptr<system::ICommandManager> p_system_command_manager;
+  std::unique_ptr<system::ISystemCommandManager> p_system_command_manager;
 
   /// <summary>
   /// Get a pointer to the <see cref="IEventParser<ISystemEvent>"/> of this 

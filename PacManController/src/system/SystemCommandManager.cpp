@@ -6,28 +6,28 @@ namespace pacman {
 namespace controller {
 namespace system {
 
-CommandManager::CommandManager() {}
+SystemCommandManager::SystemCommandManager() {}
 
 
-void CommandManager::RegisterCommand(std::unique_ptr<ICommand> p_command,
-                                     ISystemEvent* system_event) {
+void SystemCommandManager::RegisterCommand(std::unique_ptr<ICommand> p_command,
+                                           ISystemEvent* system_event) {
 	this->GetMap()[system_event] = std::move(p_command);
 }
 
 
-void CommandManager::DeregisterCommand(ISystemEvent* system_event) {
+void SystemCommandManager::DeregisterCommand(ISystemEvent* system_event) {
 	if (this->HasEvent(system_event)) {
 		this->GetMap().erase(system_event);
 	}
 }
 
 
-ICommand* CommandManager::GetCommand(ISystemEvent* system_event) const {
+ICommand* SystemCommandManager::GetCommand(ISystemEvent* system_event) const {
 	return this->GetMap().at(system_event).get();
 }
 
 
-bool CommandManager::HasEvent(ISystemEvent* system_event) const {
+bool SystemCommandManager::HasEvent(ISystemEvent* system_event) const {
   return this->GetMap().find(system_event) != this->GetMap().end();
 }
 
