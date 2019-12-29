@@ -5,6 +5,8 @@
 
 #include "renderer/IViewCore.h"
 #include "renderer/Renderer.h"
+#include "renderer/IRendererFactory.h"
+
 #include "sdl_util/SDLDestructor.h"
 #include "sdl_util/IDispatcher.h"
 
@@ -22,7 +24,8 @@ public:
 	/// Construct a new <see cref="ViewCore"/>.
 	/// </summary>
 	/// <param name="p_sdl_dispatcher"> The SDL dispatcher. </param>
-	ViewCore(std::unique_ptr<sdl::IDispatcher> p_sdl_dispatcher);
+	ViewCore(std::unique_ptr<sdl::IDispatcher> p_sdl_dispatcher,
+		       const IRendererFactory& renderer_factory);
 	
 	/// <summary>
 	/// Finalizes this <see cref="ViewCore"/>.
@@ -68,7 +71,7 @@ private:
 	/// <summary> 
 	/// A pointer to the <see cref="Renderer" /> of this <see cref="ViewCore" />. 
 	/// </summary>
-	std::unique_ptr<Renderer> _p_renderer = std::make_unique<Renderer>();
+	std::unique_ptr<IRenderer> _p_renderer;
 
 	/// <summary> 
 	/// The pointer to the <see cref="SDL_window" /> of this <see cref="ViewManager" />.
@@ -88,7 +91,7 @@ private:
 	/// <summary>
 	/// The pointer to the <see cref="sdl::IDispatcher"/> of this <see cref="ViewCore"/>.
 	/// </summary>
-	std::unique_ptr<sdl::IDispatcher> p_sdl_dispatcher;
+	std::unique_ptr<sdl::IDispatcher> _p_sdl_dispatcher;
 };
 
 }

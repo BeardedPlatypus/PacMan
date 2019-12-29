@@ -1,8 +1,8 @@
 #pragma once
 
 #include "renderer/IRenderer.h"
+#include "renderer/IRendererFactory.h"
 #include "sdl_util/IDispatcher.h"
-
 
 namespace pacman {
 namespace view {
@@ -22,7 +22,8 @@ public:
 	/// <returns> 
 	/// A <see cref="std::unique_ptr"/> to a new <see cref="IViewCore"/>. 
 	/// </returns>
-	static std::unique_ptr<IViewCore> Construct(std::unique_ptr<sdl::IDispatcher> p_sdl_dispatcher);
+	static std::unique_ptr<IViewCore> Construct(std::unique_ptr<sdl::IDispatcher> p_sdl_dispatcher,
+		                                          const IRendererFactory& renderer_factory);
 	
 	/// <summary>
 	/// Finalizes this <see cref="IViewCore"/>.

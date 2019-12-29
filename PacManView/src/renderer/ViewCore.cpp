@@ -8,18 +8,20 @@
 namespace pacman {
 namespace view {
 
-ViewCore::ViewCore(std::unique_ptr<sdl::IDispatcher> p_sdl_dispatcher) :
-    p_sdl_dispatcher(std::move(p_sdl_dispatcher)) { 
+ViewCore::ViewCore(std::unique_ptr<sdl::IDispatcher> p_sdl_dispatcher, 
+		               const IRendererFactory& renderer_factory) :
+    _p_sdl_dispatcher(std::move(p_sdl_dispatcher)),
+	  _p_renderer(renderer_factory.CreateRenderer(p_sdl_dispatcher.get())) {
 }
 
 
 ViewCore::~ViewCore() {
 	if (this->_sdl_image_initialised) {
-		this->p_sdl_dispatcher->QuitIMG();
+		this->_p_sdl_dispatcher->QuitIMG();
 	}
 
 	if (this->_sdl_initialised) {
-		this->p_sdl_dispatcher->QuitSDL();
+		this->_p_sdl_dispatcher->QuitSDL();
 	}
 }
 
@@ -38,11 +40,11 @@ void ViewCore::Initialise(int screen_width, int screen_height) {
 
 void ViewCore::InitialiseSDL() {
 	int sdl_init_result =
-		this->p_sdl_dispatcher->InitSDL(SDL_INIT_VIDEO);
+		this->_p_sdl_dispatcher->InitSDL(SDL_INIT_VIDEO);
 
 	if (sdl_init_result != 0) {
 		throw ViewException("SDL_Init(SDL_INIT_VIDEO)",
-			                  this->p_sdl_dispatcher->GetError());
+			                  this->_p_sdl_dispatcher->GetError());
 	}
 
 	this->_sdl_initialised = true;
@@ -51,7 +53,7 @@ void ViewCore::InitialiseSDL() {
 
 void ViewCore::InitialiseSDLImage() {
 	int sdl_image_init_result = 
-		this->p_sdl_dispatcher->InitIMG(IMG_INIT_PNG);
+		this->_p_sdl_dispatcher->InitIMG(IMG_INIT_PNG);
 
 	if ((sdl_image_init_result & IMG_INIT_PNG) != IMG_INIT_PNG) {
 		throw ViewException("IMG_INIT(IMG_INIT_PNG)", "");
@@ -63,16 +65,16 @@ void ViewCore::InitialiseSDLImage() {
 
 void ViewCore::InitialiseWindow(int screenWidth, int screenHeight) {
 	SDL_Window* p_window = 
-		this->p_sdl_dispatcher->CreateSDLWindow("Monthy's PacMan",
-			                                      100,
-										                        100,
-										                        screenWidth,
-										                        screenHeight,
-                                            SDL_WINDOW_SHOWN);
+		this->_p_sdl_dispatcher->CreateSDLWindow("Monthy's PacMan",
+			                                       100,
+										                         100,
+										                         screenWidth,
+										                         screenHeight,
+                                             SDL_WINDOW_SHOWN);
 
 	if (p_window == nullptr) {
 		throw ViewException("SDL_CreateWindow",
-			                  this->p_sdl_dispatcher->GetError());
+			                  this->_p_sdl_dispatcher->GetError());
 	}
 
 	this->_p_window = 

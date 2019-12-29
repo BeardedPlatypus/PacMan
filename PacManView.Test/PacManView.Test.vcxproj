@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\DispatcherMock.h" />
+    <ClInclude Include="include\RendererFactoryMock.h" />
     <ClInclude Include="include\RendererMock.h" />
     <ClInclude Include="include\TextureManagerMock.h" />
     <ClInclude Include="include\TextureMock.h" />

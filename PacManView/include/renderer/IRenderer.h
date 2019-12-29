@@ -25,6 +25,12 @@ public:
 
 	virtual ~IRenderer() = default;
 
+	/// <summary>
+	/// Initialise this <see cref="IRenderer"/> with the specified window pointer.
+	/// </summary>
+	/// <param name="p_window"> The pointer to the window. </param>
+	virtual void Init(SDL_Window* p_window) = 0;
+
   /// <summary>
   /// Copy the specified <paramref name="sprite"/> at the specified
   /// (<paramref name="x"/>, <paramref name="y"/>) location with the

@@ -159,8 +159,10 @@
     <ClInclude Include="include\exceptions\ViewException.h" />
     <ClInclude Include="include\Renderable.h" />
     <ClInclude Include="include\renderer\IRenderer.h" />
+    <ClInclude Include="include\renderer\IRendererFactory.h" />
     <ClInclude Include="include\renderer\IViewCore.h" />
     <ClInclude Include="include\renderer\Renderer.h" />
+    <ClInclude Include="include\renderer\RendererFactory.h" />
     <ClInclude Include="include\renderer\ViewCore.h" />
     <ClInclude Include="include\sdl_util\Dispatcher.h" />
     <ClInclude Include="include\sdl_util\IDispatcher.h" />
@@ -184,6 +186,7 @@
     <ClCompile Include="src\renderer\IRenderer.cpp" />
     <ClCompile Include="src\renderer\IViewCore.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
+    <ClCompile Include="src\renderer\RendererFactory.cpp" />
     <ClCompile Include="src\renderer\ViewCore.cpp" />
     <ClCompile Include="src\sdl_util\Dispatcher.cpp" />
     <ClCompile Include="src\sdl_util\IDispatcher.cpp" />

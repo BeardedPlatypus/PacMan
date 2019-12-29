@@ -25,11 +25,7 @@ public:
 	/// </summary>
 	~Renderer() final;
 	
-	/// <summary>
-	/// Initialize this <see cref="Renderer"/> with the specified window pointer.
-	/// </summary>
-	/// <param name="p_window"> The pointer to the window. </param>
-	void Init(SDL_Window* p_window);
+	void Init(SDL_Window* p_window) final;
 
   void RenderCopy(SDL_Texture* p_texture,
 	                const SDL_Rect* p_texture_clip,

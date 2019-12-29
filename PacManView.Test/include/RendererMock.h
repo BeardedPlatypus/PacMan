@@ -7,6 +7,8 @@
 
 class RendererMock : public pacman::view::IRenderer {
 public:
+	MOCK_METHOD(void, Init, (SDL_Window*));
+
 	MOCK_METHOD(void, 
 		          RenderCopy, 
 		          (SDL_Texture*, const SDL_Rect*, const SDL_Rect*, float, bool, bool));
