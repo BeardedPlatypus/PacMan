@@ -8,8 +8,8 @@ namespace pacman {
 namespace controller {
 namespace keyboard {
 
-std::unique_ptr<ICommandManager> ICommandManager::Construct() {
-  return std::make_unique<CommandManager>();
+std::unique_ptr<IKeyboardCommandManager> IKeyboardCommandManager::Construct() {
+  return std::make_unique<KeyboardCommandManager>();
 }
 
 }

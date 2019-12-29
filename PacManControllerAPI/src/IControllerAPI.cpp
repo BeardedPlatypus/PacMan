@@ -9,8 +9,8 @@ namespace controller {
 namespace api {
 
 std::unique_ptr<IControllerAPI> IControllerAPI::Construct() {
-  std::unique_ptr<keyboard::ICommandManager> p_keyboard_command_manager = 
-    keyboard::ICommandManager::Construct();
+  std::unique_ptr<keyboard::IKeyboardCommandManager> p_keyboard_command_manager = 
+    keyboard::IKeyboardCommandManager::Construct();
   std::unique_ptr<system::ICommandManager> p_system_command_manager = 
     system::ICommandManager::Construct();
 

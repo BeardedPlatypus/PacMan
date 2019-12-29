@@ -19,9 +19,9 @@ namespace keyboard {
 /// Upon deletion of the <see cref="keyboard::ICommandManager /> all associated
 /// <see cref="ICommand" /> will be freed as well.
 /// </summary>
-class ICommandManager {	
+class IKeyboardCommandManager {	
 public:
-  ~ICommandManager() = default;
+  ~IKeyboardCommandManager() = default;
 
   /// <summary>
   /// Construct a new <see cref="IViewManager" />.
@@ -30,7 +30,7 @@ public:
   /// A <see cref="std::unique_ptr" /> containing a new 
   /// <see cref="ICommandManager" />.
   /// </returns>
-  static std::unique_ptr<ICommandManager> Construct();
+  static std::unique_ptr<IKeyboardCommandManager> Construct();
   
   /// <summary>
   /// Register the specified <paramref name="p_command"> to the specified 
