@@ -4,7 +4,7 @@
 #include "gmock/gmock.h"
 
 
-class RendererMock : public pacman::view::sdl::IDispatcher {
+class DispatcherMock : public pacman::view::sdl::IDispatcher {
 public:
   MOCK_METHOD(int, InitSDL, (unsigned int));
   MOCK_METHOD(int, InitIMG, (unsigned int));
