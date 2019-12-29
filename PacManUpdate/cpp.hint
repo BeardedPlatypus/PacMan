@@ -1,2 +1,0 @@
-#define PACMANUPDATE_API __declspec(dllexport)
-#define PACMANUPDATE_API __declspec(dllimport)
