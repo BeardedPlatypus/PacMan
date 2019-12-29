@@ -7,7 +7,7 @@
 class DispatcherMock : public pacman::view::sdl::IDispatcher {
 public:
   MOCK_METHOD(int, InitSDL, (unsigned int));
-  MOCK_METHOD(int, InitIMG, (unsigned int));
+  MOCK_METHOD(int, InitIMG, (int));
 
   MOCK_METHOD(SDL_Window*,
               CreateSDLWindow,
