@@ -18,13 +18,11 @@ KeyboardEventType ToInternal(api::KeyboardEventType keyboard_event_type) {
 
 
 SystemEventType ToInternal(api::SystemEventType system_event_type) {
-	switch (system_event_type)
-	{
-	case api::SystemEventType::Quit:
+	if (system_event_type == api::SystemEventType::Quit) {
 		return SystemEventType::Quit;
-	default:
-		return (SystemEventType)-1;
 	}
+	
+	return (SystemEventType)-1;
 }
 
 
