@@ -7,7 +7,7 @@
 #include <IViewAPI.h>
 #include <IControllerAPI.h>
 #include <IRendererAPI.h>
-#include <manager/IUpdateManager.h>
+#include <IUpdateAPI.h>
 
 #include <entity/EntityState.h>
 
@@ -40,9 +40,9 @@ int main(int argc, char **argv) {
 
   auto p_controller_api = pacman::controller::api::IControllerAPI::Construct();
 
-  auto p_update_manager = pacman::update::IUpdateManager::Construct(p_game_state.get(),
-                                                                    p_controller_api.get());
-  p_update_manager->Initialise();
+  auto p_update_api = pacman::update::IUpdateAPI::Construct(p_game_state.get(),
+                                                            p_controller_api.get());
+  p_update_api->Initialise();
   
 
   float dtime = 0.0F;
@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
 	  // Game Loop
 	  //   Update behaviour based on previous state.
 	  p_controller_api->Update();
-    p_update_manager->Update(dtime);
+    p_update_api->Update(dtime);
 	  //   Update current state based on updated behaviour.
 	  //   Render the current state.
     p_view_api->InitialiseRender();
