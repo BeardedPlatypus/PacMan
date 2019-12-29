@@ -14,10 +14,10 @@ namespace controller {
 namespace api {
 
 /// <summary>
-/// <see cref="ControllerAPI"/> implements the interface for external
-/// clients to interact with this PacManControllerAPI. It provides the basic
-/// functionality to request and register <see cref="ICommand"/>, as well
-/// the functionality to call the Update function.
+/// <see cref="IControllerAPI" /> implements the interface with which external
+/// clients interact with the controller component. It provides the basic
+/// functionality to request and register <see cref="IControllerCommand"/>, as
+/// well as the functionality to call the Update function.
 /// </summary>
 /// <seealso cref="IControllerAPI"/>
 class ControllerAPI final : public IControllerAPI {

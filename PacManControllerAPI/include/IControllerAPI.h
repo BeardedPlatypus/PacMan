@@ -1,5 +1,4 @@
 #pragma once
-
 #define DllExport __declspec( dllexport )
 
 #include <memory>
@@ -15,10 +14,10 @@ namespace controller {
 namespace api {
 
 /// <summary>
-/// <see cref="IControllerAPI" /> defines the interface for external
-/// clients to interact with this PacManControllerAPI. It provides the basic
-/// functionality to request and register <see cref="ICommand"/>, as well
-/// the functionality to call the Update function.
+/// <see cref="IControllerAPI" /> defines the interface with which external
+/// clients interact with the controller component. It provides the basic
+/// functionality to request and register <see cref="IControllerCommand"/>, as
+/// well as the functionality to call the Update function.
 /// </summary>
 class DllExport IControllerAPI {
 public:
@@ -30,7 +29,10 @@ public:
   /// <see cref="IControllerAPI"/>.
   /// </returns>
   static std::unique_ptr<IControllerAPI> Construct();
-
+  
+  /// <summary>
+  /// Finalise this <see cref="IControllerAPI"/>.
+  /// </summary>
   virtual ~IControllerAPI() = default;
 
   /// <summary>
