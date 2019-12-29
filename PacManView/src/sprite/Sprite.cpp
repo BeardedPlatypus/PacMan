@@ -31,10 +31,10 @@ void Sprite::Render(IRenderer& renderer,
                     bool flip_horizontally,
                     bool flip_vertically) const {
 	SDL_Rect dst;
-	dst.x = x;
-	dst.y = y;
-	dst.w = clip.w * scale;
-	dst.h = clip.h * scale;
+	dst.x = (int)x;
+	dst.y = (int)y;
+	dst.w = (int)(clip.w * scale);
+	dst.h = (int)(clip.h * scale);
 
 	SDL_Rect clip_cp = this->GetClip();
 
