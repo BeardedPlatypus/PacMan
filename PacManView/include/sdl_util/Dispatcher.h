@@ -10,16 +10,20 @@ class Dispatcher final : public IDispatcher {
 public:
   Dispatcher();
 
-  int InitSDL(Uint32 flags) final;
+  int InitSDL(unsigned int flags) final;
   int InitIMG(int flags) final;
-  SDL_Window* CreateWindow(const std::string& title,
-                           int x, int y,
-                           int width, int height, 
-                           Uint32 flags) final;
+
+  SDL_Window* CreateSDLWindow(const std::string& title,
+                              int x, int y,
+                              int width, int height, 
+                              unsigned int flags) final;
+
+  void QuitIMG() final;
+  void QuitSDL() final;
 
   void CreateRenderer(SDL_Window* p_window,
                       int index,
-                      Uint32 flags) final;
+                      unsigned int flags) final;
 
   void RenderCopyEx(SDL_Renderer* p_renderer,
                     SDL_Texture* p_texture,

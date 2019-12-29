@@ -8,12 +8,19 @@
 namespace pacman {
 namespace view {
 
-ViewCore::ViewCore() { }
+ViewCore::ViewCore(std::unique_ptr<sdl::IDispatcher> p_sdl_dispatcher) :
+    p_sdl_dispatcher(std::move(p_sdl_dispatcher)) { 
+}
 
 
 ViewCore::~ViewCore() {
-  if (this->_sdl_image_initialised) IMG_Quit();
-  if (this->_sdl_initialised) SDL_Quit();
+	if (this->_sdl_image_initialised) {
+		this->p_sdl_dispatcher->QuitIMG();
+	}
+
+	if (this->_sdl_initialised) {
+		this->p_sdl_dispatcher->QuitSDL();
+	}
 }
 
 
@@ -30,10 +37,12 @@ void ViewCore::Initialise(int screen_width, int screen_height) {
 
 
 void ViewCore::InitialiseSDL() {
-	int sdl_init_result = SDL_Init(SDL_INIT_VIDEO);
+	int sdl_init_result =
+		this->p_sdl_dispatcher->InitSDL(SDL_INIT_VIDEO);
 
 	if (sdl_init_result != 0) {
-		throw ViewException("SDL_Init(SDL_INIT_VIDEO)", SDL_GetError());
+		throw ViewException("SDL_Init(SDL_INIT_VIDEO)",
+			                  this->p_sdl_dispatcher->GetError());
 	}
 
 	this->_sdl_initialised = true;
@@ -41,7 +50,8 @@ void ViewCore::InitialiseSDL() {
 
 
 void ViewCore::InitialiseSDLImage() {
-	int sdl_image_init_result = IMG_Init(IMG_INIT_PNG);
+	int sdl_image_init_result = 
+		this->p_sdl_dispatcher->InitIMG(IMG_INIT_PNG);
 
 	if ((sdl_image_init_result & IMG_INIT_PNG) != IMG_INIT_PNG) {
 		throw ViewException("IMG_INIT(IMG_INIT_PNG)", "");
@@ -53,15 +63,16 @@ void ViewCore::InitialiseSDLImage() {
 
 void ViewCore::InitialiseWindow(int screenWidth, int screenHeight) {
 	SDL_Window* p_window = 
-		SDL_CreateWindow("Monthy's PacMan",
-			               100,
-										 100,
-										 screenWidth,
-										 screenHeight,
-                     SDL_WINDOW_SHOWN);
+		this->p_sdl_dispatcher->CreateSDLWindow("Monthy's PacMan",
+			                                      100,
+										                        100,
+										                        screenWidth,
+										                        screenHeight,
+                                            SDL_WINDOW_SHOWN);
 
 	if (p_window == nullptr) {
-		throw ViewException("SDL_CreateWindow", SDL_GetError());
+		throw ViewException("SDL_CreateWindow",
+			                  this->p_sdl_dispatcher->GetError());
 	}
 
 	this->_p_window = 

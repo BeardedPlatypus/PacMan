@@ -16,16 +16,22 @@ public:
 
   virtual ~IDispatcher() = default;
 
-  virtual int InitSDL(Uint32 flags) = 0;
+  virtual int InitSDL(unsigned int flags) = 0;
   virtual int InitIMG(int flags) = 0;
-  virtual SDL_Window* CreateWindow(const std::string& title,
-                                   int x, int y,
-                                   int width, int height, 
-                                   Uint32 flags) = 0;
+
+  virtual SDL_Window* CreateSDLWindow(const std::string& title,
+                                      int x, 
+                                      int y,
+                                      int width, 
+                                      int height, 
+                                      unsigned int flags) = 0;
+
+  virtual void QuitIMG() = 0;
+  virtual void QuitSDL() = 0;
 
   virtual void CreateRenderer(SDL_Window* p_window,
                               int index,
-                              Uint32 flags) = 0;
+                              unsigned int flags) = 0;
 
   virtual void RenderCopyEx(SDL_Renderer* p_renderer,
                             SDL_Texture* p_texture,

@@ -9,7 +9,7 @@ namespace sdl {
 Dispatcher::Dispatcher() {}
 
 
-int Dispatcher::InitSDL(Uint32 flags) {
+int Dispatcher::InitSDL(unsigned int flags) {
   return SDL_Init(flags);
 }
 
@@ -19,10 +19,10 @@ int Dispatcher::InitIMG(int flags) {
 }
 
 
-SDL_Window* Dispatcher::CreateWindow(const std::string& title,
-                                     int x, int y,
-                                     int width, int height, 
-                                     Uint32 flags) {
+SDL_Window* Dispatcher::CreateSDLWindow(const std::string& title,
+                                        int x, int y,
+                                        int width, int height, 
+                                        unsigned int flags) {
   return SDL_CreateWindow(title.c_str(),
                           x, y, 
                           width, height, 
@@ -30,9 +30,19 @@ SDL_Window* Dispatcher::CreateWindow(const std::string& title,
 }
 
 
+void Dispatcher::QuitIMG() {
+  IMG_Quit();
+}
+
+
+void Dispatcher::QuitSDL() {
+  SDL_Quit();
+}
+
+
 void Dispatcher::CreateRenderer(SDL_Window* p_window,
                                 int index,
-                                Uint32 flags) {
+                                unsigned int flags) {
   SDL_CreateRenderer(p_window, index, flags);
 }
 

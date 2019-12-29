@@ -2,6 +2,7 @@
 #include "IViewAPI.h"
 
 #include "ViewAPI.h"
+#include "sdl_util/IDispatcher.h"
 
 
 namespace pacman {
@@ -9,7 +10,7 @@ namespace view {
 
 std::unique_ptr<IViewAPI> IViewAPI::Construct() {
 	std::unique_ptr<IViewCore> p_view_core = 
-    IViewCore::Construct();
+    IViewCore::Construct(sdl::IDispatcher::Construct());
 	std::unique_ptr<ITextureManager> p_texture_manager = 
     ITextureManager::Construct(p_view_core->GetRenderer());
 	std::unique_ptr<ISpriteManager> p_sprite_manager = 

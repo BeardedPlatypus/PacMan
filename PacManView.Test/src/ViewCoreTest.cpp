@@ -24,7 +24,7 @@ class InitialiseViewCorePatternTest : public ::testing::TestWithParam<ScreenDim>
 // Then an error is thrown
 TEST_P(InitialiseViewCorePatternTest, initialise_WithInvalidScreenDimsThrowsException) {
   // Given
-  std::unique_ptr<IViewCore> view_core = IViewCore::Construct();
+  std::unique_ptr<IViewCore> view_core = IViewCore::Construct(sdl::IDispatcher::Construct());
   ScreenDim screen_dim = GetParam();
 
   // When | Then

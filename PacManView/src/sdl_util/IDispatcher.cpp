@@ -7,7 +7,7 @@ namespace pacman {
 namespace view {
 namespace sdl {
 
-std::unique_ptr<IDispatcher> Construct() {
+std::unique_ptr<IDispatcher> IDispatcher::Construct() {
   return std::make_unique<Dispatcher>();
 }
 

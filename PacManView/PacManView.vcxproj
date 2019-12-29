@@ -162,6 +162,8 @@
     <ClInclude Include="include\renderer\IViewCore.h" />
     <ClInclude Include="include\renderer\Renderer.h" />
     <ClInclude Include="include\renderer\ViewCore.h" />
+    <ClInclude Include="include\sdl_util\Dispatcher.h" />
+    <ClInclude Include="include\sdl_util\IDispatcher.h" />
     <ClInclude Include="include\sdl_util\SDLDestructor.h" />
     <ClInclude Include="include\sprite\ClipRect.h" />
     <ClInclude Include="include\sprite\ISpriteAnimation.h" />
@@ -183,6 +185,8 @@
     <ClCompile Include="src\renderer\IViewCore.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\renderer\ViewCore.cpp" />
+    <ClCompile Include="src\sdl_util\Dispatcher.cpp" />
+    <ClCompile Include="src\sdl_util\IDispatcher.cpp" />
     <ClCompile Include="src\sprite\ISpriteAnimation.cpp" />
     <ClCompile Include="src\sprite\ISpriteManager.cpp" />
     <ClCompile Include="src\sprite\Sprite.cpp" />

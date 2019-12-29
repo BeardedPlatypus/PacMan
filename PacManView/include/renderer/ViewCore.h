@@ -6,7 +6,7 @@
 #include "renderer/IViewCore.h"
 #include "renderer/Renderer.h"
 #include "sdl_util/SDLDestructor.h"
-
+#include "sdl_util/IDispatcher.h"
 
 namespace pacman {
 namespace view {
@@ -18,10 +18,11 @@ namespace view {
 /// <seealso cref="IViewCore"/>
 class ViewCore final : public IViewCore {
 public:	
-	/// <summary>
+ 	/// <summary>
 	/// Construct a new <see cref="ViewCore"/>.
 	/// </summary>
-	ViewCore();
+	/// <param name="p_sdl_dispatcher"> The SDL dispatcher. </param>
+	ViewCore(std::unique_ptr<sdl::IDispatcher> p_sdl_dispatcher);
 	
 	/// <summary>
 	/// Finalizes this <see cref="ViewCore"/>.
@@ -83,6 +84,11 @@ private:
 	/// Whether SDL_image has been initialised. 
 	/// </summary>
 	bool _sdl_image_initialised;
+	
+	/// <summary>
+	/// The pointer to the <see cref="sdl::IDispatcher"/> of this <see cref="ViewCore"/>.
+	/// </summary>
+	std::unique_ptr<sdl::IDispatcher> p_sdl_dispatcher;
 };
 
 }
