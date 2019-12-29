@@ -128,7 +128,7 @@
     <ClCompile Include="src\SpriteManagerTest.cpp" />
     <ClCompile Include="src\SpriteTest.cpp" />
     <ClCompile Include="src\TextureManagerTest.cpp" />
-    <ClCompile Include="src\ViewCoreTest.cpp" />
+    <ClCompile Include="src\renderer\ViewCoreTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\DispatcherMock.h" />

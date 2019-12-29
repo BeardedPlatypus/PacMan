@@ -33,7 +33,7 @@
     <ClCompile Include="src\ClipRectTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ViewCoreTest.cpp">
+    <ClCompile Include="src\renderer\ViewCoreTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
