@@ -46,19 +46,19 @@
         <File Source="..\Release\libpng16.dll" />
       </Component>
       <Component>
-        <File Source="..\Release\PacManController.dll" />
+        <File Source="..\Release\PacManControllerAPI.dll" />
       </Component>
       <Component>
         <File Source="..\Release\PacManState.dll" />
       </Component>
       <Component>
-        <File Source="..\Release\PacManView.dll" />
+        <File Source="..\Release\PacManViewAPI.dll" />
       </Component>
       <Component>
-        <File Source="..\Release\PacManRenderer.dll" />
+        <File Source="..\Release\PacManRendererAPI.dll" />
       </Component>
       <Component>
-        <File Source="..\Release\PacManUpdate.dll" />
+        <File Source="..\Release\PacManUpdateAPI.dll" />
       </Component>
       <Component>
         <File Source="..\Release\SDL2.dll" />
