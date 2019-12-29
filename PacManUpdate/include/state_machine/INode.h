@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <memory>
 #include "entity/AxisDirection.h"
@@ -17,7 +16,7 @@ namespace state_machine {
 /// and add new connection.
 /// </summary>
 template <class TValue, class TEvent>
-class DllExport INode {
+class INode {
 public:
   /// <summary>
   /// Construct a new <see cref="INode"/>

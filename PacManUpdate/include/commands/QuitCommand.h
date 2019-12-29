@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 // TODO: Fix weird buggy behaviour from this path.
 #include "../../PacManControllerAPI/include/IControllerCommand.h"
@@ -30,7 +29,7 @@ private:
   state::IGameState* p_game_state;
 };
 
-DllExport std::unique_ptr<controller::api::IControllerCommand> GetQuitCommand(state::IGameState* p_game_state);
+std::unique_ptr<controller::api::IControllerCommand> GetQuitCommand(state::IGameState* p_game_state);
 
 }
 }

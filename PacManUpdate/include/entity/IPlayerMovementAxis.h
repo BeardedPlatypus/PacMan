@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <memory>
 
@@ -16,7 +15,7 @@ namespace update {
 /// <see cref="IUpdatablePlayerEntity"/> which can query this 
 /// <see cref="IPlayerMovementAxis"/>. to determine the next direction.
 /// </summary>
-class DllExport IPlayerMovementAxis {
+class IPlayerMovementAxis {
 public:  
   /// <summary>
   /// Construct a new <see cref="IPlayerMovementAxis"/>.

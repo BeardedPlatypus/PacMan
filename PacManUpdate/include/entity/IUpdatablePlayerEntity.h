@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <memory>
 #include <entity/IEntityState.h>
@@ -17,7 +16,7 @@ namespace update {
 /// <see cref="IUpdatablePlayerEntity" /> wraps and extends a 
 /// <see cref="state::IEntityState" />.
 /// </summary>
-class DllExport IUpdatablePlayerEntity {
+class IUpdatablePlayerEntity {
 public:  
   /// <summary>
   /// Construct a new <see cref="IUpdatablePlayerEntity" /> with the given 

@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include "IControllerCommand.h"
 #include <entity/IEntityState.h>
@@ -52,8 +51,8 @@ private:
 /// An <see cref="controller::ICommand"/> which changes the direction 
 /// of the provided player state.
 /// </returns>
-DllExport std::unique_ptr<controller::api::IControllerCommand> GetChangePlayerDirectionCommand(IPlayerMovementAxis* p_axis,
-                                                                                               state_machine::PlayerControlEvent direction_changed_event);
+std::unique_ptr<controller::api::IControllerCommand> GetChangePlayerDirectionCommand(IPlayerMovementAxis* p_axis,
+                                                                                     state_machine::PlayerControlEvent direction_changed_event);
 
 }
 }

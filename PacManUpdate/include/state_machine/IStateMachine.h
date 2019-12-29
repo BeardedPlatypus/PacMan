@@ -1,5 +1,4 @@
 #pragma once
-#define DllExport __declspec( dllexport )
 
 #include <memory>
 #include <vector>
@@ -16,7 +15,7 @@ namespace state_machine {
 /// managing and interacting with a set of <see cref="INode"/>.
 /// </summary>
 template <class TValue, class TEvent>
-class DllExport IStateMachine {  
+class IStateMachine {  
 public:
   /// <summary>
   /// Construct a new <see cref="IStateMachine" />.
