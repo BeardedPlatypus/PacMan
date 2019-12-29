@@ -5,6 +5,9 @@ namespace pacman {
 namespace controller {
 namespace api {
 
+/// <summary>
+/// The scancodes currently defined within this controller component.
+/// </summary>
 enum class DllExport Scancode {
 	W,
 	A,
