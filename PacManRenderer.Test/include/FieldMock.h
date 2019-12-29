@@ -6,7 +6,7 @@
 
 class FieldMock : public pacman::state::field::IField {
 public:
-  MOCK_CONST_METHOD0(GetXDimension, int());
-  MOCK_CONST_METHOD0(GetYDimension, int());
-  MOCK_CONST_METHOD2(GetTileType, pacman::state::field::TileType(int x, int y));
+  MOCK_METHOD(int, GetXDimension, (), (const));
+  MOCK_METHOD(int, GetYDimension, (), (const));
+  MOCK_METHOD(pacman::state::field::TileType, GetTileType, (int x, int y), (const));
 };

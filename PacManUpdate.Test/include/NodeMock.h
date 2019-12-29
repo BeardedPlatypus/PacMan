@@ -9,7 +9,8 @@
 
 class NodeMock : public pacman::update::state_machine::INode<pacman::update::AxisDirection, pacman::update::state_machine::PlayerControlEvent> {
 public:
-  MOCK_CONST_METHOD0(GetValue, pacman::update::AxisDirection());
-  MOCK_CONST_METHOD1(GetConnectedNode, pacman::update::state_machine::INode<pacman::update::AxisDirection, pacman::update::state_machine::PlayerControlEvent>* (pacman::update::state_machine::PlayerControlEvent e));
-  MOCK_METHOD2(AddConnection, void(pacman::update::state_machine::INode<pacman::update::AxisDirection, pacman::update::state_machine::PlayerControlEvent>* p_node, pacman::update::state_machine::PlayerControlEvent e));
+  using NodeAlias = pacman::update::state_machine::INode<pacman::update::AxisDirection, pacman::update::state_machine::PlayerControlEvent>;
+  MOCK_METHOD(pacman::update::AxisDirection, GetValue, (), (const));
+  MOCK_METHOD(NodeAlias*, GetConnectedNode, (pacman::update::state_machine::PlayerControlEvent e), (const));
+  MOCK_METHOD(void, AddConnection, (NodeAlias*, pacman::update::state_machine::PlayerControlEvent));
 };

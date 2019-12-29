@@ -6,6 +6,6 @@
 
 class EntityAxisMock : public pacman::state::IEntityAxis {
 public:
-  MOCK_CONST_METHOD0(GetPosition, float());
-  MOCK_METHOD1(SetPosition, void(float position));
+  MOCK_METHOD(float, GetPosition, (), (const));
+  MOCK_METHOD(void, SetPosition, (float position));
 };

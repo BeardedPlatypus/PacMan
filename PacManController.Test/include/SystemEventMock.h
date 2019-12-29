@@ -6,7 +6,6 @@
 
 class SystemEventMock : public pacman::controller::ISystemEvent {
 public:
-	MOCK_METHOD1(Accept, void(const pacman::controller::IEventVisitor&));
-
-  MOCK_CONST_METHOD0(GetType, pacman::controller::SystemEventType());
+	MOCK_METHOD(void, Accept, (const pacman::controller::IEventVisitor&));
+  MOCK_METHOD(pacman::controller::SystemEventType, GetType, (), (const, override));
 };

@@ -7,15 +7,14 @@
 
 class RendererMock : public pacman::view::IRenderer {
 public:
-	MOCK_METHOD6(RenderCopy, void(SDL_Texture* p_texture,
-								                const SDL_Rect* p_texture_clip,
-								                const SDL_Rect* p_dest, 
-                                float angle,
-                                bool flip_horizontally,
-                                bool flip_vertically));
-	MOCK_METHOD0(RenderPresent, void());
-	MOCK_METHOD0(RenderClear, void());
+	MOCK_METHOD(void, 
+		          RenderCopy, 
+		          (SDL_Texture*, const SDL_Rect*, const SDL_Rect*, float, bool, bool));
+	MOCK_METHOD(void, RenderPresent, ());
+	MOCK_METHOD(void, RenderClear, ());
 
-	MOCK_CONST_METHOD1(LoadTexture, 
-					   std::unique_ptr<pacman::view::ITexture>(const std::string& file_path));
+	MOCK_METHOD(std::unique_ptr<pacman::view::ITexture>, 
+		          LoadTexture, 
+					    (const std::string& file_path),
+		          (const));
 };

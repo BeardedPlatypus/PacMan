@@ -6,5 +6,5 @@
 
 class CommandMock : public pacman::controller::ICommand {
 public:
-	MOCK_METHOD0(Execute, void());
+	MOCK_METHOD(void, Execute, ());
 };
