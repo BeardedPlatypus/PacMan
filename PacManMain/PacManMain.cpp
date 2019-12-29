@@ -6,7 +6,7 @@
 #include <GameState.h>
 #include <IViewAPI.h>
 #include <IControllerAPI.h>
-#include <manager/IRendererManager.h>
+#include <IRendererAPI.h>
 #include <manager/IUpdateManager.h>
 
 #include <entity/EntityState.h>
@@ -34,9 +34,9 @@ int main(int argc, char **argv) {
   auto p_view_api = pacman::view::IViewAPI::Construct();
   p_view_api->Initialise(800, 1000);
 
-  auto p_renderer_manager = pacman::renderer::IRendererManager::Construct(p_game_state.get(),
-                                                                          p_view_api.get());
-  p_renderer_manager->Initialise();
+  auto p_renderer_api = pacman::renderer::IRendererAPI::Construct(p_game_state.get(),
+                                                                  p_view_api.get());
+  p_renderer_api->Initialise();
 
   auto p_controller_api = pacman::controller::api::IControllerAPI::Construct();
 
@@ -62,7 +62,7 @@ int main(int argc, char **argv) {
 	  //   Update current state based on updated behaviour.
 	  //   Render the current state.
     p_view_api->InitialiseRender();
-    p_renderer_manager->Render();
+    p_renderer_api->Render();
     p_view_api->FinaliseRender();
 
 	  //   Play music or anything like that.
