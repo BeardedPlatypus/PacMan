@@ -75,7 +75,6 @@ steps:
       !**\$(buildConfiguration)\SDL2_image.dll
       !**\$(buildConfiguration)\zlib1.dll
     codeCoverageEnabled: true
-    runSettingsFile: '$(codeCoverageLocationRunsettings)'
 
 - task: SonarCloudAnalyze@1
   displayName: 'SonarCloud - Analyze'
