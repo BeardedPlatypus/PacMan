@@ -1,0 +1,99 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-2019'
+
+variables:
+  solution: '**/PacMan.sln'
+  buildPlatform: 'x86'
+  buildConfiguration: 'Debug'
+  wixSolution: '**/PacMan-setup.sln'
+  codeCoverageLocationRunsettings: '$(Build.SourcesDirectory)/code_coverage_loc.runsettings'
+  testResults: '$(Build.SourcesDirectory)/TestResults'
+
+steps:
+- script: |
+    vcpkg install sdl2 sdl2-image gtest
+    vcpkg integrate install
+  displayName: vcpkg
+
+- task: NuGetToolInstaller@0
+  displayName: 'Nuget - Install'
+
+- task: NuGetCommand@2
+  displayName: 'Nuget - Restore Packages'
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VSBuild@1
+  displayName: 'Build - Executables'
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: CopyFiles@2
+  displayName: 'Build - Copy DLLs'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/$(buildConfiguration)/'
+    Contents: '*.?(exe|dll)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+
+- task: CopyFiles@2
+  displayName: 'Build - Copy Assets'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/'
+    Contents: 'assets/*.png'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: false
+    
+- task: PublishPipelineArtifact@0
+  displayName: 'Build - Publish executables'
+  inputs:
+    artifactName: 'Executable'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+
+- task: VisualStudioTestPlatformInstaller@1
+  displayName: 'Test - Install'
+  inputs:
+    packageFeedSelector: 'nugetOrg'
+    versionSelector: 'latestStable'
+
+- task: UsePythonVersion@0
+  displayName: 'Test - Set up Python'
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+    architecture: 'x64'
+
+- task: PythonScript@0
+  displayName: 'Test - Generate .runsettings'
+  inputs:
+    scriptSource: 'filePath'
+    scriptPath: '$(Build.SourcesDirectory)/tools/location_runsettings.py'
+    arguments: '$(codeCoverageLocationRunsettings) $(testResults)'
+
+- task: VSTest@2
+  displayName: 'Test - Run'
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    testAssemblyVer2: |
+      **\$(buildConfiguration)\*.Test.exe
+      !**\*TestAdapter.dll
+      !**\obj\**
+      !**\$(buildConfiguration)\gmock.dll
+      !**\$(buildConfiguration)\libpng16.dll
+      !**\$(buildConfiguration)\SDL2.dll
+      !**\$(buildConfiguration)\SDL2_image.dll
+      !**\$(buildConfiguration)\zlib1.dll
+    codeCoverageEnabled: true
+    runSettingsFile: '$(codeCoverageLocationRunsettings)'
+
+- task: PublishPipelineArtifact@0
+  displayName: 'Test - Publish .coverage files'
+  inputs:
+    artifactName: 'convertedCoverage'
+    targetPath: '$(testResults)'
