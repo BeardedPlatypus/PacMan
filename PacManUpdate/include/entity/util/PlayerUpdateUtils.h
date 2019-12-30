@@ -184,6 +184,8 @@ namespace util {
   /// Move the <paramref name="p_player_entity"/> the maximum valid distance 
   /// smaller or equal than <paramref name="max_distance_to_move"/> on its
   /// active axis, given <paramref name="p_field"/>.
+  /// If the <paramref name="p_player_entity"/> cannot be moved, then IsMoving
+  /// is set to false, else it is true.
   /// </summary>
   /// <param name="p_player_entity">
   /// A pointer to the <see cref="IUpdatablePlayerEntity"/>.

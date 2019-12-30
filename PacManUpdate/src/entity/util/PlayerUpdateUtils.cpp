@@ -161,7 +161,7 @@ void ConditiallyMoveDistance(IUpdatablePlayerEntity* p_player_entity,
                                                            p_field, 
                                                            max_distance_to_move);
 
-  if (abs(distance_to_move - 0.00001)) {
+  if (abs(distance_to_move) < 0.00001) {
     p_player_entity->SetIsMoving(false);
   }
   else {

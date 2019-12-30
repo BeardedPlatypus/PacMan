@@ -22,6 +22,10 @@ void PlayerLayer::Initialise() {
 
 
 void PlayerLayer::Update(float dtime) {
+  if (!this->p_player_state->IsMoving()) {
+    return;
+  }
+
   PlayerMovementAnimation next_anim = this->GetNextAnimation();
 
   if (next_anim != this->active_anim) {
