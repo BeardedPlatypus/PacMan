@@ -76,7 +76,7 @@ private:
 	/// <summary> 
 	/// The pointer to the <see cref="SDL_window" /> of this <see cref="ViewManager" />.
 	/// </summary>
-	std::unique_ptr<SDL_Window, SDL_Destructor<SDL_Window>> _p_window;
+	std::unique_ptr<sdl::IResourceWrapper<SDL_Window>> _p_window;
 	
 	/// <summary> 
 	/// Whether SDL has been initialised. 

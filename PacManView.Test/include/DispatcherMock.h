@@ -9,14 +9,16 @@ public:
   MOCK_METHOD(int, InitSDL, (unsigned int));
   MOCK_METHOD(int, InitIMG, (int));
 
-  MOCK_METHOD(SDL_Window*,
+  using sdl_window_ptr = std::unique_ptr<pacman::view::sdl::IResourceWrapper<SDL_Window>>;
+  MOCK_METHOD(sdl_window_ptr,
               CreateSDLWindow,
               (const std::string&, int, int, int, int, unsigned int));
 
   MOCK_METHOD(void, QuitIMG, ());
   MOCK_METHOD(void, QuitSDL, ());
 
-  MOCK_METHOD(void, CreateRenderer, (SDL_Window*, int, unsigned int));
+  using sdl_renderer_ptr = std::unique_ptr<pacman::view::sdl::IResourceWrapper<SDL_Renderer>>;
+  MOCK_METHOD(sdl_renderer_ptr, CreateRenderer, (SDL_Window*, int, unsigned int));
 
   MOCK_METHOD(void, 
               RenderCopyEx, 
@@ -31,11 +33,13 @@ public:
   MOCK_METHOD(void, RenderPresent, (SDL_Renderer*));
   MOCK_METHOD(void, RenderClear, (SDL_Renderer*));
   
-  MOCK_METHOD(void, LoadTexture, (SDL_Renderer*, const std::string&));
+  MOCK_METHOD(std::unique_ptr<pacman::view::sdl::IResourceWrapper<SDL_Texture>>, LoadTexture, (SDL_Renderer*, const std::string&));
   
   MOCK_METHOD(void, DestroyWindow, (SDL_Window*));
   MOCK_METHOD(void, DestroyRenderer, (SDL_Renderer*));
   MOCK_METHOD(void, DestroyTexture, (SDL_Texture*));
 
   MOCK_METHOD(std::string, GetError, ());
+
+  MOCK_METHOD(void, QueryTexture, (SDL_Texture*, unsigned int*, int*, int*, int*));
 };

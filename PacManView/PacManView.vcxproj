@@ -166,6 +166,8 @@
     <ClInclude Include="include\renderer\ViewCore.h" />
     <ClInclude Include="include\sdl_util\Dispatcher.h" />
     <ClInclude Include="include\sdl_util\IDispatcher.h" />
+    <ClInclude Include="include\sdl_util\IResourceWrapper.h" />
+    <ClInclude Include="include\sdl_util\ResourceWrapper.h" />
     <ClInclude Include="include\sdl_util\SDLDestructor.h" />
     <ClInclude Include="include\sprite\ClipRect.h" />
     <ClInclude Include="include\sprite\ISpriteAnimation.h" />
@@ -183,13 +185,13 @@
   <ItemGroup>
     <ClCompile Include="PacManView.cpp" />
     <ClCompile Include="src\exceptions\ViewException.cpp" />
-    <ClCompile Include="src\renderer\IRenderer.cpp" />
     <ClCompile Include="src\renderer\IViewCore.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\renderer\RendererFactory.cpp" />
     <ClCompile Include="src\renderer\ViewCore.cpp" />
     <ClCompile Include="src\sdl_util\Dispatcher.cpp" />
     <ClCompile Include="src\sdl_util\IDispatcher.cpp" />
+    <ClCompile Include="src\sdl_util\ResourceWrapper.cpp" />
     <ClCompile Include="src\sprite\ISpriteAnimation.cpp" />
     <ClCompile Include="src\sprite\ISpriteManager.cpp" />
     <ClCompile Include="src\sprite\Sprite.cpp" />

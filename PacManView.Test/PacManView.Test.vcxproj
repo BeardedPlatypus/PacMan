@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\ClipRectTest.cpp" />
+    <ClCompile Include="src\renderer\RendererTest.cpp" />
     <ClCompile Include="src\SpriteAnimationTest.cpp" />
     <ClCompile Include="src\SpriteManagerTest.cpp" />
     <ClCompile Include="src\SpriteTest.cpp" />
@@ -134,6 +135,7 @@
     <ClInclude Include="include\DispatcherMock.h" />
     <ClInclude Include="include\RendererFactoryMock.h" />
     <ClInclude Include="include\RendererMock.h" />
+    <ClInclude Include="include\ResourceWrapperMock.h" />
     <ClInclude Include="include\TextureManagerMock.h" />
     <ClInclude Include="include\TextureMock.h" />
   </ItemGroup>

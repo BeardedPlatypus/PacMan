@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "sdl_util/Dispatcher.h"
+#include "sdl_util/ResourceWrapper.h"
 
 
 namespace pacman {
@@ -19,14 +20,16 @@ int Dispatcher::InitIMG(int flags) {
 }
 
 
-SDL_Window* Dispatcher::CreateSDLWindow(const std::string& title,
-                                        int x, int y,
-                                        int width, int height, 
-                                        unsigned int flags) {
-  return SDL_CreateWindow(title.c_str(),
-                          x, y, 
-                          width, height, 
-                          flags);
+std::unique_ptr<sdl::IResourceWrapper<SDL_Window>> Dispatcher::CreateSDLWindow(
+    const std::string& title,
+    int x, int y,
+    int width, int height, 
+    unsigned int flags) {
+  auto p_window = SDL_CreateWindow(title.c_str(),
+                                   x, y, 
+                                   width, height, 
+                                   flags);
+  return std::make_unique<sdl::ResourceWrapper<SDL_Window>>(p_window);
 }
 
 
@@ -40,10 +43,12 @@ void Dispatcher::QuitSDL() {
 }
 
 
-void Dispatcher::CreateRenderer(SDL_Window* p_window,
-                                int index,
-                                unsigned int flags) {
-  SDL_CreateRenderer(p_window, index, flags);
+std::unique_ptr<sdl::IResourceWrapper<SDL_Renderer>> Dispatcher::CreateRenderer(
+    SDL_Window* p_window,
+    int index,
+    unsigned int flags) {
+  auto p_renderer = SDL_CreateRenderer(p_window, index, flags);
+  return std::make_unique<sdl::ResourceWrapper<SDL_Renderer>>(p_renderer);
 }
 
 void Dispatcher::RenderCopyEx(SDL_Renderer* p_renderer,
@@ -73,29 +78,24 @@ void Dispatcher::RenderClear(SDL_Renderer* p_renderer) {
 }
 
 
-void Dispatcher::LoadTexture(SDL_Renderer* p_renderer,
+std::unique_ptr<sdl::IResourceWrapper<SDL_Texture>> Dispatcher::LoadTexture(SDL_Renderer* p_renderer,
                              const std::string& file_path) {
-  IMG_LoadTexture(p_renderer, file_path.c_str());
-}
-
-
-void Dispatcher::DestroyWindow(SDL_Window* p_window) {
-  SDL_DestroyWindow(p_window);
-}
-
-
-void Dispatcher::DestroyRenderer(SDL_Renderer* p_renderer) {
-  SDL_DestroyRenderer(p_renderer);
-}
-
-
-void Dispatcher::DestroyTexture(SDL_Texture* p_texture) {
-  SDL_DestroyTexture(p_texture);
+  auto p_tex = IMG_LoadTexture(p_renderer, file_path.c_str());
+  return std::make_unique<sdl::ResourceWrapper<SDL_Texture>>(p_tex);
 }
 
 
 std::string Dispatcher::GetError() {
   return SDL_GetError();
+}
+
+
+void Dispatcher::QueryTexture(SDL_Texture* p_texture,
+                              unsigned int* format,
+                              int* access,
+                              int* w,
+                              int* h) {
+  SDL_QueryTexture(p_texture, format, access, w, h);
 }
 
 }

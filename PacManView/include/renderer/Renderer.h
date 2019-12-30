@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "sdl_util/SDLDestructor.h"
-
+#include "sdl_util/IDispatcher.h"
 
 namespace pacman {
 namespace view {
@@ -18,13 +18,9 @@ public:
 	/// <summary>
 	/// Create a new <see cref="Renderer"/>.
 	/// </summary>
-	Renderer();
+	Renderer(sdl::IDispatcher* p_sdl_dispatcher);
 	
 	/// <summary>
-	/// Finalize this instance of the <see cref="Renderer"/> class.
-	/// </summary>
-	~Renderer() final;
-	
 	void Init(SDL_Window* p_window) final;
 
   void RenderCopy(SDL_Texture* p_texture,
@@ -39,7 +35,9 @@ public:
 
 private:
 	/// <summary> A pointer to the renderer. </summary>
-	std::unique_ptr<SDL_Renderer, SDL_Destructor<SDL_Renderer>> _p_renderer;
+	std::unique_ptr<sdl::IResourceWrapper<SDL_Renderer>> _p_renderer;
+
+	sdl::IDispatcher* _p_sdl_dispatcher;
 };
 
 

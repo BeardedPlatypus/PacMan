@@ -7,6 +7,7 @@
 #include "DispatcherMock.h"
 #include "RendererFactoryMock.h"
 #include "RendererMock.h"
+#include "ResourceWrapperMock.h"
 
 using ::testing::ByMove;
 using ::testing::Eq;
@@ -22,6 +23,11 @@ TEST(ViewCoreTest, Initialise_CallsCorrectSDLFunctions) {
   auto p_renderer = std::make_unique<RendererMock>();
  
   SDL_Window* window = (SDL_Window*)37;
+
+  auto p_sdl_window_resource = std::make_unique<ResourceWrapperMock<SDL_Window>>();
+  EXPECT_CALL(*(p_sdl_window_resource.get()), GetResource())
+    .Times(1)
+    .WillOnce(Return(window));
 
   EXPECT_CALL(*(p_renderer.get()), Init(window))
     .Times(1);
@@ -48,7 +54,7 @@ TEST(ViewCoreTest, Initialise_CallsCorrectSDLFunctions) {
                                                        Eq(screen_width), Eq(screen_height),
                                                        Eq(SDL_WINDOW_SHOWN)))
     .Times(1)
-    .WillOnce(Return(window));
+    .WillOnce(Return(ByMove(std::move(p_sdl_window_resource))));
 
   std::unique_ptr<IViewCore> view_core = IViewCore::Construct(std::move(p_dispatcher),
                                                               renderer_factory);
@@ -63,8 +69,6 @@ TEST(ViewCoreTest, Initialise_FailAtSDL_ThrowsViewException) {
   RendererFactoryMock renderer_factory;
   auto p_renderer = std::make_unique<RendererMock>();
  
-  SDL_Window* window = (SDL_Window*)37;
-
   EXPECT_CALL(renderer_factory, CreateRenderer)
     .Times(1)
     .WillOnce(Return(ByMove(std::move(p_renderer))));
@@ -92,8 +96,6 @@ TEST(ViewCoreTest, Initialise_FailAtIMG_ThrowsViewException) {
   RendererFactoryMock renderer_factory;
   auto p_renderer = std::make_unique<RendererMock>();
  
-  SDL_Window* window = (SDL_Window*)37;
-
   EXPECT_CALL(renderer_factory, CreateRenderer)
     .Times(1)
     .WillOnce(Return(ByMove(std::move(p_renderer))));
@@ -125,8 +127,6 @@ TEST(ViewCoreTest, Initialise_FailAtWindow_ThrowsViewException) {
   RendererFactoryMock renderer_factory;
   auto p_renderer = std::make_unique<RendererMock>();
  
-  SDL_Window* window = (SDL_Window*)37;
-
   EXPECT_CALL(renderer_factory, CreateRenderer)
     .Times(1)
     .WillOnce(Return(ByMove(std::move(p_renderer))));
@@ -149,7 +149,7 @@ TEST(ViewCoreTest, Initialise_FailAtWindow_ThrowsViewException) {
                                                        Eq(screen_width), Eq(screen_height),
                                                        Eq(SDL_WINDOW_SHOWN)))
     .Times(1)
-    .WillOnce(Return(nullptr));
+    .WillOnce(Return(ByMove(nullptr)));
 
   std::unique_ptr<IViewCore> view_core = IViewCore::Construct(std::move(p_dispatcher),
                                                               renderer_factory);
@@ -222,6 +222,5 @@ INSTANTIATE_TEST_SUITE_P(InitViewCore_InvalidScreenDimThrowException,
 										   ScreenDim(100,  -1),
 										   ScreenDim(  0,   0),
 										   ScreenDim( -1,  -1)));
-
 }
 }

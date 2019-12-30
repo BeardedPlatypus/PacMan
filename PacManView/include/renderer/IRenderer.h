@@ -15,14 +15,6 @@ class ITexture;
 /// </summary>
 class IRenderer {
 public:	
-	/// <summary>
-	/// Construct a new <see cref="IRenderer"/>.
-	/// </summary>
-	/// <returns>
-	/// A <see cref="std::unique_ptr"/> to a new <see cref="IRenderer"/>
-	/// </returns>
-	static std::unique_ptr<IRenderer> Construct();
-
 	virtual ~IRenderer() = default;
 
 	/// <summary>

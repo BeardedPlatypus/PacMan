@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "renderer/RendererFactory.h"
+#include "renderer/Renderer.h"
 
 
 namespace pacman {
@@ -9,7 +10,7 @@ RendererFactory::RendererFactory() { }
 
 
 std::unique_ptr<IRenderer> RendererFactory::CreateRenderer(sdl::IDispatcher* p_dispatcher) const {
-  return IRenderer::Construct();
+  return std::make_unique<Renderer>(p_dispatcher);
 }
 
 }

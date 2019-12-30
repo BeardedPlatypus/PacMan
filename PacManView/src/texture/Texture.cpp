@@ -5,8 +5,11 @@
 namespace pacman {
 namespace view {
 
-Texture::Texture(SDL_Texture* p_tex) : 
-	  p_tex(std::unique_ptr<SDL_Texture, SDL_Destructor<SDL_Texture>>(p_tex)) { }
+Texture::Texture(std::unique_ptr<sdl::IResourceWrapper<SDL_Texture>> p_tex,
+	               sdl::IDispatcher* p_dispatcher) : 
+	  _p_tex_resource(std::move(p_tex)),
+    _p_dispatcher(p_dispatcher) { 
+}
 
 
 SDL_Rect Texture::GetDimensions() const {
@@ -14,11 +17,11 @@ SDL_Rect Texture::GetDimensions() const {
 	result.x = 0;
 	result.y = 0;
 
-	SDL_QueryTexture(this->p_tex.get(),
-					 NULL,
-					 NULL,
-					 &result.w,
-					 &result.h);
+	this->_p_dispatcher->QueryTexture(this->_p_tex_resource->GetResource(),
+					                          NULL,
+					                          NULL,
+					                          &result.w,
+					                          &result.h);
 	return result;
 }
 
@@ -30,7 +33,7 @@ void Texture::Render(IRenderer& renderer,
                      float angle,
                      bool flip_horizontally, 
                      bool flip_vertically) const {
-	   renderer.RenderCopy(this->p_tex.get(), 
+	   renderer.RenderCopy(this->_p_tex_resource->GetResource(),
                          &clip,
 						             &dst, 
                          angle, 

@@ -6,6 +6,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include "sdl_util/IResourceWrapper.h"
+
 namespace pacman {
 namespace view {
 namespace sdl {
@@ -19,19 +21,21 @@ public:
   virtual int InitSDL(unsigned int flags) = 0;
   virtual int InitIMG(int flags) = 0;
 
-  virtual SDL_Window* CreateSDLWindow(const std::string& title,
-                                      int x, 
-                                      int y,
-                                      int width, 
-                                      int height, 
-                                      unsigned int flags) = 0;
+  virtual std::unique_ptr<sdl::IResourceWrapper<SDL_Window>> CreateSDLWindow(
+    const std::string& title,
+    int x, 
+    int y,
+    int width, 
+    int height, 
+    unsigned int flags) = 0;
 
   virtual void QuitIMG() = 0;
   virtual void QuitSDL() = 0;
 
-  virtual void CreateRenderer(SDL_Window* p_window,
-                              int index,
-                              unsigned int flags) = 0;
+  virtual std::unique_ptr<sdl::IResourceWrapper<SDL_Renderer>> CreateRenderer(
+    SDL_Window* p_window,
+    int index,
+    unsigned int flags) = 0;
 
   virtual void RenderCopyEx(SDL_Renderer* p_renderer,
                             SDL_Texture* p_texture,
@@ -44,14 +48,17 @@ public:
   virtual void RenderPresent(SDL_Renderer* p_renderer) = 0;
   virtual void RenderClear(SDL_Renderer* p_renderer) = 0;
 
-  virtual void LoadTexture(SDL_Renderer* p_renderer,
-                           const std::string& file_path) = 0;
-
-  virtual void DestroyWindow(SDL_Window* p_window) = 0;
-  virtual void DestroyRenderer(SDL_Renderer* p_renderer) = 0;
-  virtual void DestroyTexture(SDL_Texture* p_texture) = 0;
+  virtual std::unique_ptr<sdl::IResourceWrapper<SDL_Texture>> LoadTexture(
+    SDL_Renderer* p_renderer,
+    const std::string& file_path) = 0;
 
   virtual std::string GetError() = 0;
+
+  virtual void QueryTexture(SDL_Texture* p_texture,
+                            unsigned int* format,
+                            int* access,
+                            int* w,
+                            int* h) = 0;
 };
 
 }

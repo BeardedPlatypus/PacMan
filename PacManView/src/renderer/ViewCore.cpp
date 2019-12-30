@@ -34,7 +34,7 @@ void ViewCore::Initialise(int screen_width, int screen_height) {
   this->InitialiseSDLImage();
   this->InitialiseWindow(screen_width, screen_height);
 
-  this->_p_renderer->Init(this->_p_window.get());
+  this->_p_renderer->Init(this->_p_window->GetResource());
 }
 
 
@@ -64,7 +64,7 @@ void ViewCore::InitialiseSDLImage() {
 
 
 void ViewCore::InitialiseWindow(int screenWidth, int screenHeight) {
-	SDL_Window* p_window = 
+	auto p_window = 
 		this->_p_sdl_dispatcher->CreateSDLWindow("Monthy's PacMan",
 			                                       100,
 										                         100,
@@ -77,8 +77,7 @@ void ViewCore::InitialiseWindow(int screenWidth, int screenHeight) {
 			                  this->_p_sdl_dispatcher->GetError());
 	}
 
-	this->_p_window = 
-		std::unique_ptr<SDL_Window, SDL_Destructor<SDL_Window>>(p_window);
+	this->_p_window = std::move(p_window);
 }
 
 }

@@ -9,21 +9,19 @@
 namespace pacman {
 namespace view {
 
-Renderer::Renderer() { }
-Renderer::~Renderer() { }
+Renderer::Renderer(sdl::IDispatcher* p_sdl_dispatcher) : _p_sdl_dispatcher(p_sdl_dispatcher) { }
 
 
 void Renderer::Init(SDL_Window* p_window) {
-	SDL_Renderer* p_renderer = 
-		SDL_CreateRenderer(p_window, 
-			                 -1, 
-			                 SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	auto p_renderer = 
+		this->_p_sdl_dispatcher->CreateRenderer(p_window, 
+			                                      -1, 
+			                                      SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 	if (p_renderer == nullptr)
 		throw ViewException("SDL_CreateRenderer", SDL_GetError());
 
-	this->_p_renderer = 
-		std::unique_ptr<SDL_Renderer, SDL_Destructor<SDL_Renderer>>(p_renderer);
+	this->_p_renderer = std::move(p_renderer);
 }
 
 
@@ -42,34 +40,35 @@ void Renderer::RenderCopy(SDL_Texture* p_texture,
   else if (flip_horizontally && flip_vertically)
     flip = (SDL_RendererFlip) (SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 
-	SDL_RenderCopyEx(this->_p_renderer.get(),
-				           p_texture,
-				           p_texture_clip,
-				           p_destination,
-                   angle, 
-                   NULL, 
-                   flip);
+	this->_p_sdl_dispatcher->RenderCopyEx(this->_p_renderer->GetResource(),
+				                                p_texture,
+				                                p_texture_clip,
+				                                p_destination,
+                                        angle, 
+                                        NULL, 
+                                        flip);
 }
 
 
 void Renderer::RenderPresent() {
-	SDL_RenderPresent(this->_p_renderer.get());
+	this->_p_sdl_dispatcher->RenderPresent(this->_p_renderer->GetResource());
 }
 
 
 void Renderer::RenderClear() {
-	SDL_RenderClear(this->_p_renderer.get());
+	this->_p_sdl_dispatcher->RenderClear(this->_p_renderer->GetResource());
 }
 
 
 std::unique_ptr<ITexture> Renderer::LoadTexture(const std::string& file_path) const {
-	SDL_Texture* p_tex = IMG_LoadTexture(this->_p_renderer.get(),
-										 file_path.c_str());
+	auto p_tex = this->_p_sdl_dispatcher->LoadTexture(this->_p_renderer->GetResource(),
+										                                file_path);
 
 	if (p_tex == nullptr)
 		throw ViewException("IMG_LoadTexture", "");
 
-	return std::make_unique<Texture>(p_tex);
+	return std::make_unique<Texture>(std::move(p_tex),
+		                               this->_p_sdl_dispatcher);
 }
 
 }
