@@ -59,6 +59,8 @@ int main(int argc, char **argv) {
 	  //   Update behaviour based on previous state.
 	  p_controller_api->Update();
     p_update_api->Update(dtime);
+    p_renderer_api->Update(dtime);
+
 	  //   Update current state based on updated behaviour.
 	  //   Render the current state.
     p_view_api->InitialiseRender();
