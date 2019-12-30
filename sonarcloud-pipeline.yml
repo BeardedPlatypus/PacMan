@@ -20,7 +20,8 @@ variables:
   msBuildExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
   toolsLocation: '$(Build.SourcesDirectory)\tools'
   codeCoverageLocationRunsettings: '$(Build.SourcesDirectory)/code_coverage_loc.runsettings'
-  coverageOutputLocation: '$(Build.SourcesDirectory)\TestResults'
+  codeCoverageOutput: $(Build.SourcesDirectory)\TestResults'
+  coverageOutputLocation: '$(Build.SourcesDirectory)\CoverageResults'
   coverageFiles: '$(coverageOutputLocation)\*.xml'
 
 steps:
@@ -66,7 +67,7 @@ steps:
   inputs:
     scriptSource: 'filePath'
     scriptPath: '$(toolsLocation)/location_runsettings.py'
-    arguments: '$(codeCoverageLocationRunsettings) $(coverageOutputLocation)'
+    arguments: '$(codeCoverageLocationRunsettings) $(codeCoverageOutput)'
 
 - task: VisualStudioTestPlatformInstaller@1
   displayName: 'Test - Install'
@@ -101,7 +102,7 @@ steps:
   inputs:
     scriptSource: 'filePath'
     scriptPath: '$(toolsLocation)/convert_coverage.py'
-    arguments: '$(coverageOutputLocation)'
+    arguments: '$(codeCoverageOutput)'
     workingDirectory: '$(coverageOutputLocation)'
 
 - task: PublishPipelineArtifact@0
