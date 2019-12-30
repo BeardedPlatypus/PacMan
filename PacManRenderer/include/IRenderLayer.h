@@ -10,7 +10,7 @@ namespace renderer {
 /// </summary>
 class IRenderLayer {
 public:
-  virtual ~IRenderLayer() { }
+  virtual ~IRenderLayer() = default;
   
   /// <summary>
   /// Initialise this <see cref="IRenderComponent" />.
