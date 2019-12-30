@@ -20,6 +20,11 @@ namespace values {
   /// The pacman moving animation label.
   /// </summary>
   const std::string pacman_moving_anim = "pacman_moving_anim";
+
+  /// <summary>
+  /// The pacman moving animation label.
+  /// </summary>
+  const std::string pacman_moving_anim_back = "pacman_moving_anim_back";
   
   /// <summary>
   /// The pacman dying animation label.

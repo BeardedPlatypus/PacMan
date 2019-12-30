@@ -39,6 +39,8 @@ public:
 								              float time_per_frame,
 								              const std::vector<std::string>& sprite_labels) final;
 
+	float GetAnimationTime(const std::string& label) const final;
+
 	void UpdateAnimation(const std::string& label, 
 		                   float delta_time) final;
 

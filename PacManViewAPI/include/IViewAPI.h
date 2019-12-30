@@ -93,6 +93,13 @@ public:
 										                  const std::vector<std::string>& sprite_labels) = 0;
 	
 	/// <summary>
+	/// Get the current time of the animation.
+	/// </summary>
+	/// <param name="label">The label.</param>
+	/// <returns></returns>
+	virtual float GetAnimationTime(const std::string& label) const = 0;
+	
+	/// <summary>
 	/// Update the sprite animation with the specified <paramref name="label"/> with
 	/// the given time <paramref name="delta_time"/>.
 	/// </summary>

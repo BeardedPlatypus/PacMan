@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\entity\PlayerLayer.h" />
+    <ClInclude Include="include\entity\PlayerMovementAnimation.h" />
     <ClInclude Include="include\field\EnumClassHash.h" />
     <ClInclude Include="include\field\FieldLayer.h" />
     <ClInclude Include="include\field\FieldLayerHelper.h" />

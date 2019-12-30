@@ -22,7 +22,13 @@ void PlayerLayer::Initialise() {
 
 
 void PlayerLayer::Update(float dtime) {
-  this->p_view_api->UpdateAnimation(values::pacman_moving_anim, dtime);
+  PlayerMovementAnimation next_anim = this->GetNextAnimation();
+
+  if (next_anim != this->active_anim) {
+    this->UpdateActiveAnimation(next_anim);
+  }
+
+  this->p_view_api->UpdateAnimation(this->GetActiveAnimationLabel(), dtime);
 }
 
 
@@ -45,7 +51,7 @@ void PlayerLayer::Render() const {
     break;
   }
 
-  this->p_view_api->RenderSpriteAnimation(values::pacman_moving_anim,
+  this->p_view_api->RenderSpriteAnimation(this->GetActiveAnimationLabel(),
                                           (this->p_player_state->GetXAxis()->GetPosition() - 0.5F * 0.5F) * (float)values::tile_size * this->scale,
                                           (this->p_player_state->GetYAxis()->GetPosition() - 0.5F * 0.5F) * (float)values::tile_size * this->scale,
                                           this->scale * 0.75F,
@@ -78,7 +84,59 @@ void PlayerLayer::InitialiseSprites() {
   };
 
 	this->p_view_api->RequestSpriteAnimation(values::pacman_moving_anim, 0.175F, pacman_anim_sprites);
+
+  std::vector<std::string> pacman_anim_back_sprites = {
+    values::pacman_default,
+    anim_2_label,
+    values::pacman_default,
+    anim_0_label,
+  };
+
+	this->p_view_api->RequestSpriteAnimation(values::pacman_moving_anim_back, 0.175F, pacman_anim_sprites);
 }
+
+
+PlayerMovementAnimation PlayerLayer::GetNextAnimation() const {
+  state::Direction current_direction = this->p_player_state->GetDirection();
+
+  if (current_direction == state::Direction::Down ||
+      current_direction == state::Direction::Right) {
+    return PlayerMovementAnimation::Forward;
+  }
+  else {
+    return PlayerMovementAnimation::Backward;
+  }
+}
+
+
+const std::string& ToLabel(PlayerMovementAnimation anim) {
+  if (anim == PlayerMovementAnimation::Forward) {
+    return values::pacman_moving_anim;
+  }
+  else {
+    return values::pacman_moving_anim_back;
+  }
+}
+
+
+void PlayerLayer::UpdateActiveAnimation(PlayerMovementAnimation next_anim) {
+  const std::string& label = ToLabel(next_anim);
+
+  float prev_time = this->p_view_api->GetAnimationTime(this->GetActiveAnimationLabel());
+  float anim_time = 0.175F * 4.F;
+  float new_time = anim_time - prev_time;
+
+  this->p_view_api->SetAnimationToTime(label, new_time);
+  this->active_anim = next_anim;
+}
+
+
+const std::string& PlayerLayer::GetActiveAnimationLabel() const {
+  return ToLabel(this->active_anim);
+}
+
+
+
 
 }
 }

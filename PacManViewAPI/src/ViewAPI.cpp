@@ -78,6 +78,11 @@ void ViewAPI::FinaliseRender() {
 }
 
 
+float ViewAPI::GetAnimationTime(const std::string& label) const {
+	return this->GetSpriteManager().GetSpriteAnimation(label)->GetExactTime();
+}
+
+
 void ViewAPI::UpdateAnimation(const std::string& label,
 	                            float delta_time) {
 	this->GetSpriteManager().GetSpriteAnimation(label)->UpdateTime(delta_time);

@@ -4,7 +4,7 @@
 #include <entity/IEntityManager.h>
 
 #include "IRenderLayer.h"
-
+#include "entity/PlayerMovementAnimation.h"
 
 namespace pacman {
 namespace renderer {
@@ -34,6 +34,14 @@ private:
   /// Initialises the sprites used by this <see cref="EntityLayer" />.
   /// </summary>
   void InitialiseSprites();
+
+  void UpdateActiveAnimation(PlayerMovementAnimation next_anim);
+
+  PlayerMovementAnimation GetNextAnimation() const;
+
+  PlayerMovementAnimation active_anim = PlayerMovementAnimation::Forward;
+
+  const std::string& GetActiveAnimationLabel() const;
 
   /// <summary>
   /// The scale to render with.
