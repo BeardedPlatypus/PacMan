@@ -33,6 +33,12 @@ public:
   virtual void Initialise() = 0;
   
   /// <summary>
+  /// Update the active animations used by this Renderer component.
+  /// </summary>
+  /// <param name="dtime"> The time passed since the last frame update. </param>
+  virtual void Update(float dtime) = 0;
+  
+  /// <summary>
   /// Render the current frame.
   /// </summary>
   virtual void Render() const = 0;

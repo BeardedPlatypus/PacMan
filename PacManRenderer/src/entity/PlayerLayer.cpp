@@ -21,6 +21,10 @@ void PlayerLayer::Initialise() {
 }
 
 
+void PlayerLayer::Update(float dtime) {
+}
+
+
 void PlayerLayer::Render() const {  
 
   float rotation = 0.F;
@@ -41,9 +45,9 @@ void PlayerLayer::Render() const {
   }
 
   this->p_view_api->RenderSpriteAnimation(values::pacman_moving_anim,
-                                          (this->p_player_state->GetXAxis()->GetPosition() - 0.5F * 0.5) * (float)values::tile_size * this->scale,
-                                          (this->p_player_state->GetYAxis()->GetPosition() - 0.5F * 0.5) * (float)values::tile_size * this->scale,
-                                          this->scale * 0.75,
+                                          (this->p_player_state->GetXAxis()->GetPosition() - 0.5F * 0.5F) * (float)values::tile_size * this->scale,
+                                          (this->p_player_state->GetYAxis()->GetPosition() - 0.5F * 0.5F) * (float)values::tile_size * this->scale,
+                                          this->scale * 0.75F,
                                           rotation,
                                           false,
                                           false);

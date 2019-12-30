@@ -16,6 +16,12 @@ public:
   /// Initialise this <see cref="IRenderComponent" />.
   /// </summary>
   virtual void Initialise() = 0;
+  
+  /// <summary>
+  /// Update this layer's animation with the specified dtime.
+  /// </summary>
+  /// <param name="dtime">The dtime.</param>
+  virtual void Update(float dtime) = 0;
 
   /// <summary>
   /// Render this <see cref="IRenderComponent" />.
