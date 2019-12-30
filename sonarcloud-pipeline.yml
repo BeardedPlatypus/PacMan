@@ -22,6 +22,7 @@ variables:
   coverageOutputLocation: '$(Build.SourcesDirectory)\TestResults'
   toolsLocation: '$(Build.SourcesDirectory)\tools'
   coverageFiles: '$(coverageOutputLocation)\*.xml'
+  trxFiles: '$(coverageDownloadLocation)\*.trx'
 
 steps:
 - task: UsePythonVersion@0
@@ -45,7 +46,9 @@ steps:
     specificBuildWithTriggering: true
     buildVersionToDownload: 'latest'
     artifactName: 'coverage'
-    itemPattern: '**/*.coverage'
+    itemPattern: |
+      **/*.coverage
+      **/*.trx
     targetPath: '$(coverageDownloadLocation)'
 
 - task: PythonScript@0
@@ -86,6 +89,8 @@ steps:
     extraProperties: |
       sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)
       sonar.cfamily.vscoveragexml.reportsPath=$(coverageFiles)
+      sonar.cs.vstest.reportsPaths=$(trxFiles)
+      
 - task: PowerShell@2
   displayName: MSBuild
   inputs:
