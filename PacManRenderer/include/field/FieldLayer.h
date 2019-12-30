@@ -30,6 +30,9 @@ public:
              state::field::IField* p_field);
 
   void Initialise() final;
+
+  inline void Update(float dtime) { }
+
   void Render() const final;
 
 private:      

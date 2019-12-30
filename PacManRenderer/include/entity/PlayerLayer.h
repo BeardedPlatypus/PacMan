@@ -26,6 +26,7 @@ public:
               state::IEntityState* p_player_state);
 
   void Initialise() final;
+  void Update(float dtime);
   void Render() const final;
 
 private:    

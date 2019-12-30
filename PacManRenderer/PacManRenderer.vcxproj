@@ -169,8 +169,11 @@
     <ClInclude Include="include\field\FieldSpriteOrientation.h" />
     <ClInclude Include="include\field\FieldSpriteType.h" />
     <ClInclude Include="include\field\FieldSpriteValues.h" />
+    <ClInclude Include="include\manager\ILayerManager.h" />
     <ClInclude Include="include\IRenderLayer.h" />
     <ClInclude Include="include\entity\EntitySpriteValues.h" />
+    <ClInclude Include="include\manager\LayerManager.h" />
+    <ClInclude Include="include\manager\LayerManagerFactory.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +187,8 @@
     <ClCompile Include="src\field\FieldLayerHelper.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.FieldValueToSpriteType.cpp" />
     <ClCompile Include="src\entity\PlayerLayer.cpp" />
+    <ClCompile Include="src\manager\LayerManager.cpp" />
+    <ClCompile Include="src\manager\LayerManagerFactory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
