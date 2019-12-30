@@ -154,13 +154,21 @@ float GetConfinedDistanceToMove(const IUpdatablePlayerEntity* p_player_entity,
 }
 
 
-void ConditiallyMoveDistance(const IUpdatablePlayerEntity* p_player_entity,
+void ConditiallyMoveDistance(IUpdatablePlayerEntity* p_player_entity,
                              const state::field::IField* p_field,
                              float max_distance_to_move) {
   float distance_to_move = util::GetConfinedDistanceToMove(p_player_entity, 
                                                            p_field, 
                                                            max_distance_to_move);
-  MoveOnActiveAxis(p_player_entity, distance_to_move);
+
+  if (abs(distance_to_move - 0.00001)) {
+    p_player_entity->SetIsMoving(false);
+  }
+  else {
+    p_player_entity->SetIsMoving(true);
+    MoveOnActiveAxis(p_player_entity, distance_to_move);
+  }
+
 }
 
 

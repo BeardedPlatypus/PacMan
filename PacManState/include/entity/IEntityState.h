@@ -71,6 +71,10 @@ public:
   /// | (new this)->GetSpeed() == <paramref name="speed" />
   /// </postcondition>
   virtual void SetSpeed(float speed) = 0;
+
+  virtual bool IsMoving() const = 0;
+
+  virtual void SetIsMoving(bool is_moving) = 0;
 };
 
 }

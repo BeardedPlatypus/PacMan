@@ -99,5 +99,10 @@ void UpdatablePlayerEntity::Update(float dt) {
 }
 
 
+void UpdatablePlayerEntity::SetIsMoving(bool is_moving) {
+  this->p_player_state->SetIsMoving(is_moving);
+}
+
+
 }
 }

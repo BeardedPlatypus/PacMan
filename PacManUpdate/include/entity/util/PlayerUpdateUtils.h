@@ -194,7 +194,7 @@ namespace util {
   /// <param name="max_distance_to_move">
   /// The maximum distance which can be moved.
   /// </param>
-  void ConditiallyMoveDistance(const IUpdatablePlayerEntity* p_player_entity, 
+  void ConditiallyMoveDistance(IUpdatablePlayerEntity* p_player_entity, 
                                const state::field::IField* p_field,
                                float max_distance_to_move);
 

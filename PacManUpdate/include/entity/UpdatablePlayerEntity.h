@@ -30,6 +30,7 @@ public:
 
   void Update(float dt) final;
 
+  void SetIsMoving(bool is_moving) final;
 private:
   state::IEntityState* p_player_state;
 

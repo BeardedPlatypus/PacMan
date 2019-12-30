@@ -115,6 +115,8 @@ public:
   /// </summary>
   /// <param name="dt">The time passed since the last frame.</param>
   virtual void Update(float dt) = 0;
+
+  virtual void SetIsMoving(bool is_moving) = 0;
 };
 
 }

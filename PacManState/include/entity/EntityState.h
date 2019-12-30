@@ -31,6 +31,8 @@ public:
   float GetSpeed() const final;
   void SetSpeed(float speed) final;
 
+  bool IsMoving() const final;
+  void SetIsMoving(bool is_moving) final;
 private:      
   /// <summary>
   /// The x axis
@@ -51,6 +53,8 @@ private:
   /// The speed of this <see cref="EntityState" />.
   /// </summary>
   float _speed;
+
+  bool _is_moving = false;
 };
 
 }

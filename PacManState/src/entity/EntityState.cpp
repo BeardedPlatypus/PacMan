@@ -41,6 +41,15 @@ void EntityState::SetSpeed(float speed) {
   this->_speed = speed;
 }
 
+bool EntityState::IsMoving() const {
+  return this->_is_moving;
+}
+
+
+void EntityState::SetIsMoving(bool is_moving) {
+  this->_is_moving = is_moving;
+}
+
 }
 }
 

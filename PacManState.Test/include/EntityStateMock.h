@@ -14,4 +14,7 @@ public:
 
   MOCK_METHOD(float, GetSpeed, (), (const));
   MOCK_METHOD(void, SetSpeed, (float new_speed));
+
+  MOCK_METHOD(bool, IsMoving, (), (const));
+  MOCK_METHOD(void, SetIsMoving, (bool));
 };
