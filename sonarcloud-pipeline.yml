@@ -56,19 +56,6 @@ steps:
     targetType: 'inline'
     script: '& $(buildWrapperExe) --out-dir $(buildWrapperOutputDir) "$(msBuildExe)" $(solution) -nologo -p:Configuration=$(buildConfiguration) -p:Platform=$(buildPlatform)'
 
-- task: UsePythonVersion@0
-  displayName: Set up python version.
-  inputs:
-    versionSpec: '3.x'
-    addToPath: true
-    architecture: 'x64'
-
-- task: PythonScript@0
-  inputs:
-    scriptSource: 'filePath'
-    scriptPath: '$(toolsLocation)/location_runsettings.py'
-    arguments: '$(codeCoverageLocationRunsettings) $(codeCoverageOutput)'
-
 - task: VisualStudioTestPlatformInstaller@1
   displayName: 'Test - Install'
   inputs:
@@ -91,25 +78,6 @@ steps:
       !**\$(buildConfiguration)\zlib1.dll
     codeCoverageEnabled: true
     runSettingsFile: '$(codeCoverageLocationRunsettings)'
-
-- task: CmdLine@2
-  displayName: Coverage - Create .coverage output directory.
-  inputs:
-    script: 'mkdir $(coverageOutputLocation)'
-
-- task: PythonScript@0
-  displayName: Coverage - Convert .coverage files to .xml
-  inputs:
-    scriptSource: 'filePath'
-    scriptPath: '$(toolsLocation)/convert_coverage.py'
-    arguments: '$(codeCoverageOutput)'
-    workingDirectory: '$(coverageOutputLocation)'
-
-- task: PublishPipelineArtifact@0
-  displayName: Coverage - Publish .xml files
-  inputs:
-    artifactName: 'convertedCoverage'
-    targetPath: '$(coverageOutputLocation)'
 
 - task: SonarCloudAnalyze@1
   displayName: 'SonarCloud - Analyze'
