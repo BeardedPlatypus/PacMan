@@ -98,8 +98,22 @@ public:
 	/// </summary>
 	/// <param name="label"> The label of the sprite animation to update. </param>
 	/// <param name="delta_time"> The delta time since the last update. </param>
-	virtual void Update(const std::string& label,
-		                  float delta_time) = 0;
+	virtual void UpdateAnimation(const std::string& label,
+		                           float delta_time) = 0;
+	
+	/// <summary>
+	/// Set the animation to time to <paramref name="new_time"/>.
+	/// </summary>
+	/// <param name="label"> The label of the sprite animation to update. </param>
+	/// <param name="new_time"> The new time. </param>
+	virtual void SetAnimationToTime(const std::string& label,
+		                              float new_time) = 0;
+	
+	/// <summary>
+	/// Resets the time of the animation.
+	/// </summary>
+	/// <param name="label"> The label of the sprite animation to update. </param>
+	virtual void ResetAnimationTime(const std::string& label) = 0;
 	
 	/// <summary>
 	/// Initialise a new render frame.
