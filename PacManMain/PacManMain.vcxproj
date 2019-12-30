@@ -117,10 +117,13 @@ xcopy /y /d "$(SolutionDir)\libs\SDL2_image\*.dll" "$(OutDir)"
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)PacManViewAPI\include;$(SolutionDir)PacManRendererAPI\include;$(SolutionDir)PacManState\include;$(SolutionDir)PacManUpdateAPI\include;$(SolutionDir)PacManControllerAPI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PacManState.lib;PacManControllerAPI.lib;PacManRendererAPI.lib;PacManUpdateAPI.lib;PacManViewAPI.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
