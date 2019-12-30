@@ -18,13 +18,50 @@ variables:
   buildWrapperOutputDir: '$(Build.SourcesDirectory)/build_wrapper_output_directory'
   buildWrapperExe: '$(Build.SourcesDirectory)/tools/build-wrapper-win-x86-64.exe'
   msBuildExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
+  coverageDownloadLocation: '$(Build.SourcesDirectory)\DownloadedCoverage'
+  coverageOutputLocation: '$(Build.SourcesDirectory)\TestResults'
   toolsLocation: '$(Build.SourcesDirectory)\tools'
-  codeCoverageLocationRunsettings: '$(Build.SourcesDirectory)/code_coverage_loc.runsettings'
-  codeCoverageOutput: $(Build.SourcesDirectory)\TestResults'
-  coverageOutputLocation: '$(Build.SourcesDirectory)\CoverageResults'
   coverageFiles: '$(coverageOutputLocation)\*.xml'
 
 steps:
+- task: UsePythonVersion@0
+  displayName: Set up python version.
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+    architecture: 'x64'
+
+- task: CmdLine@2
+  displayName: Coverage - Create .coverage output directory.
+  inputs:
+    script: 'mkdir $(coverageOutputLocation)'
+
+- task: DownloadPipelineArtifact@2
+  displayName: Coverage - Download .coverage artifacts
+  inputs:
+    buildType: 'specific'
+    project: '41987b1d-47e2-4fea-90ac-c2b42d11a558'
+    definition: '1'
+    specificBuildWithTriggering: true
+    buildVersionToDownload: 'latest'
+    artifactName: 'coverage'
+    itemPattern: '**/*.coverage'
+    targetPath: '$(coverageDownloadLocation)'
+
+- task: PythonScript@0
+  displayName: Coverage - Convert .coverage files to .xml
+  inputs:
+    scriptSource: 'filePath'
+    scriptPath: '$(toolsLocation)/convert_coverage.py'
+    arguments: '$(coverageDownloadLocation)'
+    workingDirectory: '$(coverageOutputLocation)'
+
+- task: PublishPipelineArtifact@0
+  displayName: Coverage - Publish .xml files
+  inputs:
+    artifactName: 'convertedCoverage'
+    targetPath: '$(coverageOutputLocation)'
+
 - script: |
     vcpkg install sdl2 sdl2-image gtest
     vcpkg integrate install
@@ -46,35 +83,14 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'BeardedPlatypus_PacMan'
     projectName: 'PacMan'
-    extraProperties: sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)
-
+    extraProperties: |
+      sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)
+      sonar.cfamily.vscoveragexml.reportsPath=$(coverageFiles)
 - task: PowerShell@2
   displayName: MSBuild
   inputs:
     targetType: 'inline'
     script: '& $(buildWrapperExe) --out-dir $(buildWrapperOutputDir) "$(msBuildExe)" $(solution) -nologo -p:Configuration=$(buildConfiguration) -p:Platform=$(buildPlatform)'
-
-- task: VisualStudioTestPlatformInstaller@1
-  displayName: 'Test - Install'
-  inputs:
-    packageFeedSelector: 'nugetOrg'
-    versionSelector: 'latestStable'
-
-- task: VSTest@2
-  displayName: 'Test - Run'
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    testAssemblyVer2: |
-      **\$(buildConfiguration)\*.Test.exe
-      !**\*TestAdapter.dll
-      !**\obj\**
-      !**\$(buildConfiguration)\gmock.dll
-      !**\$(buildConfiguration)\libpng16.dll
-      !**\$(buildConfiguration)\SDL2.dll
-      !**\$(buildConfiguration)\SDL2_image.dll
-      !**\$(buildConfiguration)\zlib1.dll
-    codeCoverageEnabled: true
 
 - task: SonarCloudAnalyze@1
   displayName: 'SonarCloud - Analyze'
