@@ -39,41 +39,6 @@ steps:
     packageFeedSelector: 'nugetOrg'
     versionSelector: 'latestStable'
 
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.x'
-    addToPath: true
-    architecture: 'x64'
-
-- task: PythonScript@0
-  inputs:
-    scriptSource: 'filePath'
-    scriptPath: '$(Build.SourcesDirectory)/tools/location_runsettings.py'
-    arguments: '$(codeCoverageLocationRunsettings) $(testResults)'
-
-- task: VSTest@2
-  displayName: 'Test - Run'
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    testAssemblyVer2: |
-      **\$(buildConfiguration)\*.Test.exe
-      !**\*TestAdapter.dll
-      !**\obj\**
-      !**\$(buildConfiguration)\gmock.dll
-      !**\$(buildConfiguration)\libpng16.dll
-      !**\$(buildConfiguration)\SDL2.dll
-      !**\$(buildConfiguration)\SDL2_image.dll
-      !**\$(buildConfiguration)\zlib1.dll
-    codeCoverageEnabled: true
-    runSettingsFile: '$(codeCoverageLocationRunsettings)'
-
-- task: PublishPipelineArtifact@0
-  displayName: 'Code Coverage - Publish .coverage files'
-  inputs:
-    artifactName: 'convertedCoverage'
-    targetPath: '$(testResults)'
-
 - task: CopyFiles@2
   displayName: 'Executable Artifact - Copy DLLs'
   inputs:
