@@ -87,7 +87,7 @@ void PlayerLayer::InitialiseSprites() {
     values::pacman_default,
   };
 
-	this->p_view_api->RequestSpriteAnimation(values::pacman_moving_anim, 0.175F, pacman_anim_sprites);
+	this->p_view_api->RequestSpriteAnimation(values::pacman_moving_anim, 0.125F, pacman_anim_sprites);
 
   std::vector<std::string> pacman_anim_back_sprites = {
     values::pacman_default,
@@ -96,7 +96,7 @@ void PlayerLayer::InitialiseSprites() {
     anim_0_label,
   };
 
-	this->p_view_api->RequestSpriteAnimation(values::pacman_moving_anim_back, 0.175F, pacman_anim_sprites);
+	this->p_view_api->RequestSpriteAnimation(values::pacman_moving_anim_back, 0.125F, pacman_anim_sprites);
 }
 
 
@@ -127,7 +127,7 @@ void PlayerLayer::UpdateActiveAnimation(PlayerMovementAnimation next_anim) {
   const std::string& label = ToLabel(next_anim);
 
   float prev_time = this->p_view_api->GetAnimationTime(this->GetActiveAnimationLabel());
-  float anim_time = 0.175F * 4.F;
+  float anim_time = 0.125F * 4.F;
   float new_time = anim_time - prev_time;
 
   this->p_view_api->SetAnimationToTime(label, new_time);
