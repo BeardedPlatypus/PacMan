@@ -46,9 +46,7 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'BeardedPlatypus_PacMan'
     projectName: 'PacMan'
-    extraProperties: |
-      sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)
-      sonar.cfamily.vscoveragexml.reportsPath=$(coverageFiles)
+    extraProperties: sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)
 
 - task: PowerShell@2
   displayName: MSBuild
