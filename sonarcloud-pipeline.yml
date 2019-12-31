@@ -14,7 +14,7 @@ pool:
 variables:
   solution: '$(Build.SourcesDirectory)/PacMan.sln'
   buildPlatform: 'x86'
-  buildConfiguration: 'Release'
+  buildConfiguration: 'Debug'
   buildWrapperOutputDir: '$(Build.SourcesDirectory)/build_wrapper_output_directory'
   buildWrapperExe: '$(Build.SourcesDirectory)/tools/build-wrapper-win-x86-64.exe'
   msBuildExe: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe'
@@ -22,7 +22,6 @@ variables:
   coverageOutputLocation: '$(Build.SourcesDirectory)\TestResults'
   toolsLocation: '$(Build.SourcesDirectory)\tools'
   coverageFiles: '$(coverageOutputLocation)\*.xml'
-  trxFiles: '$(coverageDownloadLocation)\*.trx'
 
 steps:
 - task: UsePythonVersion@0
@@ -46,9 +45,7 @@ steps:
     specificBuildWithTriggering: true
     buildVersionToDownload: 'latest'
     artifactName: 'coverage'
-    itemPattern: |
-      **/*.coverage
-      **/*.trx
+    itemPattern: '**/*.coverage'
     targetPath: '$(coverageDownloadLocation)'
 
 - task: PythonScript@0
@@ -89,7 +86,6 @@ steps:
     extraProperties: |
       sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)
       sonar.cfamily.vscoveragexml.reportsPath=$(coverageFiles)
-      sonar.cs.vstest.reportsPaths=$(trxFiles)
       
 - task: PowerShell@2
   displayName: MSBuild
