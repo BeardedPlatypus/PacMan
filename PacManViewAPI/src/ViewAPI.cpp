@@ -66,7 +66,7 @@ void ViewAPI::RenderSpriteAnimation(const std::string& label,
                                     float angle,
                                     bool flip_horizontally,
                                     bool flip_vertically) {
-	ISpriteAnimation* requested_anim = this->GetSpriteManager().GetSpriteAnimation(label);
+	const ISpriteAnimation* requested_anim = this->GetSpriteManager().GetSpriteAnimation(label);
 	const Sprite& active_frame = requested_anim->GetActiveSprite();
 	active_frame.Render(this->GetRenderer(), 
 		                  x, y, scale, angle, flip_horizontally, flip_vertically);

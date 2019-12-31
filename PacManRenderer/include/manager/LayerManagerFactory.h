@@ -11,7 +11,7 @@ namespace pacman {
 namespace renderer {
 
 std::unique_ptr<ILayerManager> ConstructLayerManager(view::IViewAPI* p_view_api,
-                                                     state::IGameState* p_game_state);
+                                                     const state::IGameState* p_game_state);
 
 }
 }

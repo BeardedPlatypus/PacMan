@@ -11,7 +11,7 @@ namespace renderer {
 
 class LayerManager final : public ILayerManager {
 public:
-  LayerManager(std::vector<std::unique_ptr<IRenderLayer>>& render_layers);
+  explicit LayerManager(std::vector<std::unique_ptr<IRenderLayer>>& render_layers);
   
   void Initialise() final;
   void Update(float d_time) final;

@@ -31,7 +31,9 @@ public:
 
   void Initialise() final;
 
-  inline void Update(float dtime) { }
+  inline void Update(float dtime) { 
+    // FieldLayer is static.
+  }
 
   void Render() const final;
 

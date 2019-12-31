@@ -18,7 +18,7 @@ public:
 	/// <summary>
 	/// Create a new <see cref="Renderer"/>.
 	/// </summary>
-	Renderer(sdl::IDispatcher* p_sdl_dispatcher);
+	explicit Renderer(sdl::IDispatcher* p_sdl_dispatcher);
 	
 	/// <summary>
 	void Init(SDL_Window* p_window) final;
