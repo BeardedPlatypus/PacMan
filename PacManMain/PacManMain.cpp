@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
 
   p_game_state->ConstructNewField(pacman::state::field::GetFieldDefinition());
 
-  auto p_player_state = pacman::state::IEntityState::Construct(10.F,
+  auto p_player_state = pacman::state::IEntityState::Construct(11.F,
                                                                20.F,
                                                                pacman::state::Direction::Left,
                                                                3.0F);
