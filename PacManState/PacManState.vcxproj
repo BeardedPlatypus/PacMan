@@ -159,12 +159,17 @@
     <ClInclude Include="include\field\Field.h" />
     <ClInclude Include="include\field\FieldDefinition.h" />
     <ClInclude Include="include\field\IField.h" />
+    <ClInclude Include="include\field\object\FieldObject.h" />
+    <ClInclude Include="include\field\object\FieldObjectDefinition.h" />
+    <ClInclude Include="include\field\object\FieldObjectManager.h" />
+    <ClInclude Include="include\field\object\IFieldObjectManager.h" />
     <ClInclude Include="include\IGameState.h" />
     <ClInclude Include="include\field\TileType.h" />
     <ClInclude Include="include\GameMode.h" />
     <ClInclude Include="include\entity\IEntityState.h" />
     <ClInclude Include="include\GameState.h" />
     <ClInclude Include="include\entity\IEntityAxis.h" />
+    <ClInclude Include="include\field\object\FieldObjectType.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -177,6 +182,9 @@
     <ClCompile Include="src\entity\IEntityManager.cpp" />
     <ClCompile Include="src\field\Field.cpp" />
     <ClCompile Include="src\field\IField.cpp" />
+    <ClCompile Include="src\field\object\FieldObjectManager.cpp" />
+    <ClCompile Include="src\field\object\FieldObjectType.cpp" />
+    <ClCompile Include="src\field\object\IFieldObjectManager.cpp" />
     <ClCompile Include="src\GameState.cpp" />
     <ClCompile Include="src\entity\IEntityState.cpp" />
     <ClCompile Include="src\IGameState.cpp" />
