@@ -158,7 +158,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\exceptions\ViewException.h" />
-    <ClInclude Include="include\Renderable.h" />
     <ClInclude Include="include\renderer\IRenderer.h" />
     <ClInclude Include="include\renderer\IRendererFactory.h" />
     <ClInclude Include="include\renderer\IViewCore.h" />
