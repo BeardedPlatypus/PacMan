@@ -12,7 +12,7 @@ jobs:
 
   variables:
     buildPlatform: 'x86'
-    buildConfiguration: 'Debug'
+    buildConfiguration: 'Release'
     codeCoverageLocationRunsettings: '$(Build.SourcesDirectory)/code_coverage_loc.runsettings'
     testResults: '$(Build.SourcesDirectory)/TestResults'
 
