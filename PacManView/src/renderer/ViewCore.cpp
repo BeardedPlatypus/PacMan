@@ -10,8 +10,8 @@ namespace view {
 
 ViewCore::ViewCore(std::unique_ptr<sdl::IDispatcher> p_sdl_dispatcher, 
 		               const IRendererFactory& renderer_factory) :
-    _p_sdl_dispatcher(std::move(p_sdl_dispatcher)),
-	  _p_renderer(renderer_factory.CreateRenderer(p_sdl_dispatcher.get())) {
+	  _p_renderer(renderer_factory.CreateRenderer(p_sdl_dispatcher.get())),
+    _p_sdl_dispatcher(std::move(p_sdl_dispatcher)) {
 }
 
 
