@@ -24,7 +24,7 @@ public:
   /// A <see cref="std::unique_ptr"/> containing an instance of a
   /// <see cref="IRendererManager"/>.
   /// </returns>
-  static std::unique_ptr<IRendererAPI> Construct(state::IGameState* p_game_state,
+  static std::unique_ptr<IRendererAPI> Construct(const state::IGameState* p_game_state,
                                                  view::IViewAPI* p_view_api);
   
   /// <summary>

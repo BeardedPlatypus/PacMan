@@ -6,8 +6,8 @@
 namespace pacman {
 namespace renderer {
 
-  RendererAPI::RendererAPI(state::IGameState* p_game_state,
-    view::IViewAPI* p_view_api) :
+  RendererAPI::RendererAPI(const state::IGameState* p_game_state,
+                           view::IViewAPI* p_view_api) :
     _p_layer_manager(ConstructLayerManager(p_view_api, p_game_state)) {
 }
 

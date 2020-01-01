@@ -11,7 +11,7 @@ namespace renderer {
 
 class RendererAPI final : public IRendererAPI {
 public:  
-  RendererAPI(state::IGameState* p_game_state,
+  RendererAPI(const state::IGameState* p_game_state,
               view::IViewAPI* p_view_api);
 
   void Initialise() final;
