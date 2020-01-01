@@ -10,7 +10,7 @@ namespace field {
 
 class FieldObjectManager final : public IFieldObjectManager {
 public:
-  FieldObjectManager(const std::vector<std::vector<FieldObjectType>>& field_objects);
+  explicit FieldObjectManager(const std::vector<std::vector<FieldObjectType>>& field_objects);
 
   void AddFieldObject(const FieldObject& field_object) final;
   void RemoveFieldObject(int x, int y) final;

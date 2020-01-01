@@ -11,7 +11,7 @@ namespace sdl {
 template <typename T>
 class ResourceWrapper final : public IResourceWrapper<T> {
 public:
-  ResourceWrapper(T* p_resource);
+  explicit ResourceWrapper(T* p_resource);
   T* GetResource() const final;
 private:
   std::unique_ptr<T, SDL_Destructor<T>> _p_resource;
