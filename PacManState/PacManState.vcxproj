@@ -181,7 +181,9 @@
     <ClCompile Include="src\entity\IEntityAxis.cpp" />
     <ClCompile Include="src\entity\IEntityManager.cpp" />
     <ClCompile Include="src\field\Field.cpp" />
+    <ClCompile Include="src\field\FieldDefinition.cpp" />
     <ClCompile Include="src\field\IField.cpp" />
+    <ClCompile Include="src\field\object\FieldObjectDefinition.cpp" />
     <ClCompile Include="src\field\object\FieldObjectManager.cpp" />
     <ClCompile Include="src\field\object\FieldObjectType.cpp" />
     <ClCompile Include="src\field\object\IFieldObjectManager.cpp" />
