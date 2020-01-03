@@ -99,8 +99,6 @@ TEST(FieldObjectManagerTest, HasObjectAt_ReturnsCorrectResult) {
   ASSERT_THAT(result, IsTrue());
 }
 
-#undef _
-
 }
 }
 }
