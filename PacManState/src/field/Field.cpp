@@ -18,6 +18,21 @@ TileType Field::GetTileType(int x, int y) const {
   return this->tiles[y][x];
 }
 
+
+inline FieldIndex Field::GetFieldIndex(int x, int y) const {
+  return y * this->GetXDimension() + x;
+}
+
+
+inline int Field::GetXFromFieldIndex(FieldIndex index) const {
+  return index % this->GetXDimension();
+}
+
+
+inline int Field::GetYFromFieldIndex(FieldIndex index) const {
+  return index / this->GetXDimension();
+}
+
 }
 }
 }

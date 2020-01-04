@@ -6,26 +6,31 @@ namespace pacman {
 namespace update {
 namespace object {
 
-PortalBehaviour::PortalBehaviour(IUpdatablePlayerEntity* p_player_entity,
-                                 const std::unordered_map<const state::field::FieldCoordinate, const state::field::FieldCoordinate>& mapping) :
-    _p_player_entity(p_player_entity), 
-    _portal_mapping(std::unordered_map<const state::field::FieldCoordinate, const state::field::FieldCoordinate>(mapping)) {
+PortalBehaviour::PortalBehaviour(const state::field::IField* p_field,
+                                 const std::unordered_map<state::field::FieldIndex, state::field::FieldIndex> mapping) :
+    _p_field(p_field),
+    _portal_mapping(mapping) {
 }
 
 
-void PortalBehaviour::Execute(int x, int y) {
-  state::field::FieldCoordinate coord = { x = x, y = y };
-  if (this->_portal_mapping.find(coord) == this->_portal_mapping.cend()) {
+void PortalBehaviour::Execute(IUpdatablePlayerEntity* p_entity, int x, int y) {
+  state::field::FieldIndex index = this->_p_field->GetFieldIndex(x, y);
+
+  if (this->_portal_mapping.find(index) == this->_portal_mapping.cend()) {
     return;
   }
 
-  this->MovePlayerTo(this->_portal_mapping.at(coord));
+  this->MovePlayerTo(p_entity, this->_portal_mapping.at(index));
 }
 
 
-void PortalBehaviour::MovePlayerTo(const state::field::FieldCoordinate& new_location) {
-  this->_p_player_entity->GetXAxis()->SetPosition((float)new_location.x);
-  this->_p_player_entity->GetYAxis()->SetPosition((float)new_location.y);
+void PortalBehaviour::MovePlayerTo(IUpdatablePlayerEntity* p_entity,
+                                   state::field::FieldIndex new_location) {
+  float x_loc = this->_p_field->GetXFromFieldIndex(new_location);
+  p_entity->GetXAxis()->SetPosition(x_loc);
+  
+  float y_loc = this->_p_field->GetYFromFieldIndex(new_location);
+  p_entity->GetYAxis()->SetPosition(y_loc);
 }
 
 }

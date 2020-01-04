@@ -3,6 +3,7 @@
 #include <field/IField.h>
 
 #include "entity/UpdatablePlayerEntity.h"
+#include "objects/BehaviourManager.h"
 
 
 namespace pacman {
@@ -27,6 +28,7 @@ namespace update {
   /// </precondition>
   void UpdatePlayerLocation(IUpdatablePlayerEntity* p_player_entity,
                             const state::field::IField* p_field,
+                            object::BehaviourManager* p_behaviour_manager,
                             float dt);
 
 }

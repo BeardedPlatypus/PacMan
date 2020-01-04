@@ -10,6 +10,8 @@
 namespace pacman {
 namespace state {
 namespace field {
+
+using FieldIndex = int;
   
 /// <summary>
 /// The <see cref="IField" /> describes the field of this PacMan game.
@@ -53,6 +55,11 @@ public:
   /// queried <see cref="TileType::Solid" /> will be returned. 
   /// </remarks>
   virtual TileType GetTileType(int x, int y) const = 0;
+
+  virtual FieldIndex GetFieldIndex(int x, int y) const = 0;
+
+  virtual int GetXFromFieldIndex(FieldIndex index) const = 0;
+  virtual int GetYFromFieldIndex(FieldIndex index) const = 0;
 };
 
 }

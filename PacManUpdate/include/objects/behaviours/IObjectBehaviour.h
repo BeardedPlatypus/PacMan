@@ -1,4 +1,5 @@
 #pragma once
+#include "entity/IUpdatablePlayerEntity.h"
 
 
 namespace pacman {
@@ -9,7 +10,7 @@ class IObjectBehaviour {
 public:
   virtual ~IObjectBehaviour() = default;
 
-  virtual void Execute(int x, int y) = 0;
+  virtual void Execute(IUpdatablePlayerEntity* p_entity, int x, int y) = 0;
 };
 
 }

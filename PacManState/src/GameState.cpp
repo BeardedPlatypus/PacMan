@@ -40,7 +40,7 @@ void GameState::SetPlayerState(std::unique_ptr<IEntityState> p_new_player_state)
 
 
 void GameState::ConstructNewFieldObjects(const std::vector<std::vector<field::FieldObjectType>>& field_objects) {
-  this->p_field_object_manager = field::IFieldObjectManager::Construct(field_objects);
+  this->p_field_object_manager = field::IFieldObjectManager::Construct(field_objects, this->GetField());
 }
 
 

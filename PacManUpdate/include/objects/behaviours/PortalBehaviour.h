@@ -2,7 +2,7 @@
 
 #include "objects/behaviours/IObjectBehaviour.h"
 #include "entity/IUpdatablePlayerEntity.h"
-#include "field/FieldCoordinate.h"
+#include "IGameState.h"
 
 #include <unordered_map>
 
@@ -12,17 +12,17 @@ namespace object {
 
 class PortalBehaviour : public IObjectBehaviour {
 public:
-  PortalBehaviour(IUpdatablePlayerEntity* p_player_entity,
-                  const std::unordered_map<const state::field::FieldCoordinate, const state::field::FieldCoordinate>& mapping);
+  PortalBehaviour(const state::field::IField* p_field,
+                  const std::unordered_map<int, int> mapping);
 
-  void Execute(int x, int y) override;
+  void Execute(IUpdatablePlayerEntity* p_entity, int x, int y) override;
 private:
-  IUpdatablePlayerEntity* _p_player_entity;
+  const state::field::IField* _p_field;
 
-  const std::unordered_map<const state::field::FieldCoordinate, 
-                           const state::field::FieldCoordinate>& _portal_mapping;
+  const std::unordered_map<state::field::FieldIndex, state::field::FieldIndex> _portal_mapping;
 
-  void MovePlayerTo(const state::field::FieldCoordinate& new_location);
+  void MovePlayerTo(IUpdatablePlayerEntity* p_entity,
+                    state::field::FieldIndex new_location);
 };
 
 }

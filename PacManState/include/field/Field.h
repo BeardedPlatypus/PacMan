@@ -23,7 +23,11 @@ public:
   inline int GetYDimension() const final { return this->y_dimension; }
 
   TileType GetTileType(int x, int y) const final;
-  
+
+  FieldIndex GetFieldIndex(int x, int y) const final;
+
+  int GetXFromFieldIndex(FieldIndex index) const final;
+  int GetYFromFieldIndex(FieldIndex index) const final;
 private:  
   /// <summary>
   /// The x dimension of this <see cref="Field" />

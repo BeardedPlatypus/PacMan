@@ -2,7 +2,7 @@
 #include "IUpdateAPI.h"
 
 #include "entity/IUpdatablePlayerEntity.h"
-
+#include "objects/BehaviourManager.h"
 
 namespace pacman {
 namespace update {
@@ -32,6 +32,9 @@ private:
   controller::api::IControllerAPI* p_controller_manager;
 
   std::unique_ptr<IUpdatablePlayerEntity> p_player_entity;
+
+  std::unique_ptr<object::BehaviourManager> p_behaviour_manager =
+    std::make_unique<object::BehaviourManager>();
 };
 
 }

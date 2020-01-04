@@ -10,20 +10,28 @@ namespace field {
 
 class FieldObjectManager final : public IFieldObjectManager {
 public:
-  explicit FieldObjectManager(const std::vector<std::vector<FieldObjectType>>& field_objects);
+  explicit FieldObjectManager(const std::vector<std::vector<FieldObjectType>>& field_objects,
+                              const IField* p_field);
+
+  FieldObjectType GetObjectType(FieldIndex index) const final;
+  FieldObjectType GetObjectType(int x, int y) const final;
 
   void AddFieldObject(const FieldObject& field_object) final;
+
+  void RemoveFieldObject(FieldIndex index) final;
   void RemoveFieldObject(int x, int y) final;
+
+  bool HasObjectAt(FieldIndex index) const final;
   bool HasObjectAt(int x, int y) const final;
 
   const std::vector<FieldObject>& GetAllFieldObjects() final;
 private:
   void InitialiseObjectTypesFromDefinition(const std::vector<std::vector<FieldObjectType>>& field_objects);
-  inline int CalculateKeyFromPosition(int x, int y) const { return y * this->_x_dim + x; }
 
-  std::map<int, FieldObjectType> _field_object_types = std::map<int, FieldObjectType>();
+  std::map<FieldIndex, FieldObjectType> _field_object_types = 
+    std::map<FieldIndex, FieldObjectType>();
 
-  const int _x_dim;
+  const IField* _p_field;
 
   void UpdateFieldObjectsCache();
 

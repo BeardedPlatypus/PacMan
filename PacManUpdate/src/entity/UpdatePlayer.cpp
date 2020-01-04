@@ -9,6 +9,7 @@ namespace pacman {
 
 void UpdatePlayerLocation(IUpdatablePlayerEntity* p_player_entity,
                           const state::field::IField* p_field,
+                          object::BehaviourManager* p_behaviour_manager,
                           float dt) {
   if (!util::IsActive(p_player_entity)) {
     return;
@@ -52,13 +53,9 @@ void UpdatePlayerLocation(IUpdatablePlayerEntity* p_player_entity,
                                 distance_to_move);
 
   // Portal if necessary
-  if (p_player_entity->GetXAxis()->GetPosition() > (float)p_field->GetXDimension() - 2.5F &&
-      p_player_entity->GetMovingDirection() == state::Direction::Right) {
-    p_player_entity->GetXAxis()->Move(-1.F * p_field->GetXDimension() + 3.5F);
-  }
-  else if (p_player_entity->GetXAxis()->GetPosition() < 2.5F &&
-           p_player_entity->GetMovingDirection() == state::Direction::Left) {
-    p_player_entity->GetXAxis()->Move(p_field->GetXDimension() - 3.5F);
+  if (p_player_entity->GetActiveAxis()->GetPreviousIndex() !=
+      p_player_entity->GetActiveAxis()->GetCurrentIndex()) {
+    p_behaviour_manager->ExecuteBehaviourFor(p_player_entity);
   }
 }
 

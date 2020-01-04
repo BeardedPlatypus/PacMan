@@ -15,6 +15,14 @@ namespace field {
 
 TEST(FieldObjectManagerTest, GetAllFieldObjects_ReturnsCorrectResults) {
   // Setup
+  std::vector<std::vector<TileType>> field_tiles = {
+    { TileType::Space, TileType::Space, TileType::Space, },
+    { TileType::Space, TileType::Space, TileType::Space, },
+    { TileType::Space, TileType::Space, TileType::Space, },
+  };
+
+  auto p_field = IField::Construct(field_tiles);
+
   std::vector<std::vector<FieldObjectType>> field_objs = {
     { _, _, _, },
     { _, FieldObjectType::Portal, _},
@@ -22,7 +30,7 @@ TEST(FieldObjectManagerTest, GetAllFieldObjects_ReturnsCorrectResults) {
   };
 
   // Call
-  auto p_field_object_manager = IFieldObjectManager::Construct(field_objs);
+  auto p_field_object_manager = IFieldObjectManager::Construct(field_objs, p_field.get());
 
   // Assert
   const std::vector<FieldObject> objs = p_field_object_manager->GetAllFieldObjects();
@@ -38,12 +46,20 @@ TEST(FieldObjectManagerTest, GetAllFieldObjects_ReturnsCorrectResults) {
 
 TEST(FieldObjectManagerTest, AddFieldObject_AddsCorrectFieldObject) {
   // Setup
+  std::vector<std::vector<TileType>> field_tiles = {
+    { TileType::Space, TileType::Space, TileType::Space, },
+    { TileType::Space, TileType::Space, TileType::Space, },
+    { TileType::Space, TileType::Space, TileType::Space, },
+  };
+
+  auto p_field = IField::Construct(field_tiles);
+
   std::vector<std::vector<FieldObjectType>> field_objs = {
     { _, _, _, },
     { _, FieldObjectType::Portal, _},
     { _, _, _, },
   };
-  auto p_field_object_manager = IFieldObjectManager::Construct(field_objs);
+  auto p_field_object_manager = IFieldObjectManager::Construct(field_objs, p_field.get());
 
   FieldObject field_object = FieldObject(0, 2, FieldObjectType::Portal);
 
@@ -65,12 +81,21 @@ TEST(FieldObjectManagerTest, AddFieldObject_AddsCorrectFieldObject) {
 
 TEST(FieldObjectManagerTest, RemoveFieldObject_RemovesCorrectFieldObject) {
   // Setup
+  // Setup
+  std::vector<std::vector<TileType>> field_tiles = {
+    { TileType::Space, TileType::Space, TileType::Space, },
+    { TileType::Space, TileType::Space, TileType::Space, },
+    { TileType::Space, TileType::Space, TileType::Space, },
+  };
+
+  auto p_field = IField::Construct(field_tiles);
+
   std::vector<std::vector<FieldObjectType>> field_objs = {
     { _, _, _, },
     { _, FieldObjectType::Portal, _},
     { _, _, _, },
   };
-  auto p_field_object_manager = IFieldObjectManager::Construct(field_objs);
+  auto p_field_object_manager = IFieldObjectManager::Construct(field_objs, p_field.get());
 
   // Call
   p_field_object_manager->RemoveFieldObject(1, 1);
@@ -84,13 +109,22 @@ TEST(FieldObjectManagerTest, RemoveFieldObject_RemovesCorrectFieldObject) {
 
 TEST(FieldObjectManagerTest, HasObjectAt_ReturnsCorrectResult) {
   // Setup
+  // Setup
+  std::vector<std::vector<TileType>> field_tiles = {
+    { TileType::Space, TileType::Space, TileType::Space, },
+    { TileType::Space, TileType::Space, TileType::Space, },
+    { TileType::Space, TileType::Space, TileType::Space, },
+  };
+
+  auto p_field = IField::Construct(field_tiles);
+
   std::vector<std::vector<FieldObjectType>> field_objs = {
     { _, _, _, },
     { _, FieldObjectType::Portal, _},
     { _, _, _, },
   };
 
-  auto p_field_object_manager = IFieldObjectManager::Construct(field_objs);
+  auto p_field_object_manager = IFieldObjectManager::Construct(field_objs, p_field.get());
 
   // Call
   bool result = p_field_object_manager->HasObjectAt(1, 1);
