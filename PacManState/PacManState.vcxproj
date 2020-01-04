@@ -170,7 +170,6 @@
     <ClInclude Include="include\GameState.h" />
     <ClInclude Include="include\entity\IEntityAxis.h" />
     <ClInclude Include="include\field\object\FieldObjectType.h" />
-    <ClInclude Include="include\field\FieldCoordinate.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
