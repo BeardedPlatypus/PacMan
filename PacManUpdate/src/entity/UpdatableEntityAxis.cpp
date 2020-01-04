@@ -15,6 +15,12 @@ inline float UpdatableEntityAxis::GetPosition() const {
 }
 
 
+inline void UpdatableEntityAxis::SetPosition(float new_position) {
+  this->previous_index = this->GetCurrentIndex();
+  this->p_axis->SetPosition(new_position);
+}
+
+
 inline int UpdatableEntityAxis::GetCurrentIndex() const {
   return (int)floorf(this->GetPosition() + 0.5F);
 }
@@ -49,8 +55,7 @@ int UpdatableEntityAxis::GetPreviousTileCenter() const {
 
 
 void UpdatableEntityAxis::Move(float d_pos) {
-  this->previous_index = this->GetCurrentIndex();
-  this->p_axis->SetPosition(this->GetPosition() + d_pos);
+  this->SetPosition(this->GetPosition() + d_pos);
 }
 
 }

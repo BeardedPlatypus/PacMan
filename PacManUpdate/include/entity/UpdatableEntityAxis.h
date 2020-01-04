@@ -11,6 +11,7 @@ public:
   explicit UpdatableEntityAxis(state::IEntityAxis* p_axis);
 
   float GetPosition() const final;
+  void SetPosition(float new_position) final;
   int GetCurrentIndex() const final;
   int GetPreviousIndex() const final;
   int GetNextTileCenter() const final;

@@ -38,12 +38,18 @@ public:
   virtual float GetPosition() const = 0;
   
   /// <summary>
+  /// Sets the position on this <see cref="IUpdatableENtityAxis"/>.
+  /// </summary>
+  /// <param name="new_position">The new position.</param>
+  virtual void SetPosition(float new_position) = 0;
+  
+  /// <summary>
   /// Get the current index of the tile that the position on this 
   /// <see cref="IUpdatableEntityAxis"/> corresponds with.
   /// </summary>
   /// <returns>The current index of the tile.</returns>
   virtual int GetCurrentIndex() const = 0;
-  
+
   /// <summary>
   /// Get the the index of this <see cref="IUpdatableEntityAxis"/> before the 
   /// last <see cref="Move"/> call.
