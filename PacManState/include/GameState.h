@@ -26,6 +26,10 @@ public:
   IEntityState* GetPlayerState() const final;
   void SetPlayerState(std::unique_ptr<IEntityState> p_new_player_state) final;
 
+  void ConstructNewFieldObjects(const std::vector<std::vector<field::FieldObjectType>>& field_objects) final;
+
+  field::IFieldObjectManager* GetFieldObjectManager() const final;
+
 private:	
 	/// <summary>
 	/// The current state of this GameState state machine.
@@ -43,6 +47,8 @@ private:
   /// <see cref="IEntityState" />.
   /// </summary>
   std::unique_ptr<IEntityState> p_player_state;
+
+  std::unique_ptr<field::IFieldObjectManager> p_field_object_manager;
 };
 
 }

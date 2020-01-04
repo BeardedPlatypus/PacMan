@@ -3,10 +3,11 @@
 
 #include <memory>
 
+#include "entity/IEntityState.h"
 #include "GameMode.h"
 #include "field/Field.h"
-#include "entity/IEntityState.h"
-
+#include "field/object/FieldObjectType.h"
+#include "field/object/IFieldObjectManager.h"
 
 namespace pacman {
   namespace state {
@@ -70,6 +71,10 @@ namespace pacman {
       /// | (new this)->GetPlayerState() == p_player_state.get()
       /// </postcondition>
       virtual void SetPlayerState(std::unique_ptr<IEntityState> p_player_state) = 0;
+
+      virtual void ConstructNewFieldObjects(const std::vector<std::vector<field::FieldObjectType>>& field_objects) = 0;
+
+      virtual field::IFieldObjectManager* GetFieldObjectManager() const = 0;
     };
   }
 }

@@ -8,7 +8,7 @@ namespace pacman {
 namespace state {
 namespace field {
 
-DllExport std::vector<std::vector<FieldObjectType>> GetFieldDefinition();
+DllExport std::vector<std::vector<FieldObjectType>> GetFieldObjectDefinition();
 
 }
 }

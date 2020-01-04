@@ -12,6 +12,7 @@
 #include <entity/EntityState.h>
 
 #include <field/FieldDefinition.h>
+#include <field/object/FieldObjectDefinition.h>
 
 #include <SDL2/SDL.h>
 
@@ -24,6 +25,7 @@ int main(int argc, char **argv) {
   auto p_game_state = pacman::state::IGameState::Construct();
 
   p_game_state->ConstructNewField(pacman::state::field::GetFieldDefinition());
+  p_game_state->ConstructNewFieldObjects(pacman::state::field::GetFieldObjectDefinition());
 
   auto p_player_state = pacman::state::IEntityState::Construct(11.F,
                                                                20.F,

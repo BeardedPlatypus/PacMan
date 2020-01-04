@@ -11,7 +11,7 @@ namespace pacman {
 namespace state {
 namespace field {
 
-std::vector<std::vector<FieldObjectType>> GetFieldDefinition() {
+std::vector<std::vector<FieldObjectType>> GetFieldObjectDefinition() {
   std::vector<std::vector<FieldObjectType>> result = {
     { X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X, X },
     { X, X, _, _, _, _, _, _, _, _, _, X, _, _, _, _, _, _, _, _, _, X, X },
