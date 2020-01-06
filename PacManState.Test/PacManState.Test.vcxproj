@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="include\EntityAxisMock.h" />
     <ClInclude Include="include\EntityStateMock.h" />
+    <ClInclude Include="include\FieldMock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
