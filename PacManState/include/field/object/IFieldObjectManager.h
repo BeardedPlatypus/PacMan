@@ -14,7 +14,7 @@ namespace state {
 namespace field {
 
 /// <summary>
-/// <see cref="IFieldObjectManager"/> provides the interface to query whether
+/// <see cref="IFieldObjectManager"/> defines the interface to query whether
 /// objects are defined at specific locations on the field, and if they are
 /// which type they are. 
 /// </summary>
