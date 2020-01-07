@@ -71,9 +71,20 @@ namespace pacman {
       /// | (new this)->GetPlayerState() == p_player_state.get()
       /// </postcondition>
       virtual void SetPlayerState(std::unique_ptr<IEntityState> p_player_state) = 0;
-
+      
+      /// <summary>
+      /// Construct a new set of field objects as provided in the <paramref name="field_objects"/>.
+      /// </summary>
+      /// <param name="field_objects">The field objects.</param>
       virtual void ConstructNewFieldObjects(const std::vector<std::vector<field::FieldObjectType>>& field_objects) = 0;
-
+      
+      /// <summary>
+      /// Gets the <see cref="field::IFieldObjectManager"/> of this 
+      /// <see cref="IGameState"/>.
+      /// </summary>
+      /// <returns>
+      /// A pointer to the <See cref="IFieldObjectManager"/> of this <see cref="IGameState"/>.
+      /// </returns>
       virtual field::IFieldObjectManager* GetFieldObjectManager() const = 0;
     };
   }
