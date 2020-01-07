@@ -11,6 +11,7 @@ namespace field {
 /// objects with which entities can interact.
 /// </summary>
 enum class DllExport FieldObjectType {
+  Undefined = 0,
   Portal = 1,
 };
 

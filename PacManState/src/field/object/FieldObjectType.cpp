@@ -7,7 +7,8 @@ namespace state {
 namespace field {
 
 bool IsDefined(FieldObjectType t) {
-  return t == FieldObjectType::Portal;
+  return t == FieldObjectType::Undefined ||
+         t == FieldObjectType::Portal;
 }
 
 

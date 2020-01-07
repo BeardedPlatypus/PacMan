@@ -5,7 +5,7 @@
 
 #include "FieldMock.h"
 
-#define _ (FieldObjectType)-1
+#define _ FieldObjectType::Undefined
 
 using ::testing::Eq;
 using ::testing::IsTrue;
@@ -26,16 +26,14 @@ std::unique_ptr<IField> ConstructTestField() {
 }
 
 
-std::unique_ptr<IFieldObjectManager> ConstructTestObjectManager() {
-  auto p_field = ConstructTestField();
-
+std::unique_ptr<IFieldObjectManager> ConstructTestObjectManager(IField* p_field) {
   std::vector<std::vector<FieldObjectType>> field_objs = {
     { _, _, _, },
     { _, FieldObjectType::Portal, _},
     { _, _, _, },
   };
 
-  return IFieldObjectManager::Construct(field_objs, p_field.get());
+  return IFieldObjectManager::Construct(field_objs, p_field);
 }
 
 
@@ -66,8 +64,9 @@ TEST(FieldObjectManagerTest, GetAllFieldObjects_ReturnsCorrectResults) {
 
 
 TEST(FieldObjectManagerTest, AddFieldObject_AddsCorrectFieldObject) {
-  // Setup
-  auto p_field_object_manager = ConstructTestObjectManager();
+  // Setu
+  auto p_field = ConstructTestField();
+  auto p_field_object_manager = ConstructTestObjectManager(p_field.get());
 
   FieldObject field_object = FieldObject(0, 2, FieldObjectType::Portal);
 
@@ -83,13 +82,13 @@ TEST(FieldObjectManagerTest, AddFieldObject_AddsCorrectFieldObject) {
   ASSERT_THAT(portal.GetX(), Eq(0));
   ASSERT_THAT(portal.GetY(), Eq(2));
   ASSERT_THAT(portal.GetType(), Eq(FieldObjectType::Portal));
-
 }
 
 
 TEST(FieldObjectManagerTest, RemoveFieldObject_RemovesCorrectFieldObject) {
   // Setup
-  auto p_field_object_manager = ConstructTestObjectManager();
+  auto p_field = ConstructTestField();
+  auto p_field_object_manager = ConstructTestObjectManager(p_field.get());
 
   // Call
   p_field_object_manager->RemoveFieldObject(1, 1);
@@ -103,7 +102,8 @@ TEST(FieldObjectManagerTest, RemoveFieldObject_RemovesCorrectFieldObject) {
 
 TEST(FieldObjectManagerTest, HasObjectAt_ReturnsCorrectResult) {
   // Setup
-  auto p_field_object_manager = ConstructTestObjectManager();
+  auto p_field = ConstructTestField();
+  auto p_field_object_manager = ConstructTestObjectManager(p_field.get());
 
   // Call
   bool result = p_field_object_manager->HasObjectAt(1, 1);

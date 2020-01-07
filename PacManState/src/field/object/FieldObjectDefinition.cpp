@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "field/object/FieldObjectDefinition.h"
 
-#define X (FieldObjectType)-1
-#define _ (FieldObjectType)-1
-#define G (FieldObjectType)-1
+#define X FieldObjectType::Undefined
+#define _ FieldObjectType::Undefined
+#define G FieldObjectType::Undefined
 #define P FieldObjectType::Portal
 
 
