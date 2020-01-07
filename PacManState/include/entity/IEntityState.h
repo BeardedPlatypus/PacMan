@@ -71,9 +71,23 @@ public:
   /// | (new this)->GetSpeed() == <paramref name="speed" />
   /// </postcondition>
   virtual void SetSpeed(float speed) = 0;
-
+  
+  /// <summary>
+  /// Value indicating whether this <see cref="IEntityState"/> is moving.
+  /// </summary>
+  /// <returns>
+  ///   <c>true</c> if this instance is moving; otherwise, <c>false</c>.
+  /// </returns>
   virtual bool IsMoving() const = 0;
-
+  
+  /// <summary>
+  /// Sets the value indicating whether this <see cref="IEntityState"/> is 
+  /// moving.
+  /// </summary>
+  /// <param name="is_moving">New IsMoving Value.</param>
+  /// <post-condition>
+  /// | (new this)->IsMoving() == is_moving;
+  /// </post-condition>
   virtual void SetIsMoving(bool is_moving) = 0;
 };
 
