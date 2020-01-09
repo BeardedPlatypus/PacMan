@@ -9,7 +9,6 @@ namespace pacman {
 namespace update {
 namespace state_machine {
 
-
 TEST(NodeTest, Constructor_ExpectedValues) {
   // Setup
   AxisDirection expectedDirection = AxisDirection::Negative;
