@@ -27,7 +27,7 @@ public:
   /// </returns>
   static std::unique_ptr<IUpdatableEntityAxis> Construct(state::IEntityAxis* p_axis);
 
-  virtual ~IUpdatableEntityAxis() {}
+  virtual ~IUpdatableEntityAxis() = default;
   
   /// <summary>
   /// Get the position on this <see cref="IUpdatableEntityAxis"/>.
