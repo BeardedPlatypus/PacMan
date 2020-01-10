@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IControllerCommand.h"
+#include "../../PacManControllerAPI/include/IControllerCommand.h"
 #include <entity/IEntityState.h>
 #include <optional>
 #include "entity/IPlayerMovementAxis.h"
