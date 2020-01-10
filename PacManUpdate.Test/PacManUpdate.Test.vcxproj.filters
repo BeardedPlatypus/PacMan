@@ -41,5 +41,8 @@
     <ClInclude Include="include\NodeMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\PlayerMovementAxisMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
