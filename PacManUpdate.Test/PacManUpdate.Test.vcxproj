@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\commands\ChangePlayerDirectionCommandTest.cpp" />
     <ClCompile Include="src\commands\QuitCommandTest.cpp" />
     <ClCompile Include="src\entity\PlayerMovementAxisTest.cpp" />
     <ClCompile Include="src\entity\UpdatableEntityAxisTest.cpp" />
