@@ -25,7 +25,7 @@ public:
   /// </param>
   /// <param name="x"> The x location at which this behaviour is executed. </param>
   /// <param name="y"> The y location at which this behaviour is executed. </param>
-  virtual void Execute(IUpdatablePlayerEntity* p_entity, int x, int y) = 0;
+  virtual void Execute(IUpdatablePlayerEntity* p_entity) = 0;
 };
 
 }

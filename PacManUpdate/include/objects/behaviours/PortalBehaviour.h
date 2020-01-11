@@ -42,7 +42,7 @@ public:
   /// <param name="p_entity">The <see cref="IUpdatablePlayerEntity" /> on which this behaviour should act.</param>
   /// <param name="x">The x location at which this behaviour is executed.</param>
   /// <param name="y">The y location at which this behaviour is executed.</param>
-  void Execute(IUpdatablePlayerEntity* p_entity, int x, int y) override;
+  void Execute(IUpdatablePlayerEntity* p_entity) override;
 
 private:
   const state::field::IField* _p_field;

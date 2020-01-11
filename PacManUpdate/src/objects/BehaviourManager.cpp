@@ -72,7 +72,7 @@ void BehaviourManager::ExecuteBehaviourFor(IUpdatablePlayerEntity* p_entity) {
   state::field::FieldObjectType type = this->_p_field_object_manager->GetObjectType(x, y);
 
   for (IObjectBehaviour* p_behaviour : this->_behaviour_mapping.at(type)) {
-    p_behaviour->Execute(p_entity, x, y);
+    p_behaviour->Execute(p_entity);
   }
 }
 
