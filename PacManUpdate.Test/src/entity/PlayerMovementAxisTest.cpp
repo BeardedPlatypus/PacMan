@@ -15,7 +15,8 @@ TEST(PlayerMovementAxisTest, Constructor_ExpectedValues) {
 }
 
 
-struct PlayerMovementAxisStateMachineTestValues {
+class PlayerMovementAxisStateMachineTestValues {
+public:
   PlayerMovementAxisStateMachineTestValues(std::vector<state_machine::PlayerControlEvent> events,
                                            AxisDirection expected_value) :
       events(events),
