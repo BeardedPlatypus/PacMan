@@ -207,6 +207,12 @@ namespace util {
   /// A pointer to the <see cref="IUpdatablePlayerEntity"/> to be updated.
   /// </param>
   void UpdateDirection(IUpdatablePlayerEntity* p_player_entity);
+
+  /// <summary>
+  /// Update the previous direction of <paramref name="p_player_entity"/>.
+  /// </summary>
+  /// <param name="p_player_entity"/> The <see cref=IUpdatablePlayerEntity"/> to update.</param>
+  void UpdatePreviousDirection(IUpdatablePlayerEntity* p_player_entity);
 }
 }
 }

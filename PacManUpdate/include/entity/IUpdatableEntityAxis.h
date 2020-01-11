@@ -99,6 +99,18 @@ public:
   /// </summary>
   /// <param name="new_direction">The new direction.</param>
   virtual void SetCurrentAxisDirection(AxisDirection new_direction) = 0;
+  
+  /// <summary>
+  /// Gets the <see cref="AxisDirection"/> at the previous frame.
+  /// </summary>
+  /// <returns>The previous <see cref="AxisDirection"/></returns>
+  virtual AxisDirection GetPreviousAxisDirection() const = 0;
+
+  /// <summary>
+  /// Sets the <see cref="AxisDirection"/> at the previous frame.
+  /// </summary>
+  /// <returns>The previous <see cref="AxisDirection"/></returns>
+  virtual void SetPreviousAxisDirection(AxisDirection axis_direction) = 0;
 };
 
 }

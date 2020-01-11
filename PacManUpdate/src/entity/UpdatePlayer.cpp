@@ -15,6 +15,8 @@ void UpdatePlayerLocation(IUpdatablePlayerEntity* p_player_entity,
     return;
   }
 
+  util::UpdatePreviousDirection(p_player_entity);
+
   float distance_to_move = p_player_entity->GetSpeed() * dt;
 
   if (util::ShouldUpdateDirectionActiveAxis(p_player_entity)) {
@@ -52,11 +54,7 @@ void UpdatePlayerLocation(IUpdatablePlayerEntity* p_player_entity,
                                 p_field,
                                 distance_to_move);
 
-  // Portal if necessary
-  if (p_player_entity->GetActiveAxis()->GetPreviousIndex() !=
-      p_player_entity->GetActiveAxis()->GetCurrentIndex()) {
-    p_behaviour_manager->ExecuteBehaviourFor(p_player_entity);
-  }
+  p_behaviour_manager->ExecuteBehaviourFor(p_player_entity);
 }
 
 }

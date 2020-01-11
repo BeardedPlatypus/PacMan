@@ -43,7 +43,7 @@ TEST(PortalBehaviourTest, GivenAPlayerEntity_WhenPortalBehaviourIsExecutedAtAMap
   auto p_entity = IUpdatablePlayerEntity::Construct(p_entity_state.get());
 
   // When
-  portal_behaviour.Execute(p_entity.get(), initial_x, initial_y);
+  portal_behaviour.Execute(p_entity.get());
 
   // Then
   ASSERT_THAT(p_entity_state->GetXAxis()->GetPosition(), Eq(goal_x));
@@ -68,7 +68,7 @@ TEST(PortalBehaviourTest, GivenAPlayerEntity_WhenPortalBehaviourIsExecutedAtANon
   auto p_entity = IUpdatablePlayerEntity::Construct(p_entity_state.get());
 
   // When
-  portal_behaviour.Execute(p_entity.get(), initial_x, initial_y);
+  portal_behaviour.Execute(p_entity.get());
 
   // Then
   ASSERT_THAT(p_entity_state->GetXAxis()->GetPosition(), Eq(initial_x));

@@ -19,8 +19,11 @@ public:
 
   void Move(float d_pos) final;
 
-  AxisDirection GetCurrentAxisDirection() const final { return this->current_direction; }
-  void SetCurrentAxisDirection(AxisDirection new_direction) final { this->current_direction = new_direction; }
+  inline AxisDirection GetCurrentAxisDirection() const final { return this->current_direction; }
+  inline void SetCurrentAxisDirection(AxisDirection new_direction) final { this->current_direction = new_direction; }
+
+  inline AxisDirection GetPreviousAxisDirection() const final { return this->previous_direction; }
+  inline void SetPreviousAxisDirection(AxisDirection new_direction) final { this->previous_direction = new_direction; }
 
 private:  
   /// <summary>
@@ -37,6 +40,11 @@ private:
   /// The current direction
   /// </summary>
   AxisDirection current_direction;
+  
+  /// <summary>
+  /// The previous direction
+  /// </summary>
+  AxisDirection previous_direction;
 };
 
 }
