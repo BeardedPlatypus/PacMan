@@ -22,7 +22,7 @@ std::unique_ptr<state::field::IField> ConstructTestField() {
   return state::field::IField::Construct(field_tiles);
 }
 
-TEST(PortalBehaviourTest, GivenAPlayerEntity_WhenPortalBehaviourIsExecutedAtAMappedTile_ThenThePlayerIsMoved) {
+TEST(PortalBehaviourTest, GivenAPlayerEntity_WhenPortalBehaviourIsExecutedAtAMappedTileAndThePlayerShouldMove_ThenThePlayerIsMoved) {
   // Given
   std::unique_ptr<state::field::IField> p_field = ConstructTestField();
 
@@ -39,8 +39,11 @@ TEST(PortalBehaviourTest, GivenAPlayerEntity_WhenPortalBehaviourIsExecutedAtAMap
 
   auto portal_behaviour = PortalBehaviour(p_field.get(), mapping);
 
-  auto p_entity_state = state::IEntityState::Construct(0.F, 1.F, state::Direction::Left, 30.F);
+  auto p_entity_state = state::IEntityState::Construct(1.F, 1.F, state::Direction::Left, 30.F);
   auto p_entity = IUpdatablePlayerEntity::Construct(p_entity_state.get());
+
+  p_entity->GetXAxis()->SetPosition(initial_x);
+  p_entity->GetYAxis()->SetPosition(initial_y);
 
   // When
   portal_behaviour.Execute(p_entity.get());
