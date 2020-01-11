@@ -3,8 +3,6 @@
 
 #include "field/object/IFieldObjectManager.h"
 
-#define _ (FieldObjectType)-1
-
 using ::testing::Eq;
 
 namespace pacman {

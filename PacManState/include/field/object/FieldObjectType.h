@@ -13,6 +13,8 @@ namespace field {
 enum class DllExport FieldObjectType {
   Undefined = 0,
   Portal = 1,
+  BigDot = 2,
+  SmallDot = 3,
 };
 
 
@@ -22,7 +24,7 @@ enum class DllExport FieldObjectType {
 /// <param name="t"> The type to check. </param>
 /// <returns>
 /// <c>true</c> if <paramref name="t"/> is defined; otherwise <c>false</c>.
-bool IsDefined(FieldObjectType t);
+bool DllExport IsDefined(FieldObjectType t);
 
 }
 }

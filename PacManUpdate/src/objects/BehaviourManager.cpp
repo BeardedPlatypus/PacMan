@@ -32,6 +32,8 @@ void BehaviourManager::InitialiseBehaviourMapping() {
 
   this->_behaviour_mapping[state::field::FieldObjectType::Undefined] = std::vector<IObjectBehaviour*>();
   this->_behaviour_mapping[state::field::FieldObjectType::Portal] = portal_behaviours;
+  this->_behaviour_mapping[state::field::FieldObjectType::SmallDot] = std::vector<IObjectBehaviour*>();
+  this->_behaviour_mapping[state::field::FieldObjectType::BigDot] = std::vector<IObjectBehaviour*>();
 }
 
 
