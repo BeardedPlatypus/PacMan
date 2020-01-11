@@ -29,7 +29,12 @@ void FieldObjectManager::InitialiseObjectTypesFromDefinition(const std::vector<s
 
 
 FieldObjectType FieldObjectManager::GetObjectType(FieldIndex index) const {
-  return this->_field_object_types.at(index);
+  if (this->HasObjectAt(index)) {
+    return this->_field_object_types.at(index);
+  }
+  else {
+    return FieldObjectType::Undefined;
+  }
 }
 
 
@@ -48,6 +53,9 @@ void FieldObjectManager::AddFieldObject(const FieldObject& field_object) {
 
 
 inline void FieldObjectManager::RemoveFieldObject(FieldIndex index) {
+  if (!this->HasObjectAt(index)) 
+    return;
+
   this->_field_object_types.erase(index);
   this->_cache_invalidated = true;
 }

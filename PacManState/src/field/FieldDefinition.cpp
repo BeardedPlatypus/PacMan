@@ -25,7 +25,7 @@ std::vector<std::vector<TileType>> GetFieldDefinition() {
     { O, O, O, O, O, X, _, X, _, _, _, _, _, _, _, X, _, X, O, O, O, O, O }, 
     { O, O, O, O, O, X, _, X, _, X, X, G, X, X, _, X, _, X, O, O, O, O, O }, 
     { O, X, X, X, X, X, _, X, _, X, _, _, _, X, _, X, _, X, X, X, X, X, O }, 
-    { _, _, _, _, _, _, _, _, _, X, _, _, _, X, _, _, _, _, _, _, _, _, _ }, 
+    { X, _, _, _, _, _, _, _, _, X, _, _, _, X, _, _, _, _, _, _, _, _, X }, 
     { O, X, X, X, X, X, _, X, _, X, X, X, X, X, _, X, _, X, X, X, X, X, O }, 
     { O, O, O, O, O, X, _, X, _, _, _, _, _, _, _, X, _, X, O, O, O, O, O }, 
     { O, O, O, O, O, X, _, X, _, X, X, X, X, X, _, X, _, X, O, O, O, O, O }, 

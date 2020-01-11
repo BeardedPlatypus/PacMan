@@ -100,6 +100,21 @@ TEST(FieldObjectManagerTest, RemoveFieldObject_RemovesCorrectFieldObject) {
 }
 
 
+TEST(FieldObjectManagerTest, RemoveFieldObject_AlreadyEmpty_DoesNotModify) {
+  // Setup
+  auto p_field = ConstructTestField();
+  auto p_field_object_manager = ConstructTestObjectManager(p_field.get());
+
+  // Call
+  p_field_object_manager->RemoveFieldObject(0, 0);
+
+  // Assert
+  const std::vector<FieldObject> objs = p_field_object_manager->GetAllFieldObjects();
+  ASSERT_THAT(objs.size(), Eq(1));
+  ASSERT_THAT(p_field_object_manager->HasObjectAt(1, 1), IsTrue());
+}
+
+
 TEST(FieldObjectManagerTest, HasObjectAt_ReturnsCorrectResult) {
   // Setup
   auto p_field = ConstructTestField();
