@@ -86,6 +86,7 @@ steps:
     extraProperties: |
       sonar.cfamily.build-wrapper-output=$(buildWrapperOutputDir)
       sonar.cfamily.vscoveragexml.reportsPath=$(coverageFiles)
+      sonar.cfamily.cache.enabled=false
       
 - task: PowerShell@2
   displayName: MSBuild
