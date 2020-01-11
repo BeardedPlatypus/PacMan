@@ -30,6 +30,7 @@ void BehaviourManager::InitialiseBehaviourMapping() {
     this->_object_behaviours.at(std::type_index(typeid(PortalBehaviour))).get() 
   };
 
+  this->_behaviour_mapping[state::field::FieldObjectType::Undefined] = std::vector<IObjectBehaviour*>();
   this->_behaviour_mapping[state::field::FieldObjectType::Portal] = portal_behaviours;
 }
 
@@ -67,10 +68,6 @@ void BehaviourManager::InitialisePortalBehaviour() {
 void BehaviourManager::ExecuteBehaviourFor(IUpdatablePlayerEntity* p_entity) {
   int x = p_entity->GetXAxis()->GetCurrentIndex();
   int y = p_entity->GetYAxis()->GetCurrentIndex();
-
-  if (!this->_p_field_object_manager->HasObjectAt(x, y)) {
-    return;
-  }
 
   state::field::FieldObjectType type = this->_p_field_object_manager->GetObjectType(x, y);
 
