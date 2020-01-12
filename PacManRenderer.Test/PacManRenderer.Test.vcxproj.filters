@@ -21,6 +21,9 @@
     <ClCompile Include="src\FieldLayerHelperTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\objects\ObjectRenderers\SmallDotRendererTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\FieldMock.h">
