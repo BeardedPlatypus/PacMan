@@ -41,10 +41,6 @@ namespace values {
   /// </summary>
   const std::string field_sprite_gate = "gate";
   
-  /// <summary>
-  /// The tile size
-  /// </summary>
-  const int tile_size = 8;
 }
 }
 }
