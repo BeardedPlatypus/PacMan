@@ -24,6 +24,8 @@ public:
   /// Construct a new <see cref="FieldLayer"/> observing the specified 
   /// <see cref="IField" />.
   /// </summary>
+  /// <param name="scale">The scale with which to render.</param>
+  /// <param name="p_view_api">A pointer to the <see cref="view::IViewAPI"/>.</param>
   /// <param name="p_field">The p field.</param>
   FieldLayer(float scale,
              view::IViewAPI* p_view_api,
