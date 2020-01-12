@@ -56,4 +56,3 @@ keyboard::Scancode ToInternal(api::Scancode scancode) {
 
 }
 }
-

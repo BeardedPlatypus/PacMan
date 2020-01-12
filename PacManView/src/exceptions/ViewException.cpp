@@ -12,4 +12,3 @@ ViewException::ViewException(const std::string& what_arg,
 
 } // view
 } // pacman
-

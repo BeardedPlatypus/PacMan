@@ -469,4 +469,3 @@ TEST(SpriteManagerTest, GetSpriteAnimation_NoExistingLabelThrowsException) {
 
 }
 }
-
