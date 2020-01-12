@@ -81,14 +81,14 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>GTEST_LINKED_AS_SHARED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)PacManState\include;$(SolutionDir)PacManRenderer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)PacManRenderer\include;$(SolutionDir)PacManState\include;$(SolutionDir)PacManViewAPI\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PacManRenderer.lib;PacManState.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PacManRenderer.lib;PacManState.lib;PacManViewAPI.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo "" &gt; "$(TargetPath).is_google_test"
@@ -101,13 +101,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)PacManState\include;$(SolutionDir)PacManViewAPI\include;$(SolutionDir)PacManRenderer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)PacManRenderer\include;$(SolutionDir)PacManState\include;$(SolutionDir)PacManViewAPI\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GTEST_LINKED_AS_SHARED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PacManRenderer.lib;PacManState.lib;PacManViewAPI.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PacManRenderer.lib;PacManState.lib;PacManViewAPI.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo "" &gt; "$(TargetPath).is_google_test"
