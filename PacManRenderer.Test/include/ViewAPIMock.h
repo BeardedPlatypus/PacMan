@@ -7,7 +7,7 @@
 #include <vector>
 
 
-class ViewAPI : public pacman::view::IViewAPI {
+class ViewAPIMock : public pacman::view::IViewAPI {
 public:
   MOCK_METHOD(void, Initialise, (int, int));
   MOCK_METHOD(void, RequestSprite, ((const std::string&),
