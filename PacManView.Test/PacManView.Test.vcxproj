@@ -135,11 +135,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\ClipRectTest.cpp" />
+    <ClCompile Include="src\sprite\ClipRectTest.cpp" />
     <ClCompile Include="src\renderer\RendererTest.cpp" />
-    <ClCompile Include="src\SpriteAnimationTest.cpp" />
-    <ClCompile Include="src\SpriteManagerTest.cpp" />
-    <ClCompile Include="src\SpriteTest.cpp" />
+    <ClCompile Include="src\sprite\SpriteAnimationTest.cpp" />
+    <ClCompile Include="src\sprite\SpriteManagerTest.cpp" />
+    <ClCompile Include="src\sprite\SpriteTest.cpp" />
     <ClCompile Include="src\TextureManagerTest.cpp" />
     <ClCompile Include="src\renderer\ViewCoreTest.cpp" />
   </ItemGroup>
