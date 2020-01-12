@@ -26,7 +26,7 @@ std::unique_ptr<IField> ConstructTestField() {
 }
 
 
-std::unique_ptr<IFieldObjectManager> ConstructTestObjectManager(IField* p_field) {
+std::unique_ptr<IFieldObjectManager> ConstructTestObjectManager(const IField* p_field) {
   std::vector<std::vector<FieldObjectType>> field_objs = {
     { _, _, _, },
     { _, FieldObjectType::Portal, _},
