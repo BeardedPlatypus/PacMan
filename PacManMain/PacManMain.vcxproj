@@ -121,7 +121,7 @@ xcopy /y /d "$(SolutionDir)\libs\SDL2_image\*.dll" "$(OutDir)"
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>PacManState.lib;PacManControllerAPI.lib;PacManRendererAPI.lib;PacManUpdateAPI.lib;PacManViewAPI.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
