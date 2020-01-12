@@ -26,5 +26,8 @@
     <ClInclude Include="include\FieldMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ViewAPIMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
