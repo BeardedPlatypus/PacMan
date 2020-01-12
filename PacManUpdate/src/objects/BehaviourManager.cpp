@@ -2,6 +2,7 @@
 #include "objects/BehaviourManager.h"
 
 #include "objects/behaviours/PortalBehaviour.h"
+#include "objects/behaviours/RemoveObjectBehaviour.h"
 
 namespace pacman {
 namespace update {
@@ -22,18 +23,24 @@ void BehaviourManager::Initialise(const state::field::IField* p_field,
 
 void BehaviourManager::InitialiseBehaviours() {
   InitialisePortalBehaviour();
+  InitialiseDotsBehaviour();
 }
 
 
 void BehaviourManager::InitialiseBehaviourMapping() {
+
   std::vector<IObjectBehaviour*> portal_behaviours = {
     this->_object_behaviours.at(std::type_index(typeid(PortalBehaviour))).get() 
   };
 
+  std::vector<IObjectBehaviour*> dots_behaviours = {
+    this->_object_behaviours.at(std::type_index(typeid(RemoveObjectBehaviour))).get()
+  };
+
   this->_behaviour_mapping[state::field::FieldObjectType::Undefined] = std::vector<IObjectBehaviour*>();
   this->_behaviour_mapping[state::field::FieldObjectType::Portal] = portal_behaviours;
-  this->_behaviour_mapping[state::field::FieldObjectType::SmallDot] = std::vector<IObjectBehaviour*>();
-  this->_behaviour_mapping[state::field::FieldObjectType::BigDot] = std::vector<IObjectBehaviour*>();
+  this->_behaviour_mapping[state::field::FieldObjectType::SmallDot] = dots_behaviours;
+  this->_behaviour_mapping[state::field::FieldObjectType::BigDot] = dots_behaviours;
 }
 
 
@@ -64,6 +71,12 @@ void BehaviourManager::InitialisePortalBehaviour() {
 
   this->_object_behaviours[std::type_index(typeid(PortalBehaviour))] =
     std::make_unique<PortalBehaviour>(this->_p_field, mapping);
+}
+
+
+void BehaviourManager::InitialiseDotsBehaviour() {
+  this->_object_behaviours[std::type_index(typeid(RemoveObjectBehaviour))] =
+    std::make_unique<RemoveObjectBehaviour>(this->_p_field_object_manager);
 }
 
 
