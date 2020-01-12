@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "entity/PlayerLayer.h"
 
+#include "CommonSpriteValues.h"
 #include "entity/EntitySpriteValues.h"
 #include "field/FieldSpriteValues.h"
 

@@ -3,6 +3,7 @@
 
 #include <utility>
 
+#include "CommonSpriteValues.h"
 #include "field/FieldSpriteValues.h"
 #include "field/FieldLayerHelper.h"
 
