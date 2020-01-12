@@ -18,7 +18,7 @@ public:
   MOCK_METHOD(void, RequestSpriteAnimation, ((const std::string&),
                                              float,
                                              (const std::vector<std::string>&)));
-  MOCK_METHOD(float, GetAnimationTime, ((const std::string&)));
+  MOCK_METHOD(float, GetAnimationTime, ((const std::string&)), (const));
   MOCK_METHOD(void, UpdateAnimation, ((const std::string&), float));
   MOCK_METHOD(void, SetAnimationToTime, ((const std::string&), float));
   MOCK_METHOD(void, ResetAnimationTime, ((const std::string&)));
