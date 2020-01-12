@@ -1,7 +1,7 @@
 #pragma once
 
-#include "IViewAPI.h"
-#include "gmock/gmock.h"
+#include <IViewAPI.h>
+#include <gmock/gmock.h>
 
 #include <string>
 #include <vector>
