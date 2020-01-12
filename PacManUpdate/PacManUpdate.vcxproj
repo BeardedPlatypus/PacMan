@@ -181,6 +181,7 @@
     <ClInclude Include="include\objects\BehaviourManager.h" />
     <ClInclude Include="include\objects\behaviours\PortalBehaviour.h" />
     <ClInclude Include="include\objects\behaviours\IObjectBehaviour.h" />
+    <ClInclude Include="include\objects\behaviours\RemoveObjectBehaviour.h" />
     <ClInclude Include="include\state_machine\events\PlayerControlEvent.h" />
     <ClInclude Include="include\state_machine\INode.h" />
     <ClInclude Include="include\state_machine\IStateMachine.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="src\entity\util\PlayerUpdateUtils.cpp" />
     <ClCompile Include="src\objects\BehaviourManager.cpp" />
     <ClCompile Include="src\objects\behaviours\PortalBehaviour.cpp" />
+    <ClCompile Include="src\objects\behaviours\RemoveObjectBehaviour.cpp" />
     <ClCompile Include="src\state_machine\INode.cpp" />
     <ClCompile Include="src\state_machine\IStateMachine.cpp" />
     <ClCompile Include="src\state_machine\Node.cpp" />

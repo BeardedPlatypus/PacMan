@@ -1,8 +1,7 @@
 #pragma once
 
 #include "objects/behaviours/IObjectBehaviour.h"
-#include "entity/IUpdatablePlayerEntity.h"
-#include "IGameState.h"
+#include "field/IField.h"
 
 #include <unordered_map>
 
