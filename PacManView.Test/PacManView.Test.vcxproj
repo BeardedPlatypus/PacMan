@@ -142,6 +142,7 @@
     <ClCompile Include="src\sprite\SpriteTest.cpp" />
     <ClCompile Include="src\TextureManagerTest.cpp" />
     <ClCompile Include="src\renderer\ViewCoreTest.cpp" />
+    <ClCompile Include="src\texture\TextureTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\DispatcherMock.h" />

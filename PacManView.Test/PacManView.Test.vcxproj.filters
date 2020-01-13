@@ -39,6 +39,9 @@
     <ClCompile Include="src\sprite\ClipRectTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\texture\TextureTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\RendererMock.h">
