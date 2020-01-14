@@ -140,7 +140,7 @@
     <ClCompile Include="src\sprite\SpriteAnimationTest.cpp" />
     <ClCompile Include="src\sprite\SpriteManagerTest.cpp" />
     <ClCompile Include="src\sprite\SpriteTest.cpp" />
-    <ClCompile Include="src\TextureManagerTest.cpp" />
+    <ClCompile Include="src\texture\TextureManagerTest.cpp" />
     <ClCompile Include="src\renderer\ViewCoreTest.cpp" />
     <ClCompile Include="src\texture\TextureTest.cpp" />
   </ItemGroup>
