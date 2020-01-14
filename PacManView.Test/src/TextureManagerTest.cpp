@@ -28,11 +28,13 @@ namespace view {
 TEST(TextureManagerTest, loadTexture_Single) {
   // Given
   RendererMock renderer;
+  auto p_return_tex = std::make_unique<TextureMock>();
+  ITexture& expected_tex = *(p_return_tex.get());
 
   const std::string texture_path = "SomeTexturePath.png";
   
   EXPECT_CALL(renderer, LoadTexture(StrEq(texture_path)))
-	  .WillOnce(Return(ByMove(std::make_unique<TextureMock>())));
+	  .WillOnce(Return(ByMove(std::move(p_return_tex))));
 
   std::unique_ptr<ITextureManager> p_tex_man =
 	  ITextureManager::Construct(renderer);
@@ -45,6 +47,7 @@ TEST(TextureManagerTest, loadTexture_Single) {
   // Then
   EXPECT_THAT(p_tex_man->HasTexture(texture_path), Eq(true));
   EXPECT_THAT(p_tex_man->HasTexture("SomeUnloadedPath.png"), Eq(false));
+  EXPECT_THAT(p_tex_man->GetTexture(texture_path), Ref(expected_tex));
 }
 
 // Given a TextureManager
@@ -55,16 +58,23 @@ TEST(TextureManagerTest, loadTexture_Multiple) {
   // Given
   RendererMock renderer;
 
+  auto p_return_tex1 = std::make_unique<TextureMock>();
+  ITexture& expected_tex1 = *(p_return_tex1.get());
+  auto p_return_tex2 = std::make_unique<TextureMock>();
+  ITexture& expected_tex2 = *(p_return_tex2.get());
+  auto p_return_tex3 = std::make_unique<TextureMock>();
+  ITexture& expected_tex3 = *(p_return_tex3.get());
+
   const std::string texture_path1 = "SomeTexturePath1.png";
   const std::string texture_path2 = "SomeTexturePath2.png";
   const std::string texture_path3 = "SomeTexturePath3.png";
   
   EXPECT_CALL(renderer, LoadTexture(StrEq(texture_path1)))
-	  .WillOnce(Return(ByMove(std::make_unique<TextureMock>())));
+	  .WillOnce(Return(ByMove(std::move(p_return_tex1))));
   EXPECT_CALL(renderer, LoadTexture(StrEq(texture_path2)))
-	  .WillOnce(Return(ByMove(std::make_unique<TextureMock>())));
+	  .WillOnce(Return(ByMove(std::move(p_return_tex2))));
   EXPECT_CALL(renderer, LoadTexture(StrEq(texture_path3)))
-	  .WillOnce(Return(ByMove(std::make_unique<TextureMock>())));
+	  .WillOnce(Return(ByMove(std::move(p_return_tex3))));
 
   std::unique_ptr<ITextureManager> p_tex_man =
 	  ITextureManager::Construct(renderer);
@@ -82,6 +92,9 @@ TEST(TextureManagerTest, loadTexture_Multiple) {
   EXPECT_THAT(p_tex_man->HasTexture(texture_path1), Eq(true));
   EXPECT_THAT(p_tex_man->HasTexture(texture_path2), Eq(true));
   EXPECT_THAT(p_tex_man->HasTexture(texture_path3), Eq(true));
+  EXPECT_THAT(p_tex_man->GetTexture(texture_path1), Ref(expected_tex1));
+  EXPECT_THAT(p_tex_man->GetTexture(texture_path2), Ref(expected_tex2));
+  EXPECT_THAT(p_tex_man->GetTexture(texture_path3), Ref(expected_tex3));
   EXPECT_THAT(p_tex_man->HasTexture("SomeUnloadedPath.png"), Eq(false));
 }
 
@@ -92,11 +105,13 @@ TEST(TextureManagerTest, loadTexture_Multiple) {
 TEST(TextureManagerTest, loadTexture_SameTextureMultiple) {
   // Given
   RendererMock renderer;
+  auto p_return_tex = std::make_unique<TextureMock>();
+  ITexture& expected_tex = *(p_return_tex.get());
 
   const std::string texture_path = "SomeTexturePath.png";
   
   EXPECT_CALL(renderer, LoadTexture(StrEq(texture_path)))
-	  .WillOnce(Return(ByMove(std::make_unique<TextureMock>())));
+	  .WillOnce(Return(ByMove(std::move(p_return_tex))));
 
   std::unique_ptr<ITextureManager> p_tex_man =
 	  ITextureManager::Construct(renderer);
@@ -111,6 +126,7 @@ TEST(TextureManagerTest, loadTexture_SameTextureMultiple) {
   // Then
   EXPECT_THAT(p_tex_man->HasTexture(texture_path), Eq(true));
   EXPECT_THAT(p_tex_man->HasTexture("SomeUnloadedPath.png"), Eq(false));
+  EXPECT_THAT(p_tex_man->GetTexture(texture_path), Ref(expected_tex));
 }
 
 }
