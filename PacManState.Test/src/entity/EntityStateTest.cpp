@@ -5,6 +5,8 @@
 
 #pragma region using_statements
 using ::testing::Eq;
+using ::testing::IsFalse;
+using ::testing::IsTrue;
 #pragma endregion
 
 namespace pacman {
@@ -28,6 +30,7 @@ TEST(EntityStateTest, ctor_setsExpectedValues) {
   ASSERT_THAT(p_state->GetYAxis()->GetPosition(), Eq(expected_y));
   ASSERT_THAT(p_state->GetDirection(), Eq(expected_dir));
   ASSERT_THAT(p_state->GetSpeed(), Eq(expected_speed));
+  ASSERT_THAT(p_state->IsMoving(), IsFalse());
 }
 
 
@@ -81,6 +84,37 @@ TEST(EntityStateTest, SetYPosition_ValidFloat) {
   ASSERT_THAT(p_state->GetYAxis()->GetPosition(), Eq(expected_y));
 }
 
+
+TEST(EntityStateTest, SetSpeed_UpdatesCorrectly) {
+  // Setup
+  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.F,
+                                                                  0.F,
+                                                                  Direction::Left,
+                                                                  0.F);
+
+  float expected_new_speed = 50.F;
+
+  // Call
+  p_state->SetSpeed(expected_new_speed);
+
+  // Assert
+  EXPECT_THAT(p_state->GetSpeed(), Eq(expected_new_speed));
+}
+
+
+TEST(EntityStateTest, SetIsMoving_UpdatesCorrectly) {
+  // Setup
+  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.F,
+                                                                  0.F,
+                                                                  Direction::Left,
+                                                                  0.F);
+
+  // Call
+  p_state->SetIsMoving(true);
+
+  // Assert
+  EXPECT_THAT(p_state->IsMoving(), IsTrue());
+}
 
 }
 }
