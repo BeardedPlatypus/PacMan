@@ -47,5 +47,8 @@
     <ClInclude Include="include\PlayerMovementAxisMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\UpdatableEntityAxisMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
