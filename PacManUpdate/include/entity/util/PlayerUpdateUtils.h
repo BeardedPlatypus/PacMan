@@ -212,7 +212,7 @@ namespace util {
   /// Update the previous direction of <paramref name="p_player_entity"/>.
   /// </summary>
   /// <param name="p_player_entity"/> The <see cref=IUpdatablePlayerEntity"/> to update.</param>
-  void UpdatePreviousDirection(IUpdatablePlayerEntity* p_player_entity);
+  void UpdatePreviousDirection(const IUpdatablePlayerEntity* p_player_entity);
 }
 }
 }

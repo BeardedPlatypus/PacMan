@@ -195,7 +195,7 @@ void UpdateDirection(IUpdatablePlayerEntity* p_player_entity) {
 }
 
 
-void UpdatePreviousDirection(IUpdatablePlayerEntity* p_player_entity) {
+void UpdatePreviousDirection(const IUpdatablePlayerEntity* p_player_entity) {
   p_player_entity->GetActiveAxis()->SetPreviousAxisDirection(p_player_entity->GetActiveAxis()->GetCurrentAxisDirection());
 }
 
