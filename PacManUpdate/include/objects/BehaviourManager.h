@@ -13,14 +13,33 @@
 namespace pacman {
 namespace update {
 namespace object {
-
+	
+/// <summary>
+/// <see cref="BehaviourManager"/> provides the implementation to manage
+/// the different behaviours that are associated with the
+/// <see cref="state::field::FieldObjectType"/>s
+/// </summary>
 class BehaviourManager {
-public:
+public:	
+  /// <summary>
+  /// Creates a new <see cref="BehaviourManager"/>.
+  /// </summary>
   BehaviourManager();
-
-  void Initialise(const state::field::IField* p_field, 
+	
+  /// <summary>
+  /// Initialises this <see cref="BehaviourManager"/> with the provided
+  /// <paramref name="p_field"/> and <paramref name="p_field_object_manager"/>.
+  /// </summary>
+  /// <param name="p_field">Pointer to the <see cref="state::field::IField"/>.</param>
+  /// <param name="p_field_object_manager">Pointer to the <see cref="state::field::IFieldObjectManager"/>.</param>
+  void Initialise(const state::field::IField* p_field,
                   state::field::IFieldObjectManager* p_field_object_manager);
-
+	
+  /// <summary>
+  /// Executes the behaviour for the provided <paramref name="p_entity"/>
+  /// at its current location.
+  /// </summary>
+  /// <param name="p_entity">The entity to be changed.</param>
   void ExecuteBehaviourFor(IUpdatablePlayerEntity* p_entity);
 
 private:
