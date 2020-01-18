@@ -115,7 +115,12 @@ public:
   /// </summary>
   /// <param name="dt">The time passed since the last frame.</param>
   virtual void Update(float dt) = 0;
-
+  
+  /// <summary>
+  /// Set this <see cref="IUpdatablePlayerEntity"/>'s is moving to 
+  /// <paramref name="is_moving"/>.
+  /// </summary>
+  /// <param name="is_moving">New is moving value.</param>
   virtual void SetIsMoving(bool is_moving) = 0;
 };
 
