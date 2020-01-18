@@ -82,6 +82,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>GTEST_LINKED_AS_SHARED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)PacManController\include;$(SolutionDir)PacManState\include;$(SolutionDir)PacManUpdate\include;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -102,6 +103,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)PacManController\include;$(SolutionDir)PacManState\include;$(SolutionDir)PacManUpdate\include;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GTEST_LINKED_AS_SHARED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,6 +147,7 @@
     <ClCompile Include="src\commands\QuitCommandTest.cpp" />
     <ClCompile Include="src\entity\PlayerMovementAxisTest.cpp" />
     <ClCompile Include="src\entity\UpdatableEntityAxisTest.cpp" />
+    <ClCompile Include="src\entity\util\PlayerUpdateUtilsTest.cpp" />
     <ClCompile Include="src\objects\behaviours\PortalBehaviourTest.cpp" />
     <ClCompile Include="src\state_machine\NodeTest.cpp" />
     <ClCompile Include="src\state_machine\StateMachineTest.cpp" />

@@ -39,6 +39,9 @@
     <ClCompile Include="src\commands\ChangePlayerDirectionCommandTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\util\PlayerUpdateUtilsTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\NodeMock.h">
