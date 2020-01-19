@@ -183,6 +183,7 @@
     <ClInclude Include="include\objects\ObjectRenderers\IObjectRenderer.h" />
     <ClInclude Include="include\objects\ObjectRenderers\SmallDotRenderer.h" />
     <ClInclude Include="include\objects\ObjectSpriteValues.h" />
+    <ClInclude Include="include\ui\font\IGlyphRenderer.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
