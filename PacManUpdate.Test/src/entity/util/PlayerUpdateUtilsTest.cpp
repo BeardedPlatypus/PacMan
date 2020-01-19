@@ -78,6 +78,55 @@ INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_IsActive,
                          ::testing::ValuesIn(IsActiveTest::GetTestValues()));
 
 
+class ShouldUpdateDirectionActiveAxisTest : public ::testing::TestWithParam<ActiveAxisData> {
+public:
+  static std::vector<ActiveAxisData> GetTestValues() {
+    return {
+      ActiveAxisData(AxisDirection::None,     AxisDirection::None, false),
+      ActiveAxisData(AxisDirection::Negative, AxisDirection::None, false),
+      ActiveAxisData(AxisDirection::Positive, AxisDirection::None, false),
+      ActiveAxisData(AxisDirection::None,     AxisDirection::Positive, true),
+      ActiveAxisData(AxisDirection::Negative, AxisDirection::Positive, true),
+      ActiveAxisData(AxisDirection::Positive, AxisDirection::Positive, false),
+      ActiveAxisData(AxisDirection::None,     AxisDirection::Negative, true),
+      ActiveAxisData(AxisDirection::Negative, AxisDirection::Negative, false),
+      ActiveAxisData(AxisDirection::Positive, AxisDirection::Negative, true),
+    };
+  }
+};
+
+
+TEST_P(ShouldUpdateDirectionActiveAxisTest, ExpectedResults) {
+  // Setup
+  auto data = GetParam();
+
+  UpdatablePlayerEntityMock player_entity;
+  UpdatableEntityAxisMock entity_axis_mock;
+  PlayerMovementAxisMock player_axis_mock;
+
+  ON_CALL(entity_axis_mock, GetCurrentAxisDirection())
+    .WillByDefault(Return(data.current_direction));
+  ON_CALL(player_entity, GetActiveAxis())
+    .WillByDefault(Return(&entity_axis_mock));
+
+  ON_CALL(player_axis_mock, GetNextDirection())
+    .WillByDefault(Return(data.next_direction));
+  ON_CALL(player_entity, GetActivePlayerMovementAxis())
+    .WillByDefault(Return(&player_axis_mock));
+
+  // Call
+  bool result = ShouldUpdateDirectionActiveAxis(&player_entity);
+
+  // Assert
+  EXPECT_THAT(result, Eq(data.expected_result));
+}
+
+
+INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_ShouldUpdateDirectionActiveAxis,
+                         ShouldUpdateDirectionActiveAxisTest,
+                         ::testing::ValuesIn(ShouldUpdateDirectionActiveAxisTest::GetTestValues()));
+
+
 class GetDirectionValueData {
 public:
   GetDirectionValueData(AxisDirection input_direction,
