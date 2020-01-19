@@ -131,6 +131,28 @@ INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_ShouldUpdateDirectionActiveAxis,
                          ::testing::ValuesIn(ShouldUpdateDirectionActiveAxisTest::GetTestValues()));
 
 
+TEST(PlayerUpdateUtilsTest, UpdateDirectionActiveAxis_SetsCorrectValue) {
+  // Setup
+
+  UpdatablePlayerEntityMock entity_mock;
+  UpdatableEntityAxisMock entity_axis_mock;
+  PlayerMovementAxisMock movement_axis_mock;
+
+  ON_CALL(movement_axis_mock, GetNextDirection())
+    .WillByDefault(Return(AxisDirection::Positive));
+  ON_CALL(entity_mock, GetActivePlayerMovementAxis())
+    .WillByDefault(Return(&movement_axis_mock));
+
+  EXPECT_CALL(entity_axis_mock, SetCurrentAxisDirection(AxisDirection::Positive))
+    .Times(1);
+  ON_CALL(entity_mock, GetActiveAxis())
+    .WillByDefault(Return(&entity_axis_mock));
+
+  // Call
+  UpdateDirectionActiveAxis(&entity_mock);
+}
+
+
 class GetDirectionValueData {
 public:
   GetDirectionValueData(AxisDirection input_direction,
