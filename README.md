@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/BeardedPlatypus/PacMan/blob/master/assets/PacManLogo.png?raw=true" alt="PacMan" title="PacMan" width=80% /></p>
+<p align="center"><img src="https://github.com/BeardedPlatypus/PacMan/blob/master/logo.png?raw=true" alt="PacMan" title="PacMan" width=80% /></p>
 # Pacman
 
 [![Build Status](https://dev.azure.com/mwtegelaers/PacMan/_apis/build/status/BeardedPlatypus.PacMan?branchName=master)](https://dev.azure.com/mwtegelaers/PacMan/_build/latest?definitionId=1&branchName=master)
