@@ -15,9 +15,9 @@ namespace pacman {
 namespace update {
 namespace util {
 
-class IsActiveData {
+class ActiveAxisData {
 public:
-  IsActiveData(AxisDirection current, AxisDirection next, bool expected_result) :
+  ActiveAxisData(AxisDirection current, AxisDirection next, bool expected_result) :
       expected_result(expected_result),
       current_direction(current),
       next_direction(next) {
@@ -29,19 +29,19 @@ public:
 };
 
 
-class IsActiveTest : public ::testing::TestWithParam<IsActiveData> {
+class IsActiveTest : public ::testing::TestWithParam<ActiveAxisData> {
 public:
-  static std::vector<IsActiveData> GetTestValues() {
+  static std::vector<ActiveAxisData> GetTestValues() {
     return {
-      IsActiveData(AxisDirection::None, AxisDirection::None, false),
-      IsActiveData(AxisDirection::None, AxisDirection::Negative, true),
-      IsActiveData(AxisDirection::None, AxisDirection::Positive, true),
-      IsActiveData(AxisDirection::Negative, AxisDirection::None, true),
-      IsActiveData(AxisDirection::Negative, AxisDirection::Negative, true),
-      IsActiveData(AxisDirection::Negative, AxisDirection::Positive, true),
-      IsActiveData(AxisDirection::Positive, AxisDirection::None, true),
-      IsActiveData(AxisDirection::Positive, AxisDirection::Negative, true),
-      IsActiveData(AxisDirection::Positive, AxisDirection::Positive, true),
+      ActiveAxisData(AxisDirection::None, AxisDirection::None, false),
+      ActiveAxisData(AxisDirection::None, AxisDirection::Negative, true),
+      ActiveAxisData(AxisDirection::None, AxisDirection::Positive, true),
+      ActiveAxisData(AxisDirection::Negative, AxisDirection::None, true),
+      ActiveAxisData(AxisDirection::Negative, AxisDirection::Negative, true),
+      ActiveAxisData(AxisDirection::Negative, AxisDirection::Positive, true),
+      ActiveAxisData(AxisDirection::Positive, AxisDirection::None, true),
+      ActiveAxisData(AxisDirection::Positive, AxisDirection::Negative, true),
+      ActiveAxisData(AxisDirection::Positive, AxisDirection::Positive, true),
     };
   }
 };
