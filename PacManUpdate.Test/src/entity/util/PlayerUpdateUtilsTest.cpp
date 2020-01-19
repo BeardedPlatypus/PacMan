@@ -133,7 +133,6 @@ INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_ShouldUpdateDirectionActiveAxis,
 
 TEST(PlayerUpdateUtilsTest, UpdateDirectionActiveAxis_SetsCorrectValue) {
   // Setup
-
   UpdatablePlayerEntityMock entity_mock;
   UpdatableEntityAxisMock entity_axis_mock;
   PlayerMovementAxisMock movement_axis_mock;
@@ -177,7 +176,7 @@ public:
 };
 
 
-TEST_P(GetDirectionValueTest, Expected_Results) {
+TEST_P(GetDirectionValueTest, ExpectedResults) {
   int result = GetDirectionValue(GetParam().input_direction);
   EXPECT_THAT(result, Eq(GetParam().expected_value));
 }
@@ -188,6 +187,47 @@ INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_GetDirectionValue,
                          ::testing::ValuesIn(GetDirectionValueTest::GetTestValues()));
 
 
+class HasOtherDirectionData {
+public:
+  HasOtherDirectionData(AxisDirection input_direction, 
+                        bool expected_value) :
+      input_direction(input_direction),
+      expected_value(expected_value) {
+  }
+
+  const AxisDirection input_direction;
+  const bool expected_value;
+};
+
+
+class HasOtherDirectionTest : public ::testing::TestWithParam<HasOtherDirectionData> {
+public:
+  static std::vector<HasOtherDirectionData> GetTestValues() {
+    return {
+      HasOtherDirectionData(AxisDirection::Positive, true),
+      HasOtherDirectionData(AxisDirection::Negative, true),
+      HasOtherDirectionData(AxisDirection::None, false),
+    };
+  }
+};
+
+
+TEST_P(HasOtherDirectionTest, ExpectedResults) {
+  // Setup
+  UpdatablePlayerEntityMock entity_mock;
+  PlayerMovementAxisMock movement_axis_mock;
+
+  ON_CALL(movement_axis_mock, GetNextDirection())
+    .WillByDefault(Return(GetParam().input_direction));
+  ON_CALL(entity_mock, GetActivePlayerMovementAxis())
+    .WillByDefault(Return(&movement_axis_mock));
+
+  // Call
+  bool result = HasOtherDirection(&entity_mock);
+
+  // Assert
+  EXPECT_THAT(result, Eq(GetParam().expected_value));
+}
 
 }
 }
