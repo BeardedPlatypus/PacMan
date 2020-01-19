@@ -47,29 +47,38 @@ public:
 };
 
 
+void ConfigureAxisDirectionOnEntityMock(UpdatablePlayerEntityMock& entity_mock,
+                                        UpdatableEntityAxisMock& entity_axis_mock,
+                                        PlayerMovementAxisMock& movement_axis_mock,
+                                        const ActiveAxisData& data) {
+  ON_CALL(entity_axis_mock, GetCurrentAxisDirection())
+    .WillByDefault(Return(data.current_direction));
+  ON_CALL(entity_mock, GetActiveAxis())
+    .WillByDefault(Return(&entity_axis_mock));
+
+  ON_CALL(movement_axis_mock, GetNextDirection())
+    .WillByDefault(Return(data.next_direction));
+  ON_CALL(entity_mock, GetActivePlayerMovementAxis())
+    .WillByDefault(Return(&movement_axis_mock));
+}
+
+
 TEST_P(IsActiveTest, ExpectedResults) {
   // Setup
-  auto data = GetParam();
-
   UpdatablePlayerEntityMock player_entity;
   UpdatableEntityAxisMock entity_axis_mock;
   PlayerMovementAxisMock player_axis_mock;
 
-  ON_CALL(entity_axis_mock, GetCurrentAxisDirection())
-    .WillByDefault(Return(data.current_direction));
-  ON_CALL(player_entity, GetActiveAxis())
-    .WillByDefault(Return(&entity_axis_mock));
-
-  ON_CALL(player_axis_mock, GetNextDirection())
-    .WillByDefault(Return(data.next_direction));
-  ON_CALL(player_entity, GetActivePlayerMovementAxis())
-    .WillByDefault(Return(&player_axis_mock));
+  ConfigureAxisDirectionOnEntityMock(player_entity, 
+                                     entity_axis_mock, 
+                                     player_axis_mock, 
+                                     GetParam());
 
   // Call
   bool result = IsActive(&player_entity);
 
   // Assert
-  EXPECT_THAT(result, Eq(data.expected_result));
+  EXPECT_THAT(result, Eq(GetParam().expected_result));
 }
 
 
@@ -104,15 +113,10 @@ TEST_P(ShouldUpdateDirectionActiveAxisTest, ExpectedResults) {
   UpdatableEntityAxisMock entity_axis_mock;
   PlayerMovementAxisMock player_axis_mock;
 
-  ON_CALL(entity_axis_mock, GetCurrentAxisDirection())
-    .WillByDefault(Return(data.current_direction));
-  ON_CALL(player_entity, GetActiveAxis())
-    .WillByDefault(Return(&entity_axis_mock));
-
-  ON_CALL(player_axis_mock, GetNextDirection())
-    .WillByDefault(Return(data.next_direction));
-  ON_CALL(player_entity, GetActivePlayerMovementAxis())
-    .WillByDefault(Return(&player_axis_mock));
+  ConfigureAxisDirectionOnEntityMock(player_entity, 
+                                     entity_axis_mock, 
+                                     player_axis_mock, 
+                                     GetParam());
 
   // Call
   bool result = ShouldUpdateDirectionActiveAxis(&player_entity);
