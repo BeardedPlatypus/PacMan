@@ -77,6 +77,43 @@ INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_IsActive,
                          IsActiveTest,
                          ::testing::ValuesIn(IsActiveTest::GetTestValues()));
 
+
+class GetDirectionValueData {
+public:
+  GetDirectionValueData(AxisDirection input_direction,
+                        int expected_value) : 
+      input_direction(input_direction), 
+      expected_value(expected_value) {  }
+
+  const AxisDirection input_direction;
+  const int expected_value;
+};
+
+
+class GetDirectionValueTest : public ::testing::TestWithParam<GetDirectionValueData> {
+public:
+  static std::vector<GetDirectionValueData> GetTestValues() {
+    return {
+      GetDirectionValueData(AxisDirection::Negative, -1),
+      GetDirectionValueData(AxisDirection::Positive, +1),
+      GetDirectionValueData(AxisDirection::None,      0),
+    };
+  }
+};
+
+
+TEST_P(GetDirectionValueTest, Expected_Results) {
+  int result = GetDirectionValue(GetParam().input_direction);
+  EXPECT_THAT(result, Eq(GetParam().expected_value));
+}
+
+
+INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_GetDirectionValue,
+                         GetDirectionValueTest,
+                         ::testing::ValuesIn(GetDirectionValueTest::GetTestValues()));
+
+
+
 }
 }
 }
