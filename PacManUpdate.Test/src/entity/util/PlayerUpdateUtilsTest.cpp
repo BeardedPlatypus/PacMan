@@ -219,7 +219,7 @@ TEST_P(HasOtherDirectionTest, ExpectedResults) {
 
   ON_CALL(movement_axis_mock, GetNextDirection())
     .WillByDefault(Return(GetParam().input_direction));
-  ON_CALL(entity_mock, GetActivePlayerMovementAxis())
+  ON_CALL(entity_mock, GetInactivePlayerMovementAxis())
     .WillByDefault(Return(&movement_axis_mock));
 
   // Call
@@ -228,6 +228,87 @@ TEST_P(HasOtherDirectionTest, ExpectedResults) {
   // Assert
   EXPECT_THAT(result, Eq(GetParam().expected_value));
 }
+
+
+INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_HasOtherDirectiontest,
+                         HasOtherDirectionTest,
+                         ::testing::ValuesIn(HasOtherDirectionTest::GetTestValues()));
+
+
+class GetDistanceData {
+public:
+  GetDistanceData(float current_position,
+                  int tile_position,
+                  float expected_result) :
+      current_position(current_position),
+      tile_position(tile_position),
+      expected_result(expected_result) { }
+
+  const float current_position;
+  const int tile_position;
+  const float expected_result;
+};
+
+
+class GetDistanceToTileCenterTest : public ::testing::TestWithParam<GetDistanceData> {
+public:
+  static std::vector<GetDistanceData> GetTestValues() {
+    return {
+      GetDistanceData(0.F, 0, 0.F),
+      GetDistanceData(0.5F, 0, 0.5F),
+      GetDistanceData(1.5F, 1, 0.5F),
+      GetDistanceData(-0.5F, 0, 0.5F),
+      GetDistanceData(-1.5F, -1, 0.5F),
+    };
+  }
+};
+
+
+TEST_P(GetDistanceToTileCenterTest, NextTileCenter_ExpectedResults) {
+  // Setup
+  UpdatablePlayerEntityMock entity_mock;
+  UpdatableEntityAxisMock entity_axis_mock;
+
+  ON_CALL(entity_axis_mock, GetPosition())
+    .WillByDefault(Return(GetParam().current_position));
+  ON_CALL(entity_axis_mock, GetNextTileCenter())
+    .WillByDefault(Return(GetParam().tile_position));
+
+  ON_CALL(entity_mock, GetActiveAxis())
+    .WillByDefault(Return(&entity_axis_mock));
+
+  // Call
+  float result = GetDistanceToNextCenter(&entity_mock);
+
+  // Assert
+  EXPECT_THAT(result, Eq(GetParam().expected_result));
+}
+
+
+TEST_P(GetDistanceToTileCenterTest, PreviousTileCenter_ExpectedResults) {
+  // Setup
+  UpdatablePlayerEntityMock entity_mock;
+  UpdatableEntityAxisMock entity_axis_mock;
+
+  ON_CALL(entity_axis_mock, GetPosition())
+    .WillByDefault(Return(GetParam().current_position));
+  ON_CALL(entity_axis_mock, GetPreviousTileCenter())
+    .WillByDefault(Return(GetParam().tile_position));
+
+  ON_CALL(entity_mock, GetActiveAxis())
+    .WillByDefault(Return(&entity_axis_mock));
+
+  // Call
+  float result = GetDistanceToPreviousCenter(&entity_mock);
+
+  // Assert
+  EXPECT_THAT(result, Eq(GetParam().expected_result));
+}
+
+
+INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_DistanceCenter,
+                         GetDistanceToTileCenterTest,
+                         ::testing::ValuesIn(GetDistanceToTileCenterTest::GetTestValues()));
 
 }
 }
