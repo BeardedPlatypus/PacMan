@@ -6,6 +6,7 @@
 #include "UpdatablePlayerEntityMock.h"
 #include "UpdatableEntityAxisMock.h"
 #include "PlayerMovementAxisMock.h"
+#include "FieldMock.h"
 
 using ::testing::Return;
 using ::testing::Eq;
@@ -309,6 +310,51 @@ TEST_P(GetDistanceToTileCenterTest, PreviousTileCenter_ExpectedResults) {
 INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_DistanceCenter,
                          GetDistanceToTileCenterTest,
                          ::testing::ValuesIn(GetDistanceToTileCenterTest::GetTestValues()));
+
+
+class CanMoveToPositionData {
+public:
+  CanMoveToPositionData(state::field::TileType tile_type,
+                        bool expected_result) : 
+      tile_type(tile_type),
+      expected_result(expected_result) { }
+
+  const state::field::TileType tile_type;
+  const bool expected_result;
+};
+
+
+class CanMoveToPositionTest : public ::testing::TestWithParam<CanMoveToPositionData> {
+public:
+  static std::vector<CanMoveToPositionData> GetTestValues() {
+    return {
+      CanMoveToPositionData(state::field::TileType::Gate,        false),
+      CanMoveToPositionData(state::field::TileType::OutOfBounds, false),
+      CanMoveToPositionData(state::field::TileType::Solid,       false),
+      CanMoveToPositionData(state::field::TileType::Space,       true),
+    };
+  }
+};
+
+
+TEST_P(CanMoveToPositionTest, ExpectedResults) {
+  // Setup
+  const int x = 3;
+  const int y = 5;
+
+  FieldMock field;
+  EXPECT_CALL(field, GetTileType(x, y)).Times(1).WillOnce(Return(GetParam().tile_type));
+
+  // Call
+  bool result = CanMoveToPosition(&field, x, y);
+
+  EXPECT_THAT(result, Eq(GetParam().expected_result));
+}
+
+
+INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_CanMoveToPosition,
+                         CanMoveToPositionTest,
+                         ::testing::ValuesIn(CanMoveToPositionTest::GetTestValues()));
 
 }
 }

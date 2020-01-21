@@ -56,5 +56,8 @@
     <ClInclude Include="include\UpdatablePlayerEntityMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\FieldMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

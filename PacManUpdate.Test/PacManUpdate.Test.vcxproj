@@ -153,6 +153,7 @@
     <ClCompile Include="src\state_machine\StateMachineTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\FieldMock.h" />
     <ClInclude Include="include\NodeMock.h" />
     <ClInclude Include="include\PlayerMovementAxisMock.h" />
     <ClInclude Include="include\UpdatableEntityAxisMock.h" />
