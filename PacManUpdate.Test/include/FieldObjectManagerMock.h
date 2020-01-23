@@ -4,7 +4,7 @@
 #include "gmock/gmock.h"
 
 
-class EntityAxisMock : public pacman::state::field::IFieldObjectManager {
+class FieldObjectManagerMock : public pacman::state::field::IFieldObjectManager {
 public:
   MOCK_METHOD(pacman::state::field::FieldObjectType, GetObjectType, (pacman::state::field::FieldIndex), (const));
   MOCK_METHOD(pacman::state::field::FieldObjectType, GetObjectType, (int, int), (const));
