@@ -10,6 +10,7 @@
 
 using ::testing::Return;
 using ::testing::Eq;
+using ::testing::IsTrue;
 
 
 namespace pacman {
@@ -355,6 +356,71 @@ TEST_P(CanMoveToPositionTest, ExpectedResults) {
 INSTANTIATE_TEST_SUITE_P(PlayerUpdateUtilsTest_CanMoveToPosition,
                          CanMoveToPositionTest,
                          ::testing::ValuesIn(CanMoveToPositionTest::GetTestValues()));
+
+
+TEST(PlayerUpdateUtilsTest, CanMoveInNextDirectionAtNextTileCenter_XAxisActive_ExpectedResults) {
+  // Setup
+  const int next_tile_center_x = 3;
+  UpdatableEntityAxisMock x_axis;
+  ON_CALL(x_axis, GetNextTileCenter()).WillByDefault(Return(next_tile_center_x));
+
+  const int current_y_index = 5;
+  UpdatableEntityAxisMock y_axis;
+  ON_CALL(y_axis, GetCurrentIndex()).WillByDefault(Return(current_y_index));
+
+  PlayerMovementAxisMock inactive_movement_axis_mock;
+  ON_CALL(inactive_movement_axis_mock, GetNextDirection())
+    .WillByDefault(Return(AxisDirection::Positive));
+
+  FieldMock field;
+  EXPECT_CALL(field, GetTileType(next_tile_center_x, current_y_index + 1))
+    .Times(1).WillOnce(Return(state::field::TileType::Space));
+
+  UpdatablePlayerEntityMock entity;
+  ON_CALL(entity, GetXAxis()).WillByDefault(Return(&x_axis));
+  ON_CALL(entity, GetYAxis()).WillByDefault(Return(&y_axis));
+  ON_CALL(entity, GetInactivePlayerMovementAxis()).WillByDefault(Return(&inactive_movement_axis_mock));
+  ON_CALL(entity, GetActiveAxisType()).WillByDefault(Return(AxisType::X));
+ 
+  // Call
+  bool result = CanMoveInNextDirectionAtNextTileCenter(&entity, &field);
+
+  // Assert
+  EXPECT_THAT(result, IsTrue());
+}
+
+
+TEST(PlayerUpdateUtilsTest, CanMoveInNextDirectionAtNextTileCenter_YAxisActive_ExpectedResults) {
+  // Setup
+  const int current_x_index = 3;
+  UpdatableEntityAxisMock x_axis;
+  ON_CALL(x_axis, GetCurrentIndex()).WillByDefault(Return(current_x_index));
+
+  const int next_tile_center_y = 5;
+  UpdatableEntityAxisMock y_axis;
+  ON_CALL(y_axis, GetNextTileCenter()).WillByDefault(Return(next_tile_center_y));
+
+  PlayerMovementAxisMock inactive_movement_axis_mock;
+  ON_CALL(inactive_movement_axis_mock, GetNextDirection())
+    .WillByDefault(Return(AxisDirection::Positive));
+
+  FieldMock field;
+  EXPECT_CALL(field, GetTileType(current_x_index + 1, next_tile_center_y))
+    .Times(1).WillOnce(Return(state::field::TileType::Space));
+
+  UpdatablePlayerEntityMock entity;
+  ON_CALL(entity, GetXAxis()).WillByDefault(Return(&x_axis));
+  ON_CALL(entity, GetYAxis()).WillByDefault(Return(&y_axis));
+  ON_CALL(entity, GetInactivePlayerMovementAxis()).WillByDefault(Return(&inactive_movement_axis_mock));
+  ON_CALL(entity, GetActiveAxisType()).WillByDefault(Return(AxisType::Y));
+ 
+  // Call
+  bool result = CanMoveInNextDirectionAtNextTileCenter(&entity, &field);
+
+  // Assert
+  EXPECT_THAT(result, IsTrue());
+}
+
 
 }
 }
