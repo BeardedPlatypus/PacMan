@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
   p_game_state->SetPlayerState(std::move(p_player_state));
 
   auto p_view_api = pacman::view::IViewAPI::Construct();
-  p_view_api->Initialise(800, 1000);
+  p_view_api->Initialise(736, 1000);
 
   auto p_renderer_api = pacman::renderer::IRendererAPI::Construct(p_game_state.get(),
                                                                   p_view_api.get());
