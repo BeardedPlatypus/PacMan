@@ -19,7 +19,7 @@ public:
   /// <param name="x"> The x tile index to render at. </param>
   /// <param name="y"> The y tile index to render at. </param>
   /// <param name="scale"> The scale to render with. </param>
-  virtual void RenderObject(view::IViewAPI* p_view_api, int x, int y, float scale) const = 0;
+  virtual void RenderObject(view::IViewAPI* p_view_api, int x, int y, float scale, float render_offset_y) const = 0;
 };
 
 }

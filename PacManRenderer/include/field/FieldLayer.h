@@ -29,7 +29,8 @@ public:
   /// <param name="p_field">The p field.</param>
   FieldLayer(float scale,
              view::IViewAPI* p_view_api,
-             state::field::IField* p_field);
+             state::field::IField* p_field, 
+             float render_offset_y);
 
   void Initialise() final;
 
@@ -77,6 +78,11 @@ private:
     std::make_unique<std::unordered_map<FieldSpriteType, 
                                         std::unique_ptr<std::vector<FieldLayerSpriteDescription>>, 
                                         EnumClassHash>>();
+  
+  /// <summary>
+  /// The render offset of this layer
+  /// </summary>
+  const float render_offset_y;
 };
 
 }

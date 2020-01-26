@@ -13,10 +13,12 @@ namespace renderer {
 
 FieldLayer::FieldLayer(float scale,
                        view::IViewAPI* p_view_api,
-                       state::field::IField* p_field) :
+                       state::field::IField* p_field,
+                       float render_offset_y) :
     scale(scale),
     p_view_api(p_view_api),
-    p_field(p_field) { }
+    p_field(p_field),
+    render_offset_y(render_offset_y) { }
 
 
 void FieldLayer::Initialise() {
@@ -88,7 +90,7 @@ void FieldLayer::Render() const {
     for (auto sprite_def : *(this->p_sprite_map->at(val.first))) {
       this->p_view_api->RenderSprite(val.second,
                                      sprite_def.x * (float) values::tile_size * this->scale,
-                                     sprite_def.y * (float) values::tile_size * this->scale,
+                                     sprite_def.y * (float) values::tile_size * this->scale + this->render_offset_y * this->scale,
                                      this->scale, 
                                      sprite_def.Orientation.Rotation,
                                      sprite_def.Orientation.IsFlippedX,

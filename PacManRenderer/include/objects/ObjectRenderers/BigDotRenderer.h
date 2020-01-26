@@ -18,7 +18,7 @@ public:
   /// </summary>
   BigDotRenderer() {}
 
-  void RenderObject(view::IViewAPI* p_view_api, int x, int y, float scale) const final;
+  void RenderObject(view::IViewAPI* p_view_api, int x, int y, float scale, float render_offset_y) const final;
 
 private:
   float CalculateLocation(int val, float scale) const;

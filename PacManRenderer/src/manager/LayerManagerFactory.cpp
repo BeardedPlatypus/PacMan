@@ -26,7 +26,8 @@ std::unique_ptr<ObjectLayer> ConstructObjectLayer(float scale,
   return std::make_unique<ObjectLayer>(scale, 
                                        p_view_api, 
                                        p_object_manager, 
-                                       std::move(p_mapping));
+                                       std::move(p_mapping),
+                                       16.F);
 }
 
 
@@ -34,7 +35,8 @@ std::unique_ptr<ILayerManager> ConstructLayerManager(view::IViewAPI* p_view_api,
                                                      const state::IGameState* p_game_state) {
   auto p_field_layer = std::make_unique<FieldLayer>(4.F,
                                                     p_view_api,
-                                                    p_game_state->GetField());
+                                                    p_game_state->GetField(),
+                                                    16.F);
 
   auto p_object_layer = ConstructObjectLayer(4.F,
                                              p_view_api,
@@ -42,7 +44,8 @@ std::unique_ptr<ILayerManager> ConstructLayerManager(view::IViewAPI* p_view_api,
 
   auto p_player_layer = std::make_unique<PlayerLayer>(4.F,
                                                       p_view_api,
-                                                      p_game_state->GetPlayerState());
+                                                      p_game_state->GetPlayerState(),
+                                                      16.F);
 
   std::vector<std::unique_ptr<IRenderLayer>> render_layers = {};
   render_layers.push_back(std::move(p_field_layer));

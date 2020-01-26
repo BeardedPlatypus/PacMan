@@ -9,11 +9,13 @@ namespace renderer {
 ObjectLayer::ObjectLayer(float scale, 
                          view::IViewAPI* p_view_api,
                          state::field::IFieldObjectManager* p_object_manager,
-                         std::unique_ptr<RenderMapping> p_obj_renderers) : 
+                         std::unique_ptr<RenderMapping> p_obj_renderers,
+                         float render_offset_y) : 
     scale(scale),
     p_view_api(p_view_api),
     p_object_manager(p_object_manager),
-    p_render_mapping(std::move(p_obj_renderers)) { }
+    p_render_mapping(std::move(p_obj_renderers)),
+    render_offset_y(render_offset_y) { }
 
 
 void ObjectLayer::Initialise() {
@@ -37,7 +39,8 @@ void ObjectLayer::Render() const {
       p_render_mapping->at(t)->RenderObject(this->p_view_api,
                                             field_obj.GetX(),
                                             field_obj.GetY(), 
-                                            this->scale);
+                                            this->scale,
+                                            this->render_offset_y);
     }
   }
 }

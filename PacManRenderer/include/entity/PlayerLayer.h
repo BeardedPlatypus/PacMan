@@ -23,7 +23,8 @@ public:
   /// </precondition>
   PlayerLayer(float scale,
               view::IViewAPI* p_view_api,
-              state::IEntityState* p_player_state);
+              state::IEntityState* p_player_state,
+              float render_offset_y);
 
   void Initialise() final;
   void Update(float dtime);
@@ -59,6 +60,11 @@ private:
   /// <see cref="EntityLayer" />. 
   /// </summary>
   state::IEntityState* p_player_state;
+
+  /// <summary>
+  /// The render offset of this layer
+  /// </summary>
+  const float render_offset_y;
 };
 
 }

@@ -16,10 +16,10 @@ float SmallDotRenderer::CalculateLocation(int val, float scale) const {
 }
 
 
-void SmallDotRenderer::RenderObject(view::IViewAPI* p_view_api, int x, int y, float scale) const {
+void SmallDotRenderer::RenderObject(view::IViewAPI* p_view_api, int x, int y, float scale, float render_offset_y) const {
   p_view_api->RenderSprite(values::object_sprite_small_dot,
                            this->CalculateLocation(x, scale), 
-                           this->CalculateLocation(y, scale),
+                           this->CalculateLocation(y, scale) + scale * render_offset_y,
                            scale);
 }
 

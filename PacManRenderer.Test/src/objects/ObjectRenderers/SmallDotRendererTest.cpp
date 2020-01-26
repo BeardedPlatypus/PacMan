@@ -19,8 +19,10 @@ TEST(SmallDotRendererTest, RenderObject_RendersViewAPI) {
   const int input_x = 5;
   const int input_y = 3;
 
+  const float render_offset_y = 8.F;
+
   const float expected_x = (float)(input_x * values::tile_size + 3) * expected_scale;
-  const float expected_y = (float)(input_y * values::tile_size + 3) * expected_scale;
+  const float expected_y = (float)(input_y * values::tile_size + 3) * expected_scale + render_offset_y * expected_scale;
 
   ViewAPIMock view_api;
 
@@ -36,7 +38,7 @@ TEST(SmallDotRendererTest, RenderObject_RendersViewAPI) {
   auto renderer = SmallDotRenderer();
 
   // Call | Assert
-  renderer.RenderObject(&view_api, input_x, input_y, expected_scale);
+  renderer.RenderObject(&view_api, input_x, input_y, expected_scale, render_offset_y);
 }
 
 }

@@ -19,8 +19,10 @@ TEST(BigDotRendererTest, RenderObject_RendersViewAPI) {
   const int input_x = 8;
   const int input_y = 2;
 
+  const float render_offset_y = 8.F;
+
   const float expected_x = (float)(input_x * values::tile_size) * expected_scale;
-  const float expected_y = (float)(input_y * values::tile_size) * expected_scale;
+  const float expected_y = (float)(input_y * values::tile_size) * expected_scale + render_offset_y * expected_scale;
 
   ViewAPIMock view_api;
 
@@ -36,7 +38,7 @@ TEST(BigDotRendererTest, RenderObject_RendersViewAPI) {
   auto renderer = BigDotRenderer();
 
   // Call | Assert
-  renderer.RenderObject(&view_api, input_x, input_y, expected_scale);
+  renderer.RenderObject(&view_api, input_x, input_y, expected_scale, render_offset_y);
 }
 
 }

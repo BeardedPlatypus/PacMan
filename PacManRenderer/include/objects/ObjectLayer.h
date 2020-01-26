@@ -32,7 +32,8 @@ public:
   ObjectLayer(float scale,
               view::IViewAPI* p_view_api,
               state::field::IFieldObjectManager* p_object_manager,
-              std::unique_ptr<RenderMapping> p_obj_renderers);
+              std::unique_ptr<RenderMapping> p_obj_renderers,
+              float render_offset_y);
 
   void Initialise() final;
 
@@ -80,6 +81,11 @@ private:
   /// <see cref="IObjectRenderer"/>.
   /// </summary>
   std::unique_ptr<RenderMapping> p_render_mapping;
+
+  /// <summary>
+  /// The render offset of this layer
+  /// </summary>
+  const float render_offset_y;
 };
 
 }

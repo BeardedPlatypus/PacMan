@@ -11,10 +11,12 @@ namespace renderer {
 
 PlayerLayer::PlayerLayer(float scale, 
                          view::IViewAPI* p_view_api,
-                         state::IEntityState* p_player_state) :
+                         state::IEntityState* p_player_state,
+                         float render_offset_y) :
     scale(scale),
     p_view_api(p_view_api),
-    p_player_state(p_player_state) { }
+    p_player_state(p_player_state),
+    render_offset_y(render_offset_y) { }
 
 
 void PlayerLayer::Initialise() {
@@ -58,7 +60,7 @@ void PlayerLayer::Render() const {
 
   this->p_view_api->RenderSpriteAnimation(this->GetActiveAnimationLabel(),
                                           (this->p_player_state->GetXAxis()->GetPosition() - 0.5F * 0.5F) * (float)values::tile_size * this->scale,
-                                          (this->p_player_state->GetYAxis()->GetPosition() - 0.5F * 0.5F) * (float)values::tile_size * this->scale,
+                                          (this->p_player_state->GetYAxis()->GetPosition() - 0.5F * 0.5F) * (float)values::tile_size * this->scale + this->render_offset_y * this->scale,
                                           this->scale * 0.75F,
                                           rotation,
                                           false,
