@@ -13,8 +13,6 @@ namespace ui {
 /// </summary>
 class IGlyphRenderer {
 public:
-  std::unique_ptr<IGlyphRenderer> Construct();
-
   ~IGlyphRenderer() = default;
   
   /// <summary>

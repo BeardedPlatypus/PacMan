@@ -27,6 +27,9 @@
     <ClCompile Include="src\objects\ObjectRenderers\BigDotRendererTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ui\font\GlyphRendererTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\FieldMock.h">

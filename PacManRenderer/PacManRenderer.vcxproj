@@ -183,7 +183,9 @@
     <ClInclude Include="include\objects\ObjectRenderers\IObjectRenderer.h" />
     <ClInclude Include="include\objects\ObjectRenderers\SmallDotRenderer.h" />
     <ClInclude Include="include\objects\ObjectSpriteValues.h" />
+    <ClInclude Include="include\ui\font\GlyphRenderer.h" />
     <ClInclude Include="include\ui\font\IGlyphRenderer.h" />
+    <ClInclude Include="include\ui\UISpriteValues.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +204,7 @@
     <ClCompile Include="src\objects\ObjectLayer.cpp" />
     <ClCompile Include="src\objects\ObjectRenderers\BigDotRenderer.cpp" />
     <ClCompile Include="src\objects\ObjectRenderers\SmallDotRenderer.cpp" />
+    <ClCompile Include="src\ui\font\GlyphRenderer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

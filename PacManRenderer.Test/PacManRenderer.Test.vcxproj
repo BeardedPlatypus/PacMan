@@ -146,6 +146,7 @@
     <ClCompile Include="src\FieldLayerHelperTest.cpp" />
     <ClCompile Include="src\objects\ObjectRenderers\SmallDotRendererTest.cpp" />
     <ClCompile Include="src\objects\ObjectRenderers\BigDotRendererTest.cpp" />
+    <ClCompile Include="src\ui\font\GlyphRendererTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\FieldMock.h" />
