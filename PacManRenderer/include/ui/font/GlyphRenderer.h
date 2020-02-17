@@ -16,8 +16,12 @@ namespace ui {
 /// rendered.
 /// </summary>
 class GlyphRenderer final : public IGlyphRenderer {
-public:
-  GlyphRenderer(view::IViewAPI* p_view_api);
+public:  
+  /// <summary>
+  /// Creates a new <see cref="GlyphRenderer"/>.
+  /// </summary>
+  /// <param name="p_view_api"> A pointer to the view api. </param>
+  explicit GlyphRenderer(view::IViewAPI* p_view_api);
 
   void Initialise() final;
   void RenderGlyph(char glyph, float x, float y, float scale) final;
