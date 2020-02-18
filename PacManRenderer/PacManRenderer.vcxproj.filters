@@ -93,6 +93,9 @@
     <ClInclude Include="include\ui\UISpriteValues.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ui\font\IStringRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
