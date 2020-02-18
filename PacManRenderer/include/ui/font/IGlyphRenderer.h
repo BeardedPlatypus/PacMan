@@ -21,7 +21,8 @@ public:
   virtual void Initialise() = 0;
   
   /// <summary>
-  /// Renders the glyph at the specified location with the specified scale.
+  /// Renders the <paramref name="glyph"/> at the specified location with the 
+  /// specified <paramref name="scale"/>.
   /// </summary>
   /// <param name="glyph">The glyph to be rendered.</param>
   /// <param name="x">The x location.</param>
