@@ -9,7 +9,7 @@ namespace renderer {
 namespace ui {
 
 /// <summary>
-/// <see cref="IStringRenderer"/> definies the interface with which strings can
+/// <see cref="IStringRenderer"/> defines the interface with which strings can
 /// be rendered.
 /// </summary>
 class IStringRenderer {
