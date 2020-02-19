@@ -24,7 +24,7 @@ public:
   /// <param name="x">The x.</param>
   /// <param name="y">The y.</param>
   /// <param name="scale">The scale.</param>
-  virtual void RenderString(std::string string, float x, float y, float scale) = 0;
+  virtual void RenderString(const std::string& string, float x, float y, float scale) = 0;
 };
 
 }

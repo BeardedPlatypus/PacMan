@@ -30,12 +30,18 @@
     <ClCompile Include="src\ui\font\GlyphRendererTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ui\font\StringRendererTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\FieldMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ViewAPIMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GlyphRendererMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
