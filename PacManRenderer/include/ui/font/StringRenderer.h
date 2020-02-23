@@ -12,7 +12,7 @@ namespace ui {
 /// <see cref="StringRenderer"/> implements the interface with which strings can
 /// be rendered.
 /// </summary>
-class StringRenderer : IStringRenderer {
+class StringRenderer : public IStringRenderer {
 public:  
   /// <summary>
   /// Creates a new <see cref="StringRenderer" />.
