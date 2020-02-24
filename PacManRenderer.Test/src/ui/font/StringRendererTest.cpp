@@ -19,7 +19,7 @@ public:
 
 class StringRenderData {
 public:
-  StringRenderData(std::string input_string,
+  StringRenderData(const std::string& input_string,
                    float scale,
                    float x_pos,
                    float y_pos,
