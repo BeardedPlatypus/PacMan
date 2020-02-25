@@ -7,8 +7,13 @@ namespace pacman {
 namespace renderer {
 namespace ui {
 
-StringRenderer::StringRenderer(IGlyphRenderer* p_glyph_renderer) : 
-    _p_glyph_renderer(p_glyph_renderer) { }
+StringRenderer::StringRenderer(std::unique_ptr<IGlyphRenderer> p_glyph_renderer) : 
+    _p_glyph_renderer(std::move(p_glyph_renderer)) { }
+
+
+void StringRenderer::Initialise() {
+  this->_p_glyph_renderer->Initialise();
+}
 
 
 void StringRenderer::RenderString(const std::string& string,

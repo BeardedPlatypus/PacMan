@@ -9,6 +9,17 @@
 namespace pacman {
 namespace renderer {
 
+TEST(StringRendererTest, Initialise_CallsInitialiseGLyphRenderer) {
+  // Setup
+  auto p_glyph_renderer_mock = std::make_unique<GlyphRendererMock>();
+  EXPECT_CALL(*p_glyph_renderer_mock, Initialise()).Times(1);
+
+  auto string_renderer = ui::StringRenderer(std::move(p_glyph_renderer_mock));
+
+  // Call | Assert
+  string_renderer.Initialise();
+}
+
 class GlyphRenderElement {
 public:
   GlyphRenderElement(char glyph, float x) : glyph(glyph), x(x) { }
@@ -69,17 +80,17 @@ class RenderStringTest : public ::testing::TestWithParam<StringRenderData> {};
 
 TEST_P(RenderStringTest, ExpectedResults) {
   // Setup
-  GlyphRendererMock glyph_renderer_mock;
+  auto p_glyph_renderer_mock = std::make_unique<GlyphRendererMock>();
 
   for (GlyphRenderElement elem : GetParam().glyphs) {
-    EXPECT_CALL(glyph_renderer_mock, RenderGlyph(elem.glyph,
-                                                 elem.x,
-                                                 GetParam().y_pos,
-                                                 GetParam().scale))
+    EXPECT_CALL(*p_glyph_renderer_mock, RenderGlyph(elem.glyph,
+                                                    elem.x,
+                                                    GetParam().y_pos,
+                                                    GetParam().scale))
       .Times(1);
   }
 
-  auto string_renderer = ui::StringRenderer(&glyph_renderer_mock);
+  auto string_renderer = ui::StringRenderer(std::move(p_glyph_renderer_mock));
 
   // Call
   string_renderer.RenderString(GetParam().input_string,

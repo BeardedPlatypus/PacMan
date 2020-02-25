@@ -17,16 +17,22 @@ public:
   /// <summary>
   /// Creates a new <see cref="StringRenderer" />.
   /// </summary>
-  /// <param name="_p_glyph_renderer">Pointer to the <see cref="IGlyphRenderer" />.</param>
+  /// <param name="p_glyph_renderer"><see cref="std::unique_ptr"/> to the <see cref="IGlyphRenderer" />.</param>
   /// <pre-condition>
-  /// <paramref name="_p_glyph_renderer"/> should not be null.
+  /// <paramref name="p_glyph_renderer"/> should not be null.
   /// </pre-condition>
-  explicit StringRenderer(IGlyphRenderer* p_glyph_renderer);
+  /// <remarks>
+  /// The ownership of <paramref name="p_glyph_renderer"/> is moved to this
+  /// <see cref="StringRenderer"/>.
+  /// </remarks>
+  explicit StringRenderer(std::unique_ptr<IGlyphRenderer> p_glyph_renderer);
+
+  void Initialise();
 
   void RenderString(const std::string& string, float x, float y, float scale) final;
 
 private:
-  IGlyphRenderer* _p_glyph_renderer;
+  std::unique_ptr<IGlyphRenderer> _p_glyph_renderer;
 };
 
 }

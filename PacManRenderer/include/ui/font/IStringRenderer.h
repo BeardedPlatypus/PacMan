@@ -15,6 +15,11 @@ namespace ui {
 class IStringRenderer {
 public:
   ~IStringRenderer() = default;
+
+  /// <summary>
+  /// Initialises this <see cref="IStringRenderer"/>.
+  /// </summary>
+  virtual void Initialise() = 0;
   
   /// <summary>
   /// Renders the specified <paramref name="string"/> at the specified location
