@@ -20,6 +20,7 @@ TEST(StringRendererTest, Initialise_CallsInitialiseGLyphRenderer) {
   string_renderer.Initialise();
 }
 
+
 class GlyphRenderElement {
 public:
   GlyphRenderElement(char glyph, float x) noexcept : glyph(glyph), x(x) { }
@@ -27,6 +28,7 @@ public:
   const char glyph;
   const float x;
 };
+
 
 class StringRenderData {
 public:
@@ -41,12 +43,25 @@ public:
       y_pos(y_pos),
       glyphs(glyphs) { }
 
+  StringRenderData(const StringRenderData& other) noexcept :
+      scale(other.scale),
+      x_pos(other.x_pos),
+      y_pos(other.y_pos),
+      glyphs(other.glyphs) { }
+
+  StringRenderData(StringRenderData&& other) noexcept :
+      scale(other.scale),
+      x_pos(other.x_pos),
+      y_pos(other.y_pos),
+      glyphs(other.glyphs) { }
+
   const std::string input_string;
   const float scale;
   const float x_pos;
   const float y_pos;
   const std::vector<GlyphRenderElement> glyphs;
 };
+
 
 std::vector<GlyphRenderElement> GetGlyphs(const std::string& string, 
                                           float offset,
@@ -62,6 +77,7 @@ std::vector<GlyphRenderElement> GetGlyphs(const std::string& string,
 
   return result;
 }
+
 
 inline std::vector<StringRenderData> GetStringRenderData() {
   return {
