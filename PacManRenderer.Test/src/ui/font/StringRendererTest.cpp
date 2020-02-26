@@ -22,7 +22,7 @@ TEST(StringRendererTest, Initialise_CallsInitialiseGLyphRenderer) {
 
 class GlyphRenderElement {
 public:
-  GlyphRenderElement(char glyph, float x) : glyph(glyph), x(x) { }
+  GlyphRenderElement(char glyph, float x) noexcept : glyph(glyph), x(x) { }
 
   const char glyph;
   const float x;
@@ -34,7 +34,7 @@ public:
                    float scale,
                    float x_pos,
                    float y_pos,
-                   const std::vector<GlyphRenderElement>& glyphs) :
+                   const std::vector<GlyphRenderElement>& glyphs) noexcept :
       input_string(input_string),
       scale(scale),
       x_pos(x_pos),
