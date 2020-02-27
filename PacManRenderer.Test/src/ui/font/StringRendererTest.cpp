@@ -43,18 +43,6 @@ public:
       y_pos(y_pos),
       glyphs(glyphs) { }
 
-  StringRenderData(const StringRenderData& other) noexcept :
-      scale(other.scale),
-      x_pos(other.x_pos),
-      y_pos(other.y_pos),
-      glyphs(other.glyphs) { }
-
-  StringRenderData(StringRenderData&& other) noexcept :
-      scale(other.scale),
-      x_pos(other.x_pos),
-      y_pos(other.y_pos),
-      glyphs(other.glyphs) { }
-
   const std::string input_string;
   const float scale;
   const float x_pos;
