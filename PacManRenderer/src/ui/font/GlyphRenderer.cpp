@@ -40,7 +40,8 @@ void GlyphRenderer::InitialiseSprites() {
 
 
 inline void GlyphRenderer::AddGlyphSprite(char c, int x_index, int y_index) {
-  auto sprite_label = "glyph_" + c;
+  std::string sprite_label = "glyph_";
+  sprite_label.append(1, c);
 
   this->_p_view_api->RequestSprite(sprite_label,
                                    values::font_file,

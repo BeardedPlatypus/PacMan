@@ -70,7 +70,9 @@ TEST(GlyphRendererTest, Initialise_ExpectedResults) {
   ViewAPIMock view_api;
 
   for (const GlyphData& data : GetGlyphData()) {
-    EXPECT_CALL(view_api, RequestSprite("glyph_" + data.glyph,
+    std::string glyph_s = "glyph_";
+    glyph_s.append(1, data.glyph);
+    EXPECT_CALL(view_api, RequestSprite(glyph_s,
                                         values::font_file,
                                         data.x * values::glyph_size,
                                         data.y * values::glyph_size,
@@ -93,7 +95,9 @@ TEST_P(RenderSpriteTest, ExpectedResults) {
   const float expected_scale = 3.F;
 
   ViewAPIMock view_api;
-  EXPECT_CALL(view_api, RenderSprite(std::string("glyph_" + GetParam().glyph),
+  std::string glyph_s = "glyph_";
+  glyph_s.append(1, GetParam().glyph);
+  EXPECT_CALL(view_api, RenderSprite(glyph_s,
                                      expected_x, 
                                      expected_y, 
                                      expected_scale, 
