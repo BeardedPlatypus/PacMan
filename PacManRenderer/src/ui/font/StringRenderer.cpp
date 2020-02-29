@@ -17,16 +17,39 @@ void StringRenderer::Initialise() {
 
 
 void StringRenderer::RenderString(const std::string& string,
-                                  float x, float y, float scale) {
+                                  float x, float y, float scale,
+                                  Justification justification) {
+  float offset_x = this->GetOffset(string, scale, justification);
+
   for (size_t i = 0; i < string.length(); i++) {
     char c = string.at(i);
 
     if (c == ' ') continue;
 
-    this->_p_glyph_renderer->RenderGlyph(c, x + i * values::glyph_size * scale, y, scale);
+    this->_p_glyph_renderer->RenderGlyph(c, x + i * values::glyph_size * scale + offset_x, y, scale);
   }
 }
 
+
+float StringRenderer::GetOffset(const std::string& string, float scale, Justification justification) {
+  float offset_characters = 0.F;
+
+  switch (justification)
+  {
+    break;
+  case pacman::renderer::ui::Justification::Centre:
+    offset_characters = -1.F * string.length() / 2.F;
+    break;
+  case pacman::renderer::ui::Justification::FlushRight:
+    offset_characters = -1.F * string.length();
+    break;
+  case pacman::renderer::ui::Justification::FlushLeft:
+  default:
+    break;
+  }
+
+  return offset_characters * scale * values::glyph_size;
+}
 
 }
 }

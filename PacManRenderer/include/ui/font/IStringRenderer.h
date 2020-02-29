@@ -3,6 +3,8 @@
 #include <memory>
 #include <string>
 
+#include "ui/font/Justification.h"
+
 
 namespace pacman {
 namespace renderer {
@@ -22,14 +24,17 @@ public:
   virtual void Initialise() = 0;
   
   /// <summary>
-  /// Renders the specified <paramref name="string"/> at the specified location
-  /// with the specified <paramref name="scale"/>.
+  /// Renders the specified <paramref name="string" /> at the specified location
+  /// with the specified <paramref name="scale" />.
   /// </summary>
   /// <param name="string">The string.</param>
   /// <param name="x">The x.</param>
   /// <param name="y">The y.</param>
   /// <param name="scale">The scale.</param>
-  virtual void RenderString(const std::string& string, float x, float y, float scale) = 0;
+  /// <param name="justification">The justification.</param>
+  virtual void RenderString(const std::string& string,
+                            float x, float y, float scale,
+                            Justification justification) = 0;
 };
 
 }

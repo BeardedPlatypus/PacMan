@@ -29,9 +29,12 @@ public:
 
   void Initialise();
 
-  void RenderString(const std::string& string, float x, float y, float scale) final;
+  void RenderString(const std::string& string, 
+                    float x, float y, float scale, 
+                    Justification justification) final;
 
 private:
+  float GetOffset(const std::string& string, float scale, Justification justification);
   std::unique_ptr<IGlyphRenderer> _p_glyph_renderer;
 };
 
