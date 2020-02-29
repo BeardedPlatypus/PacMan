@@ -184,6 +184,7 @@
     <ClInclude Include="include\objects\ObjectRenderers\SmallDotRenderer.h" />
     <ClInclude Include="include\objects\ObjectSpriteValues.h" />
     <ClInclude Include="include\ui\font\GlyphRenderer.h" />
+    <ClInclude Include="include\ui\font\Justification.h" />
     <ClInclude Include="include\ui\font\StringRenderer.h" />
     <ClInclude Include="include\ui\font\IGlyphRenderer.h" />
     <ClInclude Include="include\ui\font\IStringRenderer.h" />
