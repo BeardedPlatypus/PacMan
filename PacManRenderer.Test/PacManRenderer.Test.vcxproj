@@ -148,10 +148,12 @@
     <ClCompile Include="src\objects\ObjectRenderers\BigDotRendererTest.cpp" />
     <ClCompile Include="src\ui\font\GlyphRendererTest.cpp" />
     <ClCompile Include="src\ui\font\StringRendererTest.cpp" />
+    <ClCompile Include="src\ui\UILayerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\FieldMock.h" />
     <ClInclude Include="include\GlyphRendererMock.h" />
+    <ClInclude Include="include\StringRendererMock.h" />
     <ClInclude Include="include\ViewAPIMock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
