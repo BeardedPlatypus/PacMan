@@ -34,7 +34,7 @@ private:
 	/// <summary>
 	/// The current state of this GameState state machine.
 	/// </summary>
-	GameMode mode = MainMenu;
+	GameMode mode = GameMode::MainMenu;
   
   /// <summary>
   /// A <see cref="std::unique_ptr" /> to the <see cref="field::IField" />

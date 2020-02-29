@@ -7,7 +7,7 @@ namespace state {
 /// <summary>
 /// GameMode describes the current state of the game.
 /// </summary>
-enum DllExport GameMode
+enum class DllExport GameMode
 {
 	MainMenu,
 	PausedGame,
