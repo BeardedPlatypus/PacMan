@@ -5,9 +5,12 @@
 #include "entity/PlayerLayer.h"
 #include "field/FieldLayer.h"
 #include "objects/ObjectLayer.h"
+#include "ui/UILayer.h"
 
 #include "objects/ObjectRenderers/SmallDotRenderer.h"
 #include "objects/ObjectRenderers/BigDotRenderer.h"
+#include "ui/font/GlyphRenderer.h"
+#include "ui/font/StringRenderer.h"
 
 namespace pacman {
 namespace renderer {
@@ -27,7 +30,7 @@ std::unique_ptr<ObjectLayer> ConstructObjectLayer(float scale,
                                        p_view_api, 
                                        p_object_manager, 
                                        std::move(p_mapping),
-                                       16.F);
+                                       20.F);
 }
 
 
@@ -36,7 +39,7 @@ std::unique_ptr<ILayerManager> ConstructLayerManager(view::IViewAPI* p_view_api,
   auto p_field_layer = std::make_unique<FieldLayer>(4.F,
                                                     p_view_api,
                                                     p_game_state->GetField(),
-                                                    16.F);
+                                                    20.F);
 
   auto p_object_layer = ConstructObjectLayer(4.F,
                                              p_view_api,
@@ -45,12 +48,17 @@ std::unique_ptr<ILayerManager> ConstructLayerManager(view::IViewAPI* p_view_api,
   auto p_player_layer = std::make_unique<PlayerLayer>(4.F,
                                                       p_view_api,
                                                       p_game_state->GetPlayerState(),
-                                                      16.F);
+                                                      20.F);
+
+  auto p_glyph_renderer = std::make_unique<ui::GlyphRenderer>(p_view_api);
+  auto p_string_renderer = std::make_unique<ui::StringRenderer>(std::move(p_glyph_renderer));
+  auto p_ui_layer = std::make_unique<UILayer>(4.F, std::move(p_string_renderer), 0.F);
 
   std::vector<std::unique_ptr<IRenderLayer>> render_layers = {};
   render_layers.push_back(std::move(p_field_layer));
   render_layers.push_back(std::move(p_object_layer));
   render_layers.push_back(std::move(p_player_layer));
+  render_layers.push_back(std::move(p_ui_layer));
 
   return std::make_unique<LayerManager>(render_layers);
 }
