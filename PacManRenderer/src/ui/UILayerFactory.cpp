@@ -24,6 +24,12 @@ std::unique_ptr<UILayer> ConstructUILayer(float scale,
                                                                         0.75F, 
                                                                         ui::Justification::Centre));
 
+  p_render_data->push_back(std::make_unique<ui::StaticStringRenderData>("1up", 
+                                                                        736.F / 5.F, 
+                                                                        3.F, 
+                                                                        0.75F, 
+                                                                        ui::Justification::Centre));
+
   return std::make_unique<UILayer>(4.F, 
                                    std::move(p_string_renderer),
                                    std::move(p_render_data),
