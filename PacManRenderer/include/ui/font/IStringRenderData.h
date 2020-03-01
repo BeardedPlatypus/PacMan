@@ -20,7 +20,7 @@ public:
   /// Gets the string to render.
   /// </summary>
   /// <returns>The string to render.</returns>
-  virtual const std::string& GetString() const = 0;
+  virtual const std::string GetString() const = 0;
   
   /// <summary>
   /// Gets the x location to render at.

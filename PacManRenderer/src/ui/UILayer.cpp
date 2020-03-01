@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "ui/UILayer.h"
+#include "ui/font/StaticStringRenderData.h"
 
 
 namespace pacman {
@@ -19,7 +20,8 @@ void UILayer::Initialise() {
 
 
 void UILayer::Render() const {
-  this->p_string_renderer->RenderString("high score", 736.F / 2.F, 1.F * this->scale, this->scale, ui::Justification::Centre);
+  auto string_data = ui::StaticStringRenderData("high score", 736.F / 2.F, 3.F, 0.75F, ui::Justification::Centre);
+  this->p_string_renderer->RenderString(string_data, this->scale);
 }
 
 

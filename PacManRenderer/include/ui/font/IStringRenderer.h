@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 
+#include "ui/font/IStringRenderData.h"
 #include "ui/font/Justification.h"
 
 
@@ -27,14 +28,9 @@ public:
   /// Renders the specified <paramref name="string" /> at the specified location
   /// with the specified <paramref name="scale" />.
   /// </summary>
-  /// <param name="string">The string.</param>
-  /// <param name="x">The x.</param>
-  /// <param name="y">The y.</param>
-  /// <param name="scale">The scale.</param>
-  /// <param name="justification">The justification.</param>
-  virtual void RenderString(const std::string& string,
-                            float x, float y, float scale,
-                            Justification justification) = 0;
+  /// <param name="string_data">The string data.</param>
+  /// <param name="scale">The scale with which to render.</param>
+  virtual void RenderString(const IStringRenderData& string_data, float scale) = 0;
 };
 
 }

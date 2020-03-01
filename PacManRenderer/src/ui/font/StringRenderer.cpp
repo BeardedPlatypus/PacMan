@@ -16,17 +16,20 @@ void StringRenderer::Initialise() {
 }
 
 
-void StringRenderer::RenderString(const std::string& string,
-                                  float x, float y, float scale,
-                                  Justification justification) {
-  float offset_x = this->GetOffset(string, scale, justification);
+void StringRenderer::RenderString(const IStringRenderData& string_data,
+                                  float scale) {
+  float char_scale = string_data.GetFontScale() * scale;
+  float offset_x = this->GetOffset(string_data.GetString(), 
+                                   char_scale, 
+                                   string_data.GetJustification());
 
-  for (size_t i = 0; i < string.length(); i++) {
-    char c = string.at(i);
+  for (size_t i = 0; i < string_data.GetString().length(); i++) {
+    char c = string_data.GetString().at(i);
 
     if (c == ' ') continue;
 
-    this->_p_glyph_renderer->RenderGlyph(c, x + i * values::glyph_size * scale + offset_x, y, scale);
+    float x_loc = string_data.GetX() + i * values::glyph_size * char_scale + offset_x;
+    this->_p_glyph_renderer->RenderGlyph(c, x_loc, string_data.GetY(), char_scale);
   }
 }
 

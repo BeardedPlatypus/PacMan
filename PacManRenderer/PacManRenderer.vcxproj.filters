@@ -108,6 +108,9 @@
     <ClInclude Include="include\ui\font\IStringRenderData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ui\font\StaticStringRenderData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -147,6 +150,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ui\UILayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\font\StaticStringRenderData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
