@@ -105,6 +105,9 @@
     <ClInclude Include="include\ui\font\Justification.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ui\font\IStringRenderData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
