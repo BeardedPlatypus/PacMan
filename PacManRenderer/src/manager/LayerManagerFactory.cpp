@@ -5,7 +5,7 @@
 #include "entity/PlayerLayer.h"
 #include "field/FieldLayer.h"
 #include "objects/ObjectLayer.h"
-#include "ui/UILayer.h"
+#include "ui/UILayerFactory.h"
 
 #include "objects/ObjectRenderers/SmallDotRenderer.h"
 #include "objects/ObjectRenderers/BigDotRenderer.h"
@@ -49,10 +49,7 @@ std::unique_ptr<ILayerManager> ConstructLayerManager(view::IViewAPI* p_view_api,
                                                       p_view_api,
                                                       p_game_state->GetPlayerState(),
                                                       20.F);
-
-  auto p_glyph_renderer = std::make_unique<ui::GlyphRenderer>(p_view_api);
-  auto p_string_renderer = std::make_unique<ui::StringRenderer>(std::move(p_glyph_renderer));
-  auto p_ui_layer = std::make_unique<UILayer>(4.F, std::move(p_string_renderer), 0.F);
+  auto p_ui_layer = ConstructUILayer(4.F, p_view_api, 0.F);
 
   std::vector<std::unique_ptr<IRenderLayer>> render_layers = {};
   render_layers.push_back(std::move(p_field_layer));

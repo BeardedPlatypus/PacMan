@@ -190,6 +190,7 @@
     <ClInclude Include="include\ui\font\StringRenderer.h" />
     <ClInclude Include="include\ui\font\IGlyphRenderer.h" />
     <ClInclude Include="include\ui\font\IStringRenderer.h" />
+    <ClInclude Include="include\ui\UILayerFactory.h" />
     <ClInclude Include="include\ui\UISpriteValues.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="include\ui\UILayer.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="src\ui\font\StaticStringRenderData.cpp" />
     <ClCompile Include="src\ui\font\StringRenderer.cpp" />
     <ClCompile Include="src\ui\UILayer.cpp" />
+    <ClCompile Include="src\ui\UILayerFactory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
