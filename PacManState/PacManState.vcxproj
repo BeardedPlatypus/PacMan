@@ -171,6 +171,7 @@
     <ClInclude Include="include\entity\IEntityAxis.h" />
     <ClInclude Include="include\field\object\FieldObjectType.h" />
     <ClInclude Include="include\score\IScoreBoard.h" />
+    <ClInclude Include="include\score\ScoreBoard.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -191,6 +192,7 @@
     <ClCompile Include="src\GameState.cpp" />
     <ClCompile Include="src\entity\IEntityState.cpp" />
     <ClCompile Include="src\IGameState.cpp" />
+    <ClCompile Include="src\score\IScoreBoard.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

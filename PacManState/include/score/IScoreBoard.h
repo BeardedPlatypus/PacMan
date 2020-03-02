@@ -1,4 +1,7 @@
 #pragma once
+#define DllExport __declspec( dllexport )
+
+#include <memory>
 
 namespace pacman {
 namespace state {
@@ -8,8 +11,16 @@ namespace score {
 /// <see cref="IScoreBoard"/> defines the interface with which to store the
 /// score, increment it and reset it.
 /// </summary>
-class IScoreBoard {
+class DllExport IScoreBoard {
 public:  
+  /// <summary>
+  /// Construct a new <see cref="IScoreBoard"/>.
+  /// </summary>
+  /// <returns>
+  /// A pointer to the newly created <see cref="IScoreBoard"/>.
+  /// </returns>
+  static std::unique_ptr<IScoreBoard> Construct();
+
   /// <summary>
   /// Gets the score.
   /// </summary>

@@ -42,6 +42,9 @@
     <ClCompile Include="src\field\object\FieldObjectTypeTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\score\ScoreBoardTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
