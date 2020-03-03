@@ -6,7 +6,7 @@ namespace pacman {
 namespace renderer {
 namespace ui {
 
-StaticStringRenderData::StaticStringRenderData(const std::string string, 
+StaticStringRenderData::StaticStringRenderData(const std::string& string, 
                                                float x, float y, float font_scale,
                                                Justification justification) :
     string(string),

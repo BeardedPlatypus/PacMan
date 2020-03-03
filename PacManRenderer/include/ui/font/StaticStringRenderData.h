@@ -10,14 +10,14 @@ namespace ui {
 class StaticStringRenderData final : public IStringRenderData {
 public:  
   /// <summary>
-  /// Construct a new <see cref="StaticStringRenderData"/>.
+  /// Creates a new <see cref="StaticStringRenderData"/>.
   /// </summary>
   /// <param name="string">The static string to render.</param>
   /// <param name="x">The x location to render at.</param>
   /// <param name="y">The y location to render at.</param>
   /// <param name="font_scale">The font scale.</param>
   /// <param name="justification">The justification.</param>
-  StaticStringRenderData(const std::string string,
+  StaticStringRenderData(const std::string& string,
                          float x, float y, float font_scale, 
                          Justification justification);
 
