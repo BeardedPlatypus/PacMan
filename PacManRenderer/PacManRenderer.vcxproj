@@ -186,6 +186,7 @@
     <ClInclude Include="include\ui\font\GlyphRenderer.h" />
     <ClInclude Include="include\ui\font\Justification.h" />
     <ClInclude Include="include\ui\font\IStringRenderData.h" />
+    <ClInclude Include="include\ui\font\ScoreBoardStringRenderData.h" />
     <ClInclude Include="include\ui\font\StaticStringRenderData.h" />
     <ClInclude Include="include\ui\font\StringRenderer.h" />
     <ClInclude Include="include\ui\font\IGlyphRenderer.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="src\objects\ObjectRenderers\BigDotRenderer.cpp" />
     <ClCompile Include="src\objects\ObjectRenderers\SmallDotRenderer.cpp" />
     <ClCompile Include="src\ui\font\GlyphRenderer.cpp" />
+    <ClCompile Include="src\ui\font\ScoreBoardStringRenderData.cpp" />
     <ClCompile Include="src\ui\font\StaticStringRenderData.cpp" />
     <ClCompile Include="src\ui\font\StringRenderer.cpp" />
     <ClCompile Include="src\ui\UILayer.cpp" />
