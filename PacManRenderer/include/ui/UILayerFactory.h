@@ -4,6 +4,8 @@
 #include "ui/UILayer.h"
 #include "IViewAPI.h"
 
+#include <score/IScoreBoard.h>
+
 namespace pacman {
 namespace renderer {
 
@@ -16,7 +18,8 @@ namespace renderer {
 /// <returns>
 /// A new <see cref="UILayer"/>.
 /// </returns>
-std::unique_ptr<UILayer> ConstructUILayer(float scale, 
+std::unique_ptr<UILayer> ConstructUILayer(const state::score::IScoreBoard* p_score_board,
+                                          float scale, 
                                           view::IViewAPI* p_view_api, 
                                           float render_offset_y);
 

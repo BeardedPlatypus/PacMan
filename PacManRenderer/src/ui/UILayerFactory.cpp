@@ -5,11 +5,16 @@
 #include "ui/font/StringRenderer.h"
 #include "ui/font/StaticStringRenderData.h"
 
+#include <score/IScoreBoard.h>
+#include "ui/font/ScoreBoardStringRenderData.h"
+
+#include "ui/UISpriteValues.h"
 
 namespace pacman {
 namespace renderer {
 
-std::unique_ptr<UILayer> ConstructUILayer(float scale, 
+std::unique_ptr<UILayer> ConstructUILayer(const state::score::IScoreBoard* p_score_board,
+                                          float scale, 
                                           view::IViewAPI* p_view_api,
                                           float render_offset_y) {
   auto p_glyph_renderer = std::make_unique<ui::GlyphRenderer>(p_view_api);
@@ -29,6 +34,11 @@ std::unique_ptr<UILayer> ConstructUILayer(float scale,
                                                                         0.75F * scale, 
                                                                         0.75F, 
                                                                         ui::Justification::Centre));
+
+  p_render_data->push_back(std::make_unique<ui::ScoreBoardStringRenderData>(p_score_board,
+                                                                            736.F / 5.F,
+                                                                            (1.5F + values::glyph_size) * scale,
+                                                                            0.75, ui::Justification::Centre));
 
   return std::make_unique<UILayer>(scale, 
                                    std::move(p_string_renderer),
