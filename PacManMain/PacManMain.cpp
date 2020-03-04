@@ -33,6 +33,9 @@ int main(int argc, char **argv) {
                                                                3.0F);
   p_game_state->SetPlayerState(std::move(p_player_state));
 
+  auto p_score_board = pacman::state::score::IScoreBoard::Construct();
+  p_game_state->SetScoreBoard(std::move(p_score_board));
+
   auto p_view_api = pacman::view::IViewAPI::Construct();
   p_view_api->Initialise(736, 960);
 
