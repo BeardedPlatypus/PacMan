@@ -19,21 +19,21 @@ std::unique_ptr<UILayer> ConstructUILayer(float scale,
     std::make_unique<std::vector<std::unique_ptr<ui::IStringRenderData>>>();
 
   p_render_data->push_back(std::make_unique<ui::StaticStringRenderData>("high score", 
-                                                                        736.F / 2.F, 
-                                                                        3.F, 
+                                                                        736.F * 0.5F, 
+                                                                        0.75F * scale, 
                                                                         0.75F, 
                                                                         ui::Justification::Centre));
 
   p_render_data->push_back(std::make_unique<ui::StaticStringRenderData>("1up", 
                                                                         736.F / 5.F, 
-                                                                        3.F, 
+                                                                        0.75F * scale, 
                                                                         0.75F, 
                                                                         ui::Justification::Centre));
 
-  return std::make_unique<UILayer>(4.F, 
+  return std::make_unique<UILayer>(scale, 
                                    std::move(p_string_renderer),
                                    std::move(p_render_data),
-                                   0.F);
+                                   render_offset_y);
 }
 
 }
