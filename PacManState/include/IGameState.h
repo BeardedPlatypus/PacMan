@@ -8,6 +8,7 @@
 #include "field/Field.h"
 #include "field/object/FieldObjectType.h"
 #include "field/object/IFieldObjectManager.h"
+#include "score/IScoreBoard.h"
 
 namespace pacman {
   namespace state {
@@ -86,6 +87,20 @@ namespace pacman {
       /// A pointer to the <See cref="IFieldObjectManager"/> of this <see cref="IGameState"/>.
       /// </returns>
       virtual field::IFieldObjectManager* GetFieldObjectManager() const = 0;
+      
+      /// <summary>
+      /// Gets the <see cref="score::IScoreBoard"/>.
+      /// </summary>
+      /// <returns>A pointer to the <see cref="score::IScoreBoard"/>.</returns>
+      virtual score::IScoreBoard* GetScoreBoard() const = 0;
+      
+      /// <summary>
+      /// Set the pointer to the score board.
+      /// </summary>
+      /// <postcondition>
+      /// | (new this)->GetScoreBoard() == p_score_board.get()
+      /// </postcondition>
+      virtual void SetScoreBoard(std::unique_ptr<score::IScoreBoard> p_score_board) = 0;
     };
   }
 }

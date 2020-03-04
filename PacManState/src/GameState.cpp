@@ -9,17 +9,17 @@ namespace state {
 GameState::GameState() { }
 
 
-GameMode GameState::GetGameMode() const {
+inline GameMode GameState::GetGameMode() const {
 	return this->mode;
 }
 
 
-void GameState::SetGameMode(GameMode game_mode) {
+inline void GameState::SetGameMode(GameMode game_mode) {
 	this->mode = game_mode;
 }
 
 
-field::IField* GameState::GetField() const {
+inline field::IField* GameState::GetField() const {
   return this->p_field.get();
 }
 
@@ -29,12 +29,12 @@ void GameState::ConstructNewField(const std::vector<std::vector<field::TileType>
 }
 
 
-IEntityState* GameState::GetPlayerState() const {
+inline IEntityState* GameState::GetPlayerState() const {
   return this->p_player_state.get();
 }
 
 
-void GameState::SetPlayerState(std::unique_ptr<IEntityState> p_new_player_state) {
+inline void GameState::SetPlayerState(std::unique_ptr<IEntityState> p_new_player_state) {
   this->p_player_state = std::move(p_new_player_state);
 }
 
@@ -44,10 +44,19 @@ void GameState::ConstructNewFieldObjects(const std::vector<std::vector<field::Fi
 }
 
 
-field::IFieldObjectManager* GameState::GetFieldObjectManager() const {
+inline field::IFieldObjectManager* GameState::GetFieldObjectManager() const {
   return this->p_field_object_manager.get();
 }
 
+
+inline score::IScoreBoard* GameState::GetScoreBoard() const {
+  return this->p_score_board.get();
+}
+
+
+inline void GameState::SetScoreBoard(std::unique_ptr<score::IScoreBoard> p_score_board) {
+  this->p_score_board = std::move(p_score_board);
+}
 
 }
 }

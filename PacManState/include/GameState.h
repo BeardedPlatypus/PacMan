@@ -30,6 +30,9 @@ public:
 
   field::IFieldObjectManager* GetFieldObjectManager() const final;
 
+  score::IScoreBoard* GetScoreBoard() const final;
+  void SetScoreBoard(std::unique_ptr<score::IScoreBoard> p_score_board) final;
+
 private:	
 	/// <summary>
 	/// The current state of this GameState state machine.
@@ -47,8 +50,16 @@ private:
   /// <see cref="IEntityState" />.
   /// </summary>
   std::unique_ptr<IEntityState> p_player_state;
-
+  
+  /// <summary>
+  /// A <see cref="std::unique_ptr" /> to the <see cref="field::IFieldObjectManager" />.
+  /// </summary>
   std::unique_ptr<field::IFieldObjectManager> p_field_object_manager;
+  
+  /// <summary>
+  /// A <see cref="std::unique_ptr" /> to the <see cref="score::IScoreBoard"/>.
+  /// </summary>
+  std::unique_ptr<score::IScoreBoard> p_score_board;
 };
 
 }

@@ -51,5 +51,23 @@ TEST(GameStateTest, SetPlayerState_ExpectedResults) {
 	EXPECT_EQ(retrieved_state, p_expected_state);
 }
 
+
+TEST(GameStateTest, ConstructNewScoreBoard_SetsScoreBoard) {
+  // Setup
+	auto game_state = IGameState::Construct();
+	
+	std::unique_ptr<score::IScoreBoard> p_score_board =
+		score::IScoreBoard::Construct();
+	score::IScoreBoard* p_expected_score_board =
+		p_score_board.get();
+
+	// Call
+	game_state->SetScoreBoard(std::move(p_score_board));
+
+	// Assert
+	score::IScoreBoard* retrieved_score_board = game_state->GetScoreBoard();
+	EXPECT_EQ(retrieved_score_board, p_expected_score_board);
+}
+
 } // state
 } // pacman
