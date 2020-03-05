@@ -45,6 +45,9 @@
     <ClCompile Include="src\objects\behaviours\RemoveObjectBehaviourTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\objects\behaviours\ScoreBehaviourTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\NodeMock.h">
