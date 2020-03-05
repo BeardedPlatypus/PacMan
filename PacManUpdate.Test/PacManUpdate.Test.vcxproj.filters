@@ -45,7 +45,10 @@
     <ClCompile Include="src\objects\behaviours\RemoveObjectBehaviourTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\behaviours\ScoreBehaviourTest.cpp">
+    <ClCompile Include="src\objects\behaviours\SmallDotScoreBehaviourTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\behaviours\BigDotScoreBehaviourTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

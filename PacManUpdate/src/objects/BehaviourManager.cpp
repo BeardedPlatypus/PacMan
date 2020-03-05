@@ -3,6 +3,8 @@
 
 #include "objects/behaviours/PortalBehaviour.h"
 #include "objects/behaviours/RemoveObjectBehaviour.h"
+#include "objects/behaviours/BigDotScoreBehaviour.h"
+#include "objects/behaviours/SmallDotScoreBehaviour.h"
 
 namespace pacman {
 namespace update {
@@ -12,9 +14,11 @@ BehaviourManager::BehaviourManager() {}
 
 
 void BehaviourManager::Initialise(const state::field::IField* p_field,
-                                  state::field::IFieldObjectManager* p_field_object_manager) {
+                                  state::field::IFieldObjectManager* p_field_object_manager,
+                                  state::score::IScoreBoard* p_score_board) {
   this->_p_field_object_manager = p_field_object_manager;
   this->_p_field = p_field;
+  this->_p_score_board = p_score_board;
 
   InitialiseBehaviours();
   InitialiseBehaviourMapping();
@@ -33,14 +37,20 @@ void BehaviourManager::InitialiseBehaviourMapping() {
     this->_object_behaviours.at(std::type_index(typeid(PortalBehaviour))).get() 
   };
 
-  std::vector<IObjectBehaviour*> dots_behaviours = {
-    this->_object_behaviours.at(std::type_index(typeid(RemoveObjectBehaviour))).get()
+  std::vector<IObjectBehaviour*> small_dots_behaviours = {
+    this->_object_behaviours.at(std::type_index(typeid(RemoveObjectBehaviour))).get(),
+    this->_object_behaviours.at(std::type_index(typeid(SmallDotScoreBehaviour))).get(),
+  };
+
+  std::vector<IObjectBehaviour*> big_dots_behaviours = {
+    this->_object_behaviours.at(std::type_index(typeid(RemoveObjectBehaviour))).get(),
+    this->_object_behaviours.at(std::type_index(typeid(BigDotScoreBehaviour))).get()
   };
 
   this->_behaviour_mapping[state::field::FieldObjectType::Undefined] = std::vector<IObjectBehaviour*>();
   this->_behaviour_mapping[state::field::FieldObjectType::Portal] = portal_behaviours;
-  this->_behaviour_mapping[state::field::FieldObjectType::SmallDot] = dots_behaviours;
-  this->_behaviour_mapping[state::field::FieldObjectType::BigDot] = dots_behaviours;
+  this->_behaviour_mapping[state::field::FieldObjectType::SmallDot] = small_dots_behaviours;
+  this->_behaviour_mapping[state::field::FieldObjectType::BigDot] = big_dots_behaviours;
 }
 
 
@@ -77,6 +87,10 @@ void BehaviourManager::InitialisePortalBehaviour() {
 void BehaviourManager::InitialiseDotsBehaviour() {
   this->_object_behaviours[std::type_index(typeid(RemoveObjectBehaviour))] =
     std::make_unique<RemoveObjectBehaviour>(this->_p_field_object_manager);
+  this->_object_behaviours[std::type_index(typeid(BigDotScoreBehaviour))] =
+    std::make_unique<BigDotScoreBehaviour>(this->_p_score_board);
+  this->_object_behaviours[std::type_index(typeid(SmallDotScoreBehaviour))] =
+    std::make_unique<SmallDotScoreBehaviour>(this->_p_score_board);
 }
 
 

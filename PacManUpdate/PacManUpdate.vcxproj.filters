@@ -87,7 +87,13 @@
     <ClInclude Include="include\objects\behaviours\RemoveObjectBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\objects\behaviours\ScoreBehaviour.h">
+    <ClInclude Include="include\objects\behaviours\AbstractScoreBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\objects\behaviours\SmallDotScoreBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\objects\behaviours\BigDotScoreBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -146,7 +152,7 @@
     <ClCompile Include="src\objects\behaviours\RemoveObjectBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\behaviours\ScoreBehaviour.cpp">
+    <ClCompile Include="src\objects\behaviours\AbstractScoreBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
