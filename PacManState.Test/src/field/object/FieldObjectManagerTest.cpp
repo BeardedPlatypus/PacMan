@@ -26,10 +26,11 @@ std::unique_ptr<IField> ConstructTestField() {
 }
 
 
-std::unique_ptr<IFieldObjectManager> ConstructTestObjectManager(const IField* p_field) {
+std::unique_ptr<IFieldObjectManager> ConstructTestObjectManager(const IField* p_field,
+                                                                FieldObjectType field_object_type = FieldObjectType::Portal) {
   std::vector<std::vector<FieldObjectType>> field_objs = {
     { _, _, _, },
-    { _, FieldObjectType::Portal, _},
+    { _, field_object_type, _},
     { _, _, _, },
   };
 
@@ -126,6 +127,51 @@ TEST(FieldObjectManagerTest, HasObjectAt_ReturnsCorrectResult) {
   // Assert
   ASSERT_THAT(result, IsTrue());
 }
+
+
+class GetObjectTypeTest : public ::testing::TestWithParam<FieldObjectType> {
+public:
+  static std::vector<FieldObjectType> GetTestValues() {
+    return {
+      FieldObjectType::Undefined,
+      FieldObjectType::Portal,
+      FieldObjectType::BigDot,
+      FieldObjectType::SmallDot,
+    };
+  }
+};
+
+
+TEST_P(GetObjectTypeTest, Index_ExpectedResults) {
+  // Call
+  auto p_field = ConstructTestField();
+  auto p_field_object_manager = ConstructTestObjectManager(p_field.get(), GetParam());
+
+  // Setup
+  FieldObjectType result = p_field_object_manager->GetObjectType(4);
+
+  // Assert
+  ASSERT_THAT(result, Eq(GetParam()));
+}
+
+
+TEST_P(GetObjectTypeTest, Coordinate_ExpectedResults) {
+  // Call
+  auto p_field = ConstructTestField();
+  auto p_field_object_manager = ConstructTestObjectManager(p_field.get(), GetParam());
+
+  // Setup
+  FieldObjectType result = p_field_object_manager->GetObjectType(1, 1);
+
+  // Assert
+  ASSERT_THAT(result, Eq(GetParam()));
+}
+
+
+INSTANTIATE_TEST_SUITE_P(FieldObjectManagerTest,
+                         GetObjectTypeTest,
+                         ::testing::ValuesIn(GetObjectTypeTest::GetTestValues()));
+
 
 }
 }
