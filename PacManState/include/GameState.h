@@ -37,29 +37,29 @@ private:
 	/// <summary>
 	/// The current state of this GameState state machine.
 	/// </summary>
-	GameMode mode = GameMode::MainMenu;
+	GameMode _mode = GameMode::MainMenu;
   
   /// <summary>
   /// A <see cref="std::unique_ptr" /> to the <see cref="field::IField" />
   /// of this <see cref="GameState" />.
   /// </summary>
-  std::unique_ptr<field::IField> p_field;
+  std::unique_ptr<field::IField> _p_field;
   
   /// <summary>
   /// A <see cref="std::unique_ptr" /> to the player's
   /// <see cref="IEntityState" />.
   /// </summary>
-  std::unique_ptr<IEntityState> p_player_state;
+  std::unique_ptr<IEntityState> _p_player_state;
   
   /// <summary>
   /// A <see cref="std::unique_ptr" /> to the <see cref="field::IFieldObjectManager" />.
   /// </summary>
-  std::unique_ptr<field::IFieldObjectManager> p_field_object_manager;
+  std::unique_ptr<field::IFieldObjectManager> _p_field_object_manager;
   
   /// <summary>
   /// A <see cref="std::unique_ptr" /> to the <see cref="score::IScoreBoard"/>.
   /// </summary>
-  std::unique_ptr<score::IScoreBoard> p_score_board;
+  std::unique_ptr<score::IScoreBoard> _p_score_board;
 };
 
 }
