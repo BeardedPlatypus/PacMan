@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\FieldLayerHelperTest.cpp" />
+    <ClCompile Include="src\manager\LayerManagerTest.cpp" />
     <ClCompile Include="src\objects\ObjectRenderers\SmallDotRendererTest.cpp" />
     <ClCompile Include="src\objects\ObjectRenderers\BigDotRendererTest.cpp" />
     <ClCompile Include="src\ui\font\GlyphRendererTest.cpp" />
