@@ -45,6 +45,9 @@
     <ClCompile Include="src\manager\LayerManagerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\objects\ObjectLayerTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\FieldMock.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\RenderLayerMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FieldObjectManagerMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
