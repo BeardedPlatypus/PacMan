@@ -158,6 +158,7 @@
     <ClInclude Include="include\FieldMock.h" />
     <ClInclude Include="include\FieldObjectManagerMock.h" />
     <ClInclude Include="include\GlyphRendererMock.h" />
+    <ClInclude Include="include\ObjectRendererMock.h" />
     <ClInclude Include="include\RenderLayerMock.h" />
     <ClInclude Include="include\StringRendererMock.h" />
     <ClInclude Include="include\ViewAPIMock.h" />
