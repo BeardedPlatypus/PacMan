@@ -147,6 +147,7 @@
     <ClCompile Include="src\commands\QuitCommandTest.cpp" />
     <ClCompile Include="src\entity\PlayerMovementAxisTest.cpp" />
     <ClCompile Include="src\entity\UpdatableEntityAxisTest.cpp" />
+    <ClCompile Include="src\entity\UpdatablePlayerEntityTest.cpp" />
     <ClCompile Include="src\entity\util\PlayerUpdateUtilsTest.cpp" />
     <ClCompile Include="src\objects\behaviours\BigDotScoreBehaviourTest.cpp" />
     <ClCompile Include="src\objects\behaviours\PortalBehaviourTest.cpp" />
