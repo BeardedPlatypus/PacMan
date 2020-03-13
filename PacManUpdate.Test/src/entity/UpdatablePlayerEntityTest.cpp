@@ -158,5 +158,28 @@ TEST(UpdatablePlayerEntityTest, SetMovingDirection_WrapsEntityState) {
 }
 
 
+TEST(UpdatablePlayerEntityTest, Update_CallsMovementAxii) {
+  // Setup
+  const float expected_dt = 0.12345F;
+
+  EntityStateMock entity_state;
+  
+  std::unique_ptr<PlayerMovementAxisMock> p_x_axis = std::make_unique<PlayerMovementAxisMock>();
+  EXPECT_CALL(*p_x_axis, Update(expected_dt)).Times(1);
+
+  std::unique_ptr<PlayerMovementAxisMock> p_y_axis = std::make_unique<PlayerMovementAxisMock>();
+  EXPECT_CALL(*p_y_axis, Update(expected_dt)).Times(1);
+
+  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state,
+                                                              std::make_unique<UpdatableEntityAxisMock>(),
+                                                              std::make_unique<UpdatableEntityAxisMock>(),
+                                                              std::move(p_x_axis),
+                                                              std::move(p_y_axis));
+
+  // Call
+  player_entity.Update(expected_dt);
+}
+
+
 }
 }
