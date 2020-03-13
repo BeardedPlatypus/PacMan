@@ -181,5 +181,21 @@ TEST(UpdatablePlayerEntityTest, Update_CallsMovementAxii) {
 }
 
 
+TEST(UpdatablePlayerEntityTest, SetIsMoving_WrapsEntityState) {
+  // Setup
+  bool expected_is_moving = true;
+  EntityStateMock entity_state;
+  EXPECT_CALL(entity_state, SetIsMoving(expected_is_moving)).Times(1);
+
+  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<PlayerMovementAxisMock>(),
+                                                              std::make_unique<PlayerMovementAxisMock>());
+
+  // Call
+  player_entity.SetIsMoving(expected_is_moving);
+}
+
 }
 }
