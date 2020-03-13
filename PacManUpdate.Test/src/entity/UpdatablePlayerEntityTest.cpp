@@ -121,5 +121,42 @@ TEST(UpdatablePlayerEntityTest, SwapActiveAxis_ExpectedResults) {
 }
 
 
+TEST(UpdatablePlayerEntityTest, GetMovingDirection_WrapsEntityState) {
+  // Setup
+  state::Direction expected_direction = state::Direction::Down;
+  EntityStateMock entity_state;
+  EXPECT_CALL(entity_state, GetDirection()).Times(1).WillOnce(Return(expected_direction));
+
+  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<PlayerMovementAxisMock>(),
+                                                              std::make_unique<PlayerMovementAxisMock>());
+
+  // Call
+  state::Direction result = player_entity.GetMovingDirection();
+
+  // Assert
+  EXPECT_THAT(result, Eq(expected_direction));
+}
+
+
+TEST(UpdatablePlayerEntityTest, SetMovingDirection_WrapsEntityState) {
+  // Setup
+  state::Direction expected_direction = state::Direction::Down;
+  EntityStateMock entity_state;
+  EXPECT_CALL(entity_state, SetDirection(expected_direction)).Times(1);
+
+  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<PlayerMovementAxisMock>(),
+                                                              std::make_unique<PlayerMovementAxisMock>());
+
+  // Call
+  player_entity.SetMovingDirection(expected_direction);
+}
+
+
 }
 }
