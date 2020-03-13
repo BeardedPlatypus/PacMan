@@ -3,7 +3,12 @@
 
 #include <entity/UpdatablePlayerEntity.h>
 
+#include "EntityStateMock.h"
+#include "UpdatableEntityAxisMock.h"
+#include "PlayerMovementAxisMock.h"
+
 using ::testing::Eq;
+using ::testing::Return;
 
 namespace pacman {
 namespace update {
@@ -19,10 +24,13 @@ class ActiveAxisTypeTest : public ::testing::TestWithParam<AxisType> { };
 
 TEST_P(ActiveAxisTypeTest, SetActiveAxisType_ExpectedResults) {
   // Setup
-  std::unique_ptr<state::IEntityState> p_entity_state = 
-    state::IEntityState::Construct(0.F, 0.F, state::Direction::Left, 30.F);
+  EntityStateMock entity_state;
 
-  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(p_entity_state.get());
+  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<PlayerMovementAxisMock>(),
+                                                              std::make_unique<PlayerMovementAxisMock>());
 
   // Call
   player_entity.SetActiveAxisType(GetParam());
@@ -39,10 +47,15 @@ INSTANTIATE_TEST_SUITE_P(UpdatablePlayerEntityTest,
 TEST(UpdatablePlayerEntityTest, GetSpeed_ExpectedResults) {
   // Setup
   const float expected_speed = 30.124F;
-  std::unique_ptr<state::IEntityState> p_entity_state = 
-    state::IEntityState::Construct(0.F, 0.F, state::Direction::Left, expected_speed);
 
-  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(p_entity_state.get());
+  EntityStateMock entity_state;
+  EXPECT_CALL(entity_state, GetSpeed()).Times(1).WillOnce(Return(expected_speed));
+
+  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<PlayerMovementAxisMock>(),
+                                                              std::make_unique<PlayerMovementAxisMock>());
 
   // Call
   float result = player_entity.GetSpeed();
@@ -54,11 +67,14 @@ TEST(UpdatablePlayerEntityTest, GetSpeed_ExpectedResults) {
 
 TEST(UpdatablePlayerEntityTest, ActiveAxis_Consistent) {
   // Setup
-  const float expected_speed = 30.124F;
-  std::unique_ptr<state::IEntityState> p_entity_state = 
-    state::IEntityState::Construct(0.F, 0.F, state::Direction::Left, expected_speed);
+  EntityStateMock entity_state;
 
-  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(p_entity_state.get());
+  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<PlayerMovementAxisMock>(),
+                                                              std::make_unique<PlayerMovementAxisMock>());
+
 
   // Call
   AxisType active_axis_type = player_entity.GetActiveAxisType();
@@ -87,11 +103,13 @@ TEST(UpdatablePlayerEntityTest, ActiveAxis_Consistent) {
 
 TEST(UpdatablePlayerEntityTest, SwapActiveAxis_ExpectedResults) {
   // Setup
-  const float expected_speed = 30.124F;
-  std::unique_ptr<state::IEntityState> p_entity_state = 
-    state::IEntityState::Construct(0.F, 0.F, state::Direction::Left, expected_speed);
+  EntityStateMock entity_state;
 
-  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(p_entity_state.get());
+  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<UpdatableEntityAxisMock>(), 
+                                                              std::make_unique<PlayerMovementAxisMock>(),
+                                                              std::make_unique<PlayerMovementAxisMock>());
 
   AxisType prev_inactive_axis_type = player_entity.GetActiveAxisType() == AxisType::X ? AxisType::Y : AxisType::X;
 

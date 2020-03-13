@@ -5,16 +5,20 @@
 namespace pacman {
 namespace update {
 
-UpdatablePlayerEntity::UpdatablePlayerEntity(state::IEntityState* p_player_state) :
+UpdatablePlayerEntity::UpdatablePlayerEntity(state::IEntityState* p_player_state,
+                                             std::unique_ptr<IUpdatableEntityAxis> p_x_axis,
+                                             std::unique_ptr<IUpdatableEntityAxis> p_y_axis,
+                                             std::unique_ptr<IPlayerMovementAxis> p_x_movement_axis,
+                                             std::unique_ptr<IPlayerMovementAxis> p_y_movement_axis) :
     p_player_state(p_player_state) {
-  this->axii = { 
-    IUpdatableEntityAxis::Construct(this->p_player_state->GetXAxis()), 
-    IUpdatableEntityAxis::Construct(this->p_player_state->GetYAxis()) 
+  this->axii = {
+    std::move(p_x_axis),
+    std::move(p_y_axis),
   };
 
   this->movement_axii = {
-    IPlayerMovementAxis::Construct(),
-    IPlayerMovementAxis::Construct(),
+    std::move(p_x_movement_axis),
+    std::move(p_y_movement_axis),
   };
 }
 

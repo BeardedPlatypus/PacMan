@@ -74,5 +74,8 @@
     <ClInclude Include="include\FieldObjectManagerMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\EntityStateMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
