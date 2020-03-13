@@ -11,15 +11,21 @@ namespace objects {
 /// object with a provided <see cref="view::IViewAPI"/> at a specified location.
 /// </summary>
 class IObjectRenderer {
-public:  
+public:    
   /// <summary>
-  /// Render the corresponding object of this <see cref="IObjectRenderer"/>.
+  /// Initialises this <see cref="IObjectRenderer"/> such 
+  /// that <see cref="RenderObject"/> can be called.
   /// </summary>
-  /// <param name="p_view_api"> The a pointer to the <see cref="IViewAPI"/>.</param>
-  /// <param name="x"> The x tile index to render at. </param>
-  /// <param name="y"> The y tile index to render at. </param>
-  /// <param name="scale"> The scale to render with. </param>
-  virtual void RenderObject(view::IViewAPI* p_view_api, int x, int y, float scale, float render_offset_y) const = 0;
+  virtual void Initialise() = 0;
+
+  /// <summary>
+  /// Render the corresponding object of this <see cref="IObjectRenderer" />.
+  /// </summary>
+  /// <param name="x">The x tile index to render at.</param>
+  /// <param name="y">The y tile index to render at.</param>
+  /// <param name="scale">The scale to render with.</param>
+  /// <param name="render_offset_y">The render offset y.</param>
+  virtual void RenderObject(int x, int y, float scale, float render_offset_y) const = 0;
 };
 
 }

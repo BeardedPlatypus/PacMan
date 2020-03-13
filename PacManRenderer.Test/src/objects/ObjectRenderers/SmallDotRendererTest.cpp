@@ -13,6 +13,23 @@ namespace pacman {
 namespace renderer {
 namespace objects {
 
+TEST(SmallDotRendererTest, Initialise_RequestsCorrectSprites) {
+  // Setup
+  ViewAPIMock view_api;
+  EXPECT_CALL(view_api, RequestSprite(values::object_sprite_small_dot,
+                                      values::dots_sprite_file,
+                                      values::small_dot_offset,
+                                      values::small_dot_offset,
+                                      values::small_dot_tile_size,
+                                      values::small_dot_tile_size)).Times(1);
+
+  auto renderer = SmallDotRenderer(&view_api);
+
+  // Call | Assert
+  renderer.Initialise();
+}
+
+
 TEST(SmallDotRendererTest, RenderObject_RendersViewAPI) {
   // Setup
   const float expected_scale = 4.F;
@@ -35,10 +52,10 @@ TEST(SmallDotRendererTest, RenderObject_RendersViewAPI) {
                             false, 
                             false)).Times(1);
 
-  auto renderer = SmallDotRenderer();
+  auto renderer = SmallDotRenderer(&view_api);
 
   // Call | Assert
-  renderer.RenderObject(&view_api, input_x, input_y, expected_scale, render_offset_y);
+  renderer.RenderObject(input_x, input_y, expected_scale, render_offset_y);
 }
 
 }

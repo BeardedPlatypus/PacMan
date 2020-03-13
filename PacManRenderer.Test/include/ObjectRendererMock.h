@@ -6,5 +6,6 @@
 
 class ObjectRendererMock : public pacman::renderer::objects::IObjectRenderer {
 public:
-  MOCK_METHOD(void, RenderObject, (pacman::view::IViewAPI*, int, int, float, float), (const));
+  MOCK_METHOD(void, Initialise, ());
+  MOCK_METHOD(void, RenderObject, (int, int, float, float), (const));
 };

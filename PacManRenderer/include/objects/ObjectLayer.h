@@ -26,11 +26,9 @@ public:
   /// Create a new <see cref="ObjectLayer"/>.
   /// </summary>
   /// <param name="scale">The scale with which to render.</param>
-  /// <param name="p_view_api">A pointer to the <see cref="view::IViewAPI"/>.</param>
   /// <param name="p_object_manager">A pointer to the <see cref="IFieldObjectManager"/>.</param>
   /// <param name="p_obj_renderers">A mapping of objects to their corresponding renderers.</param>
   ObjectLayer(float scale,
-              view::IViewAPI* p_view_api,
               state::field::IFieldObjectManager* p_object_manager,
               std::unique_ptr<RenderMapping> p_obj_renderers,
               float render_offset_y);
@@ -50,11 +48,6 @@ private:
   const float scale;
 
   /// <summary>
-  /// Initialise the sprites of this <see cref="ObjectLayer" />.
-  /// </summary>
-  void InitialiseSprites();
-  
-  /// <summary>
   /// Determines whether this has a renderer for the specified 
   /// <paramref name="type"/>.
   /// </summary>
@@ -64,12 +57,6 @@ private:
   /// </returns>
   bool HasRendererForType(state::field::FieldObjectType type) const;
 
-  /// <summary>
-  /// A pointer to the <see cref="IViewManager" /> used by this 
-  /// <see cref="FieldLayer" />. 
-  /// </summary>
-  view::IViewAPI* p_view_api;
-  
   /// <summary>
   /// A pointer to the observed <see cref="state::field::IFieldObjectManager"/>.
   /// </summary>

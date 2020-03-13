@@ -2,24 +2,26 @@
 #include "objects/ObjectLayer.h"
 
 #include "objects/ObjectSpriteValues.h"
+#include <algorithm>
 
 namespace pacman {
 namespace renderer {
 
 ObjectLayer::ObjectLayer(float scale, 
-                         view::IViewAPI* p_view_api,
                          state::field::IFieldObjectManager* p_object_manager,
                          std::unique_ptr<RenderMapping> p_obj_renderers,
                          float render_offset_y) : 
     scale(scale),
-    p_view_api(p_view_api),
     p_object_manager(p_object_manager),
     p_render_mapping(std::move(p_obj_renderers)),
     render_offset_y(render_offset_y) { }
 
 
+
 void ObjectLayer::Initialise() {
-  this->InitialiseSprites();
+  for (const auto& renderer_pair : *(this->p_render_mapping)) {
+    renderer_pair.second->Initialise();
+  }
 }
 
 
@@ -36,30 +38,13 @@ void ObjectLayer::Render() const {
   for (const state::field::FieldObject& field_obj : field_objs) {
     state::field::FieldObjectType t = field_obj.GetType();
     if (this->HasRendererForType(t)) {
-      p_render_mapping->at(t)->RenderObject(this->p_view_api,
-                                            field_obj.GetX(),
+      p_render_mapping->at(t)->RenderObject(field_obj.GetX(),
                                             field_obj.GetY(), 
                                             this->scale,
                                             this->render_offset_y);
     }
   }
 }
-
-
-void ObjectLayer::InitialiseSprites() {
-  this->p_view_api->RequestSprite(values::object_sprite_small_dot,
-                                  values::dots_sprite_file,
-                                  values::small_dot_offset,
-                                  values::small_dot_offset,
-                                  values::small_dot_tile_size,
-                                  values::small_dot_tile_size);
-  this->p_view_api->RequestSprite(values::object_sprite_big_dot,
-                                  values::dots_sprite_file,
-                                  0, 0,
-                                  values::big_dot_tile_size,
-                                  values::big_dot_tile_size);
-}
-
 
 }
 }

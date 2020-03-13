@@ -16,37 +16,31 @@ namespace pacman {
 namespace renderer {
 namespace objects {
 
-TEST(ObjectLayerTest, Initialise_InitialisesSprites) {
+TEST(ObjectLayerTest, Initialise_InitialisesRenderers) {
   // Setup
   std::unique_ptr<RenderMapping> p_mapping = std::make_unique<RenderMapping>();
 
+  std::unique_ptr<ObjectRendererMock> p_small_dot_renderer =
+    std::make_unique<ObjectRendererMock>();
+  EXPECT_CALL(*p_small_dot_renderer, Initialise()).Times(1);
+
+  std::unique_ptr<ObjectRendererMock> p_big_dot_renderer =
+    std::make_unique<ObjectRendererMock>();
+  EXPECT_CALL(*p_big_dot_renderer, Initialise()).Times(1);
 
   p_mapping->emplace(std::make_pair(state::field::FieldObjectType::SmallDot,
-                                    std::make_unique<ObjectRendererMock>()));
+                                    std::move(p_small_dot_renderer)));
   p_mapping->emplace(std::make_pair(state::field::FieldObjectType::BigDot,
-                                    std::make_unique<ObjectRendererMock>()));
+                                    std::move(p_big_dot_renderer)));
 
   float expected_render_offset = 12.3F;
   float expected_scale = 4.F;
 
   ViewAPIMock view_api;
 
-  EXPECT_CALL(view_api, RequestSprite(values::object_sprite_small_dot,
-                                      values::dots_sprite_file,
-                                      values::small_dot_offset,
-                                      values::small_dot_offset,
-                                      values::small_dot_tile_size,
-                                      values::small_dot_tile_size)).Times(1);
-  EXPECT_CALL(view_api, RequestSprite(values::object_sprite_big_dot,
-                                      values::dots_sprite_file,
-                                      0, 0,
-                                      values::big_dot_tile_size,
-                                      values::big_dot_tile_size)).Times(1);
-
   FieldObjectManagerMock object_manager;
 
   ObjectLayer layer = ObjectLayer(expected_scale, 
-                                  &view_api, 
                                   &object_manager, 
                                   std::move(p_mapping),
                                   expected_render_offset);
@@ -58,7 +52,6 @@ TEST(ObjectLayerTest, Initialise_InitialisesSprites) {
 
 TEST(ObjectLayerTest, Render_CallsSprites) {
   // Setup
-  ViewAPIMock view_api;
   std::unique_ptr<RenderMapping> p_mapping = std::make_unique<RenderMapping>();
 
   float expected_render_offset = 12.3F;
@@ -67,12 +60,12 @@ TEST(ObjectLayerTest, Render_CallsSprites) {
   std::unique_ptr<ObjectRendererMock> p_small_dot_renderer =
     std::make_unique<ObjectRendererMock>();
   EXPECT_CALL(*(p_small_dot_renderer), 
-              RenderObject(&view_api, 0, 1, expected_scale, expected_render_offset)).Times(1);
+              RenderObject(0, 1, expected_scale, expected_render_offset)).Times(1);
 
   std::unique_ptr<ObjectRendererMock> p_big_dot_renderer =
     std::make_unique<ObjectRendererMock>();
   EXPECT_CALL(*(p_big_dot_renderer), 
-              RenderObject(&view_api, 1, 0, expected_scale, expected_render_offset)).Times(1);
+              RenderObject( 1, 0, expected_scale, expected_render_offset)).Times(1);
 
 
   p_mapping->emplace(std::make_pair(state::field::FieldObjectType::SmallDot,
@@ -89,7 +82,6 @@ TEST(ObjectLayerTest, Render_CallsSprites) {
   ON_CALL(object_manager, GetAllFieldObjects()).WillByDefault(ReturnRef(field_objs));
 
   ObjectLayer layer = ObjectLayer(expected_scale, 
-                                  &view_api, 
                                   &object_manager, 
                                   std::move(p_mapping),
                                   expected_render_offset);

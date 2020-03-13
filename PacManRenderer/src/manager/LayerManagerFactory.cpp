@@ -22,12 +22,11 @@ std::unique_ptr<ObjectLayer> ConstructObjectLayer(float scale,
   std::unique_ptr<RenderMapping> p_mapping = std::make_unique<RenderMapping>();
 
   p_mapping->emplace(std::make_pair(state::field::FieldObjectType::SmallDot,
-                                    std::make_unique<objects::SmallDotRenderer>()));
+                                    std::make_unique<objects::SmallDotRenderer>(p_view_api)));
   p_mapping->emplace(std::make_pair(state::field::FieldObjectType::BigDot,
-                                    std::make_unique<objects::BigDotRenderer>()));
+                                    std::make_unique<objects::BigDotRenderer>(p_view_api)));
 
   return std::make_unique<ObjectLayer>(scale, 
-                                       p_view_api, 
                                        p_object_manager, 
                                        std::move(p_mapping),
                                        20.F);
