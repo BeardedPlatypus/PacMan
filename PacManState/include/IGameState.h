@@ -9,6 +9,7 @@
 #include "field/object/FieldObjectType.h"
 #include "field/object/IFieldObjectManager.h"
 #include "score/IScoreBoard.h"
+#include "level/ILevelManager.h"
 
 namespace pacman {
   namespace state {
@@ -91,16 +92,36 @@ namespace pacman {
       /// <summary>
       /// Gets the <see cref="score::IScoreBoard"/>.
       /// </summary>
-      /// <returns>A pointer to the <see cref="score::IScoreBoard"/>.</returns>
+      /// <returns>
+      /// A pointer to the <see cref="score::IScoreBoard"/>.
+      /// </returns>
       virtual score::IScoreBoard* GetScoreBoard() const = 0;
       
       /// <summary>
       /// Set the pointer to the score board.
       /// </summary>
+      /// <param name="p_score_board"> Unique pointer to the new score board. </param>
       /// <postcondition>
       /// | (new this)->GetScoreBoard() == p_score_board.get()
       /// </postcondition>
       virtual void SetScoreBoard(std::unique_ptr<score::IScoreBoard> p_score_board) = 0;
+      
+      /// <summary>
+      /// Gets the <see cref="level::ILevelManager"/>.
+      /// </summary>
+      /// <returns>
+      /// A pointer to the <see cref="level::ILevelManager"/>.
+      /// </returns>
+      virtual level::ILevelManager* GetLevelManager() const = 0;      
+
+      /// <summary>
+      /// Sets the level manager.
+      /// </summary>
+      /// <param name="p_level_manager">Unique pointer to the level manager.</param>
+      /// <postcondition>
+      /// | (new this)->GetLevelManager() == p_level_manager.get()
+      /// </postcondition>
+      virtual void SetLevelManager(std::unique_ptr<level::ILevelManager> p_level_manager) = 0;
     };
   }
 }

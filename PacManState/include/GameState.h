@@ -33,6 +33,8 @@ public:
   score::IScoreBoard* GetScoreBoard() const final;
   void SetScoreBoard(std::unique_ptr<score::IScoreBoard> p_score_board) final;
 
+  level::ILevelManager* GetLevelManager() const final;
+  void SetLevelManager(std::unique_ptr<level::ILevelManager> p_level_manager) final;
 private:	
 	/// <summary>
 	/// The current state of this GameState state machine.
@@ -60,6 +62,11 @@ private:
   /// A <see cref="std::unique_ptr" /> to the <see cref="score::IScoreBoard"/>.
   /// </summary>
   std::unique_ptr<score::IScoreBoard> _p_score_board;
+  
+  /// <summary>
+  /// A <see cref="std::unique_ptr" /> to the <see cref="level::ILevelManager"/>.
+  /// </summary>
+  std::unique_ptr<level::ILevelManager> _p_level_manager;
 };
 
 }

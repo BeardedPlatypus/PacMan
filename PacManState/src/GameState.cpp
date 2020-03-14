@@ -58,5 +58,15 @@ inline void GameState::SetScoreBoard(std::unique_ptr<score::IScoreBoard> p_score
   this->_p_score_board = std::move(p_score_board);
 }
 
+
+inline level::ILevelManager* GameState::GetLevelManager() const {
+  return this->_p_level_manager.get();
+}
+
+
+inline void GameState::SetLevelManager(std::unique_ptr<level::ILevelManager> p_level_manager) {
+  this->_p_level_manager = std::move(p_level_manager);
+}
+
 }
 }

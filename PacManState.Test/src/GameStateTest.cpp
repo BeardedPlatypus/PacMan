@@ -52,7 +52,7 @@ TEST(GameStateTest, SetPlayerState_ExpectedResults) {
 }
 
 
-TEST(GameStateTest, ConstructNewScoreBoard_SetsScoreBoard) {
+TEST(GameStateTest, SetScoreBoard_ExpectedResults) {
   // Setup
 	auto game_state = IGameState::Construct();
 	
@@ -67,6 +67,23 @@ TEST(GameStateTest, ConstructNewScoreBoard_SetsScoreBoard) {
 	// Assert
 	score::IScoreBoard* retrieved_score_board = game_state->GetScoreBoard();
 	EXPECT_EQ(retrieved_score_board, p_expected_score_board);
+}
+
+
+TEST(GameStateTest, SetLevelManager_ExpectedResults) {
+  // Setup
+	auto game_state = IGameState::Construct();
+	
+	std::unique_ptr<level::ILevelManager> p_level_manager =
+		level::ILevelManager::Construct(30.0);
+	level::ILevelManager* p_expected_level_manager =
+		p_level_manager.get();
+
+	// Call
+	game_state->SetLevelManager(std::move(p_level_manager));
+
+	// Assert
+	EXPECT_EQ(game_state->GetLevelManager(), p_expected_level_manager);
 }
 
 } // state
