@@ -54,6 +54,9 @@
     <ClCompile Include="src\entity\UpdatablePlayerEntityTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\objects\behaviours\IncrementDotsConsumedBehaviourTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\NodeMock.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\EntityStateMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LevelManagerMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
