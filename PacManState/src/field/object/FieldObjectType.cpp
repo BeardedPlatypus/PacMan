@@ -10,7 +10,8 @@ bool IsDefined(FieldObjectType t) {
   return t == FieldObjectType::Undefined ||
          t == FieldObjectType::Portal    ||
          t == FieldObjectType::SmallDot  ||
-         t == FieldObjectType::BigDot;
+         t == FieldObjectType::BigDot    || 
+         t == FieldObjectType::BonusFruit;
 }
 
 

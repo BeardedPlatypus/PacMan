@@ -15,6 +15,7 @@ enum class DllExport FieldObjectType {
   Portal = 1,
   BigDot = 2,
   SmallDot = 3,
+  BonusFruit = 4,
 };
 
 
