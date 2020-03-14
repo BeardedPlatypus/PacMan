@@ -24,7 +24,8 @@ void UpdateAPI::Initialise() {
 
   this->p_behaviour_manager->Initialise(this->p_game_state->GetField(),
                                         this->p_game_state->GetFieldObjectManager(),
-                                        this->p_game_state->GetScoreBoard());
+                                        this->p_game_state->GetScoreBoard(),
+                                        this->p_game_state->GetLevelManager());
 
   this->InitialiseCommands();
 }

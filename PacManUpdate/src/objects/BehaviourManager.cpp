@@ -5,6 +5,8 @@
 #include "objects/behaviours/RemoveObjectBehaviour.h"
 #include "objects/behaviours/BigDotScoreBehaviour.h"
 #include "objects/behaviours/SmallDotScoreBehaviour.h"
+#include "objects/behaviours/IncrementDotsConsumedBehaviour.h"
+
 
 namespace pacman {
 namespace update {
@@ -13,12 +15,15 @@ namespace object {
 BehaviourManager::BehaviourManager() {}
 
 
+
 void BehaviourManager::Initialise(const state::field::IField* p_field,
                                   state::field::IFieldObjectManager* p_field_object_manager,
-                                  state::score::IScoreBoard* p_score_board) {
+                                  state::score::IScoreBoard* p_score_board, 
+                                  state::level::ILevelManager* p_level_manager) {
   this->_p_field_object_manager = p_field_object_manager;
   this->_p_field = p_field;
   this->_p_score_board = p_score_board;
+  this->_p_level_manager = p_level_manager;
 
   InitialiseBehaviours();
   InitialiseBehaviourMapping();
@@ -39,11 +44,13 @@ void BehaviourManager::InitialiseBehaviourMapping() {
 
   std::vector<IObjectBehaviour*> small_dots_behaviours = {
     this->_object_behaviours.at(std::type_index(typeid(RemoveObjectBehaviour))).get(),
+    this->_object_behaviours.at(std::type_index(typeid(IncrementDotsConsumedBehaviour))).get(),
     this->_object_behaviours.at(std::type_index(typeid(SmallDotScoreBehaviour))).get(),
   };
 
   std::vector<IObjectBehaviour*> big_dots_behaviours = {
     this->_object_behaviours.at(std::type_index(typeid(RemoveObjectBehaviour))).get(),
+    this->_object_behaviours.at(std::type_index(typeid(IncrementDotsConsumedBehaviour))).get(),
     this->_object_behaviours.at(std::type_index(typeid(BigDotScoreBehaviour))).get()
   };
 
@@ -87,6 +94,8 @@ void BehaviourManager::InitialisePortalBehaviour() {
 void BehaviourManager::InitialiseDotsBehaviour() {
   this->_object_behaviours[std::type_index(typeid(RemoveObjectBehaviour))] =
     std::make_unique<RemoveObjectBehaviour>(this->_p_field_object_manager);
+  this->_object_behaviours[std::type_index(typeid(IncrementDotsConsumedBehaviour))] =
+    std::make_unique<IncrementDotsConsumedBehaviour>(this->_p_level_manager);
   this->_object_behaviours[std::type_index(typeid(BigDotScoreBehaviour))] =
     std::make_unique<BigDotScoreBehaviour>(this->_p_score_board);
   this->_object_behaviours[std::type_index(typeid(SmallDotScoreBehaviour))] =

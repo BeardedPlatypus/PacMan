@@ -36,6 +36,10 @@ int main(int argc, char **argv) {
   auto p_score_board = pacman::state::score::IScoreBoard::Construct();
   p_game_state->SetScoreBoard(std::move(p_score_board));
 
+  // The current field contains 192 dots (including the big dots).
+  auto p_level_manager = pacman::state::level::ILevelManager::Construct(192);
+  p_game_state->SetLevelManager(std::move(p_level_manager));
+
   auto p_view_api = pacman::view::IViewAPI::Construct();
   p_view_api->Initialise(736, 960);
 
