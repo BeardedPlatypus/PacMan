@@ -144,6 +144,7 @@
     <ClCompile Include="src\field\object\FieldObjectTest.cpp" />
     <ClCompile Include="src\field\object\FieldObjectTypeTest.cpp" />
     <ClCompile Include="src\GameStateTest.cpp" />
+    <ClCompile Include="src\level\LevelManagerTest.cpp" />
     <ClCompile Include="src\score\ScoreBoardTest.cpp" />
   </ItemGroup>
   <ItemGroup>
