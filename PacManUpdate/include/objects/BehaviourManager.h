@@ -52,7 +52,7 @@ private:
   void InitialiseBehaviours();
   void InitialisePortalBehaviour();
   void InitialiseBehaviourMapping();
-  void InitialiseDotsBehaviour();
+  void InitialiseObjectBehaviour();
 
   const state::field::IField* _p_field;
   state::field::IFieldObjectManager* _p_field_object_manager;

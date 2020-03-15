@@ -26,14 +26,14 @@ void BehaviourManager::Initialise(const state::field::IField* p_field,
   this->_p_score_board = p_score_board;
   this->_p_level_manager = p_level_manager;
 
-  InitialiseBehaviours();
-  InitialiseBehaviourMapping();
+  this->InitialiseBehaviours();
+  this->InitialiseBehaviourMapping();
 }
 
 
 void BehaviourManager::InitialiseBehaviours() {
-  InitialisePortalBehaviour();
-  InitialiseDotsBehaviour();
+  this->InitialisePortalBehaviour();
+  this->InitialiseObjectBehaviour();
 }
 
 
@@ -94,7 +94,7 @@ void BehaviourManager::InitialisePortalBehaviour() {
 }
 
 
-void BehaviourManager::InitialiseDotsBehaviour() {
+void BehaviourManager::InitialiseObjectBehaviour() {
   this->_object_behaviours[std::type_index(typeid(RemoveObjectBehaviour))] =
     std::make_unique<RemoveObjectBehaviour>(this->_p_field_object_manager);
   this->_object_behaviours[std::type_index(typeid(IncrementDotsConsumedBehaviour))] =
