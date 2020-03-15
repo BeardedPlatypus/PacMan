@@ -8,6 +8,7 @@
 #include "objects/behaviours/IncrementDotsConsumedBehaviour.h"
 #include "objects/behaviours/AddBonusFruitBehaviour.h"
 #include "objects/behaviours/BonusFruitScoreBehaviour.h"
+#include "objects/behaviours/WinRoundBehaviour.h"
 
 
 namespace pacman {
@@ -49,13 +50,15 @@ void BehaviourManager::InitialiseBehaviourMapping() {
     this->_object_behaviours.at(std::type_index(typeid(IncrementDotsConsumedBehaviour))).get(),
     this->_object_behaviours.at(std::type_index(typeid(AddBonusFruitBehaviour))).get(),
     this->_object_behaviours.at(std::type_index(typeid(SmallDotScoreBehaviour))).get(),
+    this->_object_behaviours.at(std::type_index(typeid(WinRoundBehaviour))).get(),
   };
 
   std::vector<IObjectBehaviour*> big_dots_behaviours = {
     this->_object_behaviours.at(std::type_index(typeid(RemoveObjectBehaviour))).get(),
     this->_object_behaviours.at(std::type_index(typeid(IncrementDotsConsumedBehaviour))).get(),
     this->_object_behaviours.at(std::type_index(typeid(AddBonusFruitBehaviour))).get(),
-    this->_object_behaviours.at(std::type_index(typeid(BigDotScoreBehaviour))).get()
+    this->_object_behaviours.at(std::type_index(typeid(BigDotScoreBehaviour))).get(),
+    this->_object_behaviours.at(std::type_index(typeid(WinRoundBehaviour))).get(),
   };
 
   std::vector<IObjectBehaviour*> bonus_fruit_behaviours = {
@@ -116,6 +119,9 @@ void BehaviourManager::InitialiseObjectBehaviour() {
     std::make_unique<SmallDotScoreBehaviour>(this->_p_score_board);
   this->_object_behaviours[std::type_index(typeid(BonusFruitScoreBehaviour))] =
     std::make_unique<BonusFruitScoreBehaviour>(this->_p_score_board);
+  this->_object_behaviours[std::type_index(typeid(WinRoundBehaviour))] =
+    std::make_unique<WinRoundBehaviour>(this->_p_level_manager,
+                                        this->_p_field_object_manager);
 }
 
 
