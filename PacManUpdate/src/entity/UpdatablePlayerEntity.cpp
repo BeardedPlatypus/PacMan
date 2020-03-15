@@ -108,5 +108,9 @@ void UpdatablePlayerEntity::SetIsMoving(bool is_moving) {
 }
 
 
+inline void UpdatablePlayerEntity::Reset() {
+  this->p_player_state->Reset();
+}
+
 }
 }

@@ -58,6 +58,8 @@ public:
   void Update(float dt) final;
 
   void SetIsMoving(bool is_moving) final;
+
+  void Reset() final;
 private:
   state::IEntityState* p_player_state;
 

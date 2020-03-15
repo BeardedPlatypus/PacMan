@@ -21,4 +21,5 @@ public:
   MOCK_METHOD(void, SetMovingDirection, (pacman::state::Direction));
   MOCK_METHOD(void, Update, (float));
   MOCK_METHOD(void, SetIsMoving, (bool));
+  MOCK_METHOD(void, Reset, ());
 };

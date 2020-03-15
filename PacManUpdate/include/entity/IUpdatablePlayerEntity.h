@@ -122,6 +122,11 @@ public:
   /// </summary>
   /// <param name="is_moving">New is moving value.</param>
   virtual void SetIsMoving(bool is_moving) = 0;
+  
+  /// <summary>
+  /// Resets this <see cref="IUpdatablePlayerEntity"/> to its initial state.
+  /// </summary>
+  virtual void Reset() = 0;
 };
 
 }
