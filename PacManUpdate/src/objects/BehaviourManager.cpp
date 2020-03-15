@@ -118,7 +118,8 @@ void BehaviourManager::InitialiseObjectBehaviour() {
   this->_object_behaviours[std::type_index(typeid(SmallDotScoreBehaviour))] =
     std::make_unique<SmallDotScoreBehaviour>(this->_p_score_board);
   this->_object_behaviours[std::type_index(typeid(BonusFruitScoreBehaviour))] =
-    std::make_unique<BonusFruitScoreBehaviour>(this->_p_score_board);
+    std::make_unique<BonusFruitScoreBehaviour>(this->_p_score_board,
+                                               this->_p_level_manager);
   this->_object_behaviours[std::type_index(typeid(WinRoundBehaviour))] =
     std::make_unique<WinRoundBehaviour>(this->_p_level_manager,
                                         this->_p_field_object_manager);

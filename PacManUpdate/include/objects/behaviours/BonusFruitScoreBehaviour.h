@@ -1,6 +1,7 @@
 #pragma once
 
 #include "objects/behaviours/AbstractScoreBehaviour.h"
+#include "level/ILevelManager.h"
 
 
 namespace pacman {
@@ -14,10 +15,13 @@ namespace object {
 /// <seealso cref="AbstractScoreBehaviour" />
 class BonusFruitScoreBehaviour final : public AbstractScoreBehaviour {
 public:
-  using AbstractScoreBehaviour::AbstractScoreBehaviour;
+  BonusFruitScoreBehaviour(state::score::IScoreBoard* p_score_board,
+                           const state::level::ILevelManager* p_level_manager);
 
 protected:
-  unsigned int GetScoreIncrement() const final { return 100; }
+  unsigned int GetScoreIncrement() const final;
+
+  const state::level::ILevelManager* _p_level_manager;
 };
 
 }

@@ -176,5 +176,8 @@
     <ClCompile Include="src\objects\behaviours\WinRoundBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\objects\behaviours\BonusFruitScoreBehaviour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -217,6 +217,7 @@
     <ClCompile Include="src\entity\util\PlayerUpdateUtils.cpp" />
     <ClCompile Include="src\objects\BehaviourManager.cpp" />
     <ClCompile Include="src\objects\behaviours\AddBonusFruitBehaviour.cpp" />
+    <ClCompile Include="src\objects\behaviours\BonusFruitScoreBehaviour.cpp" />
     <ClCompile Include="src\objects\behaviours\IncrementDotsConsumedBehaviour.cpp" />
     <ClCompile Include="src\objects\behaviours\PortalBehaviour.cpp" />
     <ClCompile Include="src\objects\behaviours\RemoveObjectBehaviour.cpp" />
