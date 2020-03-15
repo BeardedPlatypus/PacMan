@@ -8,7 +8,7 @@ namespace renderer {
 namespace values {
 
   /// <summary>
-  /// The object sprite file.
+  /// The dots sprite file.
   /// </summary>
   const std::string dots_sprite_file = "./assets/dots.png";
   
@@ -36,6 +36,22 @@ namespace values {
   /// The big dot tile size
   /// </summary>
   const int big_dot_tile_size = 8;
+
+  /// <summary>
+  /// The bonus sprite file.
+  /// </summary>
+  const std::string bonus_sprite_file = "./assets/bonus.png";
+
+  /// <summary>
+  /// The big dot tile size
+  /// </summary>
+  const int bonus_tile_size = 16;
+
+  /// <summary>
+  /// The object sprite: Cherry
+  /// </summary>
+  const std::string object_sprite_bonus_cherry = "bonus_cherry";
+  
 }
 }
 }

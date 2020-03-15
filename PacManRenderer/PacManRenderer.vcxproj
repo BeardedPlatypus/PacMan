@@ -180,6 +180,7 @@
     <ClInclude Include="include\manager\LayerManagerFactory.h" />
     <ClInclude Include="include\objects\ObjectLayer.h" />
     <ClInclude Include="include\objects\ObjectRenderers\BigDotRenderer.h" />
+    <ClInclude Include="include\objects\ObjectRenderers\BonusFruitRenderer.h" />
     <ClInclude Include="include\objects\ObjectRenderers\IObjectRenderer.h" />
     <ClInclude Include="include\objects\ObjectRenderers\SmallDotRenderer.h" />
     <ClInclude Include="include\objects\ObjectSpriteValues.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="src\manager\LayerManagerFactory.cpp" />
     <ClCompile Include="src\objects\ObjectLayer.cpp" />
     <ClCompile Include="src\objects\ObjectRenderers\BigDotRenderer.cpp" />
+    <ClCompile Include="src\objects\ObjectRenderers\BonusFruitRenderer.cpp" />
     <ClCompile Include="src\objects\ObjectRenderers\SmallDotRenderer.cpp" />
     <ClCompile Include="src\ui\font\GlyphRenderer.cpp" />
     <ClCompile Include="src\ui\font\ScoreBoardStringRenderData.cpp" />

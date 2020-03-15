@@ -117,6 +117,9 @@
     <ClInclude Include="include\ui\font\ScoreBoardStringRenderData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\objects\ObjectRenderers\BonusFruitRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -165,6 +168,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ui\font\ScoreBoardStringRenderData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\ObjectRenderers\BonusFruitRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

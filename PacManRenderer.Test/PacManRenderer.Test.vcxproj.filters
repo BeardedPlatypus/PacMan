@@ -48,6 +48,9 @@
     <ClCompile Include="src\objects\ObjectLayerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\objects\ObjectRenderers\BonusFruitRendererTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\FieldMock.h">
