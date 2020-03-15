@@ -203,14 +203,29 @@ TEST(UpdatablePlayerEntityTest, Reset_WrapsEntityState) {
   EntityStateMock entity_state;
   EXPECT_CALL(entity_state, Reset()).Times(1);
 
-  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
-                                                              std::make_unique<UpdatableEntityAxisMock>(), 
-                                                              std::make_unique<UpdatableEntityAxisMock>(), 
-                                                              std::make_unique<PlayerMovementAxisMock>(),
-                                                              std::make_unique<PlayerMovementAxisMock>());
+  std::unique_ptr<UpdatableEntityAxisMock> p_x_axis_mock = std::make_unique<UpdatableEntityAxisMock>();
+  EXPECT_CALL(*(p_x_axis_mock.get()), SetCurrentAxisDirection(AxisDirection::None)).Times(1);
+
+  std::unique_ptr<UpdatableEntityAxisMock> p_y_axis_mock = std::make_unique<UpdatableEntityAxisMock>();
+  EXPECT_CALL(*(p_y_axis_mock.get()), SetCurrentAxisDirection(AxisDirection::None)).Times(1);
+
+  std::unique_ptr<PlayerMovementAxisMock> p_x_movement_axis_mock = std::make_unique<PlayerMovementAxisMock>();
+  EXPECT_CALL(*(p_x_movement_axis_mock.get()), ChangeState(state_machine::PlayerControlEvent::Reset)).Times(1);
+
+  std::unique_ptr<PlayerMovementAxisMock> p_y_movement_axis_mock = std::make_unique<PlayerMovementAxisMock>();
+  EXPECT_CALL(*(p_y_movement_axis_mock.get()), ChangeState(state_machine::PlayerControlEvent::Reset)).Times(1);
+
+  UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state,
+                                                              std::move(p_x_axis_mock),
+                                                              std::move(p_y_axis_mock),
+                                                              std::move(p_x_movement_axis_mock),
+                                                              std::move(p_y_movement_axis_mock));
 
   // Call
   player_entity.Reset();
+
+  // Assert
+  EXPECT_THAT(player_entity.GetActiveAxisType(), Eq(AxisType::X));
 }
 
 }

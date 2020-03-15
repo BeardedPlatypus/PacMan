@@ -110,6 +110,11 @@ void UpdatablePlayerEntity::SetIsMoving(bool is_moving) {
 
 inline void UpdatablePlayerEntity::Reset() {
   this->p_player_state->Reset();
+  this->GetXAxis()->SetCurrentAxisDirection(AxisDirection::None);
+  this->GetYAxis()->SetCurrentAxisDirection(AxisDirection::None);
+  this->GetPlayerMovementXAxis()->ChangeState(state_machine::PlayerControlEvent::Reset);
+  this->GetPlayerMovementYAxis()->ChangeState(state_machine::PlayerControlEvent::Reset);
+  this->SetActiveAxisType(AxisType::X);
 }
 
 }
