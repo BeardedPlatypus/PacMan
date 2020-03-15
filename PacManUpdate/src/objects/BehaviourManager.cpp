@@ -7,6 +7,7 @@
 #include "objects/behaviours/SmallDotScoreBehaviour.h"
 #include "objects/behaviours/IncrementDotsConsumedBehaviour.h"
 #include "objects/behaviours/AddBonusFruitBehaviour.h"
+#include "objects/behaviours/BonusFruitScoreBehaviour.h"
 
 
 namespace pacman {
@@ -57,10 +58,16 @@ void BehaviourManager::InitialiseBehaviourMapping() {
     this->_object_behaviours.at(std::type_index(typeid(BigDotScoreBehaviour))).get()
   };
 
+  std::vector<IObjectBehaviour*> bonus_fruit_behaviours = {
+    this->_object_behaviours.at(std::type_index(typeid(RemoveObjectBehaviour))).get(),
+    this->_object_behaviours.at(std::type_index(typeid(BonusFruitScoreBehaviour))).get(),
+  };
+
   this->_behaviour_mapping[state::field::FieldObjectType::Undefined] = std::vector<IObjectBehaviour*>();
   this->_behaviour_mapping[state::field::FieldObjectType::Portal] = portal_behaviours;
   this->_behaviour_mapping[state::field::FieldObjectType::SmallDot] = small_dots_behaviours;
   this->_behaviour_mapping[state::field::FieldObjectType::BigDot] = big_dots_behaviours;
+  this->_behaviour_mapping[state::field::FieldObjectType::BonusFruit] = bonus_fruit_behaviours;
 }
 
 
@@ -107,6 +114,8 @@ void BehaviourManager::InitialiseObjectBehaviour() {
     std::make_unique<BigDotScoreBehaviour>(this->_p_score_board);
   this->_object_behaviours[std::type_index(typeid(SmallDotScoreBehaviour))] =
     std::make_unique<SmallDotScoreBehaviour>(this->_p_score_board);
+  this->_object_behaviours[std::type_index(typeid(BonusFruitScoreBehaviour))] =
+    std::make_unique<BonusFruitScoreBehaviour>(this->_p_score_board);
 }
 
 
