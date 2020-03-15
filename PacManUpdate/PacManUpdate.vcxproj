@@ -180,6 +180,7 @@
     <ClInclude Include="include\entity\UpdatePlayer.h" />
     <ClInclude Include="include\entity\util\PlayerUpdateUtils.h" />
     <ClInclude Include="include\objects\BehaviourManager.h" />
+    <ClInclude Include="include\objects\behaviours\AddBonusFruitBehaviour.h" />
     <ClInclude Include="include\objects\behaviours\BigDotScoreBehaviour.h" />
     <ClInclude Include="include\objects\behaviours\IncrementDotsConsumedBehaviour.h" />
     <ClInclude Include="include\objects\behaviours\PortalBehaviour.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="src\entity\UpdatePlayer.cpp" />
     <ClCompile Include="src\entity\util\PlayerUpdateUtils.cpp" />
     <ClCompile Include="src\objects\BehaviourManager.cpp" />
+    <ClCompile Include="src\objects\behaviours\AddBonusFruitBehaviour.cpp" />
     <ClCompile Include="src\objects\behaviours\IncrementDotsConsumedBehaviour.cpp" />
     <ClCompile Include="src\objects\behaviours\PortalBehaviour.cpp" />
     <ClCompile Include="src\objects\behaviours\RemoveObjectBehaviour.cpp" />
