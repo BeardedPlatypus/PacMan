@@ -100,6 +100,7 @@ void FieldObjectManager::UpdateFieldObjectsCache() {
 
 void FieldObjectManager::ResetFieldObjects() {
   this->InitialiseObjectTypesFromDefinition(this->_field_objects);
+  this->_cache_invalidated = true;
 }
 
 }
