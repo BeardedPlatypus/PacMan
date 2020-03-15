@@ -36,6 +36,8 @@ public:
   bool HasObjectAt(int x, int y) const final;
 
   const std::vector<FieldObject>& GetAllFieldObjects() final;
+
+  void ResetFieldObjects() final;
 private:
   void InitialiseObjectTypesFromDefinition(const std::vector<std::vector<FieldObjectType>>& field_objects);
 
@@ -48,6 +50,8 @@ private:
 
   bool _cache_invalidated = true;
   std::vector<FieldObject> _cached_field_objects;
+
+  const std::vector<std::vector<FieldObjectType>> _field_objects;
 };
 
 }

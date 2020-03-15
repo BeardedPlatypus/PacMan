@@ -14,4 +14,5 @@ public:
   MOCK_METHOD(bool, HasObjectAt, (pacman::state::field::FieldIndex), (const));
   MOCK_METHOD(bool, HasObjectAt, (int, int), (const));
   MOCK_METHOD((const std::vector<pacman::state::field::FieldObject>&), GetAllFieldObjects, ());
+  MOCK_METHOD(void, ResetFieldObjects, ());
 };

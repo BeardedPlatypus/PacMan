@@ -9,8 +9,9 @@ namespace field {
 
 FieldObjectManager::FieldObjectManager(const std::vector<std::vector<FieldObjectType>>& field_objects, 
                                        const IField* p_field) :
-    _p_field(p_field) {
-  this->InitialiseObjectTypesFromDefinition(field_objects);
+    _p_field(p_field),
+    _field_objects(field_objects) {
+  this->ResetFieldObjects();
 }
 
 
@@ -94,6 +95,11 @@ void FieldObjectManager::UpdateFieldObjectsCache() {
   }
 
   this->_cache_invalidated = false;
+}
+
+
+void FieldObjectManager::ResetFieldObjects() {
+  this->InitialiseObjectTypesFromDefinition(this->_field_objects);
 }
 
 }

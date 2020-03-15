@@ -123,6 +123,11 @@ public:
   /// All field objects defined in this <see cref="IFieldObjectManager"/>
   /// </returns>
   virtual const std::vector<FieldObject>& GetAllFieldObjects() = 0;
+  
+  /// <summary>
+  /// Resets the field objects to the initial state.
+  /// </summary>
+  virtual void ResetFieldObjects() = 0;
 };
 
 }
