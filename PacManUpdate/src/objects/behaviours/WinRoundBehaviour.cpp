@@ -13,10 +13,11 @@ namespace object {
     _p_field_object_manager(p_field_object_manager) { }
 
 
-void WinRoundBehaviour::Execute(IUpdatablePlayerEntity* _) {
+void WinRoundBehaviour::Execute(IUpdatablePlayerEntity* p_player_entity) {
   if (this->_p_level_manager->GetDotsLeftInCurrentLevel() == 0) {
     this->_p_field_object_manager->ResetFieldObjects();
     this->_p_level_manager->IncrementCurrentLevel();
+    p_player_entity->Reset();
   }
 }
 

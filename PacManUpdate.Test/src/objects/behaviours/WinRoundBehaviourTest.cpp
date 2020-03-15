@@ -29,7 +29,9 @@ TEST(WinRoundBehaviourTest, Execute_NoDotsLeft_ResetsField) {
 
   WinRoundBehaviour behaviour = WinRoundBehaviour(&level_manager,
                                                   &field_object_manager);
+
   UpdatablePlayerEntityMock entity;
+  EXPECT_CALL(entity, Reset()).Times(1);
 
   // Call | Assert
   behaviour.Execute(&entity);
@@ -47,7 +49,9 @@ TEST(WinRoundBehaviourTest, Execute_DotsLeft_DoesNotResetField) {
 
   WinRoundBehaviour behaviour = WinRoundBehaviour(&level_manager,
                                                   &field_object_manager);
+
   UpdatablePlayerEntityMock entity;
+  EXPECT_CALL(entity, Reset()).Times(0);
 
   // Call | Assert
   behaviour.Execute(&entity);
