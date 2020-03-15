@@ -184,6 +184,7 @@
     <ClInclude Include="include\objects\behaviours\BigDotScoreBehaviour.h" />
     <ClInclude Include="include\objects\behaviours\BonusFruitScoreBehaviour.h" />
     <ClInclude Include="include\objects\behaviours\IncrementDotsConsumedBehaviour.h" />
+    <ClInclude Include="include\objects\behaviours\WinRoundBehaviour.h" />
     <ClInclude Include="include\objects\behaviours\PortalBehaviour.h" />
     <ClInclude Include="include\objects\behaviours\IObjectBehaviour.h" />
     <ClInclude Include="include\objects\behaviours\RemoveObjectBehaviour.h" />
@@ -220,6 +221,7 @@
     <ClCompile Include="src\objects\behaviours\PortalBehaviour.cpp" />
     <ClCompile Include="src\objects\behaviours\RemoveObjectBehaviour.cpp" />
     <ClCompile Include="src\objects\behaviours\AbstractScoreBehaviour.cpp" />
+    <ClCompile Include="src\objects\behaviours\WinRoundBehaviour.cpp" />
     <ClCompile Include="src\state_machine\INode.cpp" />
     <ClCompile Include="src\state_machine\IStateMachine.cpp" />
     <ClCompile Include="src\state_machine\Node.cpp" />

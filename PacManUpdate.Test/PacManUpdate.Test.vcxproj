@@ -156,6 +156,7 @@
     <ClCompile Include="src\objects\behaviours\PortalBehaviourTest.cpp" />
     <ClCompile Include="src\objects\behaviours\RemoveObjectBehaviourTest.cpp" />
     <ClCompile Include="src\objects\behaviours\SmallDotScoreBehaviourTest.cpp" />
+    <ClCompile Include="src\objects\behaviours\WinRoundBehaviourTest.cpp" />
     <ClCompile Include="src\state_machine\NodeTest.cpp" />
     <ClCompile Include="src\state_machine\StateMachineTest.cpp" />
   </ItemGroup>
