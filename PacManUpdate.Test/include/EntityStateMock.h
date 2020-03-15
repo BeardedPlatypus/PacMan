@@ -17,5 +17,7 @@ public:
 
   MOCK_METHOD(bool, IsMoving, (), (const));
   MOCK_METHOD(void, SetIsMoving, (bool));
+
+  MOCK_METHOD(void, Reset, ());
 };
 

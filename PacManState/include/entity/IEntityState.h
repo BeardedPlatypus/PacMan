@@ -89,6 +89,11 @@ public:
   /// | (new this)->IsMoving() == is_moving;
   /// </post-condition>
   virtual void SetIsMoving(bool is_moving) = 0;
+
+  /// <summary>
+  /// Resets this <see cref="IEntityState"/>.
+  /// </summary>
+  virtual void Reset() = 0;
 };
 
 }

@@ -116,5 +116,36 @@ TEST(EntityStateTest, SetIsMoving_UpdatesCorrectly) {
   EXPECT_THAT(p_state->IsMoving(), IsTrue());
 }
 
+
+TEST(EntityStateTest, Reset_SetsExpectedValues) {
+  // Given
+  float expected_x = 5.403F;
+  float expected_y = 1029.0298F;
+  Direction expected_dir = Direction::Right;
+  float expected_speed = 20.326F;
+
+  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(expected_x,
+                                                                  expected_y,
+                                                                  expected_dir, 
+                                                                  expected_speed);
+  p_state->SetSpeed(5.F);
+  p_state->SetDirection(Direction::Down);
+  p_state->GetXAxis()->SetPosition(0.F);
+  p_state->GetYAxis()->SetPosition(0.F);
+  p_state->SetIsMoving(true);
+
+  // When
+  p_state->Reset();
+
+  // Then
+  ASSERT_THAT(p_state->GetXAxis()->GetPosition(), Eq(expected_x));
+  ASSERT_THAT(p_state->GetYAxis()->GetPosition(), Eq(expected_y));
+  ASSERT_THAT(p_state->GetDirection(), Eq(expected_dir));
+  ASSERT_THAT(p_state->GetSpeed(), Eq(expected_speed));
+  ASSERT_THAT(p_state->IsMoving(), IsFalse());
+}
+
+
+
 }
 }

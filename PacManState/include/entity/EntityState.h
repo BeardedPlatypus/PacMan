@@ -33,6 +33,8 @@ public:
 
   bool IsMoving() const final;
   void SetIsMoving(bool is_moving) final;
+
+  void Reset() final;
 private:      
   /// <summary>
   /// The x axis
@@ -55,6 +57,11 @@ private:
   float _speed;
 
   bool _is_moving = false;
+
+  const float _initial_pos_x;
+  const float _initial_pos_y;
+  const Direction _initial_dir;
+  const float _initial_speed;
 };
 
 }

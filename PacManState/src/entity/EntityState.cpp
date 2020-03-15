@@ -9,7 +9,11 @@ namespace state {
   EntityState::EntityState(float x, float y, Direction dir, float speed) :
     _x_axis(EntityAxis(x)), _y_axis(EntityAxis(y)),
     _dir(dir),
-    _speed(speed) { }
+    _speed(speed),
+    _initial_pos_x(x),
+    _initial_pos_y(y),
+    _initial_dir(dir), 
+    _initial_speed(speed) { }
 
 
 IEntityAxis* EntityState::GetXAxis() const {
@@ -48,6 +52,17 @@ bool EntityState::IsMoving() const {
 
 void EntityState::SetIsMoving(bool is_moving) {
   this->_is_moving = is_moving;
+}
+
+
+void EntityState::Reset() {
+  this->GetXAxis()->SetPosition(this->_initial_pos_x);
+  this->GetYAxis()->SetPosition(this->_initial_pos_y);
+
+  this->SetDirection(this->_initial_dir);
+  this->SetSpeed(this->_initial_speed);
+
+  this->_is_moving = false;
 }
 
 }
