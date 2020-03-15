@@ -13,8 +13,6 @@ namespace object {
 
 TEST(IncrementDotsConsumedBehaviourTest, Execute_IncrementsScoreBoard) {
   // Setup
-  const unsigned int expected_value = 50;
-
   LevelManagerMock level_manager;
   EXPECT_CALL(level_manager, IncrementDotsConsumedInCurrentLevel()).Times(1);
 
