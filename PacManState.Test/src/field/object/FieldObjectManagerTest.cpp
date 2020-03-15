@@ -185,7 +185,13 @@ TEST(FieldObjectManagerTest, ResetFieldObjects_ExpectedResults) {
 
   auto p_field_object_manager = IFieldObjectManager::Construct(field_objs, p_field.get());
   p_field_object_manager->RemoveFieldObject(1, 1);
-  ASSERT_THAT(p_field_object_manager->GetAllFieldObjects().size(), Eq(0));
+
+  FieldObject field_obj1 = FieldObject(2, 2, FieldObjectType::SmallDot);
+  p_field_object_manager->AddFieldObject(field_obj1);
+
+  FieldObject field_obj2 = FieldObject(1, 1, FieldObjectType::SmallDot);
+  p_field_object_manager->AddFieldObject(field_obj2);
+  ASSERT_THAT(p_field_object_manager->GetAllFieldObjects().size(), Eq(2));
 
   // Call
   p_field_object_manager->ResetFieldObjects();

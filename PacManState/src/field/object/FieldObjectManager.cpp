@@ -20,10 +20,13 @@ void FieldObjectManager::InitialiseObjectTypesFromDefinition(const std::vector<s
     for (int i = 0; i < this->_p_field->GetXDimension(); ++i) {
       FieldObjectType val = field_objects[j][i];
       
-      if (!IsDefined(val) || val == FieldObjectType::Undefined) continue;
 
       FieldIndex key = this->_p_field->GetFieldIndex(i, j);
-      this->_field_object_types[key] = val;
+
+      if ((!IsDefined(val) || val == FieldObjectType::Undefined) && !this->HasObjectAt(key)) continue;
+
+      if ((IsDefined(val) && val != FieldObjectType::Undefined)) this->_field_object_types[key] = val;
+      else                                                       this->_field_object_types.erase(key);
     }
   }
 }
