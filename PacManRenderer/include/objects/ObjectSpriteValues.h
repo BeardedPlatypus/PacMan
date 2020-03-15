@@ -48,9 +48,44 @@ namespace values {
   const int bonus_tile_size = 16;
 
   /// <summary>
-  /// The object sprite: Cherry
+  /// The object sprite: bonus cherry
   /// </summary>
   const std::string object_sprite_bonus_cherry = "bonus_cherry";
+
+  /// <summary>
+  /// The object sprite: bonus strawberry
+  /// </summary>
+  const std::string object_sprite_bonus_strawberry = "bonus_strawberry";
+
+  /// <summary>
+  /// The object sprite: bonus orange
+  /// </summary>
+  const std::string object_sprite_bonus_orange = "bonus_orange";
+
+  /// <summary>
+  /// The object sprite: bonus apple
+  /// </summary>
+  const std::string object_sprite_bonus_apple = "bonus_apple";
+
+  /// <summary>
+  /// The object sprite: bonus melon
+  /// </summary>
+  const std::string object_sprite_bonus_melon = "bonus_melon";
+
+  /// <summary>
+  /// The object sprite: bonus galaxy boss
+  /// </summary>
+  const std::string object_sprite_bonus_galaxy_boss = "bonus_galaxy_boss";
+
+  /// <summary>
+  /// The object sprite: bonus bell
+  /// </summary>
+  const std::string object_sprite_bonus_bell = "bonus_bell";
+
+  /// <summary>
+  /// The object sprite: bonus key
+  /// </summary>
+  const std::string object_sprite_bonus_key  = "bonus_key";
   
 }
 }

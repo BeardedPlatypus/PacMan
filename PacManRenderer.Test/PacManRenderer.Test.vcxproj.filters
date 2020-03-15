@@ -74,5 +74,8 @@
     <ClInclude Include="include\ObjectRendererMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\LevelManagerMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

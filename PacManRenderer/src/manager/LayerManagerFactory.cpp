@@ -13,13 +13,16 @@
 #include "ui/font/GlyphRenderer.h"
 #include "ui/font/StringRenderer.h"
 
+#include "level/ILevelManager.h"
+
 namespace pacman {
 namespace renderer {
 
 
 std::unique_ptr<ObjectLayer> ConstructObjectLayer(float scale,
                                                   view::IViewAPI* p_view_api,
-                                                  state::field::IFieldObjectManager* p_object_manager) {
+                                                  state::field::IFieldObjectManager* p_object_manager,
+                                                  state::level::ILevelManager* p_level_manager) {
   std::unique_ptr<RenderMapping> p_mapping = std::make_unique<RenderMapping>();
 
   p_mapping->emplace(std::make_pair(state::field::FieldObjectType::SmallDot,
@@ -27,7 +30,7 @@ std::unique_ptr<ObjectLayer> ConstructObjectLayer(float scale,
   p_mapping->emplace(std::make_pair(state::field::FieldObjectType::BigDot,
                                     std::make_unique<objects::BigDotRenderer>(p_view_api)));
   p_mapping->emplace(std::make_pair(state::field::FieldObjectType::BonusFruit,
-                                    std::make_unique<objects::BonusFruitRenderer>(p_view_api)));
+                                    std::make_unique<objects::BonusFruitRenderer>(p_view_api, p_level_manager)));
 
   return std::make_unique<ObjectLayer>(scale, 
                                        p_object_manager, 
@@ -45,7 +48,8 @@ std::unique_ptr<ILayerManager> ConstructLayerManager(view::IViewAPI* p_view_api,
 
   auto p_object_layer = ConstructObjectLayer(4.F,
                                              p_view_api,
-                                             p_game_state->GetFieldObjectManager());
+                                             p_game_state->GetFieldObjectManager(),
+                                             p_game_state->GetLevelManager());
 
   auto p_player_layer = std::make_unique<PlayerLayer>(4.F,
                                                       p_view_api,
