@@ -151,6 +151,7 @@
     <ClCompile Include="src\entity\util\PlayerUpdateUtilsTest.cpp" />
     <ClCompile Include="src\objects\behaviours\AddBonusFruitBehaviourTest.cpp" />
     <ClCompile Include="src\objects\behaviours\BigDotScoreBehaviourTest.cpp" />
+    <ClCompile Include="src\objects\behaviours\BonusFruitScoreBehaviourTest.cpp" />
     <ClCompile Include="src\objects\behaviours\IncrementDotsConsumedBehaviourTest.cpp" />
     <ClCompile Include="src\objects\behaviours\PortalBehaviourTest.cpp" />
     <ClCompile Include="src\objects\behaviours\RemoveObjectBehaviourTest.cpp" />
