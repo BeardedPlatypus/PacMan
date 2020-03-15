@@ -37,8 +37,8 @@ TEST(BonusFruitRendererTest, RenderObject_RendersViewAPI) {
 
   const float render_offset_y = 8.F;
 
-  const float expected_x = (float)(input_x * values::tile_size - 4) * expected_scale;
-  const float expected_y = (float)(input_y * values::tile_size - 4) * expected_scale + render_offset_y * expected_scale;
+  const float expected_x = (float)(input_x * values::tile_size - 3) * expected_scale;
+  const float expected_y = (float)(input_y * values::tile_size - 3) * expected_scale + render_offset_y * expected_scale;
 
   ViewAPIMock view_api;
 
@@ -46,7 +46,7 @@ TEST(BonusFruitRendererTest, RenderObject_RendersViewAPI) {
               RenderSprite(values::object_sprite_bonus_cherry,
                             expected_x,
                             expected_y,
-                            expected_scale, 
+                            expected_scale * 0.75F, 
                             0.F, 
                             false, 
                             false)).Times(1);

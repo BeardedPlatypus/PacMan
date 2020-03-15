@@ -9,6 +9,7 @@
 
 #include "objects/ObjectRenderers/SmallDotRenderer.h"
 #include "objects/ObjectRenderers/BigDotRenderer.h"
+#include "objects/ObjectRenderers/BonusFruitRenderer.h"
 #include "ui/font/GlyphRenderer.h"
 #include "ui/font/StringRenderer.h"
 
@@ -25,6 +26,8 @@ std::unique_ptr<ObjectLayer> ConstructObjectLayer(float scale,
                                     std::make_unique<objects::SmallDotRenderer>(p_view_api)));
   p_mapping->emplace(std::make_pair(state::field::FieldObjectType::BigDot,
                                     std::make_unique<objects::BigDotRenderer>(p_view_api)));
+  p_mapping->emplace(std::make_pair(state::field::FieldObjectType::BonusFruit,
+                                    std::make_unique<objects::BonusFruitRenderer>(p_view_api)));
 
   return std::make_unique<ObjectLayer>(scale, 
                                        p_object_manager, 

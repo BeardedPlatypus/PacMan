@@ -24,7 +24,7 @@ void BonusFruitRenderer::Initialise() {
 
 
 float BonusFruitRenderer::CalculateLocation(int val, float scale) const {
-  return ((float) val * (float) values::tile_size - 4) * scale;
+  return ((float) val * (float) values::tile_size - 3.F) * scale;
 
 }
 
@@ -33,7 +33,7 @@ void BonusFruitRenderer::RenderObject(int x, int y, float scale, float render_of
   this->_p_view_api->RenderSprite(values::object_sprite_bonus_cherry,
                                   this->CalculateLocation(x, scale), 
                                   this->CalculateLocation(y, scale) + scale * render_offset_y,
-                                  scale);
+                                  scale * 0.75F);
 }
 
 }
