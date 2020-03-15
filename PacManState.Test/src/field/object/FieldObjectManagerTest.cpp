@@ -173,6 +173,36 @@ INSTANTIATE_TEST_SUITE_P(FieldObjectManagerTest,
                          ::testing::ValuesIn(GetObjectTypeTest::GetTestValues()));
 
 
+TEST(FieldObjectManagerTest, ResetFieldObjects_ExpectedResults) {
+  // Setup
+  auto p_field = ConstructTestField();
+
+  std::vector<std::vector<FieldObjectType>> field_objs = {
+    { _, _, _, },
+    { _, FieldObjectType::BonusFruit, _},
+    { _, _, _, },
+  };
+
+  auto p_field_object_manager = IFieldObjectManager::Construct(field_objs, p_field.get());
+  p_field_object_manager->RemoveFieldObject(1, 1);
+  ASSERT_THAT(p_field_object_manager->GetAllFieldObjects().size(), Eq(0));
+
+  // Call
+  p_field_object_manager->ResetFieldObjects();
+
+  // Assert
+  const std::vector<FieldObject> objs = p_field_object_manager->GetAllFieldObjects();
+  ASSERT_THAT(objs.size(), Eq(1));
+
+  const FieldObject& portal = objs[0];
+
+  ASSERT_THAT(portal.GetX(), Eq(1));
+  ASSERT_THAT(portal.GetY(), Eq(1));
+  ASSERT_THAT(portal.GetType(), Eq(FieldObjectType::BonusFruit));
+}
+
+
+
 }
 }
 }
