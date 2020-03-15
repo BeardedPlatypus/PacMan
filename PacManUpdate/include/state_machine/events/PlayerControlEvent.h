@@ -14,6 +14,7 @@ enum class PlayerControlEvent {
   NegativeKeyPress,
   NegativeKeyRelease,
   TimeOut,
+  Reset,
 };
 
 }

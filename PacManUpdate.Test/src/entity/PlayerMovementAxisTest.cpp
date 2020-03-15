@@ -119,6 +119,7 @@ INSTANTIATE_TEST_SUITE_P(PlayerMovementAxisTest,
                          ::testing::ValuesIn(PlayerMovementAxisStateMachineTest::GetTestValues()));
 
 
+
 // Unregistered key presses should not change the state.
 class PlayerMovementAxisStateMachineUnregisteredKeyPressTest : public ::testing::TestWithParam<PlayerMovementAxisStateMachineTestValues> {
 public:
@@ -263,6 +264,32 @@ TEST_P(PlayerMovementAxisTimeOutTest, UpdateCorrectlyTimesOut) {
 INSTANTIATE_TEST_SUITE_P(PlayerMovementAxisTest,
                          PlayerMovementAxisTimeOutTest,
                          ::testing::ValuesIn(PlayerMovementAxisTimeOutTest::GetTestValues()));
+
+
+class PlayerMovementAxisResetTest : public ::testing::TestWithParam<PlayerMovementAxisStateMachineTestValues> { };
+
+
+TEST_P(PlayerMovementAxisResetTest, ResetsCorrectly) {
+  // Setup
+  auto p_axis = IPlayerMovementAxis::Construct();
+
+  // Call
+  for (state_machine::PlayerControlEvent control_event : GetParam().events) {
+    p_axis->ChangeState(control_event);
+    p_axis->Update(0.F);
+  }
+
+  p_axis->ChangeState(state_machine::PlayerControlEvent::Reset);
+  p_axis->Update(0.F);
+
+  // Assert
+  EXPECT_EQ(p_axis->GetNextDirection(), AxisDirection::None);
+}
+
+
+INSTANTIATE_TEST_SUITE_P(PlayerMovementAxisTest,
+                         PlayerMovementAxisResetTest,
+                         ::testing::ValuesIn(PlayerMovementAxisStateMachineTest::GetTestValues()));
 
 
 }

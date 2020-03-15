@@ -29,23 +29,29 @@ void PlayerMovementAxis::InitialiseStateMachine() {
 
   p_node_negative_pressed->AddConnection(p_node_negative_positive_pressed.get(), state_machine::PlayerControlEvent::PositiveKeyPress);
   p_node_negative_pressed->AddConnection(p_node_negative_sticky.get(), state_machine::PlayerControlEvent::NegativeKeyRelease);
+  p_node_negative_pressed->AddConnection(p_node_no_presses.get(), state_machine::PlayerControlEvent::Reset);
 
   p_node_negative_sticky->AddConnection(p_node_no_presses.get(),       state_machine::PlayerControlEvent::TimeOut);
   p_node_negative_sticky->AddConnection(p_node_negative_pressed.get(), state_machine::PlayerControlEvent::NegativeKeyPress);
   p_node_negative_sticky->AddConnection(p_node_positive_pressed.get(), state_machine::PlayerControlEvent::PositiveKeyPress);
+  p_node_negative_sticky->AddConnection(p_node_no_presses.get(), state_machine::PlayerControlEvent::Reset);
 
   p_node_negative_positive_pressed->AddConnection(p_node_negative_pressed.get(), state_machine::PlayerControlEvent::PositiveKeyRelease);
   p_node_negative_positive_pressed->AddConnection(p_node_positive_pressed.get(), state_machine::PlayerControlEvent::NegativeKeyRelease);
+  p_node_negative_positive_pressed->AddConnection(p_node_no_presses.get(), state_machine::PlayerControlEvent::Reset);
 
   p_node_positive_pressed->AddConnection(p_node_positive_negative_pressed.get(), state_machine::PlayerControlEvent::NegativeKeyPress);
   p_node_positive_pressed->AddConnection(p_node_positive_sticky.get(), state_machine::PlayerControlEvent::PositiveKeyRelease);
+  p_node_positive_pressed->AddConnection(p_node_no_presses.get(), state_machine::PlayerControlEvent::Reset);
 
   p_node_positive_sticky->AddConnection(p_node_no_presses.get(),       state_machine::PlayerControlEvent::TimeOut);
   p_node_positive_sticky->AddConnection(p_node_negative_pressed.get(), state_machine::PlayerControlEvent::NegativeKeyPress);
   p_node_positive_sticky->AddConnection(p_node_positive_pressed.get(), state_machine::PlayerControlEvent::PositiveKeyPress);
+  p_node_positive_sticky->AddConnection(p_node_no_presses.get(), state_machine::PlayerControlEvent::Reset);
 
   p_node_positive_negative_pressed->AddConnection(p_node_negative_pressed.get(), state_machine::PlayerControlEvent::PositiveKeyRelease);
   p_node_positive_negative_pressed->AddConnection(p_node_positive_pressed.get(), state_machine::PlayerControlEvent::NegativeKeyRelease);
+  p_node_positive_negative_pressed->AddConnection(p_node_no_presses.get(), state_machine::PlayerControlEvent::Reset);
 
 
   auto nodes = std::vector<std::unique_ptr<state_machine::INode<state_machine::PlayerControlValue,
