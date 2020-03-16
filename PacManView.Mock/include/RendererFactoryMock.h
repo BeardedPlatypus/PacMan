@@ -1,4 +1,5 @@
 #pragma once
+
 #include "renderer/IRendererFactory.h"
 #include "gmock/gmock.h"
 

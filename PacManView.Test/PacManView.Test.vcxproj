@@ -80,14 +80,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)PacManView\include;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)PacManView\include;$(SolutionDir)PacManView.Mock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GTEST_LINKED_AS_SHARED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PacManView.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PacManView.lib;PacManView.Mock.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo "" &gt; "$(TargetPath).is_google_test"</Command>
@@ -99,12 +99,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)PacManView\include;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)PacManView\include;$(SolutionDir)PacManView.Mock\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GTEST_LINKED_AS_SHARED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PacManView.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PacManView.lib;PacManView.Mock.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
@@ -143,14 +143,6 @@
     <ClCompile Include="src\texture\TextureManagerTest.cpp" />
     <ClCompile Include="src\renderer\ViewCoreTest.cpp" />
     <ClCompile Include="src\texture\TextureTest.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\DispatcherMock.h" />
-    <ClInclude Include="include\RendererFactoryMock.h" />
-    <ClInclude Include="include\RendererMock.h" />
-    <ClInclude Include="include\ResourceWrapperMock.h" />
-    <ClInclude Include="include\TextureManagerMock.h" />
-    <ClInclude Include="include\TextureMock.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

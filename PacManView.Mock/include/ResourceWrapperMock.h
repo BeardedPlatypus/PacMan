@@ -1,4 +1,5 @@
 #pragma once
+
 #include "sdl_util/IResourceWrapper.h"
 #include "gmock/gmock.h"
 
