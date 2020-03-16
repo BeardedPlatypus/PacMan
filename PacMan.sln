@@ -37,6 +37,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacManController.Test", "PacManController.Test\PacManController.Test.vcxproj", "{E1AF856E-AC26-45A1-A687-F47D6AABAE94}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CAA91C01-7E3C-4F6D-A87F-BFA900E6A380} = {CAA91C01-7E3C-4F6D-A87F-BFA900E6A380}
+		{4B96C622-73C3-4FAA-8E59-999E96BCC37B} = {4B96C622-73C3-4FAA-8E59-999E96BCC37B}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacManRenderer", "PacManRenderer\PacManRenderer.vcxproj", "{02DB7E7B-7DD1-46D1-90B6-B31A8C446DD7}"
@@ -91,6 +92,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacManState.Mock", "PacManState.Mock\PacManState.Mock.vcxproj", "{ABDA4FEB-F8BA-49B3-BF59-28C653BDB22F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacManView.Mock", "PacManView.Mock\PacManView.Mock.vcxproj", "{C7F0007D-E645-4E77-A3FC-A145ED0D24E7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacManController.Mock", "PacManController.Mock\PacManController.Mock.vcxproj", "{4B96C622-73C3-4FAA-8E59-999E96BCC37B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -236,6 +239,14 @@ Global
 		{C7F0007D-E645-4E77-A3FC-A145ED0D24E7}.Release|x64.Build.0 = Release|x64
 		{C7F0007D-E645-4E77-A3FC-A145ED0D24E7}.Release|x86.ActiveCfg = Release|Win32
 		{C7F0007D-E645-4E77-A3FC-A145ED0D24E7}.Release|x86.Build.0 = Release|Win32
+		{4B96C622-73C3-4FAA-8E59-999E96BCC37B}.Debug|x64.ActiveCfg = Debug|x64
+		{4B96C622-73C3-4FAA-8E59-999E96BCC37B}.Debug|x64.Build.0 = Debug|x64
+		{4B96C622-73C3-4FAA-8E59-999E96BCC37B}.Debug|x86.ActiveCfg = Debug|Win32
+		{4B96C622-73C3-4FAA-8E59-999E96BCC37B}.Debug|x86.Build.0 = Debug|Win32
+		{4B96C622-73C3-4FAA-8E59-999E96BCC37B}.Release|x64.ActiveCfg = Release|x64
+		{4B96C622-73C3-4FAA-8E59-999E96BCC37B}.Release|x64.Build.0 = Release|x64
+		{4B96C622-73C3-4FAA-8E59-999E96BCC37B}.Release|x86.ActiveCfg = Release|Win32
+		{4B96C622-73C3-4FAA-8E59-999E96BCC37B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -258,6 +269,7 @@ Global
 		{8BDC1DD0-1D02-4A1D-85EF-060A603812CD} = {B14D7C3E-C853-4587-991B-8DB545BD5335}
 		{ABDA4FEB-F8BA-49B3-BF59-28C653BDB22F} = {02C5EE21-25C9-4C85-87F6-3903CF2C8E60}
 		{C7F0007D-E645-4E77-A3FC-A145ED0D24E7} = {02C5EE21-25C9-4C85-87F6-3903CF2C8E60}
+		{4B96C622-73C3-4FAA-8E59-999E96BCC37B} = {02C5EE21-25C9-4C85-87F6-3903CF2C8E60}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98256665-6B82-4B2F-A83D-5CDD9F795C52}
