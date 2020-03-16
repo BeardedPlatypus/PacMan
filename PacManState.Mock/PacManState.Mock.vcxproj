@@ -153,6 +153,8 @@
     <ClInclude Include="include\EntityAxisMock.h" />
     <ClInclude Include="include\EntityStateMock.h" />
     <ClInclude Include="include\FieldMock.h" />
+    <ClInclude Include="include\FieldObjectManagerMock.h" />
+    <ClInclude Include="include\LevelManagerMock.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

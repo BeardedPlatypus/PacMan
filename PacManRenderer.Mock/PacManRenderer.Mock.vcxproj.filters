@@ -21,30 +21,21 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\DispatcherMock.h">
+    <ClInclude Include="include\GlyphRendererMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\RendererFactoryMock.h">
+    <ClInclude Include="include\ObjectRendererMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\RendererMock.h">
+    <ClInclude Include="include\RenderLayerMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ResourceWrapperMock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TextureManagerMock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TextureMock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ViewAPIMock.h">
+    <ClInclude Include="include\StringRendererMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PacManView.Mock.cpp">
+    <ClCompile Include="PacManRenderer.Mock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">

@@ -30,6 +30,12 @@
     <ClInclude Include="include\FieldMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\FieldObjectManagerMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LevelManagerMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PacManState.Mock.cpp">
