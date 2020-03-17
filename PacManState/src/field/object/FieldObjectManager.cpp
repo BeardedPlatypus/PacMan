@@ -25,8 +25,8 @@ void FieldObjectManager::InitialiseObjectTypesFromDefinition(const std::vector<s
 
       if ((!IsDefined(val) || val == FieldObjectType::Undefined) && !this->HasObjectAt(key)) continue;
 
-      if ((IsDefined(val) && val != FieldObjectType::Undefined)) this->_field_object_types[key] = val;
-      else                                                       this->_field_object_types.erase(key);
+      if (IsDefined(val) && val != FieldObjectType::Undefined) this->_field_object_types[key] = val;
+      else                                                     this->_field_object_types.erase(key);
     }
   }
 }
@@ -48,7 +48,6 @@ FieldObjectType FieldObjectManager::GetObjectType(int x, int y) const {
 
 
 void FieldObjectManager::AddFieldObject(const FieldObject& field_object) {
-  // TODO: add an exception here?
   int key = this->_p_field->GetFieldIndex(field_object.GetX(), 
                                           field_object.GetY());
   this->_field_object_types[key] = field_object.GetType();
