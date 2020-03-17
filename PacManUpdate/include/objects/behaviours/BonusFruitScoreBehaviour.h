@@ -21,6 +21,7 @@ public:
 protected:
   unsigned int GetScoreIncrement() const final;
 
+private:
   const state::level::ILevelManager* _p_level_manager;
 };
 
