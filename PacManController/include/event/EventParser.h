@@ -48,7 +48,7 @@ private:
   /// <returns>
   /// Pointer to the <see cref="IEvent" /> of this <see cref="EventParser" />.
   /// </returns>
-  inline T* GetEvent() const { return this->p_event; }
+  inline T* GetEvent() const { return this->_p_event; }
   
   /// <summary>
   /// Set the pointer to the <see cref="IEvent" />.
@@ -57,10 +57,10 @@ private:
   /// <post-condition> 
   /// (new this)->GetEvent() == p_event; 
   /// </post-condition>
-  inline void SetEvent(T* p_event) { this->p_event = p_event; }
+  inline void SetEvent(T* p_event) { this->_p_event = p_event; }
   
   /// <summary> The pointer to the <see cref="IEvent" />. </summary>
-  T* p_event;
+  T* _p_event;
 };
 
 }
