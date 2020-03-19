@@ -42,9 +42,6 @@
     <ClInclude Include="include\field\FieldLayerSpriteDescription.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\field\EnumClassHash.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\IRenderLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>

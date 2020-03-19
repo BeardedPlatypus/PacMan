@@ -93,6 +93,9 @@
     <ClInclude Include="include\entity\EntityType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\util\EnumClassHash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

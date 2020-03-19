@@ -175,6 +175,7 @@
     <ClInclude Include="include\level\LevelManager.h" />
     <ClInclude Include="include\score\IScoreBoard.h" />
     <ClInclude Include="include\score\ScoreBoard.h" />
+    <ClInclude Include="include\util\EnumClassHash.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

@@ -3,11 +3,11 @@
 #include <IViewAPI.h>
 #include <unordered_map>
 #include <vector>
+#include <util/EnumClassHash.h>
 
 #include "IRenderLayer.h"
 #include "field/IField.h"
 #include "field/FieldLayerSpriteDescription.h"
-#include "field/EnumClassHash.h"
 #include "field/FieldSpriteType.h"
 
 
