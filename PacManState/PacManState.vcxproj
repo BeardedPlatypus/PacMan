@@ -155,6 +155,7 @@
     <ClInclude Include="include\entity\EntityAxis.h" />
     <ClInclude Include="include\entity\EntityManager.h" />
     <ClInclude Include="include\entity\EntityState.h" />
+    <ClInclude Include="include\entity\EntityType.h" />
     <ClInclude Include="include\entity\IEntityManager.h" />
     <ClInclude Include="include\field\Field.h" />
     <ClInclude Include="include\field\FieldDefinition.h" />
