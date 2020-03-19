@@ -146,6 +146,7 @@
     <ClCompile Include="src\GameStateTest.cpp" />
     <ClCompile Include="src\level\LevelManagerTest.cpp" />
     <ClCompile Include="src\score\ScoreBoardTest.cpp" />
+    <ClCompile Include="src\util\EnumClassHashTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
