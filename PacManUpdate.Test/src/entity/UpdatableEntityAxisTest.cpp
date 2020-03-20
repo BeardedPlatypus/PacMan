@@ -3,6 +3,10 @@
 #include <entity/IUpdatableEntityAxis.h>
 #include <entity/IEntityAxis.h>
 
+#include "EntityAxisMock.h"
+
+using ::testing::Return;
+
 namespace pacman {
 namespace update {
 
@@ -59,6 +63,11 @@ TEST_P(UpdatableEntityAxisCurrentIndexTest, GetCurrentIndex_ReturnsCorrectValue)
 }
 
 
+INSTANTIATE_TEST_SUITE_P(UpdatableEntityAxisTest,
+                         UpdatableEntityAxisCurrentIndexTest,
+                         ::testing::ValuesIn(UpdatableEntityAxisCurrentIndexTest::GetTestValues()));
+
+
 class UpdatableEntityAxisAxisDirectionTest : public ::testing::TestWithParam<AxisDirection> {
 public:
   static std::vector<AxisDirection> GetTestValues() {
@@ -85,6 +94,11 @@ TEST_P(UpdatableEntityAxisAxisDirectionTest, SetCurrentAxisDirection_SetsCorrect
   // Assert
   EXPECT_EQ(p_updatable_entity_axis->GetCurrentAxisDirection(), axis_direction);
 }
+
+
+INSTANTIATE_TEST_SUITE_P(UpdatableEntityAxisTest,
+                         UpdatableEntityAxisAxisDirectionTest,
+                         ::testing::ValuesIn(UpdatableEntityAxisAxisDirectionTest::GetTestValues()));
 
 
 struct TileCenterValues {
@@ -133,6 +147,11 @@ TEST_P(UpdatableEntityAxisNextTileCenterTest, NextTileCenter_ReturnsCorrectValue
 }
 
 
+INSTANTIATE_TEST_SUITE_P(UpdatableEntityAxisTest,
+                         UpdatableEntityAxisNextTileCenterTest,
+                         ::testing::ValuesIn(UpdatableEntityAxisNextTileCenterTest::GetTestValues()));
+
+
 class UpdatableEntityAxisPreviousTileCenterTest : public ::testing::TestWithParam<TileCenterValues> {
 public:
   static std::vector<TileCenterValues> GetTestValues() {
@@ -165,6 +184,11 @@ TEST_P(UpdatableEntityAxisPreviousTileCenterTest, PreviousTileCenter_ReturnsCorr
 }
 
 
+INSTANTIATE_TEST_SUITE_P(UpdatableEntityAxisTest,
+                         UpdatableEntityAxisPreviousTileCenterTest,
+                         ::testing::ValuesIn(UpdatableEntityAxisPreviousTileCenterTest::GetTestValues()));
+
+
 struct MoveValues {
   MoveValues(float position,
              float move_distance,
@@ -175,7 +199,7 @@ struct MoveValues {
   float position;
   float move_distance;
 
-  int expected_value;
+  float expected_value;
 };
 
 
@@ -210,6 +234,12 @@ TEST_P(UpdatableEntityAxisMoveTest, PreviousTileCenter_ReturnsCorrectValue) {
   EXPECT_EQ(p_updatable_entity_axis->GetPosition(), test_value.expected_value);
   EXPECT_EQ(p_updatable_entity_axis->GetPreviousIndex(), expected_previous_index);
 }
+
+
+INSTANTIATE_TEST_SUITE_P(UpdatableEntityAxisTest,
+                         UpdatableEntityAxisMoveTest,
+                         ::testing::ValuesIn(UpdatableEntityAxisMoveTest::GetTestValues()));
+
 
 }
 }
