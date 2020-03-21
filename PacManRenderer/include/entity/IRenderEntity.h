@@ -22,9 +22,12 @@ public:
   virtual void Update(float dtime) = 0;
   
   /// <summary>
-  /// Renders this <see cref="IRenderEntity"/>.
+  /// Renders this <see cref="IRenderEntity" />.
   /// </summary>
-  virtual void Render() const = 0;
+  /// <param name="scale">The scale with which to render this <see cref="IRenderEntity" />.</param>
+  /// <param name="render_offset_y">The offset to render with on the y-axis.</param>
+  virtual void Render(float scale,
+                      float render_offset_y) const = 0;
 };
 
 }
