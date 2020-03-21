@@ -33,6 +33,9 @@
     <ClInclude Include="include\StringRendererMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\RenderEntityMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PacManRenderer.Mock.cpp">
