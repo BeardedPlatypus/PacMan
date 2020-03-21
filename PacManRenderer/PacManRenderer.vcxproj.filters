@@ -120,6 +120,9 @@
     <ClInclude Include="include\entity\IRenderEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\entity\EntityLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -171,6 +174,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\objects\ObjectRenderers\BonusFruitRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\EntityLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

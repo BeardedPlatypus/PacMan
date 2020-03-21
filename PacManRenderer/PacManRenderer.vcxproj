@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\CommonSpriteValues.h" />
+    <ClInclude Include="include\entity\EntityLayer.h" />
     <ClInclude Include="include\entity\IRenderEntity.h" />
     <ClInclude Include="include\entity\PlayerLayer.h" />
     <ClInclude Include="include\entity\PlayerMovementAnimation.h" />
@@ -204,6 +205,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\entity\EntityLayer.cpp" />
     <ClCompile Include="src\field\FieldLayer.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.FieldValueToSpriteType.cpp" />
