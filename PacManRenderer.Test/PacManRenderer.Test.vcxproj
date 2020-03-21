@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\entity\EntityLayerTest.cpp" />
     <ClCompile Include="src\FieldLayerHelperTest.cpp" />
     <ClCompile Include="src\manager\LayerManagerTest.cpp" />
     <ClCompile Include="src\objects\ObjectLayerTest.cpp" />

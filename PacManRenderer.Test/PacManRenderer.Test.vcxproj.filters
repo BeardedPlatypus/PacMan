@@ -51,5 +51,8 @@
     <ClCompile Include="src\objects\ObjectRenderers\BonusFruitRendererTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\EntityLayerTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
