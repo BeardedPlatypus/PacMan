@@ -40,7 +40,7 @@ public:
   virtual IEntityAxis* GetYAxis() const = 0;
   
   /// <summary>
-  /// Get the direction of this <see cref="Direction" />.
+  /// Get the <see cref="Direction"/> of this <see cref="IEntityState" />.
   /// </summary>
   /// <returns> 
   /// The <see cref="Direction" /> of this <see cref="IEntityState" />. 
