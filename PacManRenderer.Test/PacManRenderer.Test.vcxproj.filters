@@ -54,5 +54,8 @@
     <ClCompile Include="src\entity\EntityLayerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\render\GetDirectionContainerTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
