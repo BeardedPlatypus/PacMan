@@ -7,6 +7,10 @@ namespace renderer {
 namespace entity {
 namespace render {
 
+/// <summary>
+/// <see cref="IAnimationLabelProvider"/> defines the GetActiveAnimationLabel, which determines
+/// which animation is currently being rendered.
+/// </summary>
 class IAnimationLabelProvider {
 public:
   virtual ~IAnimationLabelProvider() = default;
