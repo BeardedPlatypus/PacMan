@@ -168,6 +168,7 @@
     <ClInclude Include="include\entity\PlayerLayer.h" />
     <ClInclude Include="include\entity\PlayerMovementAnimation.h" />
     <ClInclude Include="include\entity\render\DirectionBasedAnimationLabelProvider.h" />
+    <ClInclude Include="include\entity\render\GetAxiiContainer.h" />
     <ClInclude Include="include\entity\render\GetDirectionContainer.h" />
     <ClInclude Include="include\entity\render\IAnimationLabelProvider.h" />
     <ClInclude Include="include\field\FieldLayer.h" />
