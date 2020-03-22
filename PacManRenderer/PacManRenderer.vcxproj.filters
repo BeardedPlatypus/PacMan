@@ -126,6 +126,12 @@
     <ClInclude Include="include\entity\render\GetDirectionContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\entity\render\IAnimationLabelProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entity\render\DirectionBasedAnimationLabelProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -180,6 +186,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\entity\EntityLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\render\DirectionBasedAnimationLabelProvider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
