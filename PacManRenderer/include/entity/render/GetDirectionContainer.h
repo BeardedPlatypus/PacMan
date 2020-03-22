@@ -14,7 +14,7 @@ namespace render {
 class GetDirectionContainer final {
 public:  
   template <typename T>
-  GetDirectionContainer(const T& obj): p_concept(std::make_shared<Model<T>>(std::move(obj))) {}
+  explicit GetDirectionContainer(const T& obj): p_concept(std::make_shared<Model<T>>(std::move(obj))) {}
 
   state::Direction GetDirection() const {
     return this->p_concept->GetDirection();
@@ -42,15 +42,15 @@ public:
   /// type erasure.
   /// </summary>
   template<typename T>
-  struct Model : Concept {
+  struct Model final : Concept {
   public:
     /// <summary>
     /// Creates a new <see cref="Model"/> with the provided <paramref cref="t"/>.
     /// </summary>
     /// <param name="t">The object wrapped.</param>
-    Model(const T& t) : object(t) { }
+    explicit Model(const T& t) : object(t) { }
 
-    state::Direction GetDirection() const override {
+    state::Direction GetDirection() const final {
       return object.GetDirection();
     }
 
