@@ -167,6 +167,7 @@
     <ClInclude Include="include\entity\IRenderEntity.h" />
     <ClInclude Include="include\entity\PlayerLayer.h" />
     <ClInclude Include="include\entity\PlayerMovementAnimation.h" />
+    <ClInclude Include="include\entity\render\GetDirectionContainer.h" />
     <ClInclude Include="include\field\FieldLayer.h" />
     <ClInclude Include="include\field\FieldLayerHelper.h" />
     <ClInclude Include="include\field\FieldLayerSpriteDescription.h" />
