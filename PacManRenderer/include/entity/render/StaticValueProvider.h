@@ -11,6 +11,7 @@ namespace render {
 /// <see cref="StaticValueProvider"/> provides a value provider that will
 /// always return a static value.
 /// </summary>
+/// <seealso cref="IValueProvider" />
 template <typename T>
 class StaticValueProvider final : public IValueProvider<T> {
 public:  
