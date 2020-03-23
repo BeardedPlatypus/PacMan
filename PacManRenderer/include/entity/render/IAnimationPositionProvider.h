@@ -17,18 +17,22 @@ public:
   /// <summary>
   /// Get the x-position to render the entity at.
   /// </summary>
+  /// <param name="scale">The scale with which to render.</param>
   /// <returns>
   /// The x-position to render the entity at.
   /// </returns>
-  virtual float GetXPosition() const = 0;
+  virtual float GetXPosition(float scale) const = 0;
 
   /// <summary>
   /// Get the x position to render the entity at.
   /// </summary>
+  /// <param name="scale">The scale with which to render.</param>
+  /// <param name="render_offset">The offset in game space.</param>
   /// <returns>
   /// The y-position to render the entity at.
   /// </returns>
-  virtual float GetYPosition() const = 0;
+  virtual float GetYPosition(float scale,
+                             float render_offset) const = 0;
 };
 
 }
