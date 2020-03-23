@@ -36,6 +36,12 @@
     <ClInclude Include="include\RenderEntityMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ValueProviderMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AnimationPositionProviderMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PacManRenderer.Mock.cpp">
