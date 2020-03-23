@@ -176,6 +176,7 @@
     <ClInclude Include="include\entity\render\IAnimationRotationProvider.h" />
     <ClInclude Include="include\entity\render\IValueProvider.h" />
     <ClInclude Include="include\entity\render\StaticAnimationRotationProvider.h" />
+    <ClInclude Include="include\entity\render\StaticValueProvider.h" />
     <ClInclude Include="include\field\FieldLayer.h" />
     <ClInclude Include="include\field\FieldLayerHelper.h" />
     <ClInclude Include="include\field\FieldLayerSpriteDescription.h" />
@@ -218,6 +219,7 @@
     <ClCompile Include="src\entity\render\AnimationPositionProvider.cpp" />
     <ClCompile Include="src\entity\render\DirectionBasedAnimationLabelProvider.cpp" />
     <ClCompile Include="src\entity\render\StaticAnimationRotationProvider.cpp" />
+    <ClCompile Include="src\entity\render\StaticValueProvider.cpp" />
     <ClCompile Include="src\field\FieldLayer.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.FieldValueToSpriteType.cpp" />

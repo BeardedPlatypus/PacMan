@@ -150,6 +150,9 @@
     <ClInclude Include="include\entity\render\IValueProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\entity\render\StaticValueProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -213,6 +216,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\entity\render\StaticAnimationRotationProvider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\render\StaticValueProvider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
