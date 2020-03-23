@@ -1,7 +1,7 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include <entity/render/DirectionBasedAnimationLabelProvider.h>
+#include <entity/render/DirectionBasedValueProvider.h>
 
 #include "entity/IEntityState.h"
 
@@ -42,35 +42,35 @@ TEST_P(GetDirectionTest, Filled_ReturnsExpectedLabel) {
 
   const std::string expected_label = (*p_mapping)[GetParam()];
 
-  auto label_provider = DirectionBasedAnimationLabelProvider(std::move(p_container),
-                                                             "",
-                                                             std::move(p_mapping));
+  auto label_provider = DirectionBasedValueProvider<std::string>(std::move(p_container),
+                                                                 "",
+                                                                 std::move(p_mapping));
 
   // Call
-  std::string result = label_provider.GetActiveAnimationLabel();
+  std::string result = label_provider.GetValue();
 
   // Assert
   EXPECT_THAT(result, Eq(expected_label));
 }
 
-INSTANTIATE_TEST_SUITE_P(DirectionBasedAnimationLabelProviderTest,
+INSTANTIATE_TEST_SUITE_P(DirectionBasedValueProviderTest,
                          GetDirectionTest,
                          ::testing::ValuesIn(GetDirectionTest::GetTestData()));
 
 
-TEST(DirectionBasedAnimationLabelProviderTest, GetDirection_NotFound_ReturnsDefault) {
+TEST(DirectionBasedValueProviderTest, GetDirection_NotFound_ReturnsDefault) {
   // Setup
   const std::string expected_label = "default_label";
   auto p_entity_state = state::IEntityState::Construct(0.F, 0.F, state::Direction::Up, 0.F);
   auto p_container = std::make_unique<GetDirectionContainer>(*p_entity_state);
   auto p_mapping = std::make_unique<std::unordered_map<state::Direction, std::string, EnumClassHash>>();
 
-  auto label_provider = DirectionBasedAnimationLabelProvider(std::move(p_container),
-                                                             expected_label,
-                                                             std::move(p_mapping));
+  auto label_provider = DirectionBasedValueProvider<std::string>(std::move(p_container),
+                                                                 expected_label,
+                                                                 std::move(p_mapping));
 
   // Call
-  std::string result = label_provider.GetActiveAnimationLabel();
+  std::string result = label_provider.GetValue();
 
   // Assert
   EXPECT_THAT(result, Eq(expected_label));

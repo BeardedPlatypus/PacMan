@@ -126,12 +126,6 @@
     <ClInclude Include="include\entity\render\GetDirectionContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\entity\render\IAnimationLabelProvider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\entity\render\DirectionBasedAnimationLabelProvider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\entity\render\GetAxiiContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -141,16 +135,13 @@
     <ClInclude Include="include\entity\render\AnimationPositionProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\entity\render\IAnimationRotationProvider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\entity\render\StaticAnimationRotationProvider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\entity\render\IValueProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\entity\render\StaticValueProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entity\render\DirectionBasedValueProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -209,16 +200,13 @@
     <ClCompile Include="src\entity\EntityLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\render\DirectionBasedAnimationLabelProvider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\entity\render\AnimationPositionProvider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\render\StaticAnimationRotationProvider.cpp">
+    <ClCompile Include="src\entity\render\StaticValueProvider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\render\StaticValueProvider.cpp">
+    <ClCompile Include="src\entity\render\DirectionBasedValueProvider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

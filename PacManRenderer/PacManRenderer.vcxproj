@@ -168,14 +168,11 @@
     <ClInclude Include="include\entity\PlayerLayer.h" />
     <ClInclude Include="include\entity\PlayerMovementAnimation.h" />
     <ClInclude Include="include\entity\render\AnimationPositionProvider.h" />
-    <ClInclude Include="include\entity\render\DirectionBasedAnimationLabelProvider.h" />
+    <ClInclude Include="include\entity\render\DirectionBasedValueProvider.h" />
     <ClInclude Include="include\entity\render\GetAxiiContainer.h" />
     <ClInclude Include="include\entity\render\GetDirectionContainer.h" />
-    <ClInclude Include="include\entity\render\IAnimationLabelProvider.h" />
     <ClInclude Include="include\entity\render\IAnimationPositionProvider.h" />
-    <ClInclude Include="include\entity\render\IAnimationRotationProvider.h" />
     <ClInclude Include="include\entity\render\IValueProvider.h" />
-    <ClInclude Include="include\entity\render\StaticAnimationRotationProvider.h" />
     <ClInclude Include="include\entity\render\StaticValueProvider.h" />
     <ClInclude Include="include\field\FieldLayer.h" />
     <ClInclude Include="include\field\FieldLayerHelper.h" />
@@ -217,8 +214,7 @@
     </ClCompile>
     <ClCompile Include="src\entity\EntityLayer.cpp" />
     <ClCompile Include="src\entity\render\AnimationPositionProvider.cpp" />
-    <ClCompile Include="src\entity\render\DirectionBasedAnimationLabelProvider.cpp" />
-    <ClCompile Include="src\entity\render\StaticAnimationRotationProvider.cpp" />
+    <ClCompile Include="src\entity\render\DirectionBasedValueProvider.cpp" />
     <ClCompile Include="src\entity\render\StaticValueProvider.cpp" />
     <ClCompile Include="src\field\FieldLayer.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.cpp" />
