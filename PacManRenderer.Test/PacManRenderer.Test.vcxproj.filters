@@ -66,5 +66,8 @@
     <ClCompile Include="src\entity\render\AnimationPositionProviderTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\render\StaticAnimationRotationProviderTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

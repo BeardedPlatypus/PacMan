@@ -148,6 +148,7 @@
     <ClCompile Include="src\entity\render\DirectionBasedAnimationLabelProviderTest.cpp" />
     <ClCompile Include="src\entity\render\GetAxiiContainerTest.cpp" />
     <ClCompile Include="src\entity\render\GetDirectionContainerTest.cpp" />
+    <ClCompile Include="src\entity\render\StaticAnimationRotationProviderTest.cpp" />
     <ClCompile Include="src\FieldLayerHelperTest.cpp" />
     <ClCompile Include="src\manager\LayerManagerTest.cpp" />
     <ClCompile Include="src\objects\ObjectLayerTest.cpp" />
