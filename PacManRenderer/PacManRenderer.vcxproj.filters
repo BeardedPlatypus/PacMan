@@ -144,6 +144,9 @@
     <ClInclude Include="include\entity\render\DirectionBasedValueProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\entity\render\EntityRenderConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -207,6 +210,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\entity\render\DirectionBasedValueProvider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\render\EntityRenderConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
