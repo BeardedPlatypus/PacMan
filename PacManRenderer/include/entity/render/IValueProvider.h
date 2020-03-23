@@ -11,6 +11,7 @@ namespace render {
 /// </summary>
 template <typename T>
 class IValueProvider {
+public:
   virtual ~IValueProvider() = default;
   
   /// <summary>
