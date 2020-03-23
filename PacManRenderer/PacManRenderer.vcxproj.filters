@@ -141,6 +141,12 @@
     <ClInclude Include="include\entity\render\AnimationPositionProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\entity\render\IAnimationRotationProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entity\render\StaticAnimationRotationProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -201,6 +207,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\entity\render\AnimationPositionProvider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\render\StaticAnimationRotationProvider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
