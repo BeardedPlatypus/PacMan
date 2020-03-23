@@ -167,6 +167,7 @@
     <ClInclude Include="include\entity\IRenderEntity.h" />
     <ClInclude Include="include\entity\PlayerLayer.h" />
     <ClInclude Include="include\entity\PlayerMovementAnimation.h" />
+    <ClInclude Include="include\entity\render\AnimationPositionProvider.h" />
     <ClInclude Include="include\entity\render\DirectionBasedAnimationLabelProvider.h" />
     <ClInclude Include="include\entity\render\GetAxiiContainer.h" />
     <ClInclude Include="include\entity\render\GetDirectionContainer.h" />
@@ -211,6 +212,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\entity\EntityLayer.cpp" />
+    <ClCompile Include="src\entity\render\AnimationPositionProvider.cpp" />
     <ClCompile Include="src\entity\render\DirectionBasedAnimationLabelProvider.cpp" />
     <ClCompile Include="src\field\FieldLayer.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.cpp" />
