@@ -19,7 +19,7 @@ void RenderEntity::Render(float scale, float render_offset_y) const {
     this->_p_render_config->GetLabelProvider()->GetValue(),
     this->_p_render_config->GetPositionProvider()->GetXPosition(scale),
     this->_p_render_config->GetPositionProvider()->GetYPosition(scale, render_offset_y),
-    this->_p_render_config->GetScaleProvider()->GetValue(),
+    this->_p_render_config->GetScaleProvider()->GetValue() * scale,
     this->_p_render_config->GetRotationProvider()->GetValue(),
     this->_p_render_config->GetFlipHorizontallyProvider()->GetValue(),
     this->_p_render_config->GetFlipVerticallyProvider()->GetValue());
