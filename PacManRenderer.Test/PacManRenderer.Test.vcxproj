@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\entity\EntityLayerTest.cpp" />
+    <ClCompile Include="src\entity\RenderEntityTest.cpp" />
     <ClCompile Include="src\entity\render\AnimationPositionProviderTest.cpp" />
     <ClCompile Include="src\entity\render\EntityRenderConfigTest.cpp" />
     <ClCompile Include="src\entity\render\GetAxiiContainerTest.cpp" />

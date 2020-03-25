@@ -72,5 +72,8 @@
     <ClCompile Include="src\entity\render\EntityRenderConfigTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\RenderEntityTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
