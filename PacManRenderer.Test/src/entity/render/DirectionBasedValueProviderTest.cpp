@@ -19,7 +19,7 @@ std::unique_ptr<std::unordered_map<state::Direction, std::string, EnumClassHash>
   (*p_mapping)[state::Direction::Right] = "Right";
   (*p_mapping)[state::Direction::Down]  = "Down";
 
-  return std::move(p_mapping);
+  return p_mapping;
 }
 
 class GetDirectionTest : public ::testing::TestWithParam<state::Direction> {
