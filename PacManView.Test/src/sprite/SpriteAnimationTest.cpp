@@ -93,10 +93,10 @@ TEST(Unit_SpriteAnimationTest, setInternalTime_GreaterThanRange) {
   auto sprite = Sprite(texture, 0, 0, 10, 10);
 
   std::vector<std::reference_wrapper<const Sprite>> sprites { sprite,
-	                                                          sprite,
-	                                                          sprite,
-	                                                          sprite,
-	                                                          sprite };
+	                                                            sprite,
+	                                                            sprite,
+	                                                            sprite,
+	                                                            sprite };
 
   const float time_per_frame = 10.F;
   auto p_animation = ISpriteAnimation::Construct(time_per_frame, sprites);
@@ -111,6 +111,33 @@ TEST(Unit_SpriteAnimationTest, setInternalTime_GreaterThanRange) {
 
   // Then
   EXPECT_THAT(p_animation->GetInternalTime(), FloatEq(new_time));
+}
+
+
+TEST(Unit_SpriteAnimationTest, setInternalTime_SmallerThanZero) {
+  // Given
+  TextureMock texture;
+  auto sprite = Sprite(texture, 0, 0, 10, 10);
+
+  std::vector<std::reference_wrapper<const Sprite>> sprites { sprite,
+	                                                            sprite,
+	                                                            sprite,
+	                                                            sprite,
+	                                                            sprite };
+
+  const float time_per_frame = 10.F;
+  auto p_animation = ISpriteAnimation::Construct(time_per_frame, sprites);
+
+  ASSERT_THAT(p_animation->GetInternalTime(), FloatEq(0.0));
+
+  const float new_time = -2.5F;
+  const float expected_new_time = sprites.size() + new_time;
+
+  // When
+  p_animation->SetInternalTime(new_time);
+
+  // Then
+  EXPECT_THAT(p_animation->GetInternalTime(), FloatEq(expected_new_time));
 }
 
 
