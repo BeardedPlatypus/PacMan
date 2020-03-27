@@ -176,6 +176,7 @@
     <ClInclude Include="include\entity\render\IAnimationPositionProvider.h" />
     <ClInclude Include="include\entity\render\IValueProvider.h" />
     <ClInclude Include="include\entity\render\StaticValueProvider.h" />
+    <ClInclude Include="include\entity\update\IAnimationUpdateBehaviour.h" />
     <ClInclude Include="include\field\FieldLayer.h" />
     <ClInclude Include="include\field\FieldLayerHelper.h" />
     <ClInclude Include="include\field\FieldLayerSpriteDescription.h" />
