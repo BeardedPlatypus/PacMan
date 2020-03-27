@@ -40,6 +40,8 @@ void SpriteAnimation::SetInternalTime(float new_time) {
 	float n_frames = (float) this->GetNFrames();
   if (new_time > n_frames) {
     new_time = (float) fmod(new_time, n_frames);
+  } else if (new_time < n_frames) {
+    new_time -= n_frames * floorf(new_time / n_frames);
   }
   
   this->_internal_cur_time = new_time; 
