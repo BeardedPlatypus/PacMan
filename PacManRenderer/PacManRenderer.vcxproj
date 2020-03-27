@@ -177,6 +177,7 @@
     <ClInclude Include="include\entity\render\IValueProvider.h" />
     <ClInclude Include="include\entity\render\StaticValueProvider.h" />
     <ClInclude Include="include\entity\update\IAnimationUpdateBehaviour.h" />
+    <ClInclude Include="include\entity\update\StaticAnimationUpdateBehaviour.h" />
     <ClInclude Include="include\field\FieldLayer.h" />
     <ClInclude Include="include\field\FieldLayerHelper.h" />
     <ClInclude Include="include\field\FieldLayerSpriteDescription.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="src\entity\render\DirectionBasedValueProvider.cpp" />
     <ClCompile Include="src\entity\render\EntityRenderConfig.cpp" />
     <ClCompile Include="src\entity\render\StaticValueProvider.cpp" />
+    <ClCompile Include="src\entity\update\StaticAnimationUpdateBehaviour.cpp" />
     <ClCompile Include="src\field\FieldLayer.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.FieldValueToSpriteType.cpp" />
