@@ -75,5 +75,8 @@
     <ClCompile Include="src\entity\RenderEntityTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\update\StaticAnimationUpdateBehaviour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
