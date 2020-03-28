@@ -10,6 +10,11 @@ namespace renderer {
 namespace entity {
 namespace update {
 
+/// <summary>
+/// The <see cref="StaticAnimationUpdateBehaviour"/> updates the provided 
+/// animation always with the provided difference in time.
+/// </summary>
+/// <seealso cref="IAnimationUpdateBehaviour" />
 class StaticAnimationUpdateBehaviour final : public IAnimationUpdateBehaviour {
 public:  
   /// <summary>
