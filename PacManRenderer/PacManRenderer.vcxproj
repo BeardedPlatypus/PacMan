@@ -164,6 +164,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\CommonSpriteValues.h" />
     <ClInclude Include="include\entity\animation\IAnimationUpdateBehaviour.h" />
+    <ClInclude Include="include\entity\animation\SpriteRenderConfig.h" />
     <ClInclude Include="include\entity\EntityLayer.h" />
     <ClInclude Include="include\entity\IRenderEntity.h" />
     <ClInclude Include="include\entity\PlayerLayer.h" />
