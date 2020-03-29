@@ -33,6 +33,15 @@ public:
 	/// <paramref name="screen_width"/> <= 0 || <paramref name="screen_height"/> <= 0
 	/// </exception>
 	virtual void Initialise(int screen_width, int screen_height) = 0;
+
+	/// <summary>
+	/// Checks whether a sprite with the provided <paramref cref="label"/> already exists.
+	/// </summary>
+	/// <param name="label">The label to verify.</param>
+	/// <returns>
+	/// <c>true<c> if the provided label has a corresponding sprite, <c>false</c> otherwise.
+	/// </returns>
+	virtual bool HasSprite(const std::string& label) const = 0;
 	
 	/// <summary> 
 	/// Request a new sprite with the given <paramref name="label"/> and 

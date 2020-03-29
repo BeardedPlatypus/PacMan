@@ -3,7 +3,7 @@
 
 #include "ViewAPI.h"
 #include "sdl_util/IDispatcher.h"
-#include "renderer/RendererFactory.h";
+#include "renderer/RendererFactory.h"
 
 namespace pacman {
 namespace view {

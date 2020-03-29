@@ -10,6 +10,7 @@
 class ViewAPIMock : public pacman::view::IViewAPI {
 public:
   MOCK_METHOD(void, Initialise, (int, int));
+  MOCK_METHOD(bool, HasSprite, (const std::string&), (const));
   MOCK_METHOD(void, RequestSprite, ((const std::string&),
                                     (const std::string&),
                                     int, int, int, int));

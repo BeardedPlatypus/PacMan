@@ -18,6 +18,11 @@ void ViewAPI::Initialise(int screen_width, int screen_height) {
 }
 
 
+inline bool ViewAPI::HasSprite(const std::string& label) const {
+	return this->GetSpriteManager().HasSprite(label);
+}
+
+
 void ViewAPI::RequestSprite(const std::string& label,
 								            const std::string& texture_file_path,
 								            int x, int y, int w, int h) {

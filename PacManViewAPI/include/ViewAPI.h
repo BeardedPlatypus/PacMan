@@ -28,6 +28,8 @@ public:
 
 	void Initialise(int screen_width, int screen_height) final;
 
+	bool HasSprite(const std::string& label) const final;
+
 	void RequestSprite(const std::string& label,
 					           const std::string& texture_file_path,
 		                 int x, int y, int w, int h) final;
