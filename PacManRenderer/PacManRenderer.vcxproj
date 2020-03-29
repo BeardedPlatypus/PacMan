@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\CommonSpriteValues.h" />
+    <ClInclude Include="include\entity\animation\AnimationRenderConfig.h" />
     <ClInclude Include="include\entity\animation\IAnimationRenderConfig.h" />
     <ClInclude Include="include\entity\animation\IAnimationUpdateBehaviour.h" />
     <ClInclude Include="include\entity\animation\SpriteRenderConfig.h" />
@@ -219,6 +220,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\entity\animation\AnimationRenderConfig.cpp" />
     <ClCompile Include="src\entity\EntityLayer.cpp" />
     <ClCompile Include="src\entity\RenderEntity.cpp" />
     <ClCompile Include="src\entity\render\AnimationPositionProvider.cpp" />
