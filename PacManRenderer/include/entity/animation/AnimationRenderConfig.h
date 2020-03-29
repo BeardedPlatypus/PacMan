@@ -38,6 +38,7 @@ public:
   std::string GetLabel() const final;
   void Initialise() final;
   void Update(float dtime) final;
+  void Reset() final;
 
 private:  
   /// <summary>

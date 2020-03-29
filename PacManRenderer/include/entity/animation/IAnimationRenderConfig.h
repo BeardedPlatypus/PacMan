@@ -33,6 +33,11 @@ public:
   /// </summary>
   /// <param name="dtime">The elapsed time since the last update.</param>
   virtual void Update(float dtime) = 0;
+  
+  /// <summary>
+  /// Resets this animation.
+  /// </summary>
+  virtual void Reset() = 0;
 };
 
 }

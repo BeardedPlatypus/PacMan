@@ -56,6 +56,10 @@ inline void AnimationRenderConfig::Update(float dtime) {
   this->_p_animation_update_behaviour->Update(dtime);
 }
 
+inline void AnimationRenderConfig::Reset() {
+  this->_p_view_api->ResetAnimationTime(this->GetLabel());
+}
+
 }
 }
 }
