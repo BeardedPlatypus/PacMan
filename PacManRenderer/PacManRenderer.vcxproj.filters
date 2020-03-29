@@ -162,6 +162,9 @@
     <ClInclude Include="include\entity\animation\SpriteRenderConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\entity\animation\IAnimationRenderConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

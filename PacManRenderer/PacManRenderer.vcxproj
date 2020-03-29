@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\CommonSpriteValues.h" />
+    <ClInclude Include="include\entity\animation\IAnimationRenderConfig.h" />
     <ClInclude Include="include\entity\animation\IAnimationUpdateBehaviour.h" />
     <ClInclude Include="include\entity\animation\SpriteRenderConfig.h" />
     <ClInclude Include="include\entity\EntityLayer.h" />
