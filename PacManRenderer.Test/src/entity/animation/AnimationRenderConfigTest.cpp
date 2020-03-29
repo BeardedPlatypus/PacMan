@@ -57,6 +57,24 @@ TEST(AnimationRenderConfigTest, Update_CallsUpdateBehaviour) {
 }
 
 
+
+TEST(AnimationRenderConfigTest, Reset_CallsResetAnimation) {
+  // Setup
+  const std::string animation_label = "label";
+  ViewAPIMock view_api;
+  EXPECT_CALL(view_api, ResetAnimationTime(animation_label)).Times(1);
+
+  AnimationRenderConfig config = AnimationRenderConfig(&view_api,
+                                                       animation_label,
+                                                       1.F,
+                                                       std::vector<std::string>(),
+                                                       std::vector<SpriteRenderConfig>(),
+                                                       std::make_unique<AnimationUpdateBehaviourMock>());
+
+  // Call | Assert
+  config.Reset();
+}
+
 TEST(AnimationRenderConfigTest, Initialise_CallsViewAPICorrectly) {
   const std::string anim_label = "anim_label";
   const float frame_time = 1.23F;
