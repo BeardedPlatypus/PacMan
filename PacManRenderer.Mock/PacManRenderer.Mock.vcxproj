@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="include\AnimationRenderConfigMock.h" />
     <ClInclude Include="include\AnimationUpdateBehaviourMock.h" />
     <ClInclude Include="include\GlyphRendererMock.h" />
     <ClInclude Include="include\AnimationPositionProviderMock.h" />
