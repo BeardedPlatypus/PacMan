@@ -169,6 +169,7 @@
     <ClInclude Include="include\entity\animation\SpriteRenderConfig.h" />
     <ClInclude Include="include\entity\EntityLayer.h" />
     <ClInclude Include="include\entity\IEntityStateRenderer.h" />
+    <ClInclude Include="include\entity\IRenderEntity.h" />
     <ClInclude Include="include\entity\PlayerLayer.h" />
     <ClInclude Include="include\entity\PlayerMovementAnimation.h" />
     <ClInclude Include="include\entity\EntityStateRenderer.h" />
