@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "IRenderLayer.h"
-#include "entity/IEntityStateRenderer.h"
+#include "entity/IRenderEntity.h"
 
 namespace pacman {
 namespace renderer {
@@ -22,7 +22,7 @@ public:
   /// <param name="p_render_entities">The collection of <see cref="entity::IEntityStateRenderer"/> to render.</param>
   /// <param name="scale">The scale.</param>
   /// <param name="render_offset_y">The render offset y.</param>
-  EntityLayer(std::unique_ptr<std::vector<std::unique_ptr<entity::IEntityStateRenderer>>> p_render_entities,
+  EntityLayer(std::unique_ptr<std::vector<std::unique_ptr<entity::IRenderEntity>>> p_render_entities,
               float scale, 
               float render_offset_y);
 
@@ -34,7 +34,7 @@ private:
   /// <summary>
   /// A pointer to the render entities rendered by this EntityLayer.
   /// </summary>
-  std::unique_ptr<std::vector<std::unique_ptr<entity::IEntityStateRenderer>>> _p_render_entities;
+  std::unique_ptr<std::vector<std::unique_ptr<entity::IRenderEntity>>> _p_render_entities;
 
   /// <summary>
   /// The scale to render with.
