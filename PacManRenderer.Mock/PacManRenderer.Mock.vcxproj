@@ -154,6 +154,7 @@
     <ClInclude Include="include\AnimationUpdateBehaviourMock.h" />
     <ClInclude Include="include\GlyphRendererMock.h" />
     <ClInclude Include="include\AnimationPositionProviderMock.h" />
+    <ClInclude Include="include\RenderEntityMock.h" />
     <ClInclude Include="include\ValueProviderMock.h" />
     <ClInclude Include="include\ObjectRendererMock.h" />
     <ClInclude Include="include\EntityStateRendererMock.h" />
