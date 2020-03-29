@@ -1,8 +1,10 @@
 #pragma once
 
 #include <memory>
+#include <unordered_map>
 
 #include "entity/IRenderEntity.h"
+#include "entity/animation/IAnimationRenderConfig.h"
 #include "entity/render/EntityRenderConfig.h"
 #include "IViewAPI.h"
 
@@ -24,6 +26,7 @@ public:
   /// A pointer to the <see cref="render::EntityRenderConfig"/> of this <see cref="RenderEntity"/>.
   /// </param>
   explicit RenderEntity(std::unique_ptr<render::EntityRenderConfig> p_render_config,
+                        std::unique_ptr<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>> p_animation_configs,
                         view::IViewAPI* p_view_api);
 
   void Initialise() final;
@@ -33,6 +36,7 @@ public:
 
 private:
   std::unique_ptr<render::EntityRenderConfig> _p_render_config;
+  std::unique_ptr<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>> _p_animation_configs;
   view::IViewAPI* _p_view_api;
 };
 

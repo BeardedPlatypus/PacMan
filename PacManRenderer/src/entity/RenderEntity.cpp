@@ -6,13 +6,19 @@ namespace renderer {
 namespace entity {
 
 RenderEntity::RenderEntity(std::unique_ptr<render::EntityRenderConfig> p_render_config,
+                           std::unique_ptr<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>> p_animation_configs,
                            view::IViewAPI* p_view_api) :
     _p_render_config(std::move(p_render_config)),
+    _p_animation_configs(std::move(p_animation_configs)),
     _p_view_api(p_view_api) { }
 
 
-void RenderEntity::Initialise() { }
-void RenderEntity::Update(float dtime) { }
+void RenderEntity::Initialise() { 
+  for (auto& anim_config : *(this->_p_animation_configs)) anim_config->Initialise();
+}
+void RenderEntity::Update(float dtime) { 
+  for (auto& anim_config : *(this->_p_animation_configs)) anim_config->Update(dtime);
+}
 
 void RenderEntity::Render(float scale, float render_offset_y) const {
   this->_p_view_api->RenderSpriteAnimation(
