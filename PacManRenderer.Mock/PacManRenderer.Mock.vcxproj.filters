@@ -33,9 +33,6 @@
     <ClInclude Include="include\StringRendererMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\RenderEntityMock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ValueProviderMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -46,6 +43,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\AnimationRenderConfigMock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EntityStateRendererMock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

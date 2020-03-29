@@ -1,7 +1,7 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "entity/RenderEntity.h"
+#include "entity/EntityStateRenderer.h"
 
 #include "AnimationRenderConfigMock.h"
 #include "ViewAPIMock.h"
@@ -14,7 +14,7 @@ namespace pacman {
 namespace renderer {
 namespace entity {
 
-TEST(RenderEntityTest, Initialise_CallsAnimationConfigurationsInitialise) {
+TEST(EntityStateRendererTest, Initialise_CallsAnimationConfigurationsInitialise) {
   // Setup
   std::shared_ptr<ValueProviderMock<std::string>> p_label_provider =
     std::make_shared<ValueProviderMock<std::string>>();
@@ -50,16 +50,16 @@ TEST(RenderEntityTest, Initialise_CallsAnimationConfigurationsInitialise) {
 
   ViewAPIMock view_api;
 
-  RenderEntity render_entity = RenderEntity(std::move(p_render_config), 
-                                            std::move(p_anims), 
-                                            &view_api);
+  EntityStateRenderer render_entity = EntityStateRenderer(std::move(p_render_config), 
+                                                          std::move(p_anims), 
+                                                          &view_api);
 
   // Call | Assert
   render_entity.Initialise();
 }
 
 
-TEST(RenderEntityTest, Update_CallsAnimationConfigurationsUpdate) {
+TEST(EntityStateRendererTest, Update_CallsAnimationConfigurationsUpdate) {
   // Setup
   std::shared_ptr<ValueProviderMock<std::string>> p_label_provider =
     std::make_shared<ValueProviderMock<std::string>>();
@@ -96,7 +96,7 @@ TEST(RenderEntityTest, Update_CallsAnimationConfigurationsUpdate) {
 
   ViewAPIMock view_api;
 
-  RenderEntity render_entity = RenderEntity(std::move(p_render_config), 
+  EntityStateRenderer render_entity = EntityStateRenderer(std::move(p_render_config), 
                                             std::move(p_anims), 
                                             &view_api);
 
@@ -104,7 +104,7 @@ TEST(RenderEntityTest, Update_CallsAnimationConfigurationsUpdate) {
   render_entity.Update(expected_dtime);
 }
 
-TEST(RenderEntityTest, Render_ExpectedResults) {
+TEST(EntityStateRendererTest, Render_ExpectedResults) {
   // Setup
   const std::string expected_label = "label";
   std::shared_ptr<ValueProviderMock<std::string>> p_label_provider =
@@ -176,7 +176,7 @@ TEST(RenderEntityTest, Render_ExpectedResults) {
     std::make_unique<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>>();
 
 
-  RenderEntity render_entity = RenderEntity(std::move(p_render_config), std::move(anims), &view_api);
+  EntityStateRenderer render_entity = EntityStateRenderer(std::move(p_render_config), std::move(anims), &view_api);
 
   // Call | Assert
   render_entity.Render(expected_scale, expected_render_offset);

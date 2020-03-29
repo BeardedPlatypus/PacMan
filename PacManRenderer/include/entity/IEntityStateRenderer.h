@@ -5,26 +5,26 @@ namespace renderer {
 namespace entity {
 
 /// <summary>
-/// <see cref="IRenderEntity"/> defines the methods to render entities.
+/// <see cref="IEntityStateRenderer"/> defines the methods to render a single state.
 /// </summary>
-class IRenderEntity {
+class IEntityStateRenderer {
 public:  
   /// <summary>
-  /// Initialises this <see cref="IRenderEntity"/>.
+  /// Initialises this <see cref="IEntityStateRenderer"/>.
   /// </summary>
   virtual void Initialise() = 0;
   
   /// <summary>
-  /// Updates this <see cref="IRenderEntity"/> with the provided 
+  /// Updates this <see cref="IEntityStateRenderer"/> with the provided 
   /// <paramref cref="dtime"/>.
   /// </summary>
   /// <param name="dtime">The time elapsed since the last update.</param>
   virtual void Update(float dtime) = 0;
   
   /// <summary>
-  /// Renders this <see cref="IRenderEntity" />.
+  /// Render the state associated with this <see cref="IEntityStateRenderer" />.
   /// </summary>
-  /// <param name="scale">The scale with which to render this <see cref="IRenderEntity" />.</param>
+  /// <param name="scale">The scale with which this <see cref="IEntityStateRenderer" /> renders.</param>
   /// <param name="render_offset_y">The offset to render with on the y-axis.</param>
   virtual void Render(float scale,
                       float render_offset_y) const = 0;
