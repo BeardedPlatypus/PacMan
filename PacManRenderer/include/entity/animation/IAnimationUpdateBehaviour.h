@@ -3,7 +3,7 @@
 namespace pacman {
 namespace renderer {
 namespace entity {
-namespace update {
+namespace animation {
 
 /// <summary>
 /// <see cref="IAnimationUpdateBehaviour"/> provides the method to update

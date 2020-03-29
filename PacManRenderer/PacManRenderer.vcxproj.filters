@@ -150,13 +150,13 @@
     <ClInclude Include="include\entity\RenderEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\entity\update\IAnimationUpdateBehaviour.h">
+    <ClInclude Include="include\entity\animation\ActiveInverseAnimationUpdateBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\entity\update\StaticAnimationUpdateBehaviour.h">
+    <ClInclude Include="include\entity\animation\StaticAnimationUpdateBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\entity\update\ActiveInverseAnimationUpdateBehaviour.h">
+    <ClInclude Include="include\entity\animation\IAnimationUpdateBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -230,10 +230,10 @@
     <ClCompile Include="src\entity\RenderEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\update\StaticAnimationUpdateBehaviour.cpp">
+    <ClCompile Include="src\entity\animation\ActiveInverseAnimationUpdateBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\update\ActiveInverseAnimationUpdateBehaviour.cpp">
+    <ClCompile Include="src\entity\animation\StaticAnimationUpdateBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

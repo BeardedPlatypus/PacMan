@@ -1,11 +1,11 @@
 #include "pch.h"
-#include "entity/update/ActiveInverseAnimationUpdateBehaviour.h"
+#include "entity/animation/ActiveInverseAnimationUpdateBehaviour.h"
 
 
 namespace pacman {
 namespace renderer {
 namespace entity {
-namespace update {
+namespace animation {
 
 ActiveInverseAnimationUpdateBehaviour::ActiveInverseAnimationUpdateBehaviour(
   view::IViewAPI* p_view_api, 

@@ -1,11 +1,11 @@
 #include "pch.h"
-#include "entity/update/StaticAnimationUpdateBehaviour.h"
+#include "entity/animation/StaticAnimationUpdateBehaviour.h"
 
 
 namespace pacman {
 namespace renderer {
 namespace entity {
-namespace update {
+namespace animation {
 
 StaticAnimationUpdateBehaviour::StaticAnimationUpdateBehaviour(view::IViewAPI* p_view_api, 
                                                                const std::string& animation_label) : 

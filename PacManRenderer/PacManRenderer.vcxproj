@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\CommonSpriteValues.h" />
+    <ClInclude Include="include\entity\animation\IAnimationUpdateBehaviour.h" />
     <ClInclude Include="include\entity\EntityLayer.h" />
     <ClInclude Include="include\entity\IRenderEntity.h" />
     <ClInclude Include="include\entity\PlayerLayer.h" />
@@ -176,9 +177,8 @@
     <ClInclude Include="include\entity\render\IAnimationPositionProvider.h" />
     <ClInclude Include="include\entity\render\IValueProvider.h" />
     <ClInclude Include="include\entity\render\StaticValueProvider.h" />
-    <ClInclude Include="include\entity\update\ActiveInverseAnimationUpdateBehaviour.h" />
-    <ClInclude Include="include\entity\update\IAnimationUpdateBehaviour.h" />
-    <ClInclude Include="include\entity\update\StaticAnimationUpdateBehaviour.h" />
+    <ClInclude Include="include\entity\animation\ActiveInverseAnimationUpdateBehaviour.h" />
+    <ClInclude Include="include\entity\animation\StaticAnimationUpdateBehaviour.h" />
     <ClInclude Include="include\field\FieldLayer.h" />
     <ClInclude Include="include\field\FieldLayerHelper.h" />
     <ClInclude Include="include\field\FieldLayerSpriteDescription.h" />
@@ -223,8 +223,8 @@
     <ClCompile Include="src\entity\render\DirectionBasedValueProvider.cpp" />
     <ClCompile Include="src\entity\render\EntityRenderConfig.cpp" />
     <ClCompile Include="src\entity\render\StaticValueProvider.cpp" />
-    <ClCompile Include="src\entity\update\ActiveInverseAnimationUpdateBehaviour.cpp" />
-    <ClCompile Include="src\entity\update\StaticAnimationUpdateBehaviour.cpp" />
+    <ClCompile Include="src\entity\animation\ActiveInverseAnimationUpdateBehaviour.cpp" />
+    <ClCompile Include="src\entity\animation\StaticAnimationUpdateBehaviour.cpp" />
     <ClCompile Include="src\field\FieldLayer.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.FieldValueToSpriteType.cpp" />

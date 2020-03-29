@@ -2,13 +2,13 @@
 
 #include <string>
 
-#include "entity/update/IAnimationUpdateBehaviour.h"
+#include "entity/animation/IAnimationUpdateBehaviour.h"
 #include "IViewAPI.h"
 
 namespace pacman {
 namespace renderer {
 namespace entity {
-namespace update {
+namespace animation {
 
 /// <summary>
 /// The <see cref="StaticAnimationUpdateBehaviour"/> updates the provided 
