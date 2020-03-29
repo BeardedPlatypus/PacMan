@@ -81,5 +81,8 @@
     <ClCompile Include="src\entity\animation\StaticAnimationUpdateBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\animation\SpriteRenderConfigTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
