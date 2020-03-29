@@ -3,6 +3,7 @@
 
 #include "entity/RenderEntity.h"
 
+#include "AnimationRenderConfigMock.h"
 #include "ViewAPIMock.h"
 #include "ValueProviderMock.h"
 #include "AnimationPositionProviderMock.h"
@@ -12,6 +13,96 @@ using ::testing::Return;
 namespace pacman {
 namespace renderer {
 namespace entity {
+
+TEST(RenderEntityTest, Initialise_CallsAnimationConfigurationsInitialise) {
+  // Setup
+  std::shared_ptr<ValueProviderMock<std::string>> p_label_provider =
+    std::make_shared<ValueProviderMock<std::string>>();
+  std::shared_ptr<AnimationPositionProviderMock> p_position_provider =
+    std::make_shared<AnimationPositionProviderMock>();
+  std::shared_ptr<ValueProviderMock<float>> p_scale_factor_provider =
+    std::make_shared<ValueProviderMock<float>>();
+  std::shared_ptr<ValueProviderMock<float>> p_rotation_provider =
+    std::make_shared<ValueProviderMock<float>>();
+  std::shared_ptr<ValueProviderMock<bool>> p_flip_horizontally_provider =
+    std::make_shared<ValueProviderMock<bool>>();
+  std::shared_ptr<ValueProviderMock<bool>> p_flip_vertical_provider =
+    std::make_shared<ValueProviderMock<bool>>();
+
+  std::unique_ptr<entity::render::EntityRenderConfig> p_render_config =
+    std::make_unique<entity::render::EntityRenderConfig>(p_label_provider,
+                                                         p_position_provider,
+                                                         p_scale_factor_provider,
+                                                         p_rotation_provider,
+                                                         p_flip_horizontally_provider,
+                                                         p_flip_vertical_provider);
+
+
+  auto p_anims = 
+    std::make_unique<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>>();
+
+  for (int i = 0; i < 5; i++) {
+    auto p_anim = std::make_unique<AnimationRenderConfig>();
+
+    EXPECT_CALL(*p_anim, Initialise()).Times(1);
+    p_anims->push_back(std::move(p_anim));
+  }
+
+  ViewAPIMock view_api;
+
+  RenderEntity render_entity = RenderEntity(std::move(p_render_config), 
+                                            std::move(p_anims), 
+                                            &view_api);
+
+  // Call | Assert
+  render_entity.Initialise();
+}
+
+
+TEST(RenderEntityTest, Update_CallsAnimationConfigurationsUpdate) {
+  // Setup
+  std::shared_ptr<ValueProviderMock<std::string>> p_label_provider =
+    std::make_shared<ValueProviderMock<std::string>>();
+  std::shared_ptr<AnimationPositionProviderMock> p_position_provider =
+    std::make_shared<AnimationPositionProviderMock>();
+  std::shared_ptr<ValueProviderMock<float>> p_scale_factor_provider =
+    std::make_shared<ValueProviderMock<float>>();
+  std::shared_ptr<ValueProviderMock<float>> p_rotation_provider =
+    std::make_shared<ValueProviderMock<float>>();
+  std::shared_ptr<ValueProviderMock<bool>> p_flip_horizontally_provider =
+    std::make_shared<ValueProviderMock<bool>>();
+  std::shared_ptr<ValueProviderMock<bool>> p_flip_vertical_provider =
+    std::make_shared<ValueProviderMock<bool>>();
+
+  std::unique_ptr<entity::render::EntityRenderConfig> p_render_config =
+    std::make_unique<entity::render::EntityRenderConfig>(p_label_provider,
+                                                         p_position_provider,
+                                                         p_scale_factor_provider,
+                                                         p_rotation_provider,
+                                                         p_flip_horizontally_provider,
+                                                         p_flip_vertical_provider);
+
+  const float expected_dtime = 12.345F;
+
+  auto p_anims = 
+    std::make_unique<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>>();
+
+  for (int i = 0; i < 5; i++) {
+    auto p_anim = std::make_unique<AnimationRenderConfig>();
+
+    EXPECT_CALL(*p_anim, Update(expected_dtime)).Times(1);
+    p_anims->push_back(std::move(p_anim));
+  }
+
+  ViewAPIMock view_api;
+
+  RenderEntity render_entity = RenderEntity(std::move(p_render_config), 
+                                            std::move(p_anims), 
+                                            &view_api);
+
+  // Call | Assert
+  render_entity.Update(expected_dtime);
+}
 
 TEST(RenderEntityTest, Render_ExpectedResults) {
   // Setup
@@ -81,7 +172,11 @@ TEST(RenderEntityTest, Render_ExpectedResults) {
     expected_flip_horizontal,
     expected_flip_vertical)).Times(1);
 
-  RenderEntity render_entity = RenderEntity(std::move(p_render_config), &view_api);
+  std::unique_ptr<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>> anims =
+    std::make_unique<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>>();
+
+
+  RenderEntity render_entity = RenderEntity(std::move(p_render_config), std::move(anims), &view_api);
 
   // Call | Assert
   render_entity.Render(expected_scale, expected_render_offset);
