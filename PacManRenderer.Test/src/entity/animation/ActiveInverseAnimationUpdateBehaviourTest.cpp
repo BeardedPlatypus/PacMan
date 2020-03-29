@@ -1,7 +1,7 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "entity/update/ActiveInverseAnimationUpdateBehaviour.h"
+#include "entity/animation/ActiveInverseAnimationUpdateBehaviour.h"
 
 #include "ViewAPIMock.h"
 #include "ValueProviderMock.h"
@@ -11,7 +11,7 @@ using ::testing::Return;
 namespace pacman {
 namespace renderer {
 namespace entity {
-namespace update {
+namespace animation {
 
 TEST(ActiveInverseAnimationUpdateBehaviourTest, Update_IsActive_CalledCorrectly) {
   // Setup

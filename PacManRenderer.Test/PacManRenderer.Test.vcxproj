@@ -151,8 +151,8 @@
     <ClCompile Include="src\entity\render\GetDirectionContainerTest.cpp" />
     <ClCompile Include="src\entity\render\DirectionBasedValueProviderTest.cpp" />
     <ClCompile Include="src\entity\render\StaticValueProviderTest.cpp" />
-    <ClCompile Include="src\entity\update\ActiveInverseAnimationUpdateBehaviourTest.cpp" />
-    <ClCompile Include="src\entity\update\StaticAnimationUpdateBehaviour.cpp" />
+    <ClCompile Include="src\entity\animation\ActiveInverseAnimationUpdateBehaviourTest.cpp" />
+    <ClCompile Include="src\entity\animation\StaticAnimationUpdateBehaviour.cpp" />
     <ClCompile Include="src\FieldLayerHelperTest.cpp" />
     <ClCompile Include="src\manager\LayerManagerTest.cpp" />
     <ClCompile Include="src\objects\ObjectLayerTest.cpp" />

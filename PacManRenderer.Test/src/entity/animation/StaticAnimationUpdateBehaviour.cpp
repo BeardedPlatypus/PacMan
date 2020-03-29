@@ -1,7 +1,7 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "entity/update/StaticAnimationUpdateBehaviour.h"
+#include "entity/animation/StaticAnimationUpdateBehaviour.h"
 
 #include "ViewAPIMock.h"
 
@@ -9,7 +9,7 @@
 namespace pacman {
 namespace renderer {
 namespace entity {
-namespace update {
+namespace animation {
 
 TEST(StaticAnimationUpdateBehaviour, Update_CalledCorrectly) {
   // Setup

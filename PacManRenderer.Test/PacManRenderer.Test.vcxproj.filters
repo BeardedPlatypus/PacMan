@@ -75,10 +75,10 @@
     <ClCompile Include="src\entity\RenderEntityTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\update\StaticAnimationUpdateBehaviour.cpp">
+    <ClCompile Include="src\entity\animation\ActiveInverseAnimationUpdateBehaviourTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\update\ActiveInverseAnimationUpdateBehaviourTest.cpp">
+    <ClCompile Include="src\entity\animation\StaticAnimationUpdateBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
