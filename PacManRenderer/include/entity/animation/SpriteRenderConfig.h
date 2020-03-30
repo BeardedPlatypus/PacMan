@@ -68,7 +68,10 @@ private:
   const std::string _sprite_label;
   const std::string _texture_file_path;
 
-  const int _x, _y, _w, _h;
+  const int _x; 
+  const int _y; 
+  const int _w;
+  const int _h;
 };
 
 }
