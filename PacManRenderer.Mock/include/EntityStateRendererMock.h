@@ -9,4 +9,5 @@ public:
   MOCK_METHOD(void, Initialise, ());
   MOCK_METHOD(void, Update, (float));
   MOCK_METHOD(void, Render, (float, float), (const));
+  MOCK_METHOD(void, Reset, ());
 };

@@ -28,6 +28,11 @@ public:
   /// <param name="render_offset_y">The offset to render with on the y-axis.</param>
   virtual void Render(float scale,
                       float render_offset_y) const = 0;
+  
+  /// <summary>
+  /// Resets this <see cref="IEntityStateRenderer"/>.
+  /// </summary>
+  virtual void Reset() = 0;
 };
 
 }

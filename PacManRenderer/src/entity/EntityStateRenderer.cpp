@@ -31,6 +31,10 @@ void EntityStateRenderer::Render(float scale, float render_offset_y) const {
     this->_p_render_config->GetFlipVerticallyProvider()->GetValue());
 }
 
+void EntityStateRenderer::Reset() {
+  for (auto& anim_config : *(this->_p_animation_configs)) anim_config->Reset();
+}
+
 }
 }
 }

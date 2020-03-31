@@ -33,6 +33,7 @@ public:
   void Update(float dtime) final;
   void Render(float scale,
               float render_offset_y) const final;
+  void Reset() final;
 
 private:
   std::unique_ptr<render::EntityRenderConfig> _p_render_config;
