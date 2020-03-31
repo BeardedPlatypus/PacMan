@@ -183,6 +183,51 @@ TEST(EntityStateRendererTest, Render_ExpectedResults) {
 }
 
 
+TEST(EntityStateRendererTest, Reset_CallsAnimationConfigurationsReset) {
+  // Setup
+  std::shared_ptr<ValueProviderMock<std::string>> p_label_provider =
+    std::make_shared<ValueProviderMock<std::string>>();
+  std::shared_ptr<AnimationPositionProviderMock> p_position_provider =
+    std::make_shared<AnimationPositionProviderMock>();
+  std::shared_ptr<ValueProviderMock<float>> p_scale_factor_provider =
+    std::make_shared<ValueProviderMock<float>>();
+  std::shared_ptr<ValueProviderMock<float>> p_rotation_provider =
+    std::make_shared<ValueProviderMock<float>>();
+  std::shared_ptr<ValueProviderMock<bool>> p_flip_horizontally_provider =
+    std::make_shared<ValueProviderMock<bool>>();
+  std::shared_ptr<ValueProviderMock<bool>> p_flip_vertical_provider =
+    std::make_shared<ValueProviderMock<bool>>();
+
+  std::unique_ptr<entity::render::EntityRenderConfig> p_render_config =
+    std::make_unique<entity::render::EntityRenderConfig>(p_label_provider,
+                                                         p_position_provider,
+                                                         p_scale_factor_provider,
+                                                         p_rotation_provider,
+                                                         p_flip_horizontally_provider,
+                                                         p_flip_vertical_provider);
+
+
+  auto p_anims = 
+    std::make_unique<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>>();
+
+  for (int i = 0; i < 5; i++) {
+    auto p_anim = std::make_unique<AnimationRenderConfig>();
+
+    EXPECT_CALL(*p_anim, Reset()).Times(1);
+    p_anims->push_back(std::move(p_anim));
+  }
+
+  ViewAPIMock view_api;
+
+  EntityStateRenderer render_entity = EntityStateRenderer(std::move(p_render_config), 
+                                                          std::move(p_anims), 
+                                                          &view_api);
+
+  // Call | Assert
+  render_entity.Reset();
+}
+
+
 }
 }
 }
