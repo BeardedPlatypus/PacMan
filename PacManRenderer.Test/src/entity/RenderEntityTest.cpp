@@ -33,6 +33,7 @@ TEST(RenderEntityTest, Initialise_InitialisesAllStateRenderers) {
   // Setup
   std::unique_ptr<ValueProviderMock<DummyState>> p_state_provider =
     std::make_unique<ValueProviderMock<DummyState>>();
+  ON_CALL(*p_state_provider, GetValue()).WillByDefault(Return(DummyState::Two));
   std::unique_ptr<std::unordered_map<DummyState, std::unique_ptr<IEntityStateRenderer>, EnumClassHash>> p_renderers =
     std::make_unique<std::unordered_map<DummyState, std::unique_ptr<IEntityStateRenderer>, EnumClassHash>>();
 
@@ -66,7 +67,6 @@ TEST_P(RenderEntityUpdateTest, Update_CallsUpdateActiveRenderer) {
 
   std::unique_ptr<EntityStateRendererMock> p_renderer_two =
     std::make_unique<EntityStateRendererMock>();
-  EXPECT_CALL(*p_renderer_two, Reset()).Times(1);
   EXPECT_CALL(*p_renderer_two, Update(expected_dtime)).Times(GetParam());
 
   std::unique_ptr<std::unordered_map<DummyState, std::unique_ptr<IEntityStateRenderer>, EnumClassHash>> p_renderers =
@@ -89,6 +89,34 @@ INSTANTIATE_TEST_SUITE_P(RenderEntityTest,
                          ::testing::ValuesIn(RenderEntityUpdateTest::GetTestData()));
 
 
+TEST(RenderEntityTest, Update_ActiveStateChanged_CallsResetNewActiveRenderer) {
+  // Setup
+  const float expected_dtime = 1.23F;
+
+  std::unique_ptr<ValueProviderMock<DummyState>> p_state_provider =
+    std::make_unique<ValueProviderMock<DummyState>>();
+  EXPECT_CALL(*p_state_provider, GetValue()).WillOnce(Return(DummyState::One))
+                                            .WillOnce(Return(DummyState::Two));
+
+  std::unique_ptr<EntityStateRendererMock> p_renderer_two =
+    std::make_unique<EntityStateRendererMock>();
+  EXPECT_CALL(*p_renderer_two, Reset()).Times(1);
+  EXPECT_CALL(*p_renderer_two, Update(expected_dtime)).Times(1);
+
+  std::unique_ptr<std::unordered_map<DummyState, std::unique_ptr<IEntityStateRenderer>, EnumClassHash>> p_renderers =
+    std::make_unique<std::unordered_map<DummyState, std::unique_ptr<IEntityStateRenderer>, EnumClassHash>>();
+  
+  p_renderers->insert(std::make_pair(DummyState::Two, std::move(p_renderer_two)));
+
+  RenderEntity<DummyState> render_entity = 
+    RenderEntity<DummyState>(std::move(p_renderers), 
+                             std::move(p_state_provider));
+
+  // Call | Assert
+  render_entity.Update(expected_dtime);
+}
+
+
 TEST(RenderEntityTest, Render_CallsActiveRenderer) {
   // Setup
   const float expected_scale = 1.23F;
@@ -96,7 +124,7 @@ TEST(RenderEntityTest, Render_CallsActiveRenderer) {
 
   std::unique_ptr<ValueProviderMock<DummyState>> p_state_provider =
     std::make_unique<ValueProviderMock<DummyState>>();
-  EXPECT_CALL(*p_state_provider, GetValue()).Times(1).WillOnce(Return(DummyState::Two));
+  EXPECT_CALL(*p_state_provider, GetValue()).Times(2).WillRepeatedly(Return(DummyState::Two));
 
   std::unique_ptr<EntityStateRendererMock> p_renderer_two =
     std::make_unique<EntityStateRendererMock>();

@@ -31,7 +31,8 @@ public:
   RenderEntity(std::unique_ptr<std::unordered_map<TState, std::unique_ptr<IEntityStateRenderer>, EnumClassHash>> p_renderers,
                std::unique_ptr<render::IValueProvider<TState>> p_active_state_provider) :
     _p_renderers(std::move(p_renderers)), 
-    _p_active_state_provider(std::move(p_active_state_provider)) { }
+    _p_active_state_provider(std::move(p_active_state_provider)),
+    _prev_state(this->_p_active_state_provider->GetValue()) { }
 
   void Initialise() final {
     for (auto& val : *_p_renderers)
