@@ -179,6 +179,7 @@
     <ClInclude Include="include\entity\render\EntityRenderConfig.h" />
     <ClInclude Include="include\entity\render\GetAxiiContainer.h" />
     <ClInclude Include="include\entity\render\GetDirectionContainer.h" />
+    <ClInclude Include="include\entity\render\GetStateContainer.h" />
     <ClInclude Include="include\entity\render\IAnimationPositionProvider.h" />
     <ClInclude Include="include\entity\render\IValueProvider.h" />
     <ClInclude Include="include\entity\render\StaticValueProvider.h" />
