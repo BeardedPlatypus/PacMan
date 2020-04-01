@@ -153,6 +153,7 @@
     <ClCompile Include="src\entity\render\GetAxiiContainerTest.cpp" />
     <ClCompile Include="src\entity\render\GetDirectionContainerTest.cpp" />
     <ClCompile Include="src\entity\render\DirectionBasedValueProviderTest.cpp" />
+    <ClCompile Include="src\entity\render\GetStateContainerTest.cpp" />
     <ClCompile Include="src\entity\render\StaticValueProviderTest.cpp" />
     <ClCompile Include="src\entity\animation\ActiveInverseAnimationUpdateBehaviourTest.cpp" />
     <ClCompile Include="src\entity\animation\StaticAnimationUpdateBehaviour.cpp" />
