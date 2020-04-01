@@ -147,6 +147,7 @@
     <ClCompile Include="src\entity\animation\SpriteRenderConfigTest.cpp" />
     <ClCompile Include="src\entity\EntityLayerTest.cpp" />
     <ClCompile Include="src\entity\EntityStateRendererTest.cpp" />
+    <ClCompile Include="src\entity\RenderEntityTest.cpp" />
     <ClCompile Include="src\entity\render\AnimationPositionProviderTest.cpp" />
     <ClCompile Include="src\entity\render\EntityRenderConfigTest.cpp" />
     <ClCompile Include="src\entity\render\GetAxiiContainerTest.cpp" />
