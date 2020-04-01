@@ -182,6 +182,7 @@
     <ClInclude Include="include\entity\render\GetStateContainer.h" />
     <ClInclude Include="include\entity\render\IAnimationPositionProvider.h" />
     <ClInclude Include="include\entity\render\IValueProvider.h" />
+    <ClInclude Include="include\entity\render\StateBasedValueProvider.h" />
     <ClInclude Include="include\entity\render\StaticValueProvider.h" />
     <ClInclude Include="include\entity\animation\ActiveInverseAnimationUpdateBehaviour.h" />
     <ClInclude Include="include\entity\animation\StaticAnimationUpdateBehaviour.h" />
