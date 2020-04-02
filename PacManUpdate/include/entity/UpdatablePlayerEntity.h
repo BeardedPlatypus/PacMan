@@ -8,7 +8,7 @@ namespace update {
 
 /// <summary>
 /// <see cref="UpdatablePlayerEntity" /> wraps and extends a 
-/// <see cref="state::IEntityState" />.
+/// <see cref="state::ISpatialState" />.
 /// </summary>
 /// <seealso cref="IUpdatablePlayerEntity" />
 class UpdatablePlayerEntity final : public IUpdatablePlayerEntity {
@@ -17,7 +17,7 @@ public:
   /// Creates a new <see cref="UpdatablePlayerEntity"/>.
   /// </summary>
   /// <param name="p_player_state"> 
-  /// Pointer to the observed <see cref="IEntityState"/>.
+  /// Pointer to the observed <see cref="ISpatialState"/>.
   /// </param>
   /// <param name="p_x_axis">
   /// <see cref="std::unique_ptr{IUpdatableEntityAxis}"/> containing the x-axis.
@@ -31,7 +31,7 @@ public:
   /// <param name="p_y_movement_axis">
   /// <see cref="std::unique_ptr{IPlayerMovementAxis}"/> containing the movement y-axis.
   /// </param>
-  explicit UpdatablePlayerEntity(state::IEntityState* p_player_state,
+  explicit UpdatablePlayerEntity(state::ISpatialState* p_player_state,
                                  std::unique_ptr<IUpdatableEntityAxis> p_x_axis,
                                  std::unique_ptr<IUpdatableEntityAxis> p_y_axis,
                                  std::unique_ptr<IPlayerMovementAxis> p_x_movement_axis,
@@ -61,7 +61,7 @@ public:
 
   void Reset() final;
 private:
-  state::IEntityState* p_player_state;
+  state::ISpatialState* p_player_state;
 
   int active_axis = 0;
 

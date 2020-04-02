@@ -1,4 +1,4 @@
-#include "EntityStateMock.h"
+#include "SpatialStateMock.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -40,14 +40,14 @@ TEST(GameStateTest, SetPlayerState_ExpectedResults) {
 	// Setup
 	auto game_state = IGameState::Construct();
 
-	std::unique_ptr<EntityStateMock> p_entity_state = std::make_unique<EntityStateMock>();
-	EntityStateMock* p_expected_state = p_entity_state.get();
+	std::unique_ptr<SpatialStateMock> p_entity_state = std::make_unique<SpatialStateMock>();
+	SpatialStateMock* p_expected_state = p_entity_state.get();
 
 	// Call
 	game_state->SetPlayerState(std::move(p_entity_state));
 
 	// Assert
-	IEntityState* retrieved_state = game_state->GetPlayerState();
+	ISpatialState* retrieved_state = game_state->GetPlayerState();
 	EXPECT_EQ(retrieved_state, p_expected_state);
 }
 

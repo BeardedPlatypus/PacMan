@@ -26,7 +26,7 @@ std::unique_ptr<state::field::IField> ConstructTestField() {
 
 class PortalBehaviourExecuteData {
 public:
-  PortalBehaviourExecuteData(std::unique_ptr<state::IEntityState> p_state,
+  PortalBehaviourExecuteData(std::unique_ptr<state::ISpatialState> p_state,
                              float expected_x,
                              float expected_y) :
       p_state(std::move(p_state)),
@@ -40,7 +40,7 @@ public:
   inline float GetExpectedXLocation() const { return this->expected_x_location; }
   inline float GetExpectedYLocation() const { return this->expected_y_location; }
 private:
-  std::unique_ptr<state::IEntityState> p_state;
+  std::unique_ptr<state::ISpatialState> p_state;
   std::unique_ptr<IUpdatablePlayerEntity> p_entity;
 
   float expected_x_location;
@@ -56,7 +56,7 @@ std::shared_ptr<PortalBehaviourExecuteData> GetData(float previous_x,
                                                     AxisDirection current_dir,
                                                     float expected_x,
                                                     float expected_y) {
-  auto p_entity_state = state::IEntityState::Construct(previous_x, previous_y, state::Direction::Left, 30.F);
+  auto p_entity_state = state::ISpatialState::Construct(previous_x, previous_y, state::Direction::Left, 30.F);
   auto data = std::make_shared<PortalBehaviourExecuteData>(std::move(p_entity_state), expected_x, expected_y);
 
   data->GetEntity()->GetXAxis()->SetPosition(current_x);

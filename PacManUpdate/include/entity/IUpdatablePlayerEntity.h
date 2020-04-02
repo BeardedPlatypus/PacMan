@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <entity/IEntityState.h>
+#include <entity/ISpatialState.h>
 #include <optional>
 
 #include "entity/IUpdatableEntityAxis.h"
@@ -14,7 +14,7 @@ namespace update {
   
 /// <summary>
 /// <see cref="IUpdatablePlayerEntity" /> wraps and extends a 
-/// <see cref="state::IEntityState" />.
+/// <see cref="state::ISpatialState" />.
 /// </summary>
 class IUpdatablePlayerEntity {
 public:  
@@ -23,13 +23,13 @@ public:
   /// <paramref name="p_player_state" />.
   /// </summary>
   /// <param name="p_player_state">
-  /// A pointer to the <see cref="state::IEntityState" /> it will wrap.
+  /// A pointer to the <see cref="state::ISpatialState" /> it will wrap.
   /// </param>
   /// <returns>
   /// A <see cref="std::unique_ptr"/> containing the new 
   /// <see cref="IUpdatablePlayerEntity"/>.
   /// </returns>
-  static std::unique_ptr<IUpdatablePlayerEntity> Construct(state::IEntityState* p_player_state);
+  static std::unique_ptr<IUpdatablePlayerEntity> Construct(state::ISpatialState* p_player_state);
   
   /// <summary>
   /// Get the active axis type.

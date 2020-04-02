@@ -1,10 +1,10 @@
 #pragma once
 
-#include "entity/IEntityState.h"
+#include "entity/ISpatialState.h"
 #include "gmock/gmock.h"
 
 
-class EntityStateMock : public pacman::state::IEntityState {
+class SpatialStateMock : public pacman::state::ISpatialState {
 public:
   MOCK_METHOD(pacman::state::IEntityAxis*, GetXAxis, (), (const));
   MOCK_METHOD(pacman::state::IEntityAxis*, GetYAxis, (), (const));

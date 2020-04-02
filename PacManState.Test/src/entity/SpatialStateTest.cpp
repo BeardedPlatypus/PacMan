@@ -1,7 +1,7 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "entity/IEntityState.h"
+#include "entity/ISpatialState.h"
 
 #pragma region using_statements
 using ::testing::Eq;
@@ -12,7 +12,7 @@ using ::testing::IsTrue;
 namespace pacman {
 namespace state {
 
-TEST(EntityStateTest, ctor_setsExpectedValues) {
+TEST(SpatialStateTest, ctor_setsExpectedValues) {
   // Given
   float expected_x = 5.403F;
   float expected_y = 1029.0298F;
@@ -20,7 +20,7 @@ TEST(EntityStateTest, ctor_setsExpectedValues) {
   float expected_speed = 20.326F;
 
   // When
-  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(expected_x,
+  std::unique_ptr<ISpatialState> p_state = ISpatialState::Construct(expected_x,
                                                                   expected_y,
                                                                   expected_dir, 
                                                                   expected_speed);
@@ -34,11 +34,11 @@ TEST(EntityStateTest, ctor_setsExpectedValues) {
 }
 
 
-TEST(EntityStateTest, SetDirection_ValidDirection) {
+TEST(SpatialStateTest, SetDirection_ValidDirection) {
   // Given
   Direction expected_dir = Direction::Right;
 
-  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.F,
+  std::unique_ptr<ISpatialState> p_state = ISpatialState::Construct(0.F,
                                                                   0.F,
                                                                   Direction::Left, 
                                                                   0.F);
@@ -51,11 +51,11 @@ TEST(EntityStateTest, SetDirection_ValidDirection) {
 }
 
 
-TEST(EntityStateTest, SetXPosition_ValidFloat) {
+TEST(SpatialStateTest, SetXPosition_ValidFloat) {
   // Given
   float expected_x = 1159.0298F;
 
-  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.F,
+  std::unique_ptr<ISpatialState> p_state = ISpatialState::Construct(0.F,
                                                                   0.F,
                                                                   Direction::Left,
                                                                   0.F);
@@ -68,11 +68,11 @@ TEST(EntityStateTest, SetXPosition_ValidFloat) {
 }
 
 
-TEST(EntityStateTest, SetYPosition_ValidFloat) {
+TEST(SpatialStateTest, SetYPosition_ValidFloat) {
   // Given
   float expected_y = 1159.0298F;
 
-  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.F,
+  std::unique_ptr<ISpatialState> p_state = ISpatialState::Construct(0.F,
                                                                   0.F,
                                                                   Direction::Left,
                                                                   0.F);
@@ -85,9 +85,9 @@ TEST(EntityStateTest, SetYPosition_ValidFloat) {
 }
 
 
-TEST(EntityStateTest, SetSpeed_UpdatesCorrectly) {
+TEST(SpatialStateTest, SetSpeed_UpdatesCorrectly) {
   // Setup
-  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.F,
+  std::unique_ptr<ISpatialState> p_state = ISpatialState::Construct(0.F,
                                                                   0.F,
                                                                   Direction::Left,
                                                                   0.F);
@@ -102,9 +102,9 @@ TEST(EntityStateTest, SetSpeed_UpdatesCorrectly) {
 }
 
 
-TEST(EntityStateTest, SetIsMoving_UpdatesCorrectly) {
+TEST(SpatialStateTest, SetIsMoving_UpdatesCorrectly) {
   // Setup
-  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(0.F,
+  std::unique_ptr<ISpatialState> p_state = ISpatialState::Construct(0.F,
                                                                   0.F,
                                                                   Direction::Left,
                                                                   0.F);
@@ -117,14 +117,14 @@ TEST(EntityStateTest, SetIsMoving_UpdatesCorrectly) {
 }
 
 
-TEST(EntityStateTest, Reset_SetsExpectedValues) {
+TEST(SpatialStateTest, Reset_SetsExpectedValues) {
   // Given
   float expected_x = 5.403F;
   float expected_y = 1029.0298F;
   Direction expected_dir = Direction::Right;
   float expected_speed = 20.326F;
 
-  std::unique_ptr<IEntityState> p_state = IEntityState::Construct(expected_x,
+  std::unique_ptr<ISpatialState> p_state = ISpatialState::Construct(expected_x,
                                                                   expected_y,
                                                                   expected_dir, 
                                                                   expected_speed);

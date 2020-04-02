@@ -5,7 +5,7 @@
 namespace pacman {
 namespace update {
 
-UpdatablePlayerEntity::UpdatablePlayerEntity(state::IEntityState* p_player_state,
+UpdatablePlayerEntity::UpdatablePlayerEntity(state::ISpatialState* p_player_state,
                                              std::unique_ptr<IUpdatableEntityAxis> p_x_axis,
                                              std::unique_ptr<IUpdatableEntityAxis> p_y_axis,
                                              std::unique_ptr<IPlayerMovementAxis> p_x_movement_axis,

@@ -2,7 +2,7 @@
 
 #include "GameMode.h"
 #include "IGameState.h"
-#include "entity/IEntityState.h"
+#include "entity/ISpatialState.h"
 
 namespace pacman {
 namespace state {
@@ -23,8 +23,8 @@ public:
   field::IField* GetField() const final;
   void ConstructNewField(const std::vector<std::vector<field::TileType>>& tiles);
 
-  IEntityState* GetPlayerState() const final;
-  void SetPlayerState(std::unique_ptr<IEntityState> p_new_player_state) final;
+  ISpatialState* GetPlayerState() const final;
+  void SetPlayerState(std::unique_ptr<ISpatialState> p_new_player_state) final;
 
   void ConstructNewFieldObjects(const std::vector<std::vector<field::FieldObjectType>>& field_objects) final;
 
@@ -49,9 +49,9 @@ private:
   
   /// <summary>
   /// A <see cref="std::unique_ptr" /> to the player's
-  /// <see cref="IEntityState" />.
+  /// <see cref="ISpatialState" />.
   /// </summary>
-  std::unique_ptr<IEntityState> _p_player_state;
+  std::unique_ptr<ISpatialState> _p_player_state;
   
   /// <summary>
   /// A <see cref="std::unique_ptr" /> to the <see cref="field::IFieldObjectManager" />.

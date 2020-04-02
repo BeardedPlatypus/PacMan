@@ -1,26 +1,26 @@
 #pragma once
 #define DllExport __declspec( dllexport )
 
-#include "entity/IEntityState.h"
+#include "entity/ISpatialState.h"
 #include "entity/EntityAxis.h"
 
 namespace pacman {
 namespace state {
 
 /// <summary>
-/// <see cref="EntityState" /> implements <see cref="IEntityState" />.
+/// <see cref="SpatialState" /> implements <see cref="ISpatialState" />.
 /// </summary>
-/// <seealso cref="IEntityState" />
-class EntityState sealed : public IEntityState {
+/// <seealso cref="ISpatialState" />
+class SpatialState sealed : public ISpatialState {
 public:  
   /// <summary>
-  /// Construct a new <see cref="EntityState" />.
+  /// Construct a new <see cref="SpatialState" />.
   /// </summary>
   /// <param name="x">The world x position.</param>
   /// <param name="y">The world y position.</param>
   /// <param name="dir">The <see cref="Direction" />.</param>
   /// <param name="speed">The speed.</param>
-  EntityState(float x, float y, Direction dir, float speed);
+  SpatialState(float x, float y, Direction dir, float speed);
 
   IEntityAxis* GetXAxis() const final;
   IEntityAxis* GetYAxis() const final;
@@ -47,12 +47,12 @@ private:
   EntityAxis _y_axis;
 
   /// <summary>
-  /// The <see cref="Direction" /> of this <see cref="EntityState" />.
+  /// The <see cref="Direction" /> of this <see cref="SpatialState" />.
   /// </summary>
   Direction _dir;
   
   /// <summary>
-  /// The speed of this <see cref="EntityState" />.
+  /// The speed of this <see cref="SpatialState" />.
   /// </summary>
   float _speed;
 

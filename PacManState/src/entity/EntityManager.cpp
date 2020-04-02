@@ -10,12 +10,12 @@ EntityManager::EntityManager() {
 }
 
 
-IEntityState* EntityManager::GetPlayerState() const {
+ISpatialState* EntityManager::GetPlayerState() const {
   return this->p_player_state.get();
 }
 
 
-void EntityManager::SetPlayerState(std::unique_ptr<IEntityState> p_new_player_state) {
+void EntityManager::SetPlayerState(std::unique_ptr<ISpatialState> p_new_player_state) {
   this->p_player_state = std::move(p_new_player_state);
 }
 

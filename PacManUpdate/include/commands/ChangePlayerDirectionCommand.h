@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../PacManControllerAPI/include/IControllerCommand.h"
-#include <entity/IEntityState.h>
+#include <entity/ISpatialState.h>
 #include <optional>
 #include "entity/IPlayerMovementAxis.h"
 #include "state_machine/events/PlayerControlEvent.h"
@@ -12,7 +12,7 @@ namespace commands {
   
 /// <summary>
 /// The <see cref="ChangePlayerDirectionCommand" /> sets the <see cref="state::Direction" /> of the
-/// player's <see cref="IEntityState" />.
+/// player's <see cref="ISpatialState" />.
 /// </summary>
 /// <seealso cref="controller::ICommand" />
 class ChangePlayerDirectionCommand final : public controller::api::IControllerCommand {

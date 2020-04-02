@@ -1,12 +1,12 @@
 #include "stdafx.h"
-#include "entity/EntityState.h"
+#include "entity/SpatialState.h"
 
 
 namespace pacman {
 namespace state {
 
 
-  EntityState::EntityState(float x, float y, Direction dir, float speed) :
+  SpatialState::SpatialState(float x, float y, Direction dir, float speed) :
     _x_axis(EntityAxis(x)), _y_axis(EntityAxis(y)),
     _dir(dir),
     _speed(speed),
@@ -16,46 +16,46 @@ namespace state {
     _initial_speed(speed) { }
 
 
-IEntityAxis* EntityState::GetXAxis() const {
+IEntityAxis* SpatialState::GetXAxis() const {
   return (IEntityAxis*) &(this->_x_axis);
 }
 
 
-IEntityAxis* EntityState::GetYAxis() const {
+IEntityAxis* SpatialState::GetYAxis() const {
   return (IEntityAxis*) &(this->_y_axis);
 }
 
 
-Direction EntityState::GetDirection() const {
+Direction SpatialState::GetDirection() const {
   return this->_dir;
 }
 
 
-void EntityState::SetDirection(Direction dir) {
+void SpatialState::SetDirection(Direction dir) {
   this->_dir = dir;
 }
 
 
-float EntityState::GetSpeed() const {
+float SpatialState::GetSpeed() const {
   return this->_speed;
 }
 
 
-void EntityState::SetSpeed(float speed) {
+void SpatialState::SetSpeed(float speed) {
   this->_speed = speed;
 }
 
-bool EntityState::IsMoving() const {
+bool SpatialState::IsMoving() const {
   return this->_is_moving;
 }
 
 
-void EntityState::SetIsMoving(bool is_moving) {
+void SpatialState::SetIsMoving(bool is_moving) {
   this->_is_moving = is_moving;
 }
 
 
-void EntityState::Reset() {
+void SpatialState::Reset() {
   this->GetXAxis()->SetPosition(this->_initial_pos_x);
   this->GetYAxis()->SetPosition(this->_initial_pos_y);
 

@@ -4,7 +4,7 @@
 
 #include <entity/render/GetAxiiContainer.h>
 
-#include "entity/IEntityState.h"
+#include "entity/ISpatialState.h"
 
 using ::testing::Eq;
 
@@ -15,7 +15,7 @@ namespace render {
 
 TEST(GetAxiiContainerTest, GetXAxis_CallsCorrectContainedObject) {
   // Setup
-  auto p_entity_state = state::IEntityState::Construct(0.F, 0.F, state::Direction::Left, 0.F);
+  auto p_entity_state = state::ISpatialState::Construct(0.F, 0.F, state::Direction::Left, 0.F);
   state::IEntityAxis* expected_pointer = p_entity_state->GetXAxis();
 
   auto container = GetAxiiContainer(*p_entity_state);
@@ -29,7 +29,7 @@ TEST(GetAxiiContainerTest, GetXAxis_CallsCorrectContainedObject) {
 
 TEST(GetAxiiContainerTest, GetYAxis_CallsCorrectContainedObject) {
   // Setup
-  auto p_entity_state = state::IEntityState::Construct(0.F, 0.F, state::Direction::Left, 0.F);
+  auto p_entity_state = state::ISpatialState::Construct(0.F, 0.F, state::Direction::Left, 0.F);
   state::IEntityAxis* expected_pointer = p_entity_state->GetYAxis();
 
   auto container = GetAxiiContainer(*p_entity_state);

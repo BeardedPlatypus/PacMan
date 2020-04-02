@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "entity/IEntityState.h"
+#include "entity/ISpatialState.h"
 #include "GameMode.h"
 #include "field/Field.h"
 #include "field/object/FieldObjectType.h"
@@ -63,7 +63,7 @@ namespace pacman {
       /// Get a pointer to state of the player.
       /// </summary>
       /// <returns>A pointer to the state of the player.</returns>
-      virtual IEntityState* GetPlayerState() const = 0;
+      virtual ISpatialState* GetPlayerState() const = 0;
       
       /// <summary>
       /// Set the pointer to the player state.
@@ -72,7 +72,7 @@ namespace pacman {
       /// <postcondition>
       /// | (new this)->GetPlayerState() == p_player_state.get()
       /// </postcondition>
-      virtual void SetPlayerState(std::unique_ptr<IEntityState> p_player_state) = 0;
+      virtual void SetPlayerState(std::unique_ptr<ISpatialState> p_player_state) = 0;
       
       /// <summary>
       /// Construct a new set of field objects as provided in the <paramref name="field_objects"/>.

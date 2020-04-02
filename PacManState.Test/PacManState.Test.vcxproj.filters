@@ -24,9 +24,6 @@
     <ClCompile Include="src\field\FieldTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\EntityStateTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\entity\EntityManagerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,6 +46,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\util\EnumClassHashTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\SpatialStateTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

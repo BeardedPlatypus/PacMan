@@ -3,7 +3,7 @@
 
 #include <entity/UpdatablePlayerEntity.h>
 
-#include "EntityStateMock.h"
+#include "SpatialStateMock.h"
 #include "UpdatableEntityAxisMock.h"
 #include "PlayerMovementAxisMock.h"
 
@@ -24,7 +24,7 @@ class ActiveAxisTypeTest : public ::testing::TestWithParam<AxisType> { };
 
 TEST_P(ActiveAxisTypeTest, SetActiveAxisType_ExpectedResults) {
   // Setup
-  EntityStateMock entity_state;
+  SpatialStateMock entity_state;
 
   UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
                                                               std::make_unique<UpdatableEntityAxisMock>(), 
@@ -48,7 +48,7 @@ TEST(UpdatablePlayerEntityTest, GetSpeed_ExpectedResults) {
   // Setup
   const float expected_speed = 30.124F;
 
-  EntityStateMock entity_state;
+  SpatialStateMock entity_state;
   EXPECT_CALL(entity_state, GetSpeed()).Times(1).WillOnce(Return(expected_speed));
 
   UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
@@ -67,7 +67,7 @@ TEST(UpdatablePlayerEntityTest, GetSpeed_ExpectedResults) {
 
 TEST(UpdatablePlayerEntityTest, ActiveAxis_Consistent) {
   // Setup
-  EntityStateMock entity_state;
+  SpatialStateMock entity_state;
 
   UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
                                                               std::make_unique<UpdatableEntityAxisMock>(), 
@@ -103,7 +103,7 @@ TEST(UpdatablePlayerEntityTest, ActiveAxis_Consistent) {
 
 TEST(UpdatablePlayerEntityTest, SwapActiveAxis_ExpectedResults) {
   // Setup
-  EntityStateMock entity_state;
+  SpatialStateMock entity_state;
 
   UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
                                                               std::make_unique<UpdatableEntityAxisMock>(), 
@@ -121,10 +121,10 @@ TEST(UpdatablePlayerEntityTest, SwapActiveAxis_ExpectedResults) {
 }
 
 
-TEST(UpdatablePlayerEntityTest, GetMovingDirection_WrapsEntityState) {
+TEST(UpdatablePlayerEntityTest, GetMovingDirection_WrapsSpatialState) {
   // Setup
   state::Direction expected_direction = state::Direction::Down;
-  EntityStateMock entity_state;
+  SpatialStateMock entity_state;
   EXPECT_CALL(entity_state, GetDirection()).Times(1).WillOnce(Return(expected_direction));
 
   UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
@@ -141,10 +141,10 @@ TEST(UpdatablePlayerEntityTest, GetMovingDirection_WrapsEntityState) {
 }
 
 
-TEST(UpdatablePlayerEntityTest, SetMovingDirection_WrapsEntityState) {
+TEST(UpdatablePlayerEntityTest, SetMovingDirection_WrapsSpatialState) {
   // Setup
   state::Direction expected_direction = state::Direction::Down;
-  EntityStateMock entity_state;
+  SpatialStateMock entity_state;
   EXPECT_CALL(entity_state, SetDirection(expected_direction)).Times(1);
 
   UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
@@ -162,7 +162,7 @@ TEST(UpdatablePlayerEntityTest, Update_CallsMovementAxii) {
   // Setup
   const float expected_dt = 0.12345F;
 
-  EntityStateMock entity_state;
+  SpatialStateMock entity_state;
   
   std::unique_ptr<PlayerMovementAxisMock> p_x_axis = std::make_unique<PlayerMovementAxisMock>();
   EXPECT_CALL(*p_x_axis, Update(expected_dt)).Times(1);
@@ -181,10 +181,10 @@ TEST(UpdatablePlayerEntityTest, Update_CallsMovementAxii) {
 }
 
 
-TEST(UpdatablePlayerEntityTest, SetIsMoving_WrapsEntityState) {
+TEST(UpdatablePlayerEntityTest, SetIsMoving_WrapsSpatialState) {
   // Setup
   bool expected_is_moving = true;
-  EntityStateMock entity_state;
+  SpatialStateMock entity_state;
   EXPECT_CALL(entity_state, SetIsMoving(expected_is_moving)).Times(1);
 
   UpdatablePlayerEntity player_entity = UpdatablePlayerEntity(&entity_state, 
@@ -198,9 +198,9 @@ TEST(UpdatablePlayerEntityTest, SetIsMoving_WrapsEntityState) {
 }
 
 
-TEST(UpdatablePlayerEntityTest, Reset_WrapsEntityState) {
+TEST(UpdatablePlayerEntityTest, Reset_WrapsSpatialState) {
   // Setup
-  EntityStateMock entity_state;
+  SpatialStateMock entity_state;
   EXPECT_CALL(entity_state, Reset()).Times(1);
 
   std::unique_ptr<UpdatableEntityAxisMock> p_x_axis_mock = std::make_unique<UpdatableEntityAxisMock>();

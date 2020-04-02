@@ -1,4 +1,4 @@
-#include "EntityStateMock.h"
+#include "SpatialStateMock.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -9,13 +9,13 @@
 namespace pacman {
 namespace state {
 
-TEST(EntityManagerTest, GivenAnEntityManagerAndAEntityState_WhenSetPlayerStateIsSet_ThenGetPlayerStateReturnsTheCorrectPointer) {
+TEST(EntityManagerTest, GivenAnEntityManagerAndASpatialState_WhenSetPlayerStateIsSet_ThenGetPlayerStateReturnsTheCorrectPointer) {
   // Given
-  std::unique_ptr<IEntityState> p_entity_state_mock = 
-    std::make_unique<EntityStateMock>();
+  std::unique_ptr<ISpatialState> p_entity_state_mock = 
+    std::make_unique<SpatialStateMock>();
   auto entity_manager = IEntityManager::Construct();
 
-  IEntityState* expected_pointer = p_entity_state_mock.get();
+  ISpatialState* expected_pointer = p_entity_state_mock.get();
 
   // When
   entity_manager->SetPlayerState(std::move(p_entity_state_mock));

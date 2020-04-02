@@ -11,7 +11,7 @@ namespace renderer {
 
 PlayerLayer::PlayerLayer(float scale, 
                          view::IViewAPI* p_view_api,
-                         state::IEntityState* p_player_state,
+                         state::ISpatialState* p_player_state,
                          float render_offset_y) :
     scale(scale),
     p_view_api(p_view_api),
