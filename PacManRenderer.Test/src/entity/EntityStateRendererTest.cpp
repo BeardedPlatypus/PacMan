@@ -48,10 +48,14 @@ TEST(EntityStateRendererTest, Initialise_CallsAnimationConfigurationsInitialise)
     p_anims->push_back(std::move(p_anim));
   }
 
+  std::unique_ptr<ValueProviderMock<bool>> p_should_update =
+    std::make_unique<ValueProviderMock<bool>>();
+
   ViewAPIMock view_api;
 
   EntityStateRenderer render_entity = EntityStateRenderer(std::move(p_render_config), 
                                                           std::move(p_anims), 
+                                                          std::move(p_should_update),
                                                           &view_api);
 
   // Call | Assert
@@ -59,7 +63,7 @@ TEST(EntityStateRendererTest, Initialise_CallsAnimationConfigurationsInitialise)
 }
 
 
-TEST(EntityStateRendererTest, Update_CallsAnimationConfigurationsUpdate) {
+TEST(EntityStateRendererTest, Update_ShouldUpdateTrue_CallsAnimationConfigurationsUpdate) {
   // Setup
   std::shared_ptr<ValueProviderMock<std::string>> p_label_provider =
     std::make_shared<ValueProviderMock<std::string>>();
@@ -94,11 +98,68 @@ TEST(EntityStateRendererTest, Update_CallsAnimationConfigurationsUpdate) {
     p_anims->push_back(std::move(p_anim));
   }
 
+  std::unique_ptr<ValueProviderMock<bool>> p_should_update =
+    std::make_unique<ValueProviderMock<bool>>();
+
+  EXPECT_CALL(*p_should_update, GetValue()).Times(1).WillOnce(Return(true));
+
   ViewAPIMock view_api;
 
   EntityStateRenderer render_entity = EntityStateRenderer(std::move(p_render_config), 
-                                            std::move(p_anims), 
-                                            &view_api);
+                                                          std::move(p_anims), 
+                                                          std::move(p_should_update),
+                                                          &view_api);
+
+  // Call | Assert
+  render_entity.Update(expected_dtime);
+}
+
+TEST(EntityStateRendererTest, Update_ShouldUpdateFalse_DoesNotCallAnimationConfigurationsUpdate) {
+  // Setup
+  std::shared_ptr<ValueProviderMock<std::string>> p_label_provider =
+    std::make_shared<ValueProviderMock<std::string>>();
+  std::shared_ptr<AnimationPositionProviderMock> p_position_provider =
+    std::make_shared<AnimationPositionProviderMock>();
+  std::shared_ptr<ValueProviderMock<float>> p_scale_factor_provider =
+    std::make_shared<ValueProviderMock<float>>();
+  std::shared_ptr<ValueProviderMock<float>> p_rotation_provider =
+    std::make_shared<ValueProviderMock<float>>();
+  std::shared_ptr<ValueProviderMock<bool>> p_flip_horizontally_provider =
+    std::make_shared<ValueProviderMock<bool>>();
+  std::shared_ptr<ValueProviderMock<bool>> p_flip_vertical_provider =
+    std::make_shared<ValueProviderMock<bool>>();
+
+  std::unique_ptr<entity::render::EntityRenderConfig> p_render_config =
+    std::make_unique<entity::render::EntityRenderConfig>(p_label_provider,
+                                                         p_position_provider,
+                                                         p_scale_factor_provider,
+                                                         p_rotation_provider,
+                                                         p_flip_horizontally_provider,
+                                                         p_flip_vertical_provider);
+
+  const float expected_dtime = 12.345F;
+
+  auto p_anims = 
+    std::make_unique<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>>();
+
+  for (int i = 0; i < 5; i++) {
+    auto p_anim = std::make_unique<AnimationRenderConfig>();
+
+    EXPECT_CALL(*p_anim, Update(expected_dtime)).Times(0);
+    p_anims->push_back(std::move(p_anim));
+  }
+
+  std::unique_ptr<ValueProviderMock<bool>> p_should_update =
+    std::make_unique<ValueProviderMock<bool>>();
+
+  EXPECT_CALL(*p_should_update, GetValue()).Times(1).WillOnce(Return(false));
+
+  ViewAPIMock view_api;
+
+  EntityStateRenderer render_entity = EntityStateRenderer(std::move(p_render_config), 
+                                                          std::move(p_anims), 
+                                                          std::move(p_should_update),
+                                                          &view_api);
 
   // Call | Assert
   render_entity.Update(expected_dtime);
@@ -175,8 +236,13 @@ TEST(EntityStateRendererTest, Render_ExpectedResults) {
   std::unique_ptr<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>> anims =
     std::make_unique<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>>();
 
+  std::unique_ptr<ValueProviderMock<bool>> p_should_update =
+    std::make_unique<ValueProviderMock<bool>>();
 
-  EntityStateRenderer render_entity = EntityStateRenderer(std::move(p_render_config), std::move(anims), &view_api);
+  EntityStateRenderer render_entity = EntityStateRenderer(std::move(p_render_config), 
+                                                          std::move(anims), 
+                                                          std::move(p_should_update),
+                                                          &view_api);
 
   // Call | Assert
   render_entity.Render(expected_scale, expected_render_offset);
@@ -217,10 +283,14 @@ TEST(EntityStateRendererTest, Reset_CallsAnimationConfigurationsReset) {
     p_anims->push_back(std::move(p_anim));
   }
 
+  std::unique_ptr<ValueProviderMock<bool>> p_should_update =
+    std::make_unique<ValueProviderMock<bool>>();
+
   ViewAPIMock view_api;
 
   EntityStateRenderer render_entity = EntityStateRenderer(std::move(p_render_config), 
                                                           std::move(p_anims), 
+                                                          std::move(p_should_update),
                                                           &view_api);
 
   // Call | Assert
