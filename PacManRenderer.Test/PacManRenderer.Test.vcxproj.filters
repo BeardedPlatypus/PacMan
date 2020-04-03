@@ -96,5 +96,8 @@
     <ClCompile Include="src\entity\render\StateBasedValueProviderTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\render\IsMovingContainerTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
