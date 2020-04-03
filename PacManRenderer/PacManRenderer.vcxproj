@@ -181,6 +181,7 @@
     <ClInclude Include="include\entity\render\GetDirectionContainer.h" />
     <ClInclude Include="include\entity\render\GetStateContainer.h" />
     <ClInclude Include="include\entity\render\IAnimationPositionProvider.h" />
+    <ClInclude Include="include\entity\render\IsMovingBasedValueProvider.h" />
     <ClInclude Include="include\entity\render\IsMovingContainer.h" />
     <ClInclude Include="include\entity\render\IValueProvider.h" />
     <ClInclude Include="include\entity\render\StateBasedValueProvider.h" />
