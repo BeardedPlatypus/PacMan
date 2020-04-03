@@ -39,6 +39,7 @@ float StringRenderer::GetOffset(const std::string& string, float scale, Justific
 
   switch (justification)
   {
+  case pacman::renderer::ui::Justification::FlushLeft:
     break;
   case pacman::renderer::ui::Justification::Centre:
     offset_characters = -1.F * string.length() / 2.F;
@@ -46,7 +47,6 @@ float StringRenderer::GetOffset(const std::string& string, float scale, Justific
   case pacman::renderer::ui::Justification::FlushRight:
     offset_characters = -1.F * string.length();
     break;
-  case pacman::renderer::ui::Justification::FlushLeft:
   default:
     break;
   }
