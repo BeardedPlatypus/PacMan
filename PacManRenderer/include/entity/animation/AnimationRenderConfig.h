@@ -32,7 +32,7 @@ public:
                         const std::string animation_label,
                         float time_per_frame,
                         const std::vector<std::string>& animation_frame_labels,
-                        const std::vector<SpriteRenderConfig> sprites,
+                        const std::vector<std::shared_ptr<SpriteRenderConfig>>& sprites,
                         const std::unique_ptr<IAnimationUpdateBehaviour> p_animation_update_behaviour);
   
   std::string GetLabel() const final;
@@ -56,7 +56,7 @@ private:
   const std::string _animation_label;
   float _time_per_frame;
   const std::vector<std::string> _animation_frame_labels;
-  const std::vector<SpriteRenderConfig> _sprites;
+  const std::vector<std::shared_ptr<SpriteRenderConfig>> _sprites;
   std::unique_ptr<IAnimationUpdateBehaviour> _p_animation_update_behaviour;
 };
 

@@ -10,7 +10,7 @@ AnimationRenderConfig::AnimationRenderConfig(view::IViewAPI* p_view_api,
                                              const std::string animation_label,
                                              float time_per_frame,
                                              const std::vector<std::string>& animation_frame_labels,
-                                             const std::vector<SpriteRenderConfig> sprites,
+                                             const std::vector<std::shared_ptr<SpriteRenderConfig>>& sprites,
                                              std::unique_ptr<IAnimationUpdateBehaviour> p_animation_update_behaviour) :
     _p_view_api(p_view_api),
     _animation_label(animation_label),
@@ -26,8 +26,8 @@ inline std::string AnimationRenderConfig::GetLabel() const {
 
 
 void AnimationRenderConfig::Initialise() {
-  for (const SpriteRenderConfig& config : this->_sprites)
-    InitialiseSprite(config);
+  for (const std::shared_ptr<SpriteRenderConfig>& config : this->_sprites)
+    InitialiseSprite(*config);
 
   this->InitialiseSpriteAnimation();
 }

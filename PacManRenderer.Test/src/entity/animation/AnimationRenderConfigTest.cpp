@@ -23,7 +23,7 @@ TEST(AnimationRenderConfigTest, GetLabel_ExpectedResults) {
                                                        expected_label,
                                                        1.F,
                                                        std::vector<std::string>(),
-                                                       std::vector<SpriteRenderConfig>(),
+                                                       std::vector<std::shared_ptr<SpriteRenderConfig>>(),
                                                        std::make_unique<AnimationUpdateBehaviourMock>());
 
   // Call
@@ -49,7 +49,7 @@ TEST(AnimationRenderConfigTest, Update_CallsUpdateBehaviour) {
                                                        "label",
                                                        1.F,
                                                        std::vector<std::string>(),
-                                                       std::vector<SpriteRenderConfig>(),
+                                                       std::vector<std::shared_ptr<SpriteRenderConfig>>(),
                                                        std::move(p_update_behaviour));
 
   // Call | Assert
@@ -68,7 +68,7 @@ TEST(AnimationRenderConfigTest, Reset_CallsResetAnimation) {
                                                        animation_label,
                                                        1.F,
                                                        std::vector<std::string>(),
-                                                       std::vector<SpriteRenderConfig>(),
+                                                       std::vector<std::shared_ptr<SpriteRenderConfig>>(),
                                                        std::make_unique<AnimationUpdateBehaviourMock>());
 
   // Call | Assert
@@ -79,47 +79,47 @@ TEST(AnimationRenderConfigTest, Initialise_CallsViewAPICorrectly) {
   const std::string anim_label = "anim_label";
   const float frame_time = 1.23F;
 
-  const std::vector<SpriteRenderConfig> sprites = {
-    SpriteRenderConfig("label_a", "tex_1", 1,  2,  3,  4),
-    SpriteRenderConfig("label_b", "tex_2", 5,  6,  7,  8),
-    SpriteRenderConfig("label_c", "tex_3", 9, 10, 11, 12),
+  const std::vector<std::shared_ptr<SpriteRenderConfig>> sprites = {
+    std::make_shared<SpriteRenderConfig>("label_a", "tex_1", 1,  2,  3,  4),
+    std::make_shared<SpriteRenderConfig>("label_b", "tex_2", 5,  6,  7,  8),
+    std::make_shared<SpriteRenderConfig>("label_c", "tex_3", 9, 10, 11, 12),
   };
 
   const std::vector<std::string> frames = {
-    sprites[0].GetSpriteLabel(),
-    sprites[1].GetSpriteLabel(),
-    sprites[0].GetSpriteLabel(),
-    sprites[2].GetSpriteLabel(),
-    sprites[0].GetSpriteLabel(),
+    sprites[0]->GetSpriteLabel(),
+    sprites[1]->GetSpriteLabel(),
+    sprites[0]->GetSpriteLabel(),
+    sprites[2]->GetSpriteLabel(),
+    sprites[0]->GetSpriteLabel(),
   };
 
   ViewAPIMock view_api;
-  EXPECT_CALL(view_api, HasSprite(sprites[0].GetSpriteLabel()))
+  EXPECT_CALL(view_api, HasSprite(sprites[0]->GetSpriteLabel()))
     .Times(1)
     .WillOnce(Return(false));
 
-  EXPECT_CALL(view_api, RequestSprite(sprites[0].GetSpriteLabel(), 
-                                      sprites[0].GetTextureFilePath(),
-                                      sprites[0].GetX(),
-                                      sprites[0].GetY(),
-                                      sprites[0].GetW(),
-                                      sprites[0].GetH()))
+  EXPECT_CALL(view_api, RequestSprite(sprites[0]->GetSpriteLabel(), 
+                                      sprites[0]->GetTextureFilePath(),
+                                      sprites[0]->GetX(),
+                                      sprites[0]->GetY(),
+                                      sprites[0]->GetW(),
+                                      sprites[0]->GetH()))
     .Times(1);
 
-  EXPECT_CALL(view_api, HasSprite(sprites[1].GetSpriteLabel()))
+  EXPECT_CALL(view_api, HasSprite(sprites[1]->GetSpriteLabel()))
     .Times(1)
     .WillOnce(Return(true));
 
-  EXPECT_CALL(view_api, HasSprite(sprites[2].GetSpriteLabel()))
+  EXPECT_CALL(view_api, HasSprite(sprites[2]->GetSpriteLabel()))
     .Times(1)
     .WillOnce(Return(false));
 
-  EXPECT_CALL(view_api, RequestSprite(sprites[2].GetSpriteLabel(), 
-                                      sprites[2].GetTextureFilePath(),
-                                      sprites[2].GetX(),
-                                      sprites[2].GetY(),
-                                      sprites[2].GetW(),
-                                      sprites[2].GetH()))
+  EXPECT_CALL(view_api, RequestSprite(sprites[2]->GetSpriteLabel(), 
+                                      sprites[2]->GetTextureFilePath(),
+                                      sprites[2]->GetX(),
+                                      sprites[2]->GetY(),
+                                      sprites[2]->GetW(),
+                                      sprites[2]->GetH()))
     .Times(1);
 
   EXPECT_CALL(view_api, RequestSpriteAnimation(anim_label, frame_time, frames))
