@@ -102,5 +102,8 @@
     <ClCompile Include="src\entity\render\IsMovingBasedValueProviderTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\animation\PacManSpriteConfigRepositoryTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
