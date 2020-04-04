@@ -17,6 +17,16 @@ namespace values {
   const std::string pacman_default = "pacman_default";
   
   /// <summary>
+  /// The pacman moving anim 0
+  /// </summary>
+  const std::string pacman_moving_anim_0 = "pacman_moving_anim_0";
+  
+  /// <summary>
+  /// The pacman moving anim 1
+  /// </summary>
+  const std::string pacman_moving_anim_1 = "pacman_moving_anim_1";
+  
+  /// <summary>
   /// The pacman moving animation label.
   /// </summary>
   const std::string pacman_moving_anim = "pacman_moving_anim";
