@@ -171,7 +171,6 @@
     <ClInclude Include="include\entity\RenderEntity.h" />
     <ClInclude Include="include\entity\IEntityStateRenderer.h" />
     <ClInclude Include="include\entity\IRenderEntity.h" />
-    <ClInclude Include="include\entity\PlayerLayer.h" />
     <ClInclude Include="include\entity\PlayerMovementAnimation.h" />
     <ClInclude Include="include\entity\EntityStateRenderer.h" />
     <ClInclude Include="include\entity\RenderEntityFactory.h" />
@@ -240,7 +239,6 @@
     <ClCompile Include="src\field\FieldLayer.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.cpp" />
     <ClCompile Include="src\field\FieldLayerHelper.FieldValueToSpriteType.cpp" />
-    <ClCompile Include="src\entity\PlayerLayer.cpp" />
     <ClCompile Include="src\manager\LayerManager.cpp" />
     <ClCompile Include="src\manager\LayerManagerFactory.cpp" />
     <ClCompile Include="src\objects\ObjectLayer.cpp" />

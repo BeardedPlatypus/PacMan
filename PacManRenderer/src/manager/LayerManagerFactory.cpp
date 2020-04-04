@@ -2,7 +2,6 @@
 #include "manager/LayerManagerFactory.h"
 #include "manager/LayerManager.h"
 
-#include "entity/PlayerLayer.h"
 #include "field/FieldLayer.h"
 #include "objects/ObjectLayer.h"
 #include "ui/UILayerFactory.h"
