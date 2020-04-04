@@ -15,6 +15,7 @@
 #include "entity/render/StaticValueProvider.h"
 #include "entity/render/IsMovingBasedValueProvider.h"
 #include "entity/PacManStateType.h"
+#include "entity/animation/PacManSpriteConfigRepository.h"
 
 
 namespace pacman {
@@ -26,29 +27,9 @@ std::unique_ptr<IRenderEntity> RenderEntityFactory::ConstructPacManRenderEntity(
                                                                                 std::unique_ptr<render::GetDirectionContainer> p_direction_container_rotation,
                                                                                 std::unique_ptr<render::GetAxiiContainer> p_axii_container,
                                                                                 std::unique_ptr<render::IsMovingContainer> p_is_moving_container) const {
-  // Sprites
-  std::vector<std::shared_ptr<animation::SpriteRenderConfig>> moving_sprites = {
-    std::make_shared<animation::SpriteRenderConfig>(values::pacman_default,
-                                                    values::entity_sprite_file,
-                                                    values::entity_tile_size * 1,
-                                                    values::entity_tile_size * 0,
-                                                    values::entity_tile_size * 1,
-                                                    values::entity_tile_size * 1),
-    std::make_shared<animation::SpriteRenderConfig>(values::pacman_moving_anim_0,
-                                                    values::entity_sprite_file,
-                                                    values::entity_tile_size * 0,
-                                                    values::entity_tile_size * 0,
-                                                    values::entity_tile_size * 1,
-                                                    values::entity_tile_size * 1),
-    std::make_shared<animation::SpriteRenderConfig>(values::pacman_moving_anim_1,
-                                                    values::entity_sprite_file,
-                                                    values::entity_tile_size * 2,
-                                                    values::entity_tile_size * 0,
-                                                    values::entity_tile_size * 1,
-                                                    values::entity_tile_size * 1),
-  };
-
   // Animations
+  auto repository = animation::PacManSpriteConfigRepository();
+
   std::unique_ptr<std::unordered_map<state::Direction, std::string, EnumClassHash>> p_mapping = 
     std::make_unique<std::unordered_map<state::Direction, std::string, EnumClassHash>>();
   p_mapping->insert(std::make_pair(state::Direction::Down, values::pacman_moving_anim));
@@ -80,7 +61,7 @@ std::unique_ptr<IRenderEntity> RenderEntityFactory::ConstructPacManRenderEntity(
                                                                                values::pacman_moving_anim, 
                                                                                0.125F, 
                                                                                labels_forward, 
-                                                                               moving_sprites,
+                                                                               repository.GetMovingSpriteConfigs(),
                                                                                std::move(p_update_behaviour_forward)));
 
   std::vector<std::string> labels_backward = {
@@ -98,7 +79,7 @@ std::unique_ptr<IRenderEntity> RenderEntityFactory::ConstructPacManRenderEntity(
                                                                                values::pacman_moving_anim_back,
                                                                                0.125F, 
                                                                                labels_backward, 
-                                                                               moving_sprites,
+                                                                               repository.GetMovingSpriteConfigs(),
                                                                                std::move(p_update_behaviour_backward)));
 
   // Render config
