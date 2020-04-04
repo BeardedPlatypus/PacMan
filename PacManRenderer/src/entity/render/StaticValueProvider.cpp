@@ -2,6 +2,7 @@
 #include "entity/render/StaticValueProvider.h"
 
 #include <string>
+#include <entity/PacManStateType.h>
 
 namespace pacman {
 namespace renderer {
@@ -22,6 +23,7 @@ inline T StaticValueProvider<T>::GetValue() const {
 template class StaticValueProvider<bool>;
 template class StaticValueProvider<float>;
 template class StaticValueProvider<std::string>;
+template class StaticValueProvider<state::PacManStateType>;
 
 }
 }
