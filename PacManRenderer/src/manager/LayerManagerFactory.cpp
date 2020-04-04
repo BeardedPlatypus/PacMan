@@ -7,6 +7,9 @@
 #include "objects/ObjectLayer.h"
 #include "ui/UILayerFactory.h"
 
+#include "entity/EntityLayer.h"
+#include "entity/RenderEntityFactory.h"
+
 #include "objects/ObjectRenderers/SmallDotRenderer.h"
 #include "objects/ObjectRenderers/BigDotRenderer.h"
 #include "objects/ObjectRenderers/BonusFruitRenderer.h"
@@ -39,6 +42,24 @@ std::unique_ptr<ObjectLayer> ConstructObjectLayer(float scale,
 }
 
 
+std::unique_ptr<EntityLayer> ConstructEntityLayer(float scale,
+                                                  view::IViewAPI* p_view_api,
+                                                  const state::IGameState* p_game_state) {
+  auto factory = entity::RenderEntityFactory();
+  
+  std::unique_ptr<std::vector<std::unique_ptr<entity::IRenderEntity>>> p_entities =
+    std::make_unique<std::vector<std::unique_ptr<entity::IRenderEntity>>>();
+
+  p_entities->push_back(factory.ConstructPacManRenderEntity(p_view_api,
+                                                            std::make_unique<entity::render::GetDirectionContainer>(*p_game_state->GetPlayerState()),
+                                                            std::make_unique<entity::render::GetDirectionContainer>(*p_game_state->GetPlayerState()),
+                                                            std::make_unique<entity::render::GetAxiiContainer>(*p_game_state->GetPlayerState()),
+                                                            std::make_unique<entity::render::IsMovingContainer>(*p_game_state->GetPlayerState())));
+
+  return std::make_unique<EntityLayer>(std::move(p_entities), scale, 20.F);
+}
+
+
 std::unique_ptr<ILayerManager> ConstructLayerManager(view::IViewAPI* p_view_api,
                                                      const state::IGameState* p_game_state) {
   auto p_field_layer = std::make_unique<FieldLayer>(4.F,
@@ -51,16 +72,13 @@ std::unique_ptr<ILayerManager> ConstructLayerManager(view::IViewAPI* p_view_api,
                                              p_game_state->GetFieldObjectManager(),
                                              p_game_state->GetLevelManager());
 
-  auto p_player_layer = std::make_unique<PlayerLayer>(4.F,
-                                                      p_view_api,
-                                                      p_game_state->GetPlayerState(),
-                                                      20.F);
+  auto p_entity_layer = ConstructEntityLayer(4.F, p_view_api, p_game_state);
   auto p_ui_layer = ConstructUILayer(p_game_state->GetScoreBoard(), 4.F, p_view_api, 0.F);
 
   std::vector<std::unique_ptr<IRenderLayer>> render_layers = {};
   render_layers.push_back(std::move(p_field_layer));
   render_layers.push_back(std::move(p_object_layer));
-  render_layers.push_back(std::move(p_player_layer));
+  render_layers.push_back(std::move(p_entity_layer));
   render_layers.push_back(std::move(p_ui_layer));
 
   return std::make_unique<LayerManager>(render_layers);
