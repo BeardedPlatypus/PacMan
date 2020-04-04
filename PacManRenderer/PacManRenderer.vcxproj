@@ -174,6 +174,7 @@
     <ClInclude Include="include\entity\PlayerLayer.h" />
     <ClInclude Include="include\entity\PlayerMovementAnimation.h" />
     <ClInclude Include="include\entity\EntityStateRenderer.h" />
+    <ClInclude Include="include\entity\RenderEntityFactory.h" />
     <ClInclude Include="include\entity\render\AnimationPositionProvider.h" />
     <ClInclude Include="include\entity\render\DirectionBasedValueProvider.h" />
     <ClInclude Include="include\entity\render\EntityRenderConfig.h" />
@@ -229,6 +230,7 @@
     <ClCompile Include="src\entity\animation\AnimationRenderConfig.cpp" />
     <ClCompile Include="src\entity\EntityLayer.cpp" />
     <ClCompile Include="src\entity\EntityStateRenderer.cpp" />
+    <ClCompile Include="src\entity\RenderEntityFactory.cpp" />
     <ClCompile Include="src\entity\render\AnimationPositionProvider.cpp" />
     <ClCompile Include="src\entity\render\DirectionBasedValueProvider.cpp" />
     <ClCompile Include="src\entity\render\EntityRenderConfig.cpp" />
