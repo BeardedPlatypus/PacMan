@@ -7,7 +7,7 @@ namespace entity {
 namespace animation {
 
 AnimationRenderConfig::AnimationRenderConfig(view::IViewAPI* p_view_api,
-                                             const std::string animation_label,
+                                             const std::string& animation_label,
                                              float time_per_frame,
                                              const std::vector<std::string>& animation_frame_labels,
                                              const std::vector<std::shared_ptr<SpriteRenderConfig>>& sprites,

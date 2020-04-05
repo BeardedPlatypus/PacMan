@@ -29,7 +29,7 @@ public:
   /// <param name="sprites">The sprite configurations.</param>
   /// <param name="p_animation_update_behaviour">A pointer to the animation update behaviour.</param>
   AnimationRenderConfig(view::IViewAPI* p_view_api,
-                        const std::string animation_label,
+                        const std::string& animation_label,
                         float time_per_frame,
                         const std::vector<std::string>& animation_frame_labels,
                         const std::vector<std::shared_ptr<SpriteRenderConfig>>& sprites,
