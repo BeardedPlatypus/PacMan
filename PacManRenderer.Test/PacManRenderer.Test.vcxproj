@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\entity\animation\AnimationRenderConfigTest.cpp" />
+    <ClCompile Include="src\entity\animation\PacManAnimationConfigRepositoryTest.cpp" />
     <ClCompile Include="src\entity\animation\PacManSpriteConfigRepositoryTest.cpp" />
     <ClCompile Include="src\entity\animation\SpriteRenderConfigTest.cpp" />
     <ClCompile Include="src\entity\EntityLayerTest.cpp" />
