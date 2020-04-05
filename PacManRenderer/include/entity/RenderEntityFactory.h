@@ -27,8 +27,7 @@ public:
   /// PacMan render entity.
   /// </returns>
   std::unique_ptr<IRenderEntity> ConstructPacManRenderEntity(view::IViewAPI* p_view_api,
-                                                             std::unique_ptr<render::GetDirectionContainer> p_direction_container_anim,
-                                                             std::unique_ptr<render::GetDirectionContainer> p_direction_container_rotation,
+                                                             std::shared_ptr<render::GetDirectionContainer> p_direction_container,
                                                              std::unique_ptr<render::GetAxiiContainer> p_axii_container,
                                                              std::unique_ptr<render::IsMovingContainer> p_is_moving_container) const;
 };

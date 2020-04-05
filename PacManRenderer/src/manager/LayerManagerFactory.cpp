@@ -50,8 +50,7 @@ std::unique_ptr<EntityLayer> ConstructEntityLayer(float scale,
     std::make_unique<std::vector<std::unique_ptr<entity::IRenderEntity>>>();
 
   p_entities->push_back(factory.ConstructPacManRenderEntity(p_view_api,
-                                                            std::make_unique<entity::render::GetDirectionContainer>(*p_game_state->GetPlayerState()),
-                                                            std::make_unique<entity::render::GetDirectionContainer>(*p_game_state->GetPlayerState()),
+                                                            std::make_shared<entity::render::GetDirectionContainer>(*p_game_state->GetPlayerState()),
                                                             std::make_unique<entity::render::GetAxiiContainer>(*p_game_state->GetPlayerState()),
                                                             std::make_unique<entity::render::IsMovingContainer>(*p_game_state->GetPlayerState())));
 

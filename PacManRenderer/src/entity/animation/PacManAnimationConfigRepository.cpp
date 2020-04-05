@@ -37,8 +37,6 @@ std::unique_ptr<IAnimationRenderConfig> PacManAnimationConfigRepository::Constru
     const std::string& unique_label_id,
     const PacManSpriteConfigRepository& sprite_repository,
     std::shared_ptr<render::IValueProvider<std::string>> p_active_label_provider) const {
-  const std::string animation_label = values::pacman_moving_anim + unique_label_id;
-
   std::vector<std::string> labels_forward = {
     values::pacman_moving_anim_0,
     values::pacman_default,
@@ -47,7 +45,7 @@ std::unique_ptr<IAnimationRenderConfig> PacManAnimationConfigRepository::Constru
   };
 
   return GetMovingAnimation(p_view_api, 
-                            animation_label, 
+                            unique_label_id,
                             labels_forward, 
                             sprite_repository, 
                             std::move(p_active_label_provider));
@@ -59,8 +57,6 @@ std::unique_ptr<IAnimationRenderConfig> PacManAnimationConfigRepository::Constru
     const std::string& unique_label_id,
     const PacManSpriteConfigRepository& sprite_repository,
     std::shared_ptr<render::IValueProvider<std::string>> p_active_label_provider) const {
-  const std::string animation_label = values::pacman_moving_anim_back + unique_label_id;
-
   std::vector<std::string> labels_backward = {
     values::pacman_default,
     values::pacman_moving_anim_1,
@@ -69,7 +65,7 @@ std::unique_ptr<IAnimationRenderConfig> PacManAnimationConfigRepository::Constru
   };
 
   return GetMovingAnimation(p_view_api, 
-                            animation_label, 
+                            unique_label_id,
                             labels_backward, 
                             sprite_repository, 
                             std::move(p_active_label_provider));

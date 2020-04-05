@@ -19,6 +19,7 @@ namespace animation {
 
 TEST(PacManAnimationConfigRepositoryTest, ConstructForwardMovingAnimation_ExpectedResult) {
   // Setup
+  const std::string expected_label = "expected_label";
   ViewAPIMock view_api;
 
   PacManSpriteConfigRepository spriteRepository = PacManSpriteConfigRepository();
@@ -29,17 +30,18 @@ TEST(PacManAnimationConfigRepositoryTest, ConstructForwardMovingAnimation_Expect
   // Call
   std::unique_ptr<IAnimationRenderConfig> result =
     animationRepository.ConstructForwardMovingAnimation(&view_api,
-                                                        "_1",
+                                                        expected_label,
                                                         spriteRepository,
                                                         p_name_provider);
 
   // Assert
   EXPECT_THAT(result,
-    Pointee(Property(&IAnimationRenderConfig::GetLabel, values::pacman_moving_anim + "_1")));
+    Pointee(Property(&IAnimationRenderConfig::GetLabel, expected_label)));
 }
 
 TEST(PacManAnimationConfigRepositoryTest, ConstructBackwardMovingAnimation_ExpectedResult) {
   // Setup
+  const std::string expected_label = "expected_label";
   ViewAPIMock view_api;
 
   PacManSpriteConfigRepository spriteRepository = PacManSpriteConfigRepository();
@@ -50,13 +52,13 @@ TEST(PacManAnimationConfigRepositoryTest, ConstructBackwardMovingAnimation_Expec
   // Call
   std::unique_ptr<IAnimationRenderConfig> result =
     animationRepository.ConstructBackwardMovingAnimation(&view_api,
-                                                          "_1",
-                                                          spriteRepository,
-                                                          p_name_provider);
+                                                         expected_label,
+                                                         spriteRepository,
+                                                         p_name_provider);
 
   // Assert
   EXPECT_THAT(result,
-    Pointee(Property(&IAnimationRenderConfig::GetLabel, values::pacman_moving_anim_back + "_1")));
+    Pointee(Property(&IAnimationRenderConfig::GetLabel, expected_label)));
 }
 
 }

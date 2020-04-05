@@ -28,14 +28,14 @@ public:
   /// <param name="_p_direction_container">A pointer to the observed <see cref="GetDirectionContainer"/>.</param>
   /// <param name="default_value">The default value.</param>
   /// <param name="p_mapping">The mapping of direction to values.</param>
-  DirectionBasedValueProvider(std::unique_ptr<GetDirectionContainer> p_direction_container,
+  DirectionBasedValueProvider(std::shared_ptr<GetDirectionContainer> p_direction_container,
                               const T& default_value,
                               std::unique_ptr<std::unordered_map<state::Direction, T, EnumClassHash>> p_mapping);
 
   T GetValue() const final;
 
 private:
-  std::unique_ptr<GetDirectionContainer> _p_direction_container;
+  std::shared_ptr<GetDirectionContainer> _p_direction_container;
   T _default_value;
   std::unique_ptr<std::unordered_map<state::Direction, T, EnumClassHash>> _p_mapping;
 };
