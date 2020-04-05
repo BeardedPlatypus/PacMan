@@ -27,7 +27,7 @@ inline std::string AnimationRenderConfig::GetLabel() const {
 
 void AnimationRenderConfig::Initialise() {
   for (const std::shared_ptr<SpriteRenderConfig>& config : this->_sprites)
-    InitialiseSprite(*config);
+    this->InitialiseSprite(*config);
 
   this->InitialiseSpriteAnimation();
 }
