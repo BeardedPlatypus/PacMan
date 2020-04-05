@@ -154,6 +154,7 @@
     <ClInclude Include="include\entity\Direction.h" />
     <ClInclude Include="include\entity\EntityAxis.h" />
     <ClInclude Include="include\entity\EntityManager.h" />
+    <ClInclude Include="include\entity\IEntityState.h" />
     <ClInclude Include="include\entity\PacManStateType.h" />
     <ClInclude Include="include\entity\SpatialState.h" />
     <ClInclude Include="include\entity\EntityType.h" />
