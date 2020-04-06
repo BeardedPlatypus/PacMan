@@ -105,6 +105,9 @@
     <ClInclude Include="include\entity\IPacManBehaviourState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\entity\PacManBehaviourState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -165,6 +168,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\entity\ISpatialState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\PacManBehaviourState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\IPacManBehaviourState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
