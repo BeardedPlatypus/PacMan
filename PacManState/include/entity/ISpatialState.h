@@ -25,7 +25,7 @@ public:
   /// <returns>A <see cref="std::unique_ptr"/> containing an instance of a <see cref="ISpatialState"/>.</returns>
   static std::unique_ptr<ISpatialState> Construct(float x, float y, Direction dir, float speed);
 
-  virtual ~ISpatialState() {}
+  virtual ~ISpatialState() = default;
     
   /// <summary>
   /// Gets the x <see cref="IEntityAxis"/> of this <see cref="ISpatialState"/>.
