@@ -154,6 +154,7 @@
     <ClInclude Include="include\entity\Direction.h" />
     <ClInclude Include="include\entity\EntityAxis.h" />
     <ClInclude Include="include\entity\EntityManager.h" />
+    <ClInclude Include="include\entity\EntityState.h" />
     <ClInclude Include="include\entity\IEntityState.h" />
     <ClInclude Include="include\entity\IPacManBehaviourState.h" />
     <ClInclude Include="include\entity\PacManBehaviourState.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="PacManState.cpp" />
     <ClCompile Include="src\entity\EntityManager.cpp" />
+    <ClCompile Include="src\entity\IEntityState.cpp" />
     <ClCompile Include="src\entity\IPacManBehaviourState.cpp" />
     <ClCompile Include="src\entity\PacManBehaviourState.cpp" />
     <ClCompile Include="src\entity\SpatialState.cpp" />
