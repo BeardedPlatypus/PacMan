@@ -19,14 +19,14 @@ public:
   /// </summary>
   EntityManager();
 
-  ISpatialState* GetPlayerState() const final;
-  void SetPlayerState(std::unique_ptr<ISpatialState> p_new_player_state);
+  IEntityState<IPacManBehaviourState>* GetPlayerState() const final;
+  void SetPlayerState(std::unique_ptr<IEntityState<IPacManBehaviourState>> p_new_player_state) final;
 private:
   /// <summary>
-  /// A <see cref="std::unique_ptr" /> to the <see cref="ISpatialState" />
-  /// describing the player state of this <see cref="ISpatialState"/>
+  /// A <see cref="std::unique_ptr" /> to the <see cref="IEntityState" />
+  /// describing the player state of this <see cref="IEntityState"/>
   /// </summary>
-  std::unique_ptr<ISpatialState> p_player_state;
+  std::unique_ptr<IEntityState<IPacManBehaviourState>> p_player_state;
 };
 
 }

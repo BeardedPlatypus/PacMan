@@ -4,7 +4,8 @@
 #include <memory>
 
 #include "entity/IEntityManager.h"
-#include "entity/ISpatialState.h"
+#include "entity/IEntityState.h"
+#include "entity/IPacManBehaviourState.h"
 
 
 namespace  pacman {
@@ -12,21 +13,24 @@ namespace state {
   
 /// <summary>
 /// <see cref="IEntityManager" /> describes the state of the different 
-/// <see cref="ISpatialState"/> of the entities within this pacman game.
+/// <see cref="IEntityState"/> of the entities within this pacman game.
 /// </summary>
 class DllExport IEntityManager {
 public:
   /// <summary>
-  /// Construct a new <see cref="ISpatialState" /> with the given parameters.
+  /// Construct a new <see cref="IEntityManager"/>
   /// </summary>
-  /// <returns></returns>
+  /// <returns>
+  /// A <see cref="std::unique_ptr{IEntityManager}"/> containing the newly
+  /// created entity manager.
+  /// </returns>
   static std::unique_ptr<IEntityManager> Construct();
 
   /// <summary>
   /// Get a pointer to the state of the player.
   /// </summary>
   /// <returns>A pointer to the state of the player.</returns>
-  virtual ISpatialState* GetPlayerState() const = 0;
+  virtual IEntityState<IPacManBehaviourState>* GetPlayerState() const = 0;
       
   /// <summary>
   /// Set the state of the player to the specified <paramref name="p_player_state" />.
@@ -35,7 +39,7 @@ public:
   /// <postcondition>
   /// | (new this)->GetPlayerState() == p_player_state.get();
   /// </postcondition>
-  virtual void SetPlayerState(std::unique_ptr<ISpatialState> p_player_state) = 0;
+  virtual void SetPlayerState(std::unique_ptr<IEntityState<IPacManBehaviourState>> p_player_state) = 0;
 };
 
 }
