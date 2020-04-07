@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\EntityAxisMock.h" />
+    <ClInclude Include="include\EntityManagerMock.h" />
     <ClInclude Include="include\EntityStateMock.h" />
     <ClInclude Include="include\SpatialStateMock.h" />
     <ClInclude Include="include\FieldMock.h" />
