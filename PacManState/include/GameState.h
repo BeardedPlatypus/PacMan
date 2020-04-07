@@ -23,8 +23,8 @@ public:
   field::IField* GetField() const final;
   void ConstructNewField(const std::vector<std::vector<field::TileType>>& tiles);
 
-  ISpatialState* GetPlayerState() const final;
-  void SetPlayerState(std::unique_ptr<ISpatialState> p_new_player_state) final;
+  IEntityManager* GetEntityManager() const final;
+  void SetEntityManager(std::unique_ptr<IEntityManager> p_new_player_state) final;
 
   void ConstructNewFieldObjects(const std::vector<std::vector<field::FieldObjectType>>& field_objects) final;
 
@@ -48,10 +48,9 @@ private:
   std::unique_ptr<field::IField> _p_field;
   
   /// <summary>
-  /// A <see cref="std::unique_ptr" /> to the player's
-  /// <see cref="ISpatialState" />.
+  /// A <see cref="std::unique_ptr" /> to the <see cref="IEntityManager"/>
   /// </summary>
-  std::unique_ptr<ISpatialState> _p_player_state;
+  std::unique_ptr<IEntityManager> _p_entity_manager;
   
   /// <summary>
   /// A <see cref="std::unique_ptr" /> to the <see cref="field::IFieldObjectManager" />.

@@ -20,7 +20,7 @@ UpdateAPI::UpdateAPI(state::IGameState* p_game_state,
 
 
 void UpdateAPI::Initialise() {
-  this->p_player_entity = IUpdatablePlayerEntity::Construct(this->p_game_state->GetPlayerState());
+  this->p_player_entity = IUpdatablePlayerEntity::Construct(this->p_game_state->GetEntityManager()->GetPlayerState()->GetSpatialState());
 
   this->p_behaviour_manager->Initialise(this->p_game_state->GetField(),
                                         this->p_game_state->GetFieldObjectManager(),

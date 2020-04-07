@@ -29,13 +29,13 @@ void GameState::ConstructNewField(const std::vector<std::vector<field::TileType>
 }
 
 
-inline ISpatialState* GameState::GetPlayerState() const {
-  return this->_p_player_state.get();
+inline IEntityManager* GameState::GetEntityManager() const {
+  return this->_p_entity_manager.get();
 }
 
 
-inline void GameState::SetPlayerState(std::unique_ptr<ISpatialState> p_new_player_state) {
-  this->_p_player_state = std::move(p_new_player_state);
+inline void GameState::SetEntityManager(std::unique_ptr<IEntityManager> p_entity_manager) {
+  this->_p_entity_manager= std::move(p_entity_manager);
 }
 
 

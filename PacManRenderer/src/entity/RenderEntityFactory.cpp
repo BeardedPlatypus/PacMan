@@ -19,6 +19,12 @@
 #include "entity/animation/PacManSpriteConfigRepository.h"
 #include "entity/animation/PacManAnimationConfigRepository.h"
 
+#include "entity/render/StateBasedValueProvider.h"
+#include "entity/render/GetStateContainer.h"
+
+#include "entity/render/GetAxiiContainer.h"
+#include "entity/render/GetDirectionContainer.h"
+#include "entity/render/IsMovingContainer.h"
 
 namespace pacman {
 namespace renderer {
@@ -98,10 +104,13 @@ std::unique_ptr<render::EntityRenderConfig> GetMovingRenderer(
 
 
 std::unique_ptr<IRenderEntity> RenderEntityFactory::ConstructPacManRenderEntity(view::IViewAPI* p_view_api,
-                                                                                std::shared_ptr<render::GetDirectionContainer> p_direction_container,
-                                                                                std::unique_ptr<render::GetAxiiContainer> p_axii_container,
-                                                                                std::unique_ptr<render::IsMovingContainer> p_is_moving_container) const {
+                                                                                state::IEntityState<state::IPacManBehaviourState>* p_entity_state) const {
   // Animations
+  auto p_direction_container = std::make_shared<render::GetDirectionContainer>(*(p_entity_state->GetSpatialState()));
+  auto p_axii_container = std::make_unique<render::GetAxiiContainer>(*(p_entity_state->GetSpatialState()));
+  auto p_is_moving_container = std::make_unique<render::IsMovingContainer>(*(p_entity_state->GetSpatialState()));
+  auto p_get_state_container = std::make_shared<render::GetStateContainer<state::PacManStateType>>(*(p_entity_state->GetBehaviouralState()));
+
   auto spriteRepository = animation::PacManSpriteConfigRepository();
   auto animRepository = animation::PacManAnimationConfigRepository();
 
@@ -132,8 +141,15 @@ std::unique_ptr<IRenderEntity> RenderEntityFactory::ConstructPacManRenderEntity(
     std::make_unique<std::unordered_map<state::PacManStateType, std::unique_ptr<IEntityStateRenderer>, EnumClassHash >>();
   p_renderers->insert(std::make_pair(state::PacManStateType::Moving, std::move(moving_renderer)));
 
+  auto p_state_mapping =
+    std::make_unique<std::unordered_map<state::PacManStateType, state::PacManStateType, EnumClassHash>>();
+  p_state_mapping->insert(std::make_pair(state::PacManStateType::Moving, state::PacManStateType::Moving));
+  p_state_mapping->insert(std::make_pair(state::PacManStateType::Dying, state::PacManStateType::Dying));
+
   std::unique_ptr<render::IValueProvider<state::PacManStateType>> p_state_provider =
-    std::make_unique<render::StaticValueProvider<state::PacManStateType>>(state::PacManStateType::Moving);
+    std::make_unique<render::StateBasedValueProvider<state::PacManStateType, state::PacManStateType>>(p_get_state_container, 
+                                                                                                      state::PacManStateType::Moving,
+                                                                                                      std::move(p_state_mapping));
 
   std::unique_ptr<IRenderEntity> p_result = std::make_unique<RenderEntity<state::PacManStateType>>(std::move(p_renderers), std::move(p_state_provider));
   return p_result;

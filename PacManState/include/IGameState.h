@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "entity/ISpatialState.h"
+#include "entity/IEntityManager.h"
 #include "GameMode.h"
 #include "field/Field.h"
 #include "field/object/FieldObjectType.h"
@@ -60,19 +60,19 @@ namespace pacman {
       virtual void ConstructNewField(const std::vector<std::vector<field::TileType>>& tiles) = 0;
       
       /// <summary>
-      /// Get a pointer to state of the player.
+      /// Get a pointer to the <see cref="IEntityManager"/>.
       /// </summary>
-      /// <returns>A pointer to the state of the player.</returns>
-      virtual ISpatialState* GetPlayerState() const = 0;
+      /// <returns>A pointer to the <see cref="IEntityManager"/>.</returns>
+      virtual IEntityManager* GetEntityManager() const = 0;
       
       /// <summary>
-      /// Set the pointer to the player state.
+      /// Set the pointer to the entity manager.
       /// </summary>
-      /// <param name="p_player_state">State of the p player.</param>
+      /// <param name="p_entity_manager">Unique pointer to the entity manager.</param>
       /// <postcondition>
-      /// | (new this)->GetPlayerState() == p_player_state.get()
+      /// | (new this)->GetEntityManager() == p_entity_manager.get()
       /// </postcondition>
-      virtual void SetPlayerState(std::unique_ptr<ISpatialState> p_player_state) = 0;
+      virtual void SetEntityManager(std::unique_ptr<IEntityManager> p_entity_manager) = 0;
       
       /// <summary>
       /// Construct a new set of field objects as provided in the <paramref name="field_objects"/>.

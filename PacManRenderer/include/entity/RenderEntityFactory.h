@@ -3,11 +3,11 @@
 #include <memory>
 
 #include <entity/IRenderEntity.h>
+#include "entity/IEntityState.h"
+#include "entity/IPacManBehaviourState.h"
+
 
 #include <IViewAPI.h>
-#include "entity/render/GetAxiiContainer.h"
-#include "entity/render/GetDirectionContainer.h"
-#include "entity/render/IsMovingContainer.h"
 
 namespace pacman {
 namespace renderer {
@@ -27,9 +27,7 @@ public:
   /// PacMan render entity.
   /// </returns>
   std::unique_ptr<IRenderEntity> ConstructPacManRenderEntity(view::IViewAPI* p_view_api,
-                                                             std::shared_ptr<render::GetDirectionContainer> p_direction_container,
-                                                             std::unique_ptr<render::GetAxiiContainer> p_axii_container,
-                                                             std::unique_ptr<render::IsMovingContainer> p_is_moving_container) const;
+                                                             state::IEntityState<state::IPacManBehaviourState>* p_entity_state) const;
 };
 
 }

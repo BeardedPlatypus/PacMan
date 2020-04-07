@@ -25,7 +25,7 @@ public:
   /// <param name="_p_state_container">A pointer to the observed <see cref="GetStateContainer"/>.</param>
   /// <param name="default_value">The default value.</param>
   /// <param name="p_mapping">The mapping of the state to values.</param>
-  StateBasedValueProvider(std::unique_ptr<GetStateContainer<TState>> p_state_container,
+  StateBasedValueProvider(std::shared_ptr<GetStateContainer<TState>> p_state_container,
                           const TValue& default_value,
                           std::unique_ptr<std::unordered_map<TState, TValue, EnumClassHash>> p_mapping) :
       _p_state_container(std::move(p_state_container)),
@@ -40,7 +40,7 @@ public:
   }
 
 private:
-  std::unique_ptr<GetStateContainer<TState>> _p_state_container;
+  std::shared_ptr<GetStateContainer<TState>> _p_state_container;
   TValue _default_value;
   std::unique_ptr<std::unordered_map<TState, TValue, EnumClassHash>> _p_mapping;
 };

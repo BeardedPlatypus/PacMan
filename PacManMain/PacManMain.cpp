@@ -9,7 +9,9 @@
 #include <IRendererAPI.h>
 #include <IUpdateAPI.h>
 
-#include <entity/SpatialState.h>
+#include <entity/IEntityManager.h>
+#include <entity/IEntityState.h>
+#include <entity/IPacManBehaviourState.h>
 
 #include <field/FieldDefinition.h>
 #include <field/object/FieldObjectDefinition.h>
@@ -27,11 +29,19 @@ int main(int argc, char **argv) {
   p_game_state->ConstructNewField(pacman::state::field::GetFieldDefinition());
   p_game_state->ConstructNewFieldObjects(pacman::state::field::GetFieldObjectDefinition());
 
-  auto p_player_state = pacman::state::ISpatialState::Construct(11.F,
-                                                               20.F,
-                                                               pacman::state::Direction::Left,
-                                                               3.0F);
-  p_game_state->SetPlayerState(std::move(p_player_state));
+  auto p_player_spatial_state = pacman::state::ISpatialState::Construct(11.F,
+                                                                        20.F,
+                                                                        pacman::state::Direction::Left,
+                                                                        3.0F);
+  auto p_player_behavioural_state = pacman::state::IPacManBehaviourState::Construct(pacman::state::PacManStateType::Moving);
+  auto p_pacman_entity = 
+    pacman::state::IEntityState<pacman::state::IPacManBehaviourState>::Construct(std::move(p_player_spatial_state),
+                                                                                 std::move(p_player_behavioural_state));
+
+  auto p_entity_manager = pacman::state::IEntityManager::Construct();
+  p_entity_manager->SetPlayerState(std::move(p_pacman_entity));
+
+  p_game_state->SetEntityManager(std::move(p_entity_manager));
 
   auto p_score_board = pacman::state::score::IScoreBoard::Construct();
   p_game_state->SetScoreBoard(std::move(p_score_board));

@@ -1,10 +1,10 @@
-#include "SpatialStateMock.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 #include "GameState.h"
 
+#include "EntityManagerMock.h"
 
 namespace pacman {
 namespace state {
@@ -36,18 +36,18 @@ TEST(GameStateTest, GivenAGameStateAndAGameMode_WhenThisModeIsSetOnThisState_The
 }
 
 
-TEST(GameStateTest, SetPlayerState_ExpectedResults) {
+TEST(GameStateTest, SetEntityManager_ExpectedResults) {
 	// Setup
 	auto game_state = IGameState::Construct();
 
-	std::unique_ptr<SpatialStateMock> p_entity_state = std::make_unique<SpatialStateMock>();
-	SpatialStateMock* p_expected_state = p_entity_state.get();
+	std::unique_ptr<IEntityManager> p_entity_state = std::make_unique<EntityManagerMock>();
+	IEntityManager* p_expected_state = p_entity_state.get();
 
 	// Call
-	game_state->SetPlayerState(std::move(p_entity_state));
+	game_state->SetEntityManager(std::move(p_entity_state));
 
 	// Assert
-	ISpatialState* retrieved_state = game_state->GetPlayerState();
+	IEntityManager* retrieved_state = game_state->GetEntityManager();
 	EXPECT_EQ(retrieved_state, p_expected_state);
 }
 
