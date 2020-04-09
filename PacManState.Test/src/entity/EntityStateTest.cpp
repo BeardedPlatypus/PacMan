@@ -3,7 +3,7 @@
 
 #include "entity/IEntityState.h"
 #include "SpatialStateMock.h"
-#include "entity/IPacManBehaviourState.h"
+#include "entity/player/IPacManBehaviourState.h"
 
 #pragma region using_statements
 using ::testing::Eq;

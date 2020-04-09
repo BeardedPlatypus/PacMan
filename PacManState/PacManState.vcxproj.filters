@@ -96,19 +96,19 @@
     <ClInclude Include="include\entity\SpatialState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\entity\PacManStateType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\entity\IEntityState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\entity\IPacManBehaviourState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\entity\PacManBehaviourState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\entity\EntityState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entity\player\IPacManBehaviourState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entity\player\PacManBehaviourState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entity\player\PacManStateType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -173,13 +173,13 @@
     <ClCompile Include="src\entity\ISpatialState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\PacManBehaviourState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity\IPacManBehaviourState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\entity\IEntityState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\player\IPacManBehaviourState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\player\PacManBehaviourState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

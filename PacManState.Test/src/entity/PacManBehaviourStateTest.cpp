@@ -1,7 +1,7 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "entity/IPacManBehaviourState.h"
+#include "entity/player/IPacManBehaviourState.h"
 
 #pragma region using_statements
 using ::testing::Eq;

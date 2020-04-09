@@ -2,7 +2,7 @@
 #include "entity/IEntityState.h"
 #include "entity/EntityState.h"
 
-#include "entity/IPacManBehaviourState.h"
+#include "entity/player/IPacManBehaviourState.h"
 
 
 namespace pacman {

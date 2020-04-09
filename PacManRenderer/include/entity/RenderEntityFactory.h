@@ -4,7 +4,7 @@
 
 #include <entity/IRenderEntity.h>
 #include "entity/IEntityState.h"
-#include "entity/IPacManBehaviourState.h"
+#include "entity/player/IPacManBehaviourState.h"
 
 
 #include <IViewAPI.h>

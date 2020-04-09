@@ -156,9 +156,9 @@
     <ClInclude Include="include\entity\EntityManager.h" />
     <ClInclude Include="include\entity\EntityState.h" />
     <ClInclude Include="include\entity\IEntityState.h" />
-    <ClInclude Include="include\entity\IPacManBehaviourState.h" />
-    <ClInclude Include="include\entity\PacManBehaviourState.h" />
-    <ClInclude Include="include\entity\PacManStateType.h" />
+    <ClInclude Include="include\entity\player\IPacManBehaviourState.h" />
+    <ClInclude Include="include\entity\player\PacManBehaviourState.h" />
+    <ClInclude Include="include\entity\player\PacManStateType.h" />
     <ClInclude Include="include\entity\SpatialState.h" />
     <ClInclude Include="include\entity\EntityType.h" />
     <ClInclude Include="include\entity\IEntityManager.h" />
@@ -189,8 +189,8 @@
     <ClCompile Include="PacManState.cpp" />
     <ClCompile Include="src\entity\EntityManager.cpp" />
     <ClCompile Include="src\entity\IEntityState.cpp" />
-    <ClCompile Include="src\entity\IPacManBehaviourState.cpp" />
-    <ClCompile Include="src\entity\PacManBehaviourState.cpp" />
+    <ClCompile Include="src\entity\player\IPacManBehaviourState.cpp" />
+    <ClCompile Include="src\entity\player\PacManBehaviourState.cpp" />
     <ClCompile Include="src\entity\SpatialState.cpp" />
     <ClCompile Include="src\entity\IEntityAxis.cpp" />
     <ClCompile Include="src\entity\IEntityManager.cpp" />

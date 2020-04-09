@@ -14,7 +14,7 @@
 #include "entity/render/AnimationPositionProvider.h"
 #include "entity/render/StaticValueProvider.h"
 #include "entity/render/IsMovingBasedValueProvider.h"
-#include "entity/PacManStateType.h"
+#include "entity/player/PacManStateType.h"
 
 #include "entity/animation/PacManSpriteConfigRepository.h"
 #include "entity/animation/PacManAnimationConfigRepository.h"

@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "entity/IPacManBehaviourState.h"
-#include "entity/PacManBehaviourState.h"
+#include "entity/player/IPacManBehaviourState.h"
+#include "entity/player/PacManBehaviourState.h"
 
 
 namespace pacman {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "entity/IPacManBehaviourState.h"
+#include "entity/player/IPacManBehaviourState.h"
 
 namespace pacman {
 namespace state {

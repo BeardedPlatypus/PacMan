@@ -2,7 +2,7 @@
 #define DllExport __declspec( dllexport )
 
 #include <memory>
-#include "entity/PacManStateType.h"
+#include "entity/player/PacManStateType.h"
 
 namespace pacman {
 namespace state {

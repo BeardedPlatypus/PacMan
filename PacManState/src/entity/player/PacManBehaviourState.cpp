@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "entity/PacManBehaviourState.h"
+#include "entity/player/PacManBehaviourState.h"
 
 namespace pacman {
 namespace state {
