@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\entity\ghost\GhostStateType.h" />
     <ClInclude Include="include\entity\spatial\Direction.h" />
     <ClInclude Include="include\entity\spatial\EntityAxis.h" />
     <ClInclude Include="include\entity\EntityManager.h" />
