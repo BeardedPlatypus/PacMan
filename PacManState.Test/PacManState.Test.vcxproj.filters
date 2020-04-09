@@ -27,9 +27,6 @@
     <ClCompile Include="src\entity\EntityManagerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\EntityAxisTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\field\object\FieldObjectManagerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -48,13 +45,16 @@
     <ClCompile Include="src\util\EnumClassHashTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\SpatialStateTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity\PacManBehaviourStateTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\entity\EntityStateTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\player\PacManBehaviourStateTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\spatial\EntityAxisTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\spatial\SpatialStateTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

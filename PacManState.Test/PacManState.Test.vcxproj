@@ -136,11 +136,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\entity\EntityAxisTest.cpp" />
+    <ClCompile Include="src\entity\spatial\EntityAxisTest.cpp" />
     <ClCompile Include="src\entity\EntityManagerTest.cpp" />
     <ClCompile Include="src\entity\EntityStateTest.cpp" />
-    <ClCompile Include="src\entity\PacManBehaviourStateTest.cpp" />
-    <ClCompile Include="src\entity\SpatialStateTest.cpp" />
+    <ClCompile Include="src\entity\player\PacManBehaviourStateTest.cpp" />
+    <ClCompile Include="src\entity\spatial\SpatialStateTest.cpp" />
     <ClCompile Include="src\field\FieldTest.cpp" />
     <ClCompile Include="src\field\object\FieldObjectManagerTest.cpp" />
     <ClCompile Include="src\field\object\FieldObjectTest.cpp" />
