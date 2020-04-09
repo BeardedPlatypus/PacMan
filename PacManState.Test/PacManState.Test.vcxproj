@@ -136,6 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\entity\ghost\GhostBehaviourStateTest.cpp" />
     <ClCompile Include="src\entity\spatial\EntityAxisTest.cpp" />
     <ClCompile Include="src\entity\EntityManagerTest.cpp" />
     <ClCompile Include="src\entity\EntityStateTest.cpp" />

@@ -57,6 +57,9 @@
     <ClCompile Include="src\entity\spatial\SpatialStateTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\ghost\GhostBehaviourStateTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
