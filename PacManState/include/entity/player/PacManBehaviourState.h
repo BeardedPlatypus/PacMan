@@ -6,7 +6,7 @@ namespace pacman {
 namespace state {
 
 /// <summary>
-/// <see cref="IPacManBehaviourState" /> describes the behavioural state of 
+/// <see cref="PacManBehaviourState" /> describes the behavioural state of 
 /// the player within the pacman game.
 /// </summary>
 class PacManBehaviourState final : public IPacManBehaviourState {
