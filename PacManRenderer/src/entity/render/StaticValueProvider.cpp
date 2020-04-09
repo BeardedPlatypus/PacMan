@@ -2,7 +2,7 @@
 #include "entity/render/StaticValueProvider.h"
 
 #include <string>
-#include <entity/PacManStateType.h>
+#include <entity/player/PacManStateType.h>
 
 namespace pacman {
 namespace renderer {
