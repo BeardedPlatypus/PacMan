@@ -14,7 +14,8 @@ namespace state {
 class DllExport IPacManBehaviourState {
 public:    
   /// <summary>
-  /// Constructs the specified initial state.
+  /// Constructs a new <see cref="IPacManBehaviourState"/> with the given 
+  /// <paramref cref="initial_state"/>.
   /// </summary>
   /// <param name="initial_state">The initial state.</param>
   /// <returns>
