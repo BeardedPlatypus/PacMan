@@ -15,7 +15,7 @@ namespace animation {
 std::unique_ptr<IAnimationRenderConfig> GetMovingAnimation(
     view::IViewAPI* p_view_api,
     const std::string& anim_label,
-    const std::vector<std::string> sprite_frames,
+    const std::vector<std::string>& sprite_frames,
     const PacManSpriteConfigRepository& sprite_repository,
     std::shared_ptr<render::IValueProvider<std::string>> p_active_label_provider) {
   std::unique_ptr<ActiveInverseAnimationUpdateBehaviour> p_update_behaviour = 
