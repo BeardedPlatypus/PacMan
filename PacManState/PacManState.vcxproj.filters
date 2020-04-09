@@ -117,6 +117,9 @@
     <ClInclude Include="include\entity\ghost\IGhostBehaviourState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\entity\ghost\GhostBehaviourState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -186,6 +189,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\entity\spatial\IEntityAxis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\ghost\GhostBehaviourState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\ghost\IGhostBehaviourState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

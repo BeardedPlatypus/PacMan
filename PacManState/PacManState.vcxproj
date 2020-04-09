@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\entity\ghost\GhostBehaviourState.h" />
     <ClInclude Include="include\entity\ghost\GhostStateType.h" />
     <ClInclude Include="include\entity\ghost\IGhostBehaviourState.h" />
     <ClInclude Include="include\entity\spatial\Direction.h" />
@@ -190,6 +191,8 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="PacManState.cpp" />
     <ClCompile Include="src\entity\EntityManager.cpp" />
+    <ClCompile Include="src\entity\ghost\GhostBehaviourState.cpp" />
+    <ClCompile Include="src\entity\ghost\IGhostBehaviourState.cpp" />
     <ClCompile Include="src\entity\IEntityState.cpp" />
     <ClCompile Include="src\entity\player\IPacManBehaviourState.cpp" />
     <ClCompile Include="src\entity\player\PacManBehaviourState.cpp" />
