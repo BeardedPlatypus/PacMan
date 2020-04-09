@@ -151,15 +151,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\entity\Direction.h" />
-    <ClInclude Include="include\entity\EntityAxis.h" />
+    <ClInclude Include="include\entity\spatial\Direction.h" />
+    <ClInclude Include="include\entity\spatial\EntityAxis.h" />
     <ClInclude Include="include\entity\EntityManager.h" />
     <ClInclude Include="include\entity\EntityState.h" />
     <ClInclude Include="include\entity\IEntityState.h" />
     <ClInclude Include="include\entity\player\IPacManBehaviourState.h" />
     <ClInclude Include="include\entity\player\PacManBehaviourState.h" />
     <ClInclude Include="include\entity\player\PacManStateType.h" />
-    <ClInclude Include="include\entity\SpatialState.h" />
+    <ClInclude Include="include\entity\spatial\SpatialState.h" />
     <ClInclude Include="include\entity\EntityType.h" />
     <ClInclude Include="include\entity\IEntityManager.h" />
     <ClInclude Include="include\field\Field.h" />
@@ -172,9 +172,9 @@
     <ClInclude Include="include\IGameState.h" />
     <ClInclude Include="include\field\TileType.h" />
     <ClInclude Include="include\GameMode.h" />
-    <ClInclude Include="include\entity\ISpatialState.h" />
+    <ClInclude Include="include\entity\spatial\ISpatialState.h" />
     <ClInclude Include="include\GameState.h" />
-    <ClInclude Include="include\entity\IEntityAxis.h" />
+    <ClInclude Include="include\entity\spatial\IEntityAxis.h" />
     <ClInclude Include="include\field\object\FieldObjectType.h" />
     <ClInclude Include="include\level\ILevelManager.h" />
     <ClInclude Include="include\level\LevelManager.h" />
@@ -191,8 +191,8 @@
     <ClCompile Include="src\entity\IEntityState.cpp" />
     <ClCompile Include="src\entity\player\IPacManBehaviourState.cpp" />
     <ClCompile Include="src\entity\player\PacManBehaviourState.cpp" />
-    <ClCompile Include="src\entity\SpatialState.cpp" />
-    <ClCompile Include="src\entity\IEntityAxis.cpp" />
+    <ClCompile Include="src\entity\spatial\SpatialState.cpp" />
+    <ClCompile Include="src\entity\spatial\IEntityAxis.cpp" />
     <ClCompile Include="src\entity\IEntityManager.cpp" />
     <ClCompile Include="src\field\Field.cpp" />
     <ClCompile Include="src\field\FieldDefinition.cpp" />
@@ -202,7 +202,7 @@
     <ClCompile Include="src\field\object\FieldObjectType.cpp" />
     <ClCompile Include="src\field\object\IFieldObjectManager.cpp" />
     <ClCompile Include="src\GameState.cpp" />
-    <ClCompile Include="src\entity\ISpatialState.cpp" />
+    <ClCompile Include="src\entity\spatial\ISpatialState.cpp" />
     <ClCompile Include="src\IGameState.cpp" />
     <ClCompile Include="src\level\ILevelManager.cpp" />
     <ClCompile Include="src\level\LevelManager.cpp" />

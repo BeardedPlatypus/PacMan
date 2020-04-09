@@ -2,7 +2,7 @@
 
 #include "GameMode.h"
 #include "IGameState.h"
-#include "entity/ISpatialState.h"
+#include "entity/spatial/ISpatialState.h"
 
 namespace pacman {
 namespace state {

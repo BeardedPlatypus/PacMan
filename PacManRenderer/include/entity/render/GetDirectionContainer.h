@@ -1,6 +1,6 @@
 #pragma once
 
-#include "entity/Direction.h"
+#include "entity/spatial/Direction.h"
 #include <memory>
 
 namespace pacman {

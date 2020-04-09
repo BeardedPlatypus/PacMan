@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <entity/IEntityAxis.h>
+#include <entity/spatial/IEntityAxis.h>
 
 #include "entity/AxisDirection.h"
 

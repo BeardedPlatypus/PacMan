@@ -1,6 +1,6 @@
 #pragma once
 
-#include "entity/IEntityAxis.h"
+#include "entity/spatial/IEntityAxis.h"
 #include "gmock/gmock.h"
 
 

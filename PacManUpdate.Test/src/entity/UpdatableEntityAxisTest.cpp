@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <entity/IUpdatableEntityAxis.h>
-#include <entity/IEntityAxis.h>
+#include <entity/spatial/IEntityAxis.h>
 
 #include "EntityAxisMock.h"
 

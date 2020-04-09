@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "entity/ISpatialState.h"
+#include "entity/spatial/ISpatialState.h"
 
-#include "entity/SpatialState.h"
+#include "entity/spatial/SpatialState.h"
 
 
 namespace pacman {

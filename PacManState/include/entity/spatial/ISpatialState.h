@@ -3,8 +3,8 @@
 
 #include <memory>
 
-#include "entity/Direction.h"
-#include "entity/IEntityAxis.h"
+#include "entity/spatial/Direction.h"
+#include "entity/spatial/IEntityAxis.h"
 
 
 namespace pacman {

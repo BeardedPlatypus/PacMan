@@ -3,7 +3,7 @@
 
 #include <entity/render/GetDirectionContainer.h>
 
-#include "entity/ISpatialState.h"
+#include "entity/spatial/ISpatialState.h"
 
 using ::testing::Eq;
 

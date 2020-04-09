@@ -2,7 +2,7 @@
 #define DllExport __declspec( dllexport )
 
 #include <memory>
-#include "entity/ISpatialState.h"
+#include "entity/spatial/ISpatialState.h"
 
 namespace pacman {
 namespace state {

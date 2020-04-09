@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "entity/IEntityAxis.h"
-#include "entity/EntityAxis.h"
+#include "entity/spatial/IEntityAxis.h"
+#include "entity/spatial/EntityAxis.h"
 
 
 namespace pacman {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../PacManControllerAPI/include/IControllerCommand.h"
-#include <entity/ISpatialState.h>
+#include <entity/spatial/ISpatialState.h>
 #include <optional>
 #include "entity/IPlayerMovementAxis.h"
 #include "state_machine/events/PlayerControlEvent.h"

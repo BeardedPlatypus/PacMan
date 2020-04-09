@@ -1,8 +1,8 @@
 #pragma once
 #define DllExport __declspec( dllexport )
 
-#include "entity/ISpatialState.h"
-#include "entity/EntityAxis.h"
+#include "entity/spatial/ISpatialState.h"
+#include "entity/spatial/EntityAxis.h"
 
 namespace pacman {
 namespace state {

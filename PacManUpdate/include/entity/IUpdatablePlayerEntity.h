@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <entity/ISpatialState.h>
+#include <entity/spatial/ISpatialState.h>
 #include <optional>
 
 #include "entity/IUpdatableEntityAxis.h"

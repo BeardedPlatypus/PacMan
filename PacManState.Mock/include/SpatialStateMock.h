@@ -1,6 +1,6 @@
 #pragma once
 
-#include "entity/ISpatialState.h"
+#include "entity/spatial/ISpatialState.h"
 #include "gmock/gmock.h"
 
 

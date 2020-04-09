@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <entity/IEntityAxis.h>
+#include <entity/spatial/IEntityAxis.h>
 
 
 namespace pacman {
