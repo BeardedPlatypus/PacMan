@@ -120,6 +120,9 @@
     <ClInclude Include="include\entity\ghost\GhostBehaviourState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\entity\ghost\GhostEntityType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
