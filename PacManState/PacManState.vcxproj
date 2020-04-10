@@ -164,7 +164,6 @@
     <ClInclude Include="include\entity\player\PacManBehaviourState.h" />
     <ClInclude Include="include\entity\player\PacManStateType.h" />
     <ClInclude Include="include\entity\spatial\SpatialState.h" />
-    <ClInclude Include="include\entity\EntityType.h" />
     <ClInclude Include="include\entity\IEntityManager.h" />
     <ClInclude Include="include\field\Field.h" />
     <ClInclude Include="include\field\FieldDefinition.h" />
