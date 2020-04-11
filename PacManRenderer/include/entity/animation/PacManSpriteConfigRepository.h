@@ -12,9 +12,9 @@ namespace entity {
 namespace animation {
 
 /// <summary>
-/// <see cref="EntitySpriteConfigFactory"/> contains the methods to create
-/// all sets of sprites per animation. Each of these sets of sprites has a 
-/// corresponding method.
+/// <see cref="PacManSpriteConfigFactory"/> contains the methods to create
+/// all sets of sprites per animation of the player character. Each of these 
+/// sets of sprites has a corresponding method.
 /// </summary>
 class PacManSpriteConfigRepository {
 public:  
