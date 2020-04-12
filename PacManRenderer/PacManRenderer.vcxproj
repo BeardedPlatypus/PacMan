@@ -164,6 +164,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\CommonSpriteValues.h" />
     <ClInclude Include="include\entity\animation\AnimationRenderConfig.h" />
+    <ClInclude Include="include\entity\animation\GhostAnimationConfigRepository.h" />
     <ClInclude Include="include\entity\animation\GhostSpriteConfigRepository.h" />
     <ClInclude Include="include\entity\animation\PacManAnimationConfigRepository.h" />
     <ClInclude Include="include\entity\animation\PacManSpriteConfigRepository.h" />
@@ -230,6 +231,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\entity\animation\AnimationRenderConfig.cpp" />
+    <ClCompile Include="src\entity\animation\GhostAnimationConfigRepository.cpp" />
     <ClCompile Include="src\entity\animation\GhostSpriteConfigRepository.cpp" />
     <ClCompile Include="src\entity\animation\PacManAnimationConfigRepository.cpp" />
     <ClCompile Include="src\entity\animation\PacManSpriteConfigRepository.cpp" />

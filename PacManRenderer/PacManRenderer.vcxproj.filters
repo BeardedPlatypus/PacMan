@@ -195,6 +195,9 @@
     <ClInclude Include="include\entity\animation\GhostSpriteConfigRepository.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\entity\animation\GhostAnimationConfigRepository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -282,6 +285,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\entity\animation\GhostSpriteConfigRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\animation\GhostAnimationConfigRepository.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
