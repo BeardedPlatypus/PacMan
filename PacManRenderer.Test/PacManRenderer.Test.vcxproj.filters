@@ -111,5 +111,8 @@
     <ClCompile Include="src\entity\animation\GhostSpriteConfigRepositoryTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\animation\GhostAnimationConfigRepositoryTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
