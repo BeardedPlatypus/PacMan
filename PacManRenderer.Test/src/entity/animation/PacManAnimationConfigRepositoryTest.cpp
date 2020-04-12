@@ -8,8 +8,6 @@
 
 
 using ::testing::Property;
-using ::testing::AllOf;
-using ::testing::ElementsAre;
 using ::testing::Pointee;
 
 namespace pacman {
