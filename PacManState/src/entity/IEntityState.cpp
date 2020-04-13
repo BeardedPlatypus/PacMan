@@ -3,6 +3,7 @@
 #include "entity/EntityState.h"
 
 #include "entity/player/IPacManBehaviourState.h"
+#include "entity/ghost/IGhostBehaviourState.h"
 
 
 namespace pacman {
@@ -16,6 +17,7 @@ std::unique_ptr<IEntityState<T>> IEntityState<T>::Construct(std::unique_ptr<ISpa
 }
 
 template class IEntityState<IPacManBehaviourState>;
+template class IEntityState<IGhostBehaviourState>;
 
 }
 }
