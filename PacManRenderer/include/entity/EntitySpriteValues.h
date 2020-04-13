@@ -57,64 +57,19 @@ namespace values {
   const std::string ghost_scared_anim = "ghost_scared_anim";
   
   /// <summary>
-  /// Blinky moving horizontal animation label.
+  /// Ghost moving horizontal animation label.
   /// </summary>
-  const std::string blinky_moving_horizontal_anim = "blinky_moving_horizontal_anim";  
+  const std::string ghost_moving_horizontal_anim = "moving_horizontal_anim";  
 
   /// <summary>
-  /// Blinky moving up animation label.
+  /// Ghost moving up animation label.
   /// </summary>
-  const std::string blinky_moving_up_anim = "blinky_moving_up_anim";
+  const std::string ghost_moving_up_anim = "moving_up_anim";
   
   /// <summary>
-  /// Blinky moving down animation label.
+  /// Ghost moving down animation label.
   /// </summary>
-  const std::string blinky_moving_down_anim = "blinky_moving_down_anim";
-  
-  /// <summary>
-  /// Pinky moving horizontal animation label.
-  /// </summary>
-  const std::string pinky_moving_horizontal_anim = "pinky_moving_horizontal_anim";
-  
-  /// <summary>
-  /// Pinky moving up animation label.
-  /// </summary>
-  const std::string pinky_moving_up_anim = "pinky_moving_up_anim";
-  
-  /// <summary>
-  /// Pinky moving down animation label.
-  /// </summary>
-  const std::string pinky_moving_down_anim = "pinky_moving_down_anim";
-  
-  /// <summary>
-  /// Inky moving horizontal animation label.
-  /// </summary>
-  const std::string inky_moving_horizontal_anim = "inky_moving_horizontal_anim";  
-
-  /// <summary>
-  /// Inky moving up animation label.
-  /// </summary>
-  const std::string inky_moving_up_anim = "inky_moving_up_anim";
-  
-  /// <summary>
-  /// Inky moving down animation label.
-  /// </summary>
-  const std::string inky_moving_down_anim = "inky_moving_down_anim";
-  
-  /// <summary>
-  /// Clyde moving horizontal animation label.
-  /// </summary>
-  const std::string clyde_moving_horizontal_anim = "clyde_moving_horizontal_anim";
-  
-  /// <summary>
-  /// Clyde moving up animation label.
-  /// </summary>
-  const std::string clyde_moving_up_anim = "clyde_moving_up_anim";  
-
-  /// <summary>
-  /// Clyde moving down animation label.
-  /// </summary>
-  const std::string clyde_moving_down_anim = "clyde_moving_down_anim";
+  const std::string ghost_moving_down_anim = "moving_down_anim";
     
   /// <summary>
   /// The entity tile size.
