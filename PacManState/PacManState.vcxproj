@@ -192,6 +192,7 @@
     <ClCompile Include="PacManState.cpp" />
     <ClCompile Include="src\entity\EntityManager.cpp" />
     <ClCompile Include="src\entity\ghost\GhostBehaviourState.cpp" />
+    <ClCompile Include="src\entity\ghost\GhostEntityType.cpp" />
     <ClCompile Include="src\entity\ghost\IGhostBehaviourState.cpp" />
     <ClCompile Include="src\entity\IEntityState.cpp" />
     <ClCompile Include="src\entity\player\IPacManBehaviourState.cpp" />
