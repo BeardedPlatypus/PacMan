@@ -12,6 +12,7 @@
 #include <entity/IEntityManager.h>
 #include <entity/IEntityState.h>
 #include <entity/player/IPacManBehaviourState.h>
+#include <entity/ghost/IGhostBehaviourState.h>
 
 #include <field/FieldDefinition.h>
 #include <field/object/FieldObjectDefinition.h>
@@ -29,6 +30,10 @@ int main(int argc, char **argv) {
   p_game_state->ConstructNewField(pacman::state::field::GetFieldDefinition());
   p_game_state->ConstructNewFieldObjects(pacman::state::field::GetFieldObjectDefinition());
 
+  // Entities
+  auto p_entity_manager = pacman::state::IEntityManager::Construct();
+
+  // - Pacman
   auto p_player_spatial_state = pacman::state::ISpatialState::Construct(11.F,
                                                                         20.F,
                                                                         pacman::state::Direction::Left,
@@ -37,9 +42,53 @@ int main(int argc, char **argv) {
   auto p_pacman_entity = 
     pacman::state::IEntityState<pacman::state::IPacManBehaviourState>::Construct(std::move(p_player_spatial_state),
                                                                                  std::move(p_player_behavioural_state));
-
-  auto p_entity_manager = pacman::state::IEntityManager::Construct();
   p_entity_manager->SetPlayerState(std::move(p_pacman_entity));
+
+  // - Ghosts
+  auto p_blinky_spatial_state = pacman::state::ISpatialState::Construct(11.F,
+                                                                        10.F,
+                                                                        pacman::state::Direction::Left,
+                                                                        3.0F);
+  p_blinky_spatial_state->SetIsMoving(true);
+  auto p_blinky_behavioural_state = pacman::state::IGhostBehaviourState::Construct(pacman::state::GhostStateType::Alive);
+  auto p_blinky_entity = 
+    pacman::state::IEntityState<pacman::state::IGhostBehaviourState>::Construct(std::move(p_blinky_spatial_state),
+                                                                                 std::move(p_blinky_behavioural_state));
+  p_entity_manager->SetBlinkyState(std::move(p_blinky_entity));
+
+  auto p_pinky_spatial_state = pacman::state::ISpatialState::Construct(11.F,
+                                                                       13.F,
+                                                                       pacman::state::Direction::Up,
+                                                                       3.0F);
+  p_pinky_spatial_state->SetIsMoving(true);
+  auto p_pinky_behavioural_state = pacman::state::IGhostBehaviourState::Construct(pacman::state::GhostStateType::Alive);
+  auto p_pinky_entity = 
+    pacman::state::IEntityState<pacman::state::IGhostBehaviourState>::Construct(std::move(p_pinky_spatial_state),
+                                                                                std::move(p_pinky_behavioural_state));
+  p_entity_manager->SetPinkyState(std::move(p_pinky_entity));
+
+  auto p_inky_spatial_state = pacman::state::ISpatialState::Construct(10.F,
+                                                                      12.F,
+                                                                      pacman::state::Direction::Down,
+                                                                      3.0F);
+  p_inky_spatial_state->SetIsMoving(true);
+
+  auto p_inky_behavioural_state = pacman::state::IGhostBehaviourState::Construct(pacman::state::GhostStateType::Alive);
+  auto p_inky_entity = 
+    pacman::state::IEntityState<pacman::state::IGhostBehaviourState>::Construct(std::move(p_inky_spatial_state),
+                                                                                std::move(p_inky_behavioural_state));
+  p_entity_manager->SetInkyState(std::move(p_inky_entity));
+
+  auto p_clyde_spatial_state = pacman::state::ISpatialState::Construct(12.F,
+                                                                      12.F,
+                                                                      pacman::state::Direction::Down,
+                                                                      3.0F);
+  p_clyde_spatial_state->SetIsMoving(true);
+  auto p_clyde_behavioural_state = pacman::state::IGhostBehaviourState::Construct(pacman::state::GhostStateType::Alive);
+  auto p_clyde_entity = 
+    pacman::state::IEntityState<pacman::state::IGhostBehaviourState>::Construct(std::move(p_clyde_spatial_state),
+                                                                                std::move(p_clyde_behavioural_state));
+  p_entity_manager->SetClydeState(std::move(p_clyde_entity));
 
   p_game_state->SetEntityManager(std::move(p_entity_manager));
 

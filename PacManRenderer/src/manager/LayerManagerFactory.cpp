@@ -52,6 +52,18 @@ std::unique_ptr<EntityLayer> ConstructEntityLayer(float scale,
   state::IEntityManager* p_entity_manager = p_game_state->GetEntityManager();
   p_entities->push_back(factory.ConstructPacManRenderEntity(p_view_api,
                                                             p_entity_manager->GetPlayerState()));
+  p_entities->push_back(factory.ConstructGhostRenderEntity(p_view_api,
+                                                           state::GhostEntityType::Blinky,
+                                                           p_entity_manager->GetBlinkyState()));
+  p_entities->push_back(factory.ConstructGhostRenderEntity(p_view_api,
+                                                           state::GhostEntityType::Pinky,
+                                                           p_entity_manager->GetPinkyState()));
+  p_entities->push_back(factory.ConstructGhostRenderEntity(p_view_api,
+                                                           state::GhostEntityType::Inky,
+                                                           p_entity_manager->GetInkyState()));
+  p_entities->push_back(factory.ConstructGhostRenderEntity(p_view_api,
+                                                           state::GhostEntityType::Clyde,
+                                                           p_entity_manager->GetClydeState()));
 
   return std::make_unique<EntityLayer>(std::move(p_entities), scale, 20.F);
 }
