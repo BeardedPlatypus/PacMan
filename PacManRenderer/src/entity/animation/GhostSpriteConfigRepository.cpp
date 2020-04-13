@@ -55,20 +55,26 @@ void AddSprites(std::unordered_map<state::GhostEntityType, std::vector<std::shar
 
 
 void GhostSpriteConfigRepository::InitialiseMovingSpriteConfigs() {
-  std::vector<std::pair<state::GhostEntityType, std::string>> ghosts = {
-    std::make_pair(state::GhostEntityType::Blinky, "blinky"),
-    std::make_pair(state::GhostEntityType::Pinky,  "pinky"),
-    std::make_pair(state::GhostEntityType::Inky,   "inky"),
-    std::make_pair(state::GhostEntityType::Clyde,  "clyde"),
+  std::vector<state::GhostEntityType> ghosts = {
+    state::GhostEntityType::Blinky,
+    state::GhostEntityType::Pinky,
+    state::GhostEntityType::Inky,
+    state::GhostEntityType::Clyde,
   };
 
   for (size_t i = 0; i < ghosts.size(); i++) {
-    AddSprites(this->moving_horizontal_sprites, ghosts.at(i).first, i + 2, 0,
-      ghosts.at(i).second + "_moving_horizontal");
-    AddSprites(this->moving_up_sprites, ghosts.at(i).first, i + 2, 1,
-      ghosts.at(i).second + "_moving_up");
-    AddSprites(this->moving_down_sprites, ghosts.at(i).first, i + 2, 2,
-      ghosts.at(i).second + "_moving_down");
+    AddSprites(this->moving_horizontal_sprites, 
+               ghosts.at(i), 
+               i + 2, 0,
+               state::GetGhostName(ghosts.at(i)) + "_moving_horizontal");
+    AddSprites(this->moving_up_sprites, 
+               ghosts.at(i), 
+               i + 2, 1,
+               state::GetGhostName(ghosts.at(i)) + "_moving_up");
+    AddSprites(this->moving_down_sprites, 
+               ghosts.at(i),
+               i + 2, 2,
+               state::GetGhostName(ghosts.at(i)) + "_moving_down");
   }
 }
 
