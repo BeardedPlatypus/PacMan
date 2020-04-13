@@ -15,7 +15,7 @@ namespace state {
 
 TEST(GhostBehaviourStateTest, Constructor_ExpectedResults) {
   // Setup
-  GhostStateType expected_state = GhostStateType::Caged;
+  GhostStateType expected_state = GhostStateType::Alive;
 
   // Call
   std::unique_ptr<IGhostBehaviourState> p_result = 
@@ -31,7 +31,7 @@ TEST(GhostBehaviourStateTest, SetData_ExpectedResults) {
   GhostStateType expected_state = GhostStateType::Edible;
 
   std::unique_ptr<IGhostBehaviourState> p_result = 
-    IGhostBehaviourState::Construct(GhostStateType::Chasing);
+    IGhostBehaviourState::Construct(GhostStateType::Alive);
 
   // Call
   p_result->SetState(expected_state);

@@ -10,9 +10,7 @@ namespace state {
 enum class DllExport GhostStateType {
   Eaten, 
   Edible,
-  Caged,
-  Chasing,
-  Patrolling,
+  Alive,
 };
 
 }
