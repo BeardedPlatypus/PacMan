@@ -21,7 +21,7 @@ enum class DummyEnum {
 
 class DummyState {
 public:
-  DummyState(DummyEnum dummy_state) : 
+  explicit DummyState(DummyEnum dummy_state) : 
     _dummy_state(dummy_state) { }
 
   DummyEnum GetState() const {
