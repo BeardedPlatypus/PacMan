@@ -27,6 +27,9 @@ public:
   static std::unique_ptr<IEntityState<TBehaviouralState>> Construct(std::unique_ptr<ISpatialState> p_spatial_state,
                                                                     std::unique_ptr<TBehaviouralState> p_behavioural_state);
 
+
+  virtual ~IEntityState() = default;
+
   /// <summary>
   /// Gets the <see cref="ISpatialState"/> of this <see cref="IEntityState"/>.
   /// </summary>
