@@ -29,11 +29,11 @@ public:
   /// PacMan render entity.
   /// </returns>
   std::unique_ptr<IRenderEntity> ConstructPacManRenderEntity(view::IViewAPI* p_view_api,
-                                                             state::IEntityState<state::IPacManBehaviourState>* p_entity_state) const;
+                                                             const state::IEntityState<state::IPacManBehaviourState>* p_entity_state) const;
 
   std::unique_ptr<IRenderEntity> ConstructGhostRenderEntity(view::IViewAPI* p_view_api,
                                                             state::GhostEntityType ghost_type,
-                                                            state::IEntityState<state::IGhostBehaviourState>* p_entity_state) const;
+                                                            const state::IEntityState<state::IGhostBehaviourState>* p_entity_state) const;
 };
 
 }

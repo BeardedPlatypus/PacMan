@@ -108,7 +108,7 @@ std::unique_ptr<render::EntityRenderConfig> GetPacManMovingRenderer(
 
 
 std::unique_ptr<IRenderEntity> RenderEntityFactory::ConstructPacManRenderEntity(view::IViewAPI* p_view_api,
-                                                                                state::IEntityState<state::IPacManBehaviourState>* p_entity_state) const {
+                                                                                const state::IEntityState<state::IPacManBehaviourState>* p_entity_state) const {
   // Animations
   auto p_direction_container = std::make_shared<render::GetDirectionContainer>(*(p_entity_state->GetSpatialState()));
   auto p_axii_container = std::make_unique<render::GetAxiiContainer>(*(p_entity_state->GetSpatialState()));
@@ -241,7 +241,7 @@ std::unique_ptr<std::vector<std::unique_ptr<animation::IAnimationRenderConfig>>>
 
 std::unique_ptr<IRenderEntity> RenderEntityFactory::ConstructGhostRenderEntity(view::IViewAPI* p_view_api,
                                                                                state::GhostEntityType ghost_type,
-                                                                               state::IEntityState<state::IGhostBehaviourState>* p_entity_state) const {
+                                                                               const state::IEntityState<state::IGhostBehaviourState>* p_entity_state) const {
   std::string ghost_type_prefix = state::GetGhostName(ghost_type) + "_";
 
   // Animations
