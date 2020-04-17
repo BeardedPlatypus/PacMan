@@ -49,7 +49,7 @@ std::unique_ptr<EntityLayer> ConstructEntityLayer(float scale,
   std::unique_ptr<std::vector<std::unique_ptr<entity::IRenderEntity>>> p_entities =
     std::make_unique<std::vector<std::unique_ptr<entity::IRenderEntity>>>();
 
-  state::IEntityManager* p_entity_manager = p_game_state->GetEntityManager();
+  const state::IEntityManager* p_entity_manager = p_game_state->GetEntityManager();
   p_entities->push_back(factory.ConstructPacManRenderEntity(p_view_api,
                                                             p_entity_manager->GetPlayerState()));
   p_entities->push_back(factory.ConstructGhostRenderEntity(p_view_api,
